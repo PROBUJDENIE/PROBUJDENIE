@@ -1,0 +1,17 @@
+post:
+  operationId: createLecture
+  tags:
+    - lecture
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/lecture/request/LectureCreateRequestDto.yaml'
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+              $ref: '../../components/BaseResponseDto.yaml'

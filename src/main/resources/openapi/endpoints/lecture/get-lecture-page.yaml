@@ -1,0 +1,32 @@
+get:
+  operationId: getLecturePage
+  tags:
+    - lecture
+  parameters:
+    - name: offset
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: count
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+  requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/lecture/request/LectureGetLecturePageRequestDto.yaml'
+  responses:
+    '200':
+      description: Список лекций указанной секции
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/lecture/response/LectureGetLecturePageResponseDto.yaml'

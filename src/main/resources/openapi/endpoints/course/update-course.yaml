@@ -1,0 +1,18 @@
+put:
+  operationId: updateCourse
+  tags:
+    - course
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+            $ref: '../../components/course/request/CourseUpdateRequestDto.yaml'
+
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/BaseResponseDto.yaml'

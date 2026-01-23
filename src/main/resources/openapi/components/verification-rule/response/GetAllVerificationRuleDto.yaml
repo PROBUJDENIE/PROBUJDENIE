@@ -1,0 +1,36 @@
+allOf:
+  - $ref: '../../BaseResponseDto.yaml'
+  - type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          title: GetAllVerificationRuleItemResponseDto
+          required:
+            - id
+            - memoryLimit
+            - timeLimit
+            - inputData
+            - outputData
+
+          properties:
+            id:
+              type: string
+              format: uuid
+            memoryLimit:
+              type: integer
+              format: int32
+              minimum: 0
+            timeLimit:
+              type: integer
+              format: int32
+              minimum: 0
+            inputData:
+              type: string
+              minLength: 3
+              maxLength: 255
+            outputData:
+              type: string
+              minLength: 0
+              maxLength: 255

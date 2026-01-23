@@ -1,0 +1,32 @@
+get:
+  operationId: getSectionPage
+  tags:
+    - section
+  parameters:
+    - name: offset
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+    - name: count
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/section/request/SectionGetSectionPageRequestDto.yaml'
+  responses:
+    '200':
+      description: Список секций курса
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/section/response/SectionGetSectionPageResponseDto.yaml'

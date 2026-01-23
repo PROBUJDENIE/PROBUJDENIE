@@ -1,0 +1,17 @@
+delete:
+  operationId: deleteVerificationRule
+  tags:
+    - verificationRule
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/verification-rule/request/DeleteVerificationRuleRequest.yaml'
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/BaseResponseDto.yaml'

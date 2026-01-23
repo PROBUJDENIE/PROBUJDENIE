@@ -1,0 +1,32 @@
+post:
+  operationId: submitUserAnswerExercise
+  description: Отправляет ответ пользователя на задачу
+  tags:
+    - exercise
+  parameters:
+    - name: userId
+      in: query
+      required: true
+      schema:
+        type: string
+        format: UUID
+    - name: exerciseId
+      in: query
+      required: true
+      schema:
+        type: string
+        format: UUID
+    - name: answer
+      in: query
+      required: true
+      schema:
+        type: string
+        format: UUID
+        maxLength: 5000
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+              $ref: '../../components/BaseResponseDto.yaml'

@@ -1,0 +1,17 @@
+post:
+  operationId: createSection
+  tags:
+    - section
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/section/request/SectionCreateRequestDto.yaml'
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+              $ref: '../../components/BaseResponseDto.yaml'

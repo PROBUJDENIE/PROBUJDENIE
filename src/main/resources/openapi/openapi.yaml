@@ -1,0 +1,66 @@
+openapi: 3.0.3
+info:
+  title: Образовательная платформа Probujdenie
+  description: API для образовательной платформы Probujdenie
+  version: 1.0.0
+
+servers:
+  - url: https://localhost:8080/api/v1
+
+paths:
+  /course/getCoursePage:
+    $ref: './endpoints/course/get-course-page.yaml'
+  /course/create:
+    $ref: './endpoints/course/create-course.yaml'
+  /course/update:
+    $ref: './endpoints/course/update-course.yaml'
+  /course/delete:
+    $ref: './endpoints/course/delete-course.yaml'
+
+  /fileSaver/save-photo:
+    $ref: './endpoints/file-saver/save-photo.yaml'
+  /fileSaver/get-photo:
+    $ref: './endpoints/file-saver/get-photo.yaml'
+
+  /fileSaver/save-lectureContent:
+    $ref: './endpoints/file-saver/save-lectureContent.yaml'
+  /fileSaver/get-lectureContent:
+    $ref: './endpoints/file-saver/get-lectureContent.yaml'
+
+  /section/getSectionPage:
+    $ref: './endpoints/section/get-section-page.yaml'
+  /section/create:
+    $ref: './endpoints/section/create-section.yaml'
+  /section/update:
+    $ref: './endpoints/section/update-section.yaml'
+  /section/delete:
+    $ref: './endpoints/section/delete-section.yaml'
+
+  /lecture/getLecturePage:
+    $ref: './endpoints/lecture/get-lecture-page.yaml'
+  /lecture/create:
+    $ref: './endpoints/lecture/create-lecture.yaml'
+  /lecture/update:
+    $ref: './endpoints/lecture/update-lecture.yaml'
+  /lecture/delete:
+    $ref: './endpoints/lecture/delete-lecture.yaml'
+  /lecture/getLecture:
+    $ref: './endpoints/lecture/get-lecture.yaml'
+
+  /exercise/getAll:
+    $ref: './endpoints/exercise/get-all-exercises.yaml'
+  /exercise/create:
+    $ref: './endpoints/exercise/create-exercise.yaml'
+  /exercise/update:
+    $ref: './endpoints/exercise/update-exercise.yaml'
+  /exercise/delete:
+    $ref: './endpoints/exercise/delete-exercise.yaml'
+
+  /verificationRule/getAll:
+    $ref: './endpoints/verification-rule/get-rules-by-exerciseId.yaml'
+  /verificationRule/create:
+    $ref: './endpoints/verification-rule/create-verification-rule.yaml'
+  /verificationRule/update:
+    $ref: './endpoints/verification-rule/update-Rule.yaml'
+  /verificationRule/delete:
+    $ref: './endpoints/verification-rule/delete-rule.yaml'

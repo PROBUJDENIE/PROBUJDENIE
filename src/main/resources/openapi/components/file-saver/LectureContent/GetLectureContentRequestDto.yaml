@@ -1,0 +1,8 @@
+type: object
+
+required:
+  - contentId
+properties:
+  contentId:
+    type: string
+    format: UUID

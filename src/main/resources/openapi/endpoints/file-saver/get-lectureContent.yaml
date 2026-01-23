@@ -1,0 +1,17 @@
+get:
+  operationId: getLectureContent
+  tags:
+    - fileSaver
+  requestBody:
+    required: true
+    content:
+        application/json:
+          schema:
+            $ref: '../../components/file-saver/LectureContent/GetLectureContentRequestDto.yaml'
+  responses:
+    '200':
+      description: Возвращает content
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/file-saver/LectureContent/GetLectureContentResponseDto.yaml'

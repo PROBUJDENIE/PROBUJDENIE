@@ -1,0 +1,21 @@
+type: object
+required:
+  - sectionId
+  - title
+  - orderNumber
+properties:
+  sectionId:
+    type: string
+    format: UUID
+  title:
+    type: string
+    minLength: 3
+    maxLength: 255
+  contentId:
+    type: string
+    format: UUID
+  orderNumber:
+    type: integer
+    format: int32
+    minimum: 0
+

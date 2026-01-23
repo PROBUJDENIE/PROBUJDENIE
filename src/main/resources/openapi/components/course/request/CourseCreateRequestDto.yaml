@@ -1,0 +1,23 @@
+type: object
+
+required:
+  - title
+  - description
+properties:
+  title:
+    type: string
+    minLength: 3
+    maxLength: 255
+  description:
+    type: string
+    minLength: 3
+    maxLength: 5000
+  price:
+    type: number
+    minimum: 0
+    multipleOf: 0.01
+    example: 149.99
+  photo:
+    type: string
+    format: UUID
+    description: Фото обложки (Поддериживаются .PNG размер 460 на 490)

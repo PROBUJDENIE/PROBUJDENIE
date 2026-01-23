@@ -1,0 +1,27 @@
+type: object
+required:
+  - id
+  - title
+  - description
+  - programmingLanguage
+properties:
+  id:
+    type: string
+    format: UUID
+  title:
+    type: string
+    minLength: 3
+    maxLength: 255
+  description:
+    type: string
+    minLength: 3
+    maxLength: 2000
+  programmingLanguage:
+    type: string
+    enum:
+      - JAVA
+      - PYTHON
+  defaultCode:
+    type: string
+    minLength: 3
+    maxLength: 1000

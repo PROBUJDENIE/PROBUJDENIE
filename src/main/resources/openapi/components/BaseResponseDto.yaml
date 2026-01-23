@@ -1,0 +1,12 @@
+type: object
+properties:
+  success:
+    type: boolean
+    description: true — операция выполнена успешно, false — есть ошибки
+  errors:
+    type: array
+    items:
+      type: string
+    description: Список сообщений об ошибках. Пустой массив при success = true
+required:
+  - success

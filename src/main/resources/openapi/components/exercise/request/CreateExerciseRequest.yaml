@@ -1,0 +1,28 @@
+type: object
+required:
+  - title
+  - description
+  - programmingLanguage
+  - lectureId
+properties:
+  title:
+    type: string
+    minLength: 3
+    maxLength: 255
+  description:
+    type: string
+    minLength: 3
+    maxLength: 2000
+  programmingLanguage:
+    enum:
+      - JAVA
+      - PYTHON
+    title: ProgrammingLanguage
+  defaultCode:
+    type: string
+    minLength: 3
+    maxLength: 1000
+  lectureId:
+    type: string
+    format: UUID
+

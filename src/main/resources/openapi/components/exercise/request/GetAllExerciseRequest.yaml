@@ -1,0 +1,7 @@
+type: object
+required:
+  - lectureId
+properties:
+  lectureId:
+    type: string
+    format: UUID

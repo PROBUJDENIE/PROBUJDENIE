@@ -1,0 +1,17 @@
+get:
+  operationId: getLecture
+  tags:
+    - lecture
+  requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/lecture/request/LectureGetLectureRequestDto.yaml'
+  responses:
+    '200':
+      description: Возвращается лекция
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/lecture/response/LectureGetLectureResponseDto.yaml'

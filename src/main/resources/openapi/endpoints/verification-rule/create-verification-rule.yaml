@@ -1,0 +1,17 @@
+post:
+  operationId: createVerificationRule
+  tags:
+    - verificationRule
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/verification-rule/request/CreateVerificationRuleRequest.yaml'
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+              $ref: '../../components/BaseResponseDto.yaml'

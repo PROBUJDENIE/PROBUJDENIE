@@ -1,9 +1,0 @@
-type: object
-
-required:
-  - photo
-properties:
-  photo:
-    type: string
-    format: binary
-    description: Фото обложки (Поддериживаются .PNG размер 460 на 490)

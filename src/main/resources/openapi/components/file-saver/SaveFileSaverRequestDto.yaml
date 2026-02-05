@@ -1,8 +1,8 @@
 type: object
 
 required:
-  - contentId
+  - file
 properties:
-  contentId:
+  file:
     type: string
-    format: UUID
+    format: binary

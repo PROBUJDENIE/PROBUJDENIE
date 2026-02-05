@@ -1,8 +1,0 @@
-type: object
-
-required:
-  - photoId
-properties:
-  photoId:
-    type: string
-    format: UUID

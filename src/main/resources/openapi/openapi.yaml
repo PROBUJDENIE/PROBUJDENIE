@@ -17,15 +17,10 @@ paths:
   /course/delete:
     $ref: './endpoints/course/delete-course.yaml'
 
-  /fileSaver/save-photo:
-    $ref: './endpoints/file-saver/save-photo.yaml'
-  /fileSaver/get-photo:
-    $ref: './endpoints/file-saver/get-photo.yaml'
-
-  /fileSaver/save-lectureContent:
-    $ref: './endpoints/file-saver/save-lectureContent.yaml'
-  /fileSaver/get-lectureContent:
-    $ref: './endpoints/file-saver/get-lectureContent.yaml'
+  /fileSaver/save:
+    $ref: './endpoints/file-saver/save.yaml'
+  /fileSaver/get:
+    $ref: './endpoints/file-saver/get.yaml'
 
   /section/getSectionPage:
     $ref: './endpoints/section/get-section-page.yaml'

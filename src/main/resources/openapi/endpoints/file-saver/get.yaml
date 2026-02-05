@@ -1,0 +1,19 @@
+get:
+  operationId: get
+  tags:
+    - fileSaver
+  parameters:
+    - name: id
+      in: query
+      required: true
+      schema:
+        type: string
+
+  responses:
+    '200':
+      description: Возвращает файл
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary

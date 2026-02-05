@@ -1,7 +1,8 @@
 type: object
 
 required:
-  - content
+  - id
 properties:
-  content:
+  id:
     type: string
+    format: UUID

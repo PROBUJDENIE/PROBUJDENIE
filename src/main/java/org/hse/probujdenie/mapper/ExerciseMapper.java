@@ -16,7 +16,16 @@ public interface ExerciseMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateExerciseFromDto(Exercise source, @MappingTarget Exercise target);
 
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
     Exercise toEntity(UpdateExerciseRequest request);
+
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
     Exercise toEntity(CreateExerciseRequest request);
 }
 

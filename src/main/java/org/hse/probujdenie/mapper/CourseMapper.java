@@ -5,10 +5,7 @@ import org.hse.probujdenie.api.model.CourseCreateRequestDto;
 import org.hse.probujdenie.api.model.CourseGetCoursePageItemResponseDto;
 import org.hse.probujdenie.api.model.CourseUpdateRequestDto;
 import org.hse.probujdenie.model.content.Course;
-import org.mapstruct.BeanMapping;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -16,7 +13,17 @@ import java.util.List;
 public interface CourseMapper {
     List<CourseGetCoursePageItemResponseDto> toResponseDtoList(List<Course> courses);
 
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
     Course toEntity(CourseUpdateRequestDto request);
+
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "id", ignore = true)
     Course toEntity(CourseCreateRequestDto request);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

@@ -16,12 +16,12 @@ properties:
     type: string
     format: uuid
   memoryLimit:
-    type: number
-    format: integer
+    type: integer
+    format: int32
     minimum: 0
   timeLimit:
-    type: number
-    format: integer
+    type: integer
+    format: int32
     minimum: 0
   inputData:
     type: string

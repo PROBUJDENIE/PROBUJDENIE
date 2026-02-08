@@ -21,7 +21,7 @@ properties:
     minimum: 0
     multipleOf: 0.01
     example: 149.99
-  photo:
+  photoId:
     type: string
     format: UUID
     description: Фото обложки (Поддериживаются .PNG размер 460 на 490)

@@ -16,7 +16,16 @@ public interface VerificationRuleMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateVerificationRuleFromDto(VerificationRule source, @MappingTarget VerificationRule target);
 
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
     VerificationRule toEntity(UpdateVerificationRuleRequest request);
+
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
     VerificationRule toEntity(CreateVerificationRuleRequest request);
 }
 

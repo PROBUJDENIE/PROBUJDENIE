@@ -1,6 +1,9 @@
 package org.hse.probujdenie.mapper;
 
-import org.hse.probujdenie.api.model.*;
+import org.hse.probujdenie.api.model.LectureCreateRequestDto;
+import org.hse.probujdenie.api.model.LectureGetLectureItemResponseDto;
+import org.hse.probujdenie.api.model.LectureGetLecturePageItemResponseDto;
+import org.hse.probujdenie.api.model.LectureUpdateRequestDto;
 import org.hse.probujdenie.model.content.Lecture;
 import org.mapstruct.*;
 
@@ -14,8 +17,18 @@ public interface LectureMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateLectureFromDto(Lecture source, @MappingTarget Lecture target);
 
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
     Lecture toEntity(LectureCreateRequestDto request);
+
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
     Lecture toEntity(LectureUpdateRequestDto request);
+
     LectureGetLectureItemResponseDto toDto(Lecture request);
 }
 

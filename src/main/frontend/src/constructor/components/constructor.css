@@ -1,0 +1,21 @@
+.constructor {
+    margin-top: 20px;
+}
+
+.constructor-switch{
+    width: 844px;
+    height: 65px;
+    padding: 8px 20px;
+    background-color: #DFD8D3;
+    border: #8A6CFF solid 1px;
+    border-radius: 20px;
+    margin: 0 18px 0 88px;
+    display: flex;
+    justify-content: space-between;
+}
+.constructor-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

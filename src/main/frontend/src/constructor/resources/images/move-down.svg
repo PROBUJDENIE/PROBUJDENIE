@@ -1,0 +1,13 @@
+<svg viewBox="0 0 65 45" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="65.000000" height="45.000000" fill="none" customFrame="#000000">
+	<defs>
+		<image id="image_2" width="100.000000" height="100.000000" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABHNCSVQICAgIfAhkiAAAA1pJREFUeJzt3D9vW2UUx/HveUKlArUTdUGs8DKQ6ARVKY3tVrAjpAywlInYYsiCbRBSBGJh4Q0g2TUCJFT+SbQwMPAKeAOwxHFKCKj3MESgmMYmrZ3nngu/z2Tda+s59lfXvvcOBhERERERERERERERkXttbPgZcCt7jmWo/JvoNCcv3sU/SLDiZi/3h7WPyp5pEansARZVULyXYA2oURTvlj3PoiofxLDH/n5s9niZsyxD5YP81yhIMAoSjIIEoyDBKEgwChKMggSjIMEoSDAKEoyCBKMgwShIMAoSjIIEoyDBKEgwChKMggSjIMEoSDAKEoyCBKMgwShIMAoSjIIEoyDBKEgwChKMggSjIMEoSDAKEoyCBKMgwShIMAoyx8aGn9na8qyfUbbF3mjuPLnZGN9qr+/+1G7svpRr3QfVaU1ePf/z3s7Bj5NfOlfHl3Otmy3IH6S3zewpEk9gfNhujq/nWvt+tZvj6+7+vuGPYJwv7vJOrrWzBUlwdnqLbUeMcjiTbR/d5sZvudbPFsSTb7mzN701VpRjYzh7yeyVXDNkC9IfrP6wAheByfQe2263djdzzTHLcTGAO5hd6Q3r3+eaI+sZxJuj+nckLvHPKE6vzCjHHhnYr449379R+ybnLNlPe3uD+u1IUWbFSAXZY0BJ1yFRosyL0f249nWuOY4q7cKw7CgRY0DJV+q9Qf12YTx3z9nXKUeJGgMC3Dp5a1i/5YlLuaLMioFxpewYECAI5IsyL0Z/WPtqWessIkQQOP0oVYgBgYLAYRRj+b8pVYkBwYIA9Eb1b5cZZeYPOLYeLQYEDALLizIvRvfGuS+XNO5ShQwCi0c59t6UF/uRY0DgIHAYxd0uA3emdvxLlFkxnIdCx4CK/Pf76+uTp1Pyz4BHp3YYbZze9LP9tVkx+qNzX5zyqAurRBCATmvnGS8YYenh+3qhF/uWaHSHazdPabSlCv2VdVR3uHbTEg282D/5q/zAVuyFqsSACh0hfzn5keIHlrjWHax+mmey5ahcEDhJlGrGgIoGgXlRqhsDKhwEYLO58yxuIzM7C+Duv1uya71h/ZOyZ3tQlQ4C0GmMLxaWBgDJi6vd0ernZc/0v9duTS60W5MLZc8hIiIiIiIiIiIiIiIh/Qm5C37f+xn30gAAAABJRU5ErkJggg==" />
+		<pattern id="pattern_2" width="1.000000" height="1.000000" image-fill-type="fill" patternContentUnits="objectBoundingBox">
+			<use transform="matrix(0.01,0,0,0.01,-5.96046e-08,0)" xlink:href="#image_2" />
+		</pattern>
+	</defs>
+	<g id="Сочетание 12">
+		<rect id="Прямоугольник 89" width="65.000000" height="45.000000" x="0.000000" y="0.000000" rx="20.000000" fill="rgb(223,216,211)" />
+		<rect id="Прямоугольник 89" width="63.000000" height="43.000000" x="1.000000" y="1.000000" rx="19.000000" stroke="rgb(138,108,255)" stroke-width="2.000000" />
+		<rect id="image 66" width="40.000000" height="40.000004" x="12.000000" y="1.000000" fill="url(#pattern_2)" />
+	</g>
+</svg>

@@ -1,0 +1,9 @@
+<svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30.000000" height="30.000000" fill="none" customFrame="#000000">
+	<defs>
+		<image id="image_8" width="100.000000" height="100.000000" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABHNCSVQICAgIfAhkiAAAAaVJREFUeJzt3cFtwkAQQFFPlCaMSRpKH9QUKklBIHAVnlxyioQUxgv8Jf/dx1j6Moa57DBIkiSpvagOTtP0sSzLPiKmljfUu8w8ZuZunuevynw5yDiOh4jYVuefWWYezufze2X2pfqhxrgsIt6qs+Uguo3XVhc6nU7lr79nsNlsssV1fEJgDAJjEBiDwBgExiAwBoFp9j+k1e/wS6o7ot52bt08IRGxjYj9tXPLsnz2EmMYVgTJzGPLG/mLyo7oETu3zDxUZ9cE2T0iCt1PjF11Hr9/+v1uunZntnb+3rp5h/wXBoExCIxBYAwCYxAYg8AYBMYgMAaBMQiMQWAMAmMQGIPAGATGIDAGgTEIjEFgDAJjEBiDwBgExiAwBoExCIxBYAwCYxAYg8AYBMYgMAaBMQiMQWAMAmMQGIPAGATGIDAGgTEIjEFgDAJjEBiDwBgExiAwBoExCIxBYAwCYxAYg8AYBMYgMAaBMQiMQWAMAmMQGIPAGATGIDAGgTEITLNzDO/l1uclPppPCAw+SMuj+dacL3gvPQRpcl7i2vMFJUmS1LNvWgVgzS5g05IAAAAASUVORK5CYII=" />
+		<pattern id="pattern_8" width="1.000000" height="1.000000" image-fill-type="fill" patternContentUnits="objectBoundingBox">
+			<use transform="matrix(0.01,0,0,0.01,0,0)" xlink:href="#image_8" />
+		</pattern>
+	</defs>
+	<rect id="image 61" width="30.000000" height="30.000002" x="0.000000" y="0.000000" fill="url(#pattern_8)" />
+</svg>

@@ -1,0 +1,16 @@
+.block-task select {
+    width: 95%;
+    height: 50px;
+    font-size: 16px;
+    color: #333;
+    background-color: #EEE9E5;
+    border: 2px solid white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 12px 40px 12px 16px;
+}
+
+.block.block-task select:hover {
+    background-color: #f9f7ff;
+}

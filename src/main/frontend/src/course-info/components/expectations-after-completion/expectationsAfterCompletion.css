@@ -1,0 +1,102 @@
+.money-block-wrapper {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.money-block {
+    background-image: url('../../resourses/back.png');
+    background-size: 200%;
+    background-position: center;
+    border: 2px solid white;
+    border-radius: 40px;
+    max-width: 960px;
+    max-height: 460px;
+    margin: 0 auto;
+    padding: 100px 40px 60px;
+    box-shadow: 0 0 25px 8px rgba(138, 108, 255, 0.6),
+    0 0 60px 20px rgba(138, 108, 255, 0.25);
+    transition: box-shadow 0.4s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.money-block:hover {
+    box-shadow: 0 0 40px 15px rgba(138, 108, 255, 0.7),
+    0 0 80px 35px rgba(138, 108, 255, 0.4),
+    inset 0 0 30px rgba(255, 255, 255, 0.3);
+    transform: translateY(-8px);
+}
+
+.money-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    color: white;
+    text-align: center;
+    padding: 0 40px 40px;
+}
+
+.money-image {
+    margin: -40px auto 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.money-image img {
+    object-fit: contain;
+}
+
+.money-title {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.money-description {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 720px;
+}
+
+.money-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background-color: #8A6CFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.25s ease;
+}
+
+.money-arrow:hover {
+    background-color: #6C5CE7;
+}
+
+.money-arrow-right {
+    right: 20px;
+}
+
+.money-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.money-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #8A6CFF;
+    transition: all 0.25s ease;
+}
+
+.money-dot.active,
+.money-dot:hover {
+    background-color: #8A6CFF;
+}

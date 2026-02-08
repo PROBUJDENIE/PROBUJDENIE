@@ -1,0 +1,25 @@
+.profile-preview {
+    width: 100%;
+    height: 233px;
+    background-color: #8A6CFF;
+    border-radius: 30px;
+    margin: 30px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.profile-preview-text {
+    color: white;
+    margin: 0 auto 20px 20px;
+}
+
+.profile-preview-text_title {
+    font-size: 48px;
+    font-weight: 800;
+}
+
+.profile-preview-text_desc {
+    font-size: 24px;
+    font-weight: 800;
+}

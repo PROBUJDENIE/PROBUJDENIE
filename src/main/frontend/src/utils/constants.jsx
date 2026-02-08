@@ -1,0 +1,6 @@
+export const ADMIN_PROFILE_ROUTE = '/admin-profile'
+export const MAIN_ROUTE = '/'
+export const CONSTRUCTOR = '/constructor'
+export const COURSE_INFO = '/course-info'
+export const USER_PROFILE_ROUTE = '/user-profile'
+export const LOGIN_OR_REGISTER = '/login-or-register'

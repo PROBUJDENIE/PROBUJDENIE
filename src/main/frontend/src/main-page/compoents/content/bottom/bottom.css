@@ -1,0 +1,39 @@
+.bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
+    background-color: #DFD8D3;
+    padding: 50px 0;
+}
+
+.bottom-title {
+    font-size: 60px;
+    font-weight: 800;
+}
+.bottom-desc {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.bottom-btns {
+    margin-top: 20px;
+    display: flex;
+    gap: 40px;
+}
+
+.bottom-rules_img {
+    width: 20px;
+}
+
+.bottom-rules_text {
+    font-size: 18px;
+}
+
+.bottom-rules {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}

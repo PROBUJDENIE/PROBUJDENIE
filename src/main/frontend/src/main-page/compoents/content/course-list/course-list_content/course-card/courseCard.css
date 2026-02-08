@@ -1,0 +1,27 @@
+.course-card_view {
+    width: 330px;
+    height: 224px;
+    background-color: #dfd8d3;
+    border-radius: 10px;
+    border: 2px #8A6CFF solid;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 10px;
+}
+
+.course-card_price {
+    width: 120px;
+    height: 40px;
+    background-color: #D2FE66;
+    border-radius: 20px;
+    border: 1px #8A6CFF solid;
+}
+
+.course-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+}

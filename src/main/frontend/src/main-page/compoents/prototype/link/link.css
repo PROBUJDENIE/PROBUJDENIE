@@ -1,0 +1,12 @@
+.common-link {
+    text-decoration: none;
+}
+
+.common-link:hover {
+    color: #8A6CFF;
+    filter: drop-shadow(0 0 8px #8A6CFF);
+}
+
+.common-link:active {
+    transform: scale(.95);
+}

@@ -1,0 +1,28 @@
+.cta {
+    margin-top: 250px;
+    width: 100%;
+    height: 270px;
+    background: #DFD8D3;
+    color: #D2FE66;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cta-title {
+    width: 600px;
+    font-size: 45px;
+    font-weight: 800;
+}
+
+.cta-desc {
+    color: black;
+    width: 963px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

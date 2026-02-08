@@ -10,7 +10,7 @@
       "name": "course",
       "item": [
         {
-          "name": "getAllActualCourses",
+          "name": "getCoursePage",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -27,12 +27,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/course/getCoursePage?offset=0&count=5",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/course/getCoursePage?offset=0&count=5",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -54,7 +52,7 @@
           "response": []
         },
         {
-          "name": "createCourse",
+          "name": "create",
           "request": {
             "method": "POST",
             "header": [],
@@ -68,12 +66,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/course/create",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/course/create",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -85,7 +81,7 @@
           "response": []
         },
         {
-          "name": "deleteCourse",
+          "name": "delete",
           "request": {
             "method": "DELETE",
             "header": [],
@@ -99,12 +95,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/course/delete",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/course/delete",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -116,13 +110,13 @@
           "response": []
         },
         {
-          "name": "updateCourse",
+          "name": "update",
           "request": {
             "method": "PUT",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"id\": \"276e1d8b-f533-42bf-852a-3d83f1ff8e36\",\n    \"title\": \"математика\",\n    \"description\": \"другое описание курса\",\n    \"price\": \"2000\"\n}",
+              "raw": "{\n    \"id\": \"276e1d8b-f533-42bf-852a-3d83f1ff8e36\",\n    \"title\": \"математика\",\n    \"description\": \"другое описание курса\",\n    \"price\": \"2000\",\n    \"photo\": \"276e1d8b-f533-42bf-852a-3d83f1ff8e36\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -130,12 +124,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/course/update",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/course/update",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -152,7 +144,7 @@
       "name": "section",
       "item": [
         {
-          "name": "getAll",
+          "name": "getSectionPage",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -169,12 +161,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/section/getSectionPage?offset=0&count=5",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/section/getSectionPage?offset=0&count=5",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -210,12 +200,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/section/create",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/section/create",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -241,12 +229,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/section/delete",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/section/delete",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -272,12 +258,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/section/update",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/section/update",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -294,7 +278,7 @@
       "name": "lecture",
       "item": [
         {
-          "name": "getAll",
+          "name": "getLecturePage",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -311,12 +295,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/lecture/getLecturePage?offset=0&count=5",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/lecture/getLecturePage?offset=0&count=5",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -355,12 +337,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/lecture/getLecture",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/lecture/getLecture",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -386,12 +366,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/lecture/create",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/lecture/create",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -417,12 +395,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/lecture/delete",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/lecture/delete",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -448,12 +424,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/lecture/update",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/lecture/update",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -487,12 +461,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/exercise/getAll",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/exercise/getAll",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -518,12 +490,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/exercise/create",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/exercise/create",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -549,12 +519,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/exercise/delete",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/exercise/delete",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -580,12 +548,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/exercise/update",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/exercise/update",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -619,12 +585,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/verificationRule/getAll",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/verificationRule/getAll",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -650,12 +614,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/verificationRule/create",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/verificationRule/create",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -681,12 +643,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/verificationRule/delete",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/verificationRule/delete",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -712,12 +672,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/verificationRule/update",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/verificationRule/update",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
@@ -742,32 +700,30 @@
               "mode": "formdata",
               "formdata": [
                 {
-                  "key": "photo",
+                  "key": "file",
                   "type": "file",
                   "uuid": "d2b30e50-f763-42ed-9606-6f4747c11bfc",
-                  "src": "/Users/macbook/Desktop/Снимок экрана 2026-01-19 в 00.10.56.png"
+                  "src": "/Users/macbook/Desktop/Снимок экрана 2025-10-16 в 18.17.51.png"
                 }
               ]
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/fileSaver/save-photo",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/fileSaver/save",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
                 "fileSaver",
-                "save-photo"
+                "save"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "getPhoto",
+          "name": "get",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -778,7 +734,7 @@
               "mode": "formdata",
               "formdata": [
                 {
-                  "key": "photoId",
+                  "key": "id",
                   "value": "276e1d8b-f533-42bf-852a-3d83f1ff8e36",
                   "type": "text",
                   "uuid": "932ef28b-b72e-4186-919a-9cdb6b21a079"
@@ -786,17 +742,15 @@
               ]
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/fileSaver/get-photo",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/fileSaver/get",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
                 "fileSaver",
-                "get-photo"
+                "get"
               ]
             }
           },
@@ -808,60 +762,26 @@
             "method": "POST",
             "header": [],
             "body": {
-              "mode": "raw",
-              "raw": "{\n    \"content\": \"dfdfdfdf\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "uuid": "55f32bc6-7029-4746-925a-34085ba0dcc3",
+                  "src": "/Users/macbook/Desktop/ex"
                 }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/v1/fileSaver/save-lectureContent",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "v1",
-                "fileSaver",
-                "save-lectureContent"
               ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "getContent",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"contentId\":\"276e1d8b-f533-42bf-852a-3d83f1ff8e36\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
             },
             "url": {
-              "raw": "http://localhost:8080/api/v1/fileSaver/get-lectureContent",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/v1/fileSaver/save",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "8080",
               "path": [
                 "api",
                 "v1",
                 "fileSaver",
-                "get-lectureContent"
+                "save"
               ]
             }
           },

@@ -1,0 +1,15 @@
+.profile-header {
+    width: 100%;
+    height: 56px;
+    background-color: #dfd8d3;
+    box-shadow: 0 0 80px #8A6CFF;
+    border: 2px solid #8A6CFF;
+
+}
+.profile-header_content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

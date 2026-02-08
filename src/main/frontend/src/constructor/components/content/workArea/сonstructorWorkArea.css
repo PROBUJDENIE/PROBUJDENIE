@@ -1,0 +1,59 @@
+.block-wrapper {
+    flex: 1;
+    margin-left: 70px;
+}
+.work-area {
+
+    margin-top: 20px;
+    position: relative;
+    margin-left: 10px;
+}
+.block-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: -70px;
+}
+
+.block-row:hover .block-controls {
+    opacity: 1;
+    pointer-events: auto;
+}
+.block-controls {
+    position: absolute;
+    left: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    transition: opacity 0.3s ease;
+    z-index: 200;
+}
+
+.block-wrapper:hover .block-controls {
+    opacity: 1;
+}
+
+.block-controls button {
+    background: transparent;
+}
+
+.block-controls button:hover {
+    transform: scale(1.1);
+}
+.btn-move-up, .btn-move-down, .btn-move-delete {
+    background: transparent;
+    border: none;
+    cursor: pointer !important;
+    filter: drop-shadow(0 0 0 #8A6CFF);
+    transition: filter 0.3s;
+}
+.btn-move-up:hover, .btn-move-down:hover {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 15px #8A6CFF);
+}
+.btn-move-delete:hover {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 15px #EB4760);
+}

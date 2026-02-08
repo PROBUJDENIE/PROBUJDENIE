@@ -1,0 +1,12 @@
+<svg viewBox="0 0 65 45" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="65.000000" height="45.000000" fill="none" customFrame="#000000">
+	<defs>
+		<image id="image_3" width="100.000000" height="100.000000" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABHNCSVQICAgIfAhkiAAABOlJREFUeJztnU2PFUUUht8zODMhKpAgIAJb9oYlCGt+gC4MSyERXPFD/DMuSFxpMGoCGNdEMiyAiHzIwARnkOF10X2lbzF3bnd1nfo4t55kEm6n+1TVfXlPfdzuaiBTSK6Q/IbkryQ3OJ4Nkr+QvEJyJXX7ioLkJyR/CyDCLG6RPJq6nUXAxhmaYky4SXI5dXtdllJXYAcuAfg0QjmnAHwVoZyyYdNndPmO5LEAcY+1sbr8HKLOpiH5wvnSRovRiX3cif08VOxQSOoKuJBk97OIBK2jdvyx5NiHLDRVkMyogmSGd/4keQHAtwAOhauOCdYAXBGRaz4XewnSTqjWAez1uX4BuC8ix30u9E1ZSwA496zKYLwEEZEtABcBPAxbHROsoflu0kLyJ2fSdTp1nbQgecZp6/VQsUOOsly3HAkYOzfctgXLFCEF+cv5vEiCuG33RtMhhwPGzg23bVk6pKasAGSZskguk+w9R9I+fwdchzwaEWuK7BxC8gs04q6T/Dz1+TNQc0gwSJ50hoK3PeP82YnxIPX5M2Lcdtp60ieOKiT3O5Vc94wzRerzZ8R47oTZ5xNnJ4KlLBFZB7DZObSPpLm1rrZNH3YObYpIsF8eQy+/ux27xaGvav8RWpBFGPpWQTKjKEEWIWW5bQq2bAJUh/hQtEMWQZDqkMQU5ZBFWPFVW+kFqkN8KMohtQ8ZSej7ZpcAbAF4b3IIwKqI/DsgxqB7b7XPd65dRtO+yTWv0bTvTd8Y8wjqkLZij7uHYOtGusOY/k/8KKQYgM6tpJb7EfXfQTQEsTxbV52lA9UhQynSIVWQEcRIWZYFqSkrMUU6xPLyieqyCVBT1lBqysoM9ZQV/JHgHZYXtgGs9J3R5rp0EmJZqA/BHdJW8O/OoT0ADoYuJwEf4a0YAPA0tBiA3lO4FtNWlNtHtQSxuHyivmwCVIcMoWiHVEE8iZWyLApSdMqy2IcU5ZCasjypKas/plKWRUGKcsg7fQjHPWSZlLbu7s0a5ThERF4C2OgcWgWwX6OsSBxA04YJL9o2BkdzAzNLI60oIyxAVxBLHXuUDh2I6xBLghTpkCqIBzFTlqU+pKasxJhwSBXEgzrK6kcdZWWGCYfUiaEHaoKIyDM0t81M+IDk+1rladHWuVvvLQBqr7nQ3vvd3WmtRJe803+IiNom0tqCWOhHou4eVwWZTxUkM0wJYmH5JNqyCVAd0gfTDrEgSHVIYkw5xMJsPdosHagO6YMphzxB8wTVhAMkV2ednBttXbt3y2wDeKpZpqogIrKNRpT/D6GszWjczWYet21SI8Z7DEtOW9E33a+C7I5JQUqerUedpQPVIfMw6ZAqyABSpKySBTGZskruQ0w4ZGjKutv591qP+Jrn5/+uqaGQPOG8HmjXRpE8T/Je+3e+R3y180k+dOp+Yl78sag/1dQuP/zTKesNmk1bXmuXPQaSewC8wtssQgB72xczq6GestoGdF8QtoQyNqM5hOnv55m2GECcPgQoc+ibpP+ogszGtCDu+P1opHLH8LHzOdjrVXcjliB3nM9fk8xWlLZul53Df8QoO8qz4yTPAfghRlmKnBWR69qFRHGIiPwI4PsYZSlxLYYYQLyUBQBfArgZsbxQ3ABwIVZh0QQRkScAzgC4CuB3TL83Nzc20dTxKoDPRET1d/Qu/wFHGwBpJwkTYwAAAABJRU5ErkJggg==" />
+		<pattern id="pattern_3" width="1.000000" height="1.000000" image-fill-type="fill" patternContentUnits="objectBoundingBox">
+			<use transform="matrix(0.01,0,0,0.01,0,0)" xlink:href="#image_3" />
+		</pattern>
+	</defs>
+	<g id="Сочетание 13">
+		<rect id="Прямоугольник 90" width="65.000000" height="45.000000" x="0.000000" y="0.000000" rx="20.000000" fill="rgb(235,71,96)" />
+		<rect id="image 64" width="30.000000" height="30.000002" x="18.000000" y="8.000000" fill="url(#pattern_3)" />
+	</g>
+</svg>

@@ -1,0 +1,112 @@
+.learning {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.learning-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.learning-blocks-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.learning-block {
+    position: sticky;
+    top: 40px;
+    width: 954px;
+    height: 530px;
+    margin: 0 auto 380px auto;
+    background-color: #DFD8D3;
+    border-radius: 40px;
+    border: 2px solid #8A6CFF;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.learning-block:nth-child(1) {
+    z-index: 10;
+}
+
+.learning-block:nth-child(2) {
+    z-index: 20;
+}
+
+.learning-block:nth-child(3) {
+    z-index: 30;
+}
+
+
+.learning-block:not(:first-child) {
+    margin-top: -360px;
+}
+
+.learning-block_content {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.learning-block_head {
+    background-color: #8A6CFF;
+    width: 200px;
+    height: 85px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.learning-block_head img {
+    max-width: 85%;
+    max-height: 85%;
+    object-fit: contain;
+}
+
+.learning-block_video {
+    background-color: #8A6CFF;
+    width: 420px;
+    height: 475px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+}
+
+.learning-block_body {
+    max-width: 400px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.learning-block_body_title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.learning-block_body_desc {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.45;
+}

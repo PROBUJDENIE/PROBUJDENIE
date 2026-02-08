@@ -1,0 +1,43 @@
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-content_image {
+    display: block;
+    width: 800px;
+    position: relative;
+}
+.hero-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.hero-content_img {
+    position: absolute;
+    bottom: -40px;
+    right: 240px;
+}
+
+.hero-content_info_title {
+    display: block;
+    font-size: 45px;
+    font-weight: 800;
+    width: 618px;
+    height: 162px;
+}
+
+.hero-content_info_desc {
+    display: block;
+    font-size: 22px;
+    font-weight: 800;
+    width: 618px;
+    height: 62px;
+}
+
+.common-btn {
+    margin-top: 30px;
+}

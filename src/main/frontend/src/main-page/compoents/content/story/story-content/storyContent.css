@@ -1,0 +1,49 @@
+.story-content_image {
+    display: block;
+    width: 441px;
+    height: 429px;
+}
+
+.story-content {
+    display: flex;
+    height: 1000px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.storyContent-text-container {
+    margin-left: 100px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.storyContent-text {
+    font-size: 25px;
+    font-weight: 500;
+    color: #333333;
+    position: relative;
+    width: 100%;
+    white-space: pre-wrap;
+}
+
+.click-to-start {
+    font-size: 40px;
+    font-weight: 500;
+    color: #333333;
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+}
+
+.cursor_cur {
+    animation: blink 1s infinite;
+    color: #333333;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}

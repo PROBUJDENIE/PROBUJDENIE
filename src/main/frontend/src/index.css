@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+}
+.cursor {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    background: url("resourses/cur.png") center / contain no-repeat;
+    pointer-events: none !important;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.1s ease;
+    z-index: 999999999999;
+}
+
+.cursor.hover {
+    width: 36px;
+    height: 36px;
+    background: url("resourses/cur-hover.png") center / contain no-repeat;
+}
+.cursor.text {
+    width: 32px;
+    height: 32px;
+    background: url("resourses/cur-text.png") center / contain no-repeat;
+}
+
+.ff {
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+    justify-content: space-between;
+}
+
+.wrapper {
+    color: black;
+    background: #eee9e6;
+    padding-top: 30px;
+}
+
+.profile-wrapper {
+    color: black;
+    background: #eee9e6;
+    padding-top: 30px;
+    height: auto;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+html, body, #root, * {
+    cursor: none !important;
+}
+
+*:hover,
+*:focus,
+*:active {
+    cursor: none !important;
+}
+
+button,
+a,
+input,
+select,
+textarea,
+[role="button"],
+[tabindex]:not([tabindex="-1"]),
+.hover-cursor,
+[data-cursor-hover] {
+    cursor: none !important;
+}
+
+button:hover,
+a:hover,
+button:focus,
+a:focus {
+    cursor: none !important;
+}

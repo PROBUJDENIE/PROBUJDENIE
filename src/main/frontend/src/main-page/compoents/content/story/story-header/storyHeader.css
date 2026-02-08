@@ -1,0 +1,25 @@
+.story-header {
+    margin-top: 100px;
+    width: 100%;
+    height: 270px;
+    background: #8A6CFF;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.story-header-title {
+    font-size: 45px;
+    font-weight: 800;
+}
+
+.story-header-desc {
+    width: 618px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 30px;
+}

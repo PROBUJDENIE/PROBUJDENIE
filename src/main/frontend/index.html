@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="reset.css"/>
+    <link rel="icon" type="image/png" href="src/main-page/resources/images/ava.png"/>
+    <title>probujdenie</title>
+</head>
+<body>
+<div id="root"></div>
+<div class="cursor"></div>
+
+<script type="module" src="/src/main.jsx"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0;
+        let mouseY = 0;
+        let isTyping = false;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (isTyping) {
+                isTyping = false;
+                cursor.style.opacity = '1';
+            }
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+            updateCursorStyle();
+        });
+
+        function updateCursorStyle() {
+            const element = document.elementFromPoint(mouseX, mouseY);
+
+            if (!element) return;
+
+            if (element.tagName === 'BUTTON' ||
+                element.tagName === 'A' ||
+                element.tagName === 'IMG' ||
+                element.classList.contains('interactive') ||
+                element.getAttribute('role') === 'button' ||
+                element.type === 'button' ||
+                element.type === 'submit') {
+
+                cursor.classList.add('hover');
+                cursor.classList.remove('text');
+            }
+            else if (element.tagName === 'TEXTAREA' ||
+                (element.tagName === 'INPUT' &&
+                    !['button', 'submit', 'checkbox', 'radio'].includes(element.type))) {
+
+                cursor.classList.add('text');
+                cursor.classList.remove('hover');
+            }
+            else {
+                cursor.classList.remove('hover', 'text');
+            }
+        }
+        document.addEventListener('keydown', (e) => {
+            const isInputField = e.target.matches('textarea, input, [contenteditable]');
+
+            if (isInputField && !e.ctrlKey && !e.altKey && !e.metaKey) {
+                isTyping = true;
+                cursor.style.opacity = '0';
+            }
+        });
+        document.addEventListener('focusout', (e) => {
+            if (e.target.matches('textarea, input, [contenteditable]')) {
+                isTyping = false;
+                cursor.style.opacity = '1';
+            }
+        });
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+        });
+    });
+</script>
+</body>
+</html>

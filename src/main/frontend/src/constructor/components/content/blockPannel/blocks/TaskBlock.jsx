@@ -1,5 +1,5 @@
 export default function TaskBlock({ block, onChange }) {
-    const content = block.content || {};
+    const content = block.content?.content ?? {};
     const title = content.title ?? "";
     const description = content.description ?? "";
     const initialCode = content.initialCode ?? "";

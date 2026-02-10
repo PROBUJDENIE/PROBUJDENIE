@@ -5,6 +5,9 @@ import TaskBlock from "../blockPannel/blocks/TaskBlock.jsx";
 import {useCallback} from "react";
 import LectureTasksPreviewBlock from "../../tasks/LectureTasksPreviewBlock.jsx";
 import "./сonstructorWorkArea.css"
+import moveUpImg from "../../..//resources/images/move-up.svg"
+import moveDownImg from "../../..//resources/images/move-down.svg"
+import moveDeleteImg from "../../..//resources/images/move-delete.svg"
 
 const BlockRenderer = function BlockRenderer({block, onChange, activeLecture, mode}) {
     if (mode === "tasks" && block.type === "lectureTasksPreview") {
@@ -71,19 +74,19 @@ export default function ConstructorWorkArea({
                                 className="btn-move-up"
                                 onClick={() => onMoveUp(block.id)}
                             >
-                                <img alt="вверх" src="src/constructor/resources/images/move-up.svg"/>
+                                <img alt="вверх" src={moveUpImg} />
                             </button>
                             <button
                                 className="btn-move-down"
                                 onClick={() => onMoveDown(block.id)}
                             >
-                                <img alt="вниз" src="src/constructor/resources/images/move-down.svg"/>
+                                <img alt="вниз" src={moveDownImg} />
                             </button>
                             <button
                                 className="btn-move-delete"
                                 onClick={() => onDelete(block.id)}
                             >
-                                <img alt="удалить" src="src/constructor/resources/images/move-delete.svg"/>
+                                <img alt="удалить" src={moveDeleteImg} />
                             </button>
                         </div>
                     )}

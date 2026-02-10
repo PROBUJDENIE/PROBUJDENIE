@@ -19,7 +19,7 @@ export default function LectureTasksPreviewBlock({ lecture, block, onChange }) {
                 <option value="">Выберите задание</option>
                 {tasks.map(task => (
                     <option key={task.id} value={task.id}>
-                        {task.content?.title || "Без названия"}
+                        {task.content?.content?.title || "Без названия"}
                     </option>
                 ))}
             </select>

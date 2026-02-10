@@ -69,25 +69,26 @@ export default function ConstructorWorkArea({
                     onMouseLeave={() => setHoveredBlockId(null)}>
 
                     {hoveredBlockId === block.id && (
-                        <div className="block-controls" >
+                        <div className="block-controls" > {onMoveUp &&
                             <button
                                 className="btn-move-up"
                                 onClick={() => onMoveUp(block.id)}
                             >
                                 <img alt="вверх" src={moveUpImg} />
-                            </button>
-                            <button
+                            </button>}
+                            {onMoveDown && <button
                                 className="btn-move-down"
                                 onClick={() => onMoveDown(block.id)}
                             >
                                 <img alt="вниз" src={moveDownImg} />
-                            </button>
-                            <button
+                            </button>}
+                            {onDelete && <button
                                 className="btn-move-delete"
-                                onClick={() => onDelete(block.id)}
+                                onClick={() => onDelete(block.id)
+                            }
                             >
                                 <img alt="удалить" src={moveDeleteImg} />
-                            </button>
+                            </button>}
                         </div>
                     )}
 

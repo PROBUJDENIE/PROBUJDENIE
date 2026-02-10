@@ -7,11 +7,12 @@ import leftIcon from "../../resources/images/save.svg";
 import ConstructorNavigation from "../content/navigation/ConstructorNavigation.jsx";
 import ConstructorWorkArea from "../content/workArea/ConstructorWorkArea.jsx";
 import ConstructorBlocksPanelTasks from "./components/ConstructorBlocksPanelTasks.jsx";
+import {moveDelete} from "@/constructor/components/hooks/blockOperations.js";
 
 export default function ConstructorTasks({course, setCourse, saveCourse}) {
 
     const [open, setOpen] = useState(false);
-
+    const [hoveredBlockId, setHoveredBlockId] = useState(null);
     const {
         activeSectionId,
         setActiveSectionId,
@@ -23,14 +24,17 @@ export default function ConstructorTasks({course, setCourse, saveCourse}) {
         addLecture,
         updateBlock
     } = useConstructorCourse(course, setCourse, "tasks");
-
+    const handleDelete = (blockId) => {
+        const updatedCourse = moveDelete(course, activeSectionId, activeLectureId, blockId, "tasks");
+        setCourse(updatedCourse);
+    };
     return (
         <>
             <div className="constructor-content">
                 <div className="constructor-content_lPanel">
                     <div className="constructor-content_lPanel-menu">
                         <button className={"btnr"} onClick={() => setOpen(true)}>
-                            <img alt={""} src={"src/constructor/resources/images/lPanel.svg"} />
+                            <img alt={""} src={"src/constructor/resources/images/lPanel.svg"}/>
                         </button>
                     </div>
                     <ConstructorNavigation
@@ -50,13 +54,17 @@ export default function ConstructorTasks({course, setCourse, saveCourse}) {
                 </div>
                 <div className="constructor-content_workArea">
                     {blocks.length ? (
-                        <ConstructorWorkArea blocks={blocks} updateBlock={updateBlock} mode="tasks"/>
+                        <ConstructorWorkArea blocks={blocks} updateBlock={updateBlock} mode="tasks"
+                                             onDelete={handleDelete}
+                                             hoveredBlockId={hoveredBlockId}
+                                             setHoveredBlockId={setHoveredBlockId}/>
                     ) : (
                         <div className="constructor-content_workArea_empty">
                             <div className="empty-state">
                                 <h2 className="empty-state_title">Создание задания</h2>
                                 <p className="empty-state_text">
-                                    Выберите главу из списка слева, затем лекцию, чтобы начать создавать задания, а затем слева выберите блок задание.
+                                    Выберите главу из списка слева, затем лекцию, чтобы начать создавать задания, а
+                                    затем слева выберите блок задание.
                                 </p>
                                 <div className="empty-state_image">
                                     <img
@@ -79,7 +87,7 @@ export default function ConstructorTasks({course, setCourse, saveCourse}) {
                             borderColor="#8A6CFF"
                             onClick={saveCourse}
                             size={20}
-                            leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} />}
+                            leftIcon={<img src={leftIcon} alt="книга" width={25} height={25}/>}
                         >
                             Сохранить курс
                         </CommonBtn>

@@ -7,12 +7,20 @@ import leftIcon from "../../resources/images/save.svg";
 import delIcon from "../../resources/images/del_course.svg";
 import {useNavigate} from "react-router-dom";
 import {ADMIN_PROFILE_ROUTE} from "@/utils/constants.jsx";
+import {useState} from "react";
+import {ConfirmModal} from "@/constructor/components/info/ConfirmModal.jsx";
 
 export default function ConstructorInfo({course, setField, saveCourse, deleteCourse}) {
     const navigate = useNavigate();
+    const [showConfirm, setShowConfirm] = useState(false);
 
+    function handleDeleteClick() {
+        setShowConfirm(true);
+    }
+    function cancelDelete() {
+        setShowConfirm(false);
+    }
     function handleDelete() {
-        if (!window.confirm("Вы точно хотите удалить курс?")) return;
         const isDeleted = deleteCourse();
 
         if (isDeleted) {
@@ -152,7 +160,7 @@ export default function ConstructorInfo({course, setField, saveCourse, deleteCou
                         bgColor="#EB4760"
                         borderColor="white"
                         fontColor="white"
-                        onClick={handleDelete}
+                        onClick={handleDeleteClick}
                         size={18}
                         leftIcon={<img src={delIcon} width={25} height={25} />}
                     >
@@ -183,6 +191,12 @@ export default function ConstructorInfo({course, setField, saveCourse, deleteCou
                     )}
                 </div>
             </div>
+            {showConfirm && (
+                <ConfirmModal
+                    onConfirm={handleDelete}
+                    onCancel={cancelDelete}
+                />
+            )}
         </>
     )
 }

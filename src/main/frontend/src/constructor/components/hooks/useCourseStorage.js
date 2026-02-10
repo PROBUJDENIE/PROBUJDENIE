@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export function useCourseStorage(courseId) {
     const [course, setCourse] = useState(null);
-
+    const [shouldRefresh, setShouldRefresh] = useState(false);
     function createEmptyCourse() {
         return {
             id: uuidv4(),
@@ -69,5 +69,18 @@ export function useCourseStorage(courseId) {
         }));
     }
 
-    return { course, setCourse, saveCourse, setField };
+    function deleteCourse() {
+        const courses = JSON.parse(localStorage.getItem("courses")) || [];
+        const updatedCourses = courses.filter(c => c.id !== course.id);
+
+        if (updatedCourses.length !== courses.length) {
+            localStorage.setItem("courses", JSON.stringify(updatedCourses));
+            setCourse(null);
+            setShouldRefresh(true);
+            return true;
+        }
+
+        return false;
+    }
+    return { course, setCourse, saveCourse, setField, deleteCourse, shouldRefresh};
 }

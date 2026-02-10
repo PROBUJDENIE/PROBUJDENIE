@@ -4,8 +4,21 @@ import "../constructor.css"
 import ExpectationsAfterCompletionMini from "./moneyBlockMini/MoneyBlockMini.jsx";
 import fileImage from "../../resources/images/file.svg";
 import leftIcon from "../../resources/images/save.svg";
+import delIcon from "../../resources/images/del_course.svg";
+import {useNavigate} from "react-router-dom";
+import {ADMIN_PROFILE_ROUTE} from "@/utils/constants.jsx";
 
-export default function ConstructorInfo({course, setField, saveCourse}) {
+export default function ConstructorInfo({course, setField, saveCourse, deleteCourse}) {
+    const navigate = useNavigate();
+
+    function handleDelete() {
+        if (!window.confirm("Вы точно хотите удалить курс?")) return;
+        const isDeleted = deleteCourse();
+
+        if (isDeleted) {
+            navigate(ADMIN_PROFILE_ROUTE);
+        }
+    }
 
     function handleFile(e) {
         const file = e.target.files[0];
@@ -132,6 +145,18 @@ export default function ConstructorInfo({course, setField, saveCourse}) {
                         leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} />}
                     >
                         Сохранить курс
+                    </CommonBtn>
+                    <CommonBtn
+                        width={300}
+                        height={58}
+                        bgColor="#EB4760"
+                        borderColor="white"
+                        fontColor="white"
+                        onClick={handleDelete}
+                        size={18}
+                        leftIcon={<img src={delIcon} width={25} height={25} />}
+                    >
+                        Удалить курс
                     </CommonBtn>
                 </div>
                 <div className="constructor-info-preview">

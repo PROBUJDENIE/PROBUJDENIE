@@ -19,9 +19,10 @@ export default function Constructor() {
     const courseId = searchParams.get("id");
     const navigate = useNavigate();
 
-    const {course, setCourse, saveCourse, setField} = useCourseStorage(courseId);
+    const {course, setCourse, saveCourse, setField, deleteCourse} = useCourseStorage(courseId);
 
     const [activeAd, setAdvert] = useState("info");
+
 
     if (!course) {
         return <div>Загрузка...</div>;
@@ -52,13 +53,13 @@ export default function Constructor() {
                             fontColor={"white"}
                             size={24}
                             onClick={() => navigate(ADMIN_PROFILE_ROUTE)}
-                            leftIcon={<img src={back}  />}
+                            leftIcon={<img src={back} />}
                             >
                             Назад к моим курсам
                         </CommonBtn>
                     </div>
                     {activeAd === 'info' && (<ConstructorInfo course={course} setField={setField}
-                                                   saveCourse={saveCourse}></ConstructorInfo>)}
+                                                   saveCourse={saveCourse} deleteCourse={deleteCourse}></ConstructorInfo>)}
                     {activeAd === 'content' && (<ConstructorContent course={course} setCourse={setCourse}></ConstructorContent>)}
                     {activeAd === 'tasks' && (<ConstructorTasks course={course} setCourse={setCourse}></ConstructorTasks>)}
                 </div>

@@ -42,10 +42,13 @@
 .block-task {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 20px;
     border: 2px solid white;
     transition: all 0.3s ease;
+}
+.block-task textarea {
+    padding: 20px;
 }
 
 .block-task:hover {

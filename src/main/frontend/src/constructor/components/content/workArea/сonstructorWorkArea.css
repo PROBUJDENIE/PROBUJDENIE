@@ -2,12 +2,13 @@
     flex: 1;
     margin-left: 70px;
 }
-.work-area {
 
+.work-area {
     margin-top: 20px;
     position: relative;
     margin-left: 10px;
 }
+
 .block-row {
     position: relative;
     display: flex;
@@ -19,6 +20,7 @@
     opacity: 1;
     pointer-events: auto;
 }
+
 .block-controls {
     position: absolute;
     left: -7px;
@@ -42,6 +44,7 @@
 .block-controls button:hover {
     transform: scale(1.1);
 }
+
 .btn-move-up, .btn-move-down, .btn-move-delete {
     background: transparent;
     border: none;
@@ -49,10 +52,12 @@
     filter: drop-shadow(0 0 0 #8A6CFF);
     transition: filter 0.3s;
 }
+
 .btn-move-up:hover, .btn-move-down:hover {
     transform: translateY(-2px);
     filter: drop-shadow(0 0 15px #8A6CFF);
 }
+
 .btn-move-delete:hover {
     transform: translateY(-2px);
     filter: drop-shadow(0 0 15px #EB4760);

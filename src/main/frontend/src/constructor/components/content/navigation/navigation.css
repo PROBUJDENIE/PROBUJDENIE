@@ -89,3 +89,25 @@
 .constructor-section-btn-active {
     background-color: #8A6CFF;
 }
+
+.btn-delete {
+    background: transparent;
+    margin-right: 2px;
+    transition: filter 0.3s;
+}
+
+.nav-item-content {
+    display: flex;
+    align-items: center;
+}
+
+.lecture-item {
+    margin-left: 50px;
+}
+
+.btn-delete:hover {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 15px #EB4760);
+}
+
+

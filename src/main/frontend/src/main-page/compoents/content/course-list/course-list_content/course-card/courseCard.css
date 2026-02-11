@@ -32,17 +32,34 @@
 
 .course-card_title {
     position: absolute;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 30px;
+    letter-spacing: 1px;
+    font-weight: 900;
+    color: white;
     text-align: center;
     z-index: 2;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity .3s ease;
     padding: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
+}
+.course-card_subtitle {
+    color: ghostwhite;
+    position: absolute;
+    font-size: 12px;
+    text-align: center;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity .3s ease;
+    padding: 10px;
+    margin-top: 80px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
 }
 
 .course-card_view:hover .course-card_title {
+    opacity: 1;
+}
+.course-card_view:hover .course-card_subtitle {
     opacity: 1;
 }
 

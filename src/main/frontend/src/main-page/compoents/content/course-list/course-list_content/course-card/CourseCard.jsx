@@ -11,8 +11,9 @@ export default function CourseCard({ course }) {
         <>
             <div className="course-card btnr">
                 <button className="course-card_view" onClick={handleClick}>
-                    <img src={course.photoId} />
+                    <img src={course.photoUrl} />
                     <h3 className="course-card_title">{course.title}</h3>
+                    <h3 className="course-card_subtitle">Нажмите, чтобы узнать больше... </h3>
                     <button className="course-card_price"> {course.price} ₽</button>
                 </button>
             </div>

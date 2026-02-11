@@ -1,18 +1,19 @@
 import "./courseCard.css"
 import {useNavigate} from "react-router-dom";
-import {COURSE_INFO, MAIN_ROUTE} from "../../../../../../utils/constants.jsx";
 
-export default function CourseCard() {
+export default function CourseCard({ course }) {
     const navigate = useNavigate();
     const handleClick = () => {
         window.scrollTo(0, 0);
-        navigate(COURSE_INFO);
+        navigate("/course/${course.id}");
     };
     return (
         <>
             <div className="course-card btnr">
                 <button className="course-card_view" onClick={handleClick}>
-                    <button className="course-card_price"></button>
+                    <img src={course.photoId} />
+                    <h3 className="course-card_title">{course.title}</h3>
+                    <button className="course-card_price"> {course.price} ₽</button>
                 </button>
             </div>
         </>

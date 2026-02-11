@@ -5,7 +5,7 @@ export default function CourseCard({ course }) {
     const navigate = useNavigate();
     const handleClick = () => {
         window.scrollTo(0, 0);
-        navigate("/course/${course.id}");
+        navigate(`/course/${course.id}`);
     };
     return (
         <>

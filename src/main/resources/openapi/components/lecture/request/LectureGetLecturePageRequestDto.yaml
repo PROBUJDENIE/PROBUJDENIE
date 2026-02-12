@@ -1,7 +1,0 @@
-type: object
-required:
-  - sectionId
-properties:
-  sectionId:
-    type: string
-    format: UUID

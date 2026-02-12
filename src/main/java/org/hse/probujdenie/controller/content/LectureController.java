@@ -8,9 +8,8 @@ import org.hse.probujdenie.model.content.Lecture;
 import org.hse.probujdenie.service.content.LectureService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -40,8 +39,8 @@ public class LectureController implements LectureApiDelegate {
     }
 
     @Override
-    public ResponseEntity<LectureGetLectureResponseDto> getLecture(LectureGetLectureRequestDto lectureGetLectureRequestDto) {
-        Lecture lecture = lectureService.getLecture(lectureGetLectureRequestDto.getLectureId());
+    public ResponseEntity<LectureGetLectureResponseDto> getLecture(UUID id) {
+        Lecture lecture = lectureService.getLecture(id);
 
         LectureGetLectureResponseDto response = new LectureGetLectureResponseDto();
         response.setSuccess(true);
@@ -50,8 +49,8 @@ public class LectureController implements LectureApiDelegate {
     }
 
     @Override
-    public ResponseEntity<LectureGetLecturePageResponseDto> getLecturePage(Integer offset, Integer count, LectureGetLecturePageRequestDto lectureGetLecturePageRequestDto) {
-        List<Lecture> lectures = lectureService.getAllLecturesBySectionId(lectureGetLecturePageRequestDto.getSectionId(), offset, count);
+    public ResponseEntity<LectureGetLecturePageResponseDto> getLecturePage(Integer offset, Integer count, UUID sectionId) {
+        List<Lecture> lectures = lectureService.getAllLecturesBySectionId(sectionId, offset, count);
         List<LectureGetLecturePageItemResponseDto> dto = lectureMapper.toResponseDtoList(lectures);
 
         LectureGetLecturePageResponseDto response = new LectureGetLecturePageResponseDto();

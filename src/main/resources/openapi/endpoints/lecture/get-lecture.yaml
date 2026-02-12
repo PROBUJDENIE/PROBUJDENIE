@@ -2,12 +2,13 @@ get:
   operationId: getLecture
   tags:
     - lecture
-  requestBody:
+  parameters:
+    - name: id
+      in: path
       required: true
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/lecture/request/LectureGetLectureRequestDto.yaml'
+      schema:
+        type: string
+        format: UUID
   responses:
     '200':
       description: Возвращается лекция

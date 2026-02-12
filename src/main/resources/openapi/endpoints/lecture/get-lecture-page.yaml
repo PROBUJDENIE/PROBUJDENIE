@@ -17,12 +17,12 @@ get:
         type: integer
         format: int32
         minimum: 0
-  requestBody:
+    - name: sectionId
+      in: path
       required: true
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/lecture/request/LectureGetLecturePageRequestDto.yaml'
+      schema:
+        type: string
+        format: UUID
   responses:
     '200':
       description: Список лекций указанной секции

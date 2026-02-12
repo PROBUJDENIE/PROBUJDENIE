@@ -1,5 +1,6 @@
 import "./bottom.css"
 import CommonBtn from "../../prototype/btn/CommonBtn.jsx";
+import btImage from "../../../resources/images/bottom.png"
 export default function Bottom() {
 
     return (
@@ -12,7 +13,7 @@ export default function Bottom() {
                     <CommonBtn width={370} height={40} size={22} borderColor={"#8A6CFF"}  onClick={() => window.open("https://web.telegram.org/a/#1133165164", "_blank") }>probujdenie@mail.ru</CommonBtn>
                 </div>
                 <div className="bottom-rules">
-                    <img className="bottom-rules_img" src={"src/main-page/resources/images/bottom.png"} alt={""}></img>
+                    <img className="bottom-rules_img" src={btImage} alt={""}></img>
                     <div className="bottom-rules_text">2026 PROBUJDENIE. Все права защищены.</div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ import Container from "../../Container.jsx";
 import CircleImgBtn from "../../../prototype/btn/CircleImgBtn.jsx";
 import NavigationHedear from "./NavigationHedear.jsx";
 import { useNavigate } from "react-router-dom";
-import {MAIN_ROUTE, ADMIN_PROFILE_ROUTE} from "../../../../../utils/constants.jsx";
+import {MAIN_ROUTE} from "@/utils/constants.jsx";
 import {useState, useEffect, useRef, useCallback} from "react";
 import LoginOrRegister from "../../../../../autorisation/login-or-register/LoginOrRegister.jsx";
 

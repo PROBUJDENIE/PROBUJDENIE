@@ -2,6 +2,7 @@
   "name": "probujdenie",
   "private": true,
   "version": "0.0.0",
+  "proxy": "http://app:8080",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -1,7 +1,7 @@
 import "./jump.css"
 import CircleImgBtn from "../../prototype/btn/CircleImgBtn.jsx";
 import { useState, useEffect } from "react";
-
+import jumpImage from "../../../resources/images/jump.png"
 export default function Jump() {
     const [isVisible, setIsVisible] = useState(false);
     useEffect(() => {
@@ -34,7 +34,7 @@ export default function Jump() {
                 <div className="jump">
                     <CircleImgBtn
                         size={60}
-                        src={"src/main-page/resources/images/jump.png"}
+                        src={jumpImage}
                         onClick={scrollToTop}
                         alt="Наверх"
                     />

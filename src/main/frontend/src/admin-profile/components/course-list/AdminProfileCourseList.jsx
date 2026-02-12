@@ -7,9 +7,10 @@ import CommonBtn from "../../../main-page/compoents/prototype/btn/CommonBtn.jsx"
 import leftIcon from "../../../main-page/resources/images/book_white.svg";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {CONSTRUCTOR} from "../../../utils/constants.jsx";
+import {CONSTRUCTOR} from "@/utils/constants.jsx";
 import AdminProfileCourseCard from "./AdminProfileCourseCard.jsx";
 import AdminCourseCardAdd from "./add/AdminCourseCardAdd.jsx";
+import Image from "../../resources/images/plus.png"
 
 export default function AdminProfileCourseList() {
     const courses = JSON.parse(localStorage.getItem("courses")) || [];
@@ -27,7 +28,7 @@ export default function AdminProfileCourseList() {
                                     <AdminProfileCourseCard key={index} src={course.photo} course={course} onClick={() => navigate(`${CONSTRUCTOR}?id=${course.id}`)}></AdminProfileCourseCard>
 
                                 ))}
-                                <AdminCourseCardAdd src={"src/admin-profile/resources/images/plus.png"} onClick={() => navigate(CONSTRUCTOR)}></AdminCourseCardAdd>
+                                <AdminCourseCardAdd src={Image} onClick={() => navigate(CONSTRUCTOR)}></AdminCourseCardAdd>
                             </div>
                         ) : (
                             <div

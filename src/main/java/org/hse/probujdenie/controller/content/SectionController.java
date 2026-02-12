@@ -8,9 +8,9 @@ import org.hse.probujdenie.model.content.Section;
 import org.hse.probujdenie.service.content.SectionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -41,8 +41,8 @@ public class SectionController implements SectionApiDelegate {
     }
 
     @Override
-    public ResponseEntity<SectionGetSectionPageResponseDto> getSectionPage(Integer offset, Integer count, SectionGetSectionPageRequestDto sectionGetSectionPageRequestDto) {
-        List<Section> sections = sectionService.getSectionPage(sectionGetSectionPageRequestDto.getCourseId(), offset, count);
+    public ResponseEntity<SectionGetSectionPageResponseDto> getSectionPage(Integer offset, Integer count, UUID courseId) {
+        List<Section> sections = sectionService.getSectionPage(courseId, offset, count);
         List<SectionGetSectionPageItemResponseDto> dto = sectionMapper.toResponseDtoList(sections);
 
         SectionGetSectionPageResponseDto response = new SectionGetSectionPageResponseDto();

@@ -17,12 +17,12 @@ get:
         type: integer
         format: int32
         minimum: 0
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: '../../components/section/request/SectionGetSectionPageRequestDto.yaml'
+    - name: courseId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
   responses:
     '200':
       description: Список секций курса

@@ -22,7 +22,7 @@ paths:
   /fileSaver/get:
     $ref: './endpoints/file-saver/get.yaml'
 
-  /section/getSectionPage:
+  /section/getSectionPage/{courseId}:
     $ref: './endpoints/section/get-section-page.yaml'
   /section/create:
     $ref: './endpoints/section/create-section.yaml'

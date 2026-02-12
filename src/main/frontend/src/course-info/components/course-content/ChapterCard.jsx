@@ -10,15 +10,19 @@ export default function ChapterCard({ chapter, isOpen, onToggle }) {
                 aria-expanded={isOpen}
             >
                 <div className="chapter-card-header">
-                    <div className="chapter-number">Глава {chapter.id + 1}</div>
-                    <div className="chapter-title">{chapter.title.split(":")[1]?.trim() || chapter.title}</div>
+                    <div className="chapter-number">
+                        Глава {chapter.order + 1}
+                    </div>
+                    <div className="chapter-title">
+                        {chapter.title}
+                    </div>
                 </div>
+
                 <div className="chapter-card-info">
-                    <span className="lessons-count-badge">
-                        {chapter.lessons.length} уроков
-                    </span>
                     <img
-                        className={`chapter-arrow ${isOpen ? "arrow-up" : "arrow-down"}`}
+                        className={`chapter-arrow ${
+                            isOpen ? "arrow-up" : "arrow-down"
+                        }`}
                         src={tapImage}
                         alt={isOpen ? "Свернуть" : "Развернуть"}
                     />

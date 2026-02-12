@@ -8,6 +8,7 @@ import Header from "../main-page/compoents/content/hero/header/Header.jsx";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {courseApi} from "@/api/course.api.js";
+import Jump from "@/main-page/compoents/content/jump/Jump.jsx";
 
 export default function CourseInfo() {
     const { id } = useParams();
@@ -27,12 +28,13 @@ export default function CourseInfo() {
             <div className="course-info">
                 <div className="wrapper">
                     <Header />
+                    <Jump/>
                     <Info course={course}> </Info>
                     <CourseContent course={course}></CourseContent>
                     <StillThink></StillThink>
                     <HowYourEducationWillLookLike></HowYourEducationWillLookLike>
                     <CompaniesThatUsePlatform></CompaniesThatUsePlatform>
-                    <ExpectationsAfterCompletion course={course}></ExpectationsAfterCompletion>
+                    <ExpectationsAfterCompletion></ExpectationsAfterCompletion>
                 </div>
             </div>
         </>

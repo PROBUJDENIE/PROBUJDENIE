@@ -11,7 +11,7 @@ export function useCourses() {
             try {
                 const data = await courseApi.getCoursePage({
                     offset: 0,
-                    count: 8,
+                    count: 10,
                 });
                 setCourses(data);
             } catch (e) {

@@ -1,7 +1,7 @@
 import {API_CONFIG, COURSE_ENDPOINTS} from './config';
 
 export const courseApi = {
-    getCoursePage: async ({offset = 0, count = 8}) => {
+    getCoursePage: async ({offset = 0, count = 10}) => {
         const url = new URL(`${API_CONFIG.BASE_URL}${COURSE_ENDPOINTS.GET_PAGE}`);
         url.searchParams.set('offset', offset);
         url.searchParams.set('count', count);
@@ -52,5 +52,4 @@ export const courseApi = {
                 : null,
         };
     }
-
 };

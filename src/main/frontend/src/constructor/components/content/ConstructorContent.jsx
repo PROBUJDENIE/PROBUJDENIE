@@ -8,6 +8,7 @@ import editImage from "../../resources/images/edit.png";
 import CommonBtn from "../../../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import leftIcon from "../../resources/images/save.svg";
 import {moveDelete, moveDown, moveUp} from "../hooks/blockOperations.js";
+import Image from "../../resources/images/lPanel.svg"
 export default function ConstructorContent({course, setCourse, saveCourse}) {
 
     const [open, setOpen] = useState(false);
@@ -46,7 +47,7 @@ export default function ConstructorContent({course, setCourse, saveCourse}) {
                 <div className="constructor-content_lPanel">
                     <div className="constructor-content_lPanel-menu">
                         <button  className={"btnr"} onClick={() => setOpen(true)}>
-                            <img alt={"меню"} src={"src/constructor/resources/images/lPanel.svg"} />
+                            <img alt={"меню"} src={Image} />
                         </button>
                     </div>
                     <ConstructorNavigation

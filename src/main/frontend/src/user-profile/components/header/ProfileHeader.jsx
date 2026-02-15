@@ -4,7 +4,7 @@ import Logo from "../../../main-page/compoents/prototype/logo/Logo.jsx";
 import CircleImgBtn from "../../../main-page/compoents/prototype/btn/CircleImgBtn.jsx";
 import {MAIN_ROUTE} from "@/utils/constants.jsx";
 import {useNavigate} from "react-router-dom";
-import Image from "../../../main-page/resources/images/profile.png"
+import Image from "../../../main-page/resources/images/profileNew.png"
 
 export default function ProfileHeader() {
     const navigate = useNavigate();
@@ -18,6 +18,7 @@ export default function ProfileHeader() {
                             size={45}
                             alt={"Личный кабинет"}
                             src={Image}
+                            backGround={115}
                         ></CircleImgBtn>
                     </div>
 

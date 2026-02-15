@@ -1,6 +1,6 @@
 import "./header.css"
 import Logo from "../../../prototype/logo/Logo.jsx";
-import profileImg from "@/main-page/resources/images/profile.png";
+import profileImg from "@/main-page/resources/images/profileNew.png";
 import Container from "../../Container.jsx";
 import CircleImgBtn from "../../../prototype/btn/CircleImgBtn.jsx";
 import NavigationHedear from "./NavigationHedear.jsx";
@@ -83,6 +83,7 @@ export default function Header() {
                             alt={"Личный кабинет"}
                             src={profileImg}
                             onClick={handleProfileClick}
+                            backGround={115}
                         ></CircleImgBtn>
                     </div>
                 </Container>

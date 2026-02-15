@@ -1,9 +1,9 @@
 import CommonLink from "../../../prototype/link/CommonLink.jsx";
-import allImage from "../../../../resources/images/all.svg";
-import resImage from "../../../../resources/images/res.svg";
-import starImage from "../../../../resources/images/star1.svg";
-import giftImage from "../../../../resources/images/gift.svg";
-import questImage from "../../../../resources/images/que.svg";
+import allImage from "../../../../resources/images/allNew.png";
+import resImage from "../../../../resources/images/aboutNew.png";
+import starImage from "../../../../resources/images/revNew.png";
+import giftImage from "../../../../resources/images/giftNew.png";
+import questImage from "../../../../resources/images/queNew.png";
 
 export default function NavigationHedear() {
     return (
@@ -11,10 +11,10 @@ export default function NavigationHedear() {
             <nav className="navbar">
                 <ul className="nav">
                     <li className="nav-item">
-                        <CommonLink size={16} weight={800} href={"#course-list"} >
+                        <CommonLink size={16} weight={800} href={"#course-list"}  >
                             <span className="nav-content">
                                 <img src={allImage} alt="Курсы" className="nav-icon" />
-                                Все курсы
+                                <p> Все курсы </p>
                             </span>
                         </CommonLink>
                     </li>
@@ -22,7 +22,7 @@ export default function NavigationHedear() {
                         <CommonLink size={16} weight={800} href={"#aboutUs"}>
                            <span className="nav-content">
                                <img src={resImage} alt="О нас" className="nav-icon" />
-                               О нас
+                               <p> О нас </p>
                            </span>
                         </CommonLink>
                     </li>
@@ -30,7 +30,7 @@ export default function NavigationHedear() {
                         <CommonLink size={16} weight={800} >
                            <span className="nav-content">
                                <img src={starImage} alt="Отзывы" className="nav-icon" />
-                               Отзывы
+                               <p> Отзывы </p>
                            </span>
                         </CommonLink>
                     </li>
@@ -38,7 +38,7 @@ export default function NavigationHedear() {
                         <CommonLink size={16} weight={800} >
                            <span className="nav-content">
                                <img src={giftImage} alt="Подарок за друга" className="nav-icon" />
-                               Подарок за друга
+                               <p> Подарок за друга </p>
                            </span>
                         </CommonLink>
                     </li>
@@ -46,7 +46,7 @@ export default function NavigationHedear() {
                         <CommonLink size={16} weight={800} href={"#question"} >
                            <span className="nav-content">
                                <img src={questImage} alt="Подарок за друга" className="nav-icon" />
-                               Вопросы
+                               <p> Вопросы </p>
                            </span>
                         </CommonLink>
                     </li>

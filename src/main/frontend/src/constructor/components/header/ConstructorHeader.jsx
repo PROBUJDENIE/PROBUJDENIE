@@ -2,9 +2,9 @@ import "./constructorHeader.css"
 import Container from "../../../main-page/compoents/content/Container.jsx";
 import Logo from "../../../main-page/compoents/prototype/logo/Logo.jsx";
 import CircleImgBtn from "../../../main-page/compoents/prototype/btn/CircleImgBtn.jsx";
-import {MAIN_ROUTE} from "../../../utils/constants.jsx";
+import {MAIN_ROUTE} from "@/utils/constants.jsx";
 import {useNavigate} from "react-router-dom";
-
+import Image from "../../../main-page/resources/images/profileNew.png"
 
 export default function ConstructorHeader() {
     const navigate = useNavigate();
@@ -17,7 +17,8 @@ export default function ConstructorHeader() {
                         <CircleImgBtn
                             size={45}
                             alt={"Личный кабинет"}
-                            src={"src/main-page/resources/images/profile.png"}
+                            src={Image}
+                            backGround={115}
                         ></CircleImgBtn>
                     </div>
 

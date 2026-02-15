@@ -6,7 +6,7 @@ import CommonBtn from "../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import ConstructorInfo from "./components/info/ConstructorInfo.jsx";
 import ConstructorContent from "./components/content/ConstructorContent.jsx";
 import Container from "../main-page/compoents/content/Container.jsx";
-import {MAIN_ROUTE, ADMIN_PROFILE_ROUTE} from "../utils/constants.jsx";
+import { ADMIN_PROFILE_ROUTE} from "../utils/constants.jsx";
 import create from "./resources/images/create.svg"
 import table from "./resources/images/table.svg"
 import back from "./resources/images/back.svg"

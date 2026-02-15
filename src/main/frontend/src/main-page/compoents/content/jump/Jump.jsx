@@ -36,6 +36,7 @@ export default function Jump() {
                         size={60}
                         src={jumpImage}
                         onClick={scrollToTop}
+                        backGround={100}
                         alt="Наверх"
                     />
                 </div>

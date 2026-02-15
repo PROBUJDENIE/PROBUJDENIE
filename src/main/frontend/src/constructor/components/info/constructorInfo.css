@@ -155,7 +155,7 @@
     transform: translateY(-2px);
 }
 
-.file-text {
+.file-text p{
     font-size: 18px;
     font-weight: 200;
 }

@@ -109,7 +109,7 @@ export default function ConstructorInfo({course, setField, saveCourse, deleteCou
                                 />
                                 <label htmlFor="course-image-upload" className="custom-file-label">
                                     <img className="file-icon" src={fileImage} width={30} height={30}></img>
-                                    <span className="file-text">Выбрать изображение</span>
+                                    <p className="file-text">Выбрать изображение</p>
                                 </label>
                             </div>
                         </div>

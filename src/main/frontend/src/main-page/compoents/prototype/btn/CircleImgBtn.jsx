@@ -1,6 +1,6 @@
 import "./btn.css"
 
-export default function CircleImgBtn({ size, src, alt, onClick }) {
+export default function CircleImgBtn({ size, src, alt, onClick, backGround }) {
 
     return (
         <>
@@ -14,7 +14,7 @@ export default function CircleImgBtn({ size, src, alt, onClick }) {
                         backgroundImage: src ? `url(${src})` : "none",
                         overflow: "hidden",
                         borderRadius: `50%`,
-                        backgroundSize: "cover",
+                        backgroundSize: `${backGround}%`,
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat"}}
 

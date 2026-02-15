@@ -27,7 +27,7 @@
 }
 
 .navbar {
-    margin: 0 auto 0 120px;
+    margin: 0 auto;
 }
 
 .nav {
@@ -41,14 +41,17 @@
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    font: 400 14px "Rubik Mono One", monospace, sans-serif;
 }
 
 .nav-icon {
-    width: 27px;
-    height: 27px;
-    margin-right: 8px;
+    width: 45px;
+    height: 45px;
     object-fit: contain;
     transition: all 0.3s ease;
+}
+.nav-content:hover {
+    transform: scale(1.2);
 }
 
 .nav-content:hover .nav-icon {

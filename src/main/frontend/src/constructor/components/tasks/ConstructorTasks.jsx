@@ -8,6 +8,7 @@ import ConstructorNavigation from "../content/navigation/ConstructorNavigation.j
 import ConstructorWorkArea from "../content/workArea/ConstructorWorkArea.jsx";
 import ConstructorBlocksPanelTasks from "./components/ConstructorBlocksPanelTasks.jsx";
 import {moveDelete} from "@/constructor/components/hooks/blockOperations.js";
+import Image from "../../resources/images/lPanel.svg"
 
 export default function ConstructorTasks({course, setCourse, saveCourse}) {
 
@@ -34,7 +35,7 @@ export default function ConstructorTasks({course, setCourse, saveCourse}) {
                 <div className="constructor-content_lPanel">
                     <div className="constructor-content_lPanel-menu">
                         <button className={"btnr"} onClick={() => setOpen(true)}>
-                            <img alt={""} src={"src/constructor/resources/images/lPanel.svg"}/>
+                            <img alt={""} src={Image}/>
                         </button>
                     </div>
                     <ConstructorNavigation

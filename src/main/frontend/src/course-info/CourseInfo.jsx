@@ -9,6 +9,7 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {courseApi} from "@/api/course.api.js";
 import Jump from "@/main-page/compoents/content/jump/Jump.jsx";
+import Price from "@/course-info/components/price/Price.jsx";
 
 export default function CourseInfo() {
     const { id } = useParams();
@@ -30,6 +31,7 @@ export default function CourseInfo() {
                     <Header />
                     <Jump/>
                     <Info course={course}> </Info>
+                    <Price course={course}></Price>
                     <CourseContent course={course}></CourseContent>
                     <StillThink></StillThink>
                     <HowYourEducationWillLookLike></HowYourEducationWillLookLike>

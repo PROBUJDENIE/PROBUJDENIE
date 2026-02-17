@@ -8,10 +8,13 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {MAIN_ROUTE} from "../../../utils/constants.jsx";
 
-export default function UserProfileCourseList() {
+export default function UserProfileCourseList({ onOpenModal }) {
     const hasCourses = false;
     const [isHovered, setIsHovered] = useState(false);
-    const navigate = useNavigate();
+
+    const handleChooseCourse = () => {
+        onOpenModal();
+    };
     return (
         <>
             <div>
@@ -42,12 +45,8 @@ export default function UserProfileCourseList() {
                                     bgColor={"#8A6CFF"}
                                     fontColor={"white"}
                                     size={20}
-                                    onClick={() => {
-                                        navigate(MAIN_ROUTE, {
-                                            state: { scrollTo: "course-list" }
-                                        });
-                                    }}
                                     leftIcon={<img src={leftIcon} alt="книга" />}
+                                    onClick={handleChooseCourse}
                                 >Выбрать курс</CommonBtn>
                             </div>
                         )}

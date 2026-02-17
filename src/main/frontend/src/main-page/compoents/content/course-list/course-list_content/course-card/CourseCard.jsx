@@ -1,15 +1,21 @@
 import "./courseCard.css"
 import {useNavigate} from "react-router-dom";
 
-export default function CourseCard({ course }) {
+export default function CourseCard({ course, from, onBuyClick}) {
     const navigate = useNavigate();
     const handleClick = () => {
         window.scrollTo(0, 0);
-        navigate(`/course/${course.id}`);
+        navigate(`/course/${course.id}`, {
+            state: { from }
+        });
     };
     const handlePriceClick = (e) => {
         e.stopPropagation();
-        console.log(`Куплен курс: ${course.title}`);
+
+        if (onBuyClick) {
+            onBuyClick(course);
+        }
+
     };
 
     return (

@@ -3,11 +3,12 @@
     height: 530px;
     background-color: #EEE9E5;
     border-radius: 15px;
-    border: 1px #8A6CFF solid;
+    border: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 0 200px #8A6CFF;
 }
 .login-box-header {
     margin-top: 84px;

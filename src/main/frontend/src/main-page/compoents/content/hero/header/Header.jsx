@@ -16,10 +16,6 @@ export default function Header() {
     const [authState, changeAuthState] = useState(0);
 
     const { isHeaderVisible } = useHeaderVisibility();
-
-
-
-
     return (
         <>
             <header className={`header ${!isHeaderVisible ? 'header-hidden' : ''}`}>

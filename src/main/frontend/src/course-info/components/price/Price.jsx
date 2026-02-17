@@ -1,8 +1,21 @@
 import "./price.css"
 import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import leftIcon from "@/main-page/resources/images/book.svg";
+import {useState} from "react";
+import LoginOrRegister from "@/autorisation/login-or-register/LoginOrRegister.jsx";
+import PayModal from "@/user-profile/components/pay-modal/PayModal.jsx";
 
-export default function Price({course}) {
+export default function Price({course, from}) {
+    const [authState, changeAuthState] = useState(0);
+    const handleStart = () => {
+        if (from === "public") {
+            changeAuthState(1);
+        }
+
+        if (from === "cabinet") {
+            changeAuthState(4);
+        }
+    };
     return (
         <>
             <div className="price">
@@ -23,13 +36,15 @@ export default function Price({course}) {
                         borderColor="#8A6CFF"
                         fontColor="#000000"
                         size={18}
-                        onClick={() => console.log("Кнопка нажата")}
+                        onClick={() => handleStart()}
                         leftIcon={<img src={leftIcon} alt="книга" />}
                     >
                         Начать обучение
                     </CommonBtn>
                 </div>
             </div>
+            <LoginOrRegister authState={authState} changeAuthState={(arg) => changeAuthState(arg)} />
+            <PayModal course={course} authState={authState} changeAuthState={(arg) => changeAuthState(arg)} />
         </>
     )
 }

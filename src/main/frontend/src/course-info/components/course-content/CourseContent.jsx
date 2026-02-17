@@ -3,10 +3,8 @@ import ChapterCard from "./ChapterCard.jsx";
 import { useState } from "react";
 import Container from "../../../main-page/compoents/content/Container.jsx";
 import lookImage from "../../resourses/look.png";
-import CommonBtn from "../../../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import { useSections } from "@/api/hooks/useSections.js";
 import { useLectures } from "@/api/hooks/useLectures.js";
-import leftIcon from "@/main-page/resources/images/book.svg";
 
 export default function CourseContent({ course }) {
     const [openSectionId, setOpenSectionId] = useState(null);
@@ -79,21 +77,6 @@ export default function CourseContent({ course }) {
                         )}
                     </div>
                 </div>
-            </div>
-
-            <div className="course-content_btn">
-                <CommonBtn
-                    width={330}
-                    height={56}
-                    bgColor="#D2FE66"
-                    borderColor="#8A6CFF"
-                    fontColor="#000000"
-                    size={18}
-                    onClick={() => console.log("Кнопка нажата")}
-                    leftIcon={<img src={leftIcon} alt="книга" />}
-                >
-                    Начать обучение
-                </CommonBtn>
             </div>
         </Container>
     );

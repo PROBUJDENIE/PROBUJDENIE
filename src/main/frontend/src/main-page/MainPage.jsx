@@ -12,6 +12,7 @@ import Question from "./compoents/content/question/Question.jsx";
 import Bottom from "./compoents/content/bottom/Bottom.jsx";
 import {useEffect} from "react";
 import {useLocation} from "react-router-dom";
+import PayModal from "@/user-profile/components/pay-modal/PayModal.jsx";
 
 export default function MainPage() {
     const location = useLocation();
@@ -44,6 +45,7 @@ export default function MainPage() {
                 <Cta></Cta>
                 <Question/>
                 <Bottom></Bottom>
+                <PayModal></PayModal>
             </div>
         </>
     )

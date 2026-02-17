@@ -5,6 +5,7 @@ import CourseCard from "./course-list_content/course-card/CourseCard.jsx";
 import {useCourses} from "@/api/hooks/useCourses.js";
 import LoginOrRegister from "@/autorisation/login-or-register/LoginOrRegister.jsx";
 import {useState} from "react";
+import LoginBox from "@/autorisation/login/LoginBox.jsx";
 
 export default function CourseList() {
     const { courses, loading, error } = useCourses();
@@ -27,6 +28,10 @@ export default function CourseList() {
                     ))}
                 </div>
                 <LoginOrRegister authState={authState} changeAuthState={(arg) => changeAuthState(arg)} />
+                <LoginBox
+                    authState={authState}
+                    changeAuthState={(arg) => changeAuthState(arg)}
+                />
             </div>
         </>
     )

@@ -4,6 +4,7 @@ import leftIcon from "@/main-page/resources/images/book.svg";
 import {useState} from "react";
 import LoginOrRegister from "@/autorisation/login-or-register/LoginOrRegister.jsx";
 import PayModal from "@/user-profile/components/pay-modal/PayModal.jsx";
+import LoginBox from "@/autorisation/login/LoginBox.jsx";
 
 export default function Price({course, from}) {
     const [authState, changeAuthState] = useState(0);
@@ -45,6 +46,10 @@ export default function Price({course, from}) {
             </div>
             <LoginOrRegister authState={authState} changeAuthState={(arg) => changeAuthState(arg)} />
             <PayModal course={course} authState={authState} changeAuthState={(arg) => changeAuthState(arg)} />
+            <LoginBox
+                authState={authState}
+                changeAuthState={(arg) => changeAuthState(arg)}
+            />
         </>
     )
 }

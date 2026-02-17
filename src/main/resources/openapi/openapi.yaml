@@ -42,6 +42,13 @@ paths:
   /lecture/getLecture:
     $ref: './endpoints/lecture/get-lecture.yaml'
 
+
+  /auth/login:
+    $ref: './endpoints/auth/signIn.yaml'
+
+
+
+
   /exercise/getAll:
     $ref: './endpoints/exercise/get-all-exercises.yaml'
   /exercise/create:

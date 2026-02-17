@@ -9,6 +9,8 @@ export default function CommonBtn({
                                       size,
                                       onClick,
                                       leftIcon,
+                                      rightIcon,
+                                      type,
                                       children
                                   }) {
 
@@ -17,6 +19,7 @@ export default function CommonBtn({
             <button
                 className={"btn"}
                 onClick={onClick}
+                type={type}
                 style={{
                     backgroundColor: bgColor,
                     color: fontColor,

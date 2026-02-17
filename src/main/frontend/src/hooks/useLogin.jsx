@@ -1,0 +1,44 @@
+import { useState } from "react";
+import {useNavigate} from "react-router-dom";
+
+export function useLogin() {
+    const navigate = useNavigate();
+    const [values, setValues] = useState({ email: "", password: "" });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+
+    const setField = (name) => (e) => {
+        setValues((v) => ({ ...v, [name]: e.target.value }));
+    };
+
+
+
+    const submit = async () => {
+        setLoading(true);
+
+        try {
+            const res = await fetch("/api/v1/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(values),
+            });
+
+
+            // if (res.ok) {
+            //     navigate("/user-profile");
+            //     const token = await res.json();
+            //
+            //     localStorage.setItem("token", token);
+            // }
+            navigate("/user-profile");
+        }catch (e){
+            setError("Не удалось войти. Проверьте данные.");
+        }
+        finally {
+            setLoading(false);
+        }
+    };
+
+    return { values, setField, submit, loading, error };
+}

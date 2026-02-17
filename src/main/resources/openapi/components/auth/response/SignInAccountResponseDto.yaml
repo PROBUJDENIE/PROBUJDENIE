@@ -1,0 +1,10 @@
+allOf:
+  - $ref: '../../BaseResponseDto.yaml'
+  - type: object
+    required:
+      - token
+    properties:
+      token:
+        type: string
+        minLength: 3
+        maxLength: 255

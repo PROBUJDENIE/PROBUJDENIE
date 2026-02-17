@@ -1,21 +1,19 @@
 import "./loginOrRegister.css"
 import CommonBtn from "../../main-page/compoents/prototype/btn/CommonBtn.jsx";
-import {MAIN_ROUTE} from "../../utils/constants.jsx";
 import Logo from "../../main-page/compoents/prototype/logo/Logo.jsx";
 import {useNavigate} from "react-router-dom";
 
-export default function LoginOrRegister({isOpen, onClose}) {
+export default function LoginOrRegister({authState, changeAuthState}) {
     const navigate = useNavigate();
 
-    if (!isOpen) return null;
+    if (authState !== 1) return null;
 
     return (
         <>
-            <div className="welcome-overlay" onClick={onClose}>
+            <div className="welcome-overlay" onClick={() => changeAuthState(0)}>
                 <div className="welcome-block" onClick={e => e.stopPropagation()}>
                     <Logo onClick={() => {
-                        navigate(MAIN_ROUTE);
-                        onClose();
+                        changeAuthState(0);
                     }}></Logo>
 
                     <div className="welcome-block_title"> Добро пожаловать!</div>
@@ -29,8 +27,7 @@ export default function LoginOrRegister({isOpen, onClose}) {
                             bgColor={"#8A6CFF"}
                             size={20}
                             onClick={() => {
-                                navigate("/user-profile");
-                                onClose();
+                                changeAuthState(2);
                             }}
                         >Войти</CommonBtn>
 
@@ -42,7 +39,7 @@ export default function LoginOrRegister({isOpen, onClose}) {
                             size={20}
                             onClick={() => {
                                 navigate("/user-profile");
-                                onClose();
+                                changeAuthState(0);
                             }}
                         >Зарегистрироваться</CommonBtn>
 
@@ -56,7 +53,7 @@ export default function LoginOrRegister({isOpen, onClose}) {
                             size={20}
                             onClick={() => {
                                 navigate("/admin-profile");
-                                onClose();
+                                changeAuthState(0);
                             }}
                         >Войти как преподаватель</CommonBtn>
 
@@ -68,7 +65,7 @@ export default function LoginOrRegister({isOpen, onClose}) {
                             size={20}
                             onClick={() => {
                                 navigate("/admin-profile");
-                                onClose();
+                                changeAuthState(0);
                             }}
                         >Войти как администратор</CommonBtn>
                     </div>

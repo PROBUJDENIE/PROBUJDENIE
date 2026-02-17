@@ -6,70 +6,19 @@ import CircleImgBtn from "../../../prototype/btn/CircleImgBtn.jsx";
 import NavigationHedear from "./NavigationHedear.jsx";
 import { useNavigate } from "react-router-dom";
 import {MAIN_ROUTE} from "@/utils/constants.jsx";
-import {useState, useEffect, useRef, useCallback} from "react";
 import LoginOrRegister from "../../../../../autorisation/login-or-register/LoginOrRegister.jsx";
+import {useHeaderVisibility} from "@/hooks/useHeaderVisibility.jsx";
+import {useState} from "react";
+import LoginBox from "@/autorisation/login/LoginBox.jsx";
 
 export default function Header() {
     const navigate = useNavigate();
-    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-    const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
-    const ticking = useRef(false);
-    const isAuthenticated = false;
+    const [authState, changeAuthState] = useState(0);
 
-    const SCROLL_THRESHOLD = 100;
+    const { isHeaderVisible } = useHeaderVisibility();
 
-    const handleProfileClick = () => {
-        if (!isAuthenticated) {
-            setIsAuthModalOpen(true);
-        } else {
-            navigate("/user-profile");
-        }
-    };
 
-    const controlHeader = useCallback(() => {
-        const currentScrollY = window.scrollY;
 
-        if (currentScrollY > lastScrollY && currentScrollY > SCROLL_THRESHOLD) {
-            setIsHeaderVisible(false);
-        } else if (currentScrollY < lastScrollY || currentScrollY < SCROLL_THRESHOLD) {
-            setIsHeaderVisible(true);
-        }
-
-        setLastScrollY(currentScrollY);
-        ticking.current = false;
-    }, [lastScrollY, SCROLL_THRESHOLD]);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (!ticking.current) {
-                window.requestAnimationFrame(() => {
-                    controlHeader();
-                });
-                ticking.current = true;
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [controlHeader]);
-
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            if (e.clientY < 100 && !isHeaderVisible) {
-                setIsHeaderVisible(true);
-            }
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, [isHeaderVisible]);
 
     return (
         <>
@@ -82,7 +31,7 @@ export default function Header() {
                             size={45}
                             alt={"Личный кабинет"}
                             src={profileImg}
-                            onClick={handleProfileClick}
+                            onClick={() => changeAuthState(1)}
                             backGround={115}
                         ></CircleImgBtn>
                     </div>
@@ -90,8 +39,13 @@ export default function Header() {
             </header>
 
             <LoginOrRegister
-                isOpen={isAuthModalOpen}
-                onClose={() => setIsAuthModalOpen(false)}
+                authState={authState}
+                changeAuthState={(arg) => changeAuthState(arg)}
+            />
+
+            <LoginBox
+                authState={authState}
+                changeAuthState={(arg) => changeAuthState(arg)}
             />
         </>
     )

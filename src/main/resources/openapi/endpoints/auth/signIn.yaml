@@ -1,0 +1,17 @@
+post:
+  operationId: login
+  tags:
+    - auth
+  requestBody:
+    required: true
+    content:
+        application/json:
+          schema:
+            $ref: '../../components/auth/request/SignInAccountRequestDto.yaml'
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+              $ref: '../../components/auth/response/SignInAccountResponseDto.yaml'

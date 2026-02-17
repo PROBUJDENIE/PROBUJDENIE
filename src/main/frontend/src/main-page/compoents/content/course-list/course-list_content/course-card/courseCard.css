@@ -1,6 +1,6 @@
 .course-card_view {
-    width: 330px;
-    height: 224px;
+    width: 320px;
+    height: 400px;
     background-color: #dfd8d3;
     border-radius: 10px;
     border: 2px #8A6CFF solid;
@@ -64,14 +64,16 @@
 }
 
 .course-card_price {
-    width: 120px;
-    height: 40px;
-    background-color: #D2FE66;
-    border-radius: 20px;
+    width: 150px;
+    height: 50px;
+    background-color: #d2fe66;
+    border-radius: 25px;
     border: 1px #8A6CFF solid;
     position: absolute;
     z-index: 3;
-    margin-top: 160px;
+    margin-top: 300px;
+    font-size: 25px;
+    color: #333333;
 }
 
 .course-card {

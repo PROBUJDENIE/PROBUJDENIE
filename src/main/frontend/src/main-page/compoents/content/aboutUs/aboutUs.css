@@ -9,8 +9,7 @@
 }
 
 .aboutUs-header_title {
-    font-size: 60px;
-    font-weight: 800;
+    font: 400 60px Rubik Mono One, monospace, sans-serif;
 }
 
 .aboutUs-header_desc {

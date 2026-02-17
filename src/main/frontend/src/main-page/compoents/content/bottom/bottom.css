@@ -9,8 +9,7 @@
 }
 
 .bottom-title {
-    font-size: 60px;
-    font-weight: 800;
+    font: 400 45px Rubik Mono One, monospace, sans-serif;
 }
 .bottom-desc {
     margin-top: 20px;

@@ -29,9 +29,6 @@ public class UserData {
     @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
 
-    @Column(name = "PHOTO_ID", nullable = false)
-    private UUID photoId;
-
     @Column(name = "CREATION_DATE_TIME", nullable = false)
     private LocalDateTime creationDateTime;
 

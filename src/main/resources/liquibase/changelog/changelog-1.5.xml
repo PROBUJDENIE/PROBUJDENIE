@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="69150878-3b89-4d46-a5d4-e1adb3153c28" author="Belikov-V">
+        <comment>Seed start user - admin</comment>
+        <insert tableName="USER_DATA">
+            <column name="EMAIL" value="belikov_v2@mail.ru"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="FIRST_NAME" value="Владимир"/>
+            <column name="LAST_NAME" value="Беликов"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="USR">
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="EMAIL" value="belikov_v2@mail.ru"/>
+            <column name="PASSWORD" value="qwerty"/>
+            <column name="ROLE" value="ADMIN"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="f653e095-39f8-46d4-ae32-5d100bc052e4" author="Belikov-V">
+        <comment>Seed start users - teacher</comment>
+        <insert tableName="USER_DATA">
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="EMAIL" value="teacher1@mail.ru"/>
+            <column name="FIRST_NAME" value="Семен"/>
+            <column name="LAST_NAME" value="Старков"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="USR">
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="EMAIL" value="teacher1@mail.ru"/>
+            <column name="PASSWORD" value="qwerty"/>
+            <column name="ROLE" value="TEACHER"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="cb4b708b-beb4-4f5b-892c-e76fd3a3bab3" author="Belikov-V">
+        <comment>Seed start users - teacher</comment>
+        <insert tableName="USER_DATA">
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="EMAIL" value="teacher2@mail.ru"/>
+            <column name="FIRST_NAME" value="Саша"/>
+            <column name="LAST_NAME" value="Ошаров"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="USR">
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="EMAIL" value="teacher2@mail.ru"/>
+            <column name="PASSWORD" value="qwerty"/>
+            <column name="ROLE" value="TEACHER"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="e1bc9ba6-b4e8-41cc-8d60-68ccf2b9d344" author="Belikov-V">
+        <comment>Seed start users - student</comment>
+        <insert tableName="USER_DATA">
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="EMAIL" value="student@mail.ru"/>
+            <column name="FIRST_NAME" value="Дональд"/>
+            <column name="LAST_NAME" value="Трамп"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="USR">
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="EMAIL" value="student@mail.ru"/>
+            <column name="PASSWORD" value="qwerty"/>
+            <column name="ROLE" value="STUDENT"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2a06b8ac-8752-4d3e-b760-948e833a2af5" author="Belikov-V">
+        <comment>Seed start users - student</comment>
+        <insert tableName="USER_DATA">
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="EMAIL" value="student2@mail.ru"/>
+            <column name="FIRST_NAME" value="Дим"/>
+            <column name="LAST_NAME" value="Димыч"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="USR">
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="EMAIL" value="student2@mail.ru"/>
+            <column name="PASSWORD" value="qwerty"/>
+            <column name="ROLE" value="STUDENT"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

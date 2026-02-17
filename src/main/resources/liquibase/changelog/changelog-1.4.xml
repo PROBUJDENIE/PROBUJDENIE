@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="ae7557b6-f195-4c80-86e9-4cefc7d97453" author="Belikov-V">
+        <comment>Create USER_DATA table</comment>
+        <createTable tableName="USER_DATA">
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="LAST_NAME" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="CREATION_DATE_TIME" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_MODIFICATION_DATE_TIME" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="ca978e06-0065-45d7-9f48-69b05f6669cb" author="Belikov-V">
+        <comment>Create USR table</comment>
+        <createTable tableName="USR">
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATION_DATE_TIME" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_MODIFICATION_DATE_TIME" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="a9d23d94-541a-4a62-a855-2db70f042926" author="Belikov-V">
+        <comment>Add FK USR.EMAIL -> USER_DATA.EMAIL (one-to-one)</comment>
+        <addForeignKeyConstraint
+                baseTableName="USR"
+                baseColumnNames="EMAIL"
+                referencedTableName="USER_DATA"
+                referencedColumnNames="EMAIL"
+                constraintName="fk_usr_userData"
+                onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

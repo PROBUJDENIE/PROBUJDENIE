@@ -5,7 +5,7 @@ import Header from "../main-page/compoents/content/hero/header/Header.jsx";
 import LoginOrRegister from "@/autorisation/login-or-register/LoginOrRegister.jsx";
 import ModalAllCourses from "@/user-profile/components/modal-all-courses/ModalAllCourses.jsx";
 import {useState} from "react";
-
+import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
 
 export default function UserProfile() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,6 +17,7 @@ export default function UserProfile() {
                 <ProfileHeader></ProfileHeader>
                 <UserProfilePreview></UserProfilePreview>
                 <UserProfileCourseList onOpenModal={openModal}></UserProfileCourseList>
+                <Bottom></Bottom>
             </div>
             <ModalAllCourses
                 isOpen={isModalOpen}

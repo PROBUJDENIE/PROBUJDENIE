@@ -5,8 +5,6 @@ import noCourseHover from "../../resourses/images/noCourseHover.png";
 import CommonBtn from "../../../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import leftIcon from "../../../main-page/resources/images/book_white.svg";
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {MAIN_ROUTE} from "../../../utils/constants.jsx";
 
 export default function UserProfileCourseList({ onOpenModal }) {
     const hasCourses = false;

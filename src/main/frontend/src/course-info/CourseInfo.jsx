@@ -31,7 +31,7 @@ export default function CourseInfo() {
                 <div className="wrapper">
                     <Header />
                     <Jump/>
-                    <Info course={course}> </Info>
+                    <Info course={course}></Info>
                     <Price course={course}></Price>
                     <CourseContent course={course}></CourseContent>
                     <StillThink></StillThink>

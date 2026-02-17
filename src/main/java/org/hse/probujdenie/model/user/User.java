@@ -20,6 +20,9 @@ public class User {
     private Integer version;
 
     @Id
+    @Column(name = "EMAIL", nullable = false)
+    private String email;
+
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "EMAIL", nullable = false)
     private UserData userData;

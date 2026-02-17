@@ -23,15 +23,13 @@ export function useLogin() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values),
             });
-
-
-            // if (res.ok) {
-            //     navigate("/user-profile");
-            //     const token = await res.json();
-            //
-            //     localStorage.setItem("token", token);
-            // }
-            navigate("/user-profile");
+            const response = await res.json();
+            if (response.success === true) {
+                navigate("/user-profile");
+                localStorage.setItem("token", response.token);
+            }else {
+                setError("Не удалось войти. Проверьте данные.");
+            }
         }catch (e){
             setError("Не удалось войти. Проверьте данные.");
         }

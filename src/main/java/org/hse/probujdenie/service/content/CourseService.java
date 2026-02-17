@@ -34,6 +34,12 @@ public class CourseService {
         courseRepository.save(existing);
     }
 
+    public void updateCoursePhoto(UUID courseId, UUID photoId) {
+        Course existing = getCourse(courseId);
+        existing.setPhotoId(photoId);
+        courseRepository.save(existing);
+    }
+
     public List<Course> getAllActualCourses(Integer offset, Integer count) {
         Pageable page = PageRequest.of(offset, count);
         return courseRepository.findAllByStatusNot(CourseStatus.DELETED, page).getContent();

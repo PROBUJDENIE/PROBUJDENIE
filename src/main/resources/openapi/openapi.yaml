@@ -31,7 +31,7 @@ paths:
   /section/delete:
     $ref: './endpoints/section/delete-section.yaml'
 
-  /lecture/getLecturePage:
+  /lecture/getLecturePage/{sectionId}:
     $ref: './endpoints/lecture/get-lecture-page.yaml'
   /lecture/create:
     $ref: './endpoints/lecture/create-lecture.yaml'

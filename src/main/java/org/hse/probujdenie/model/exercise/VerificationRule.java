@@ -13,8 +13,8 @@ import java.util.UUID;
 @Builder
 @Getter
 @Setter
-@Entity
-@Table(name = "VERIFICATION_RULE")
+//@Entity
+//@Table(name = "VERIFICATION_RULE")
 public class VerificationRule {
 
     @Id

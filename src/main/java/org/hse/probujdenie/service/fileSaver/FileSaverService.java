@@ -36,13 +36,13 @@ public class FileSaverService {
         }
     }
 
-    private void createBucketIfNotExists(String bucketName) {
+    public void createBucketIfNotExists(String bucketName) {
         if (!bucketExists(bucketName)) {
             client.createBucket(CreateBucketRequest.builder().bucket(bucketName).build());
         }
     }
 
-    private boolean bucketExists(String bucketName) {
+    public boolean bucketExists(String bucketName) {
         try {
             client.headBucket(HeadBucketRequest.builder().bucket(bucketName).build());
             return true;

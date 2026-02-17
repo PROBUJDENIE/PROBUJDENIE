@@ -20,8 +20,9 @@ public class User {
     private Integer version;
 
     @Id
-    @Column(name = "EMAIL", nullable = false, unique = true)
-    private String email;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "EMAIL", nullable = false)
+    private UserData userData;
 
     @Column(name = "PASSWORD", nullable = false)
     private String password;
@@ -34,7 +35,4 @@ public class User {
 
     @Column(name = "LAST_MODIFICATION_DATE_TIME", nullable = false)
     private LocalDateTime lastModificationDateTime;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserData userData;
 }

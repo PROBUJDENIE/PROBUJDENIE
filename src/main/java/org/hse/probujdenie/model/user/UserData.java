@@ -2,10 +2,8 @@ package org.hse.probujdenie.model.user;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hse.probujdenie.model.exercise.StudentSubmission;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -17,13 +15,13 @@ import java.util.UUID;
 @Builder
 public class UserData {
 
-    @Id
-    @Column(name = "ID", nullable = false)
-    private UUID id;
+    @Version
+    @Column(name = "VERSION", nullable = false)
+    private Integer version;
 
-    @OneToOne
-    @JoinColumn(name = "EMAIL", referencedColumnName = "EMAIL", nullable = false, unique = true)
-    private User user;
+    @Id
+    @Column(name = "EMAIL", nullable = false, unique = true)
+    private String email;
 
     @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
@@ -39,12 +37,4 @@ public class UserData {
 
     @Column(name = "LAST_MODIFICATION_DATE_TIME", nullable = false)
     private LocalDateTime lastModificationDateTime;
-
-    @Version
-    @Column(name = "VERSION", nullable = false)
-    private Integer version;
-
-    @OneToMany(mappedBy = "student")
-    private List<StudentSubmission> submissions;
-
 }

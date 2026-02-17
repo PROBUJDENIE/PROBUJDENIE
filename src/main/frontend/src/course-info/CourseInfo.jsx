@@ -10,6 +10,7 @@ import {useEffect, useState} from "react";
 import {courseApi} from "@/api/course.api.js";
 import Jump from "@/main-page/compoents/content/jump/Jump.jsx";
 import Price from "@/course-info/components/price/Price.jsx";
+import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
 
 export default function CourseInfo() {
     const { id } = useParams();
@@ -37,6 +38,7 @@ export default function CourseInfo() {
                     <HowYourEducationWillLookLike></HowYourEducationWillLookLike>
                     <CompaniesThatUsePlatform></CompaniesThatUsePlatform>
                     <ExpectationsAfterCompletion></ExpectationsAfterCompletion>
+                    <Bottom></Bottom>
                 </div>
             </div>
         </>

@@ -3,6 +3,8 @@ import "./info.css"
 import pointerImage from "../../resourses/pointer.png";
 
 export default function Info({ course }) {
+    let descriptions = course.description.split("#БЛОК#");
+    let highlights = descriptions[1].split("-").filter(Boolean);
     return (
         <>
             <Container>
@@ -19,13 +21,13 @@ export default function Info({ course }) {
                             {course.title}
                         </h1>
                         <p className="course-description">
-                            {course.description}
+                            {descriptions[0]}
                         </p>
                         <div className="course-features">
                             <div className="course-features-text">
                                 <h4 className="features-title">Что вас ждет:</h4>
                                 <div className="features-grid">
-                                    {course.highlights?.map((item, i) => (
+                                    {highlights?.map((item, i) => (
                                         <div className="feature" key={i}>
                                             <span className="feature-bullet">•</span>
                                             <span>{item}</span>

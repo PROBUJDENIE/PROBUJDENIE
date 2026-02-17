@@ -11,8 +11,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Data
-@Entity
-@Table(name = "EVALUATION_RESULT")
+//@Entity
+//@Table(name = "EVALUATION_RESULT")
 public class EvaluationResult {
     @Id
     @Column(name = "ID", nullable = false)

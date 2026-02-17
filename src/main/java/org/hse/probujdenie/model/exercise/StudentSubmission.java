@@ -12,8 +12,8 @@ import java.util.UUID;
 @Builder
 @Getter
 @Setter
-@Entity
-@Table(name = "STUDENT_SUBMISSION")
+//@Entity
+//@Table(name = "STUDENT_SUBMISSION")
 public class StudentSubmission {
 
     @Id

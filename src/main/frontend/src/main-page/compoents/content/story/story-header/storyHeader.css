@@ -14,6 +14,7 @@
 .story-header-title {
     font-size: 45px;
     font-weight: 800;
+    color: #fff;
 }
 
 .story-header-desc {
@@ -22,4 +23,5 @@
     font-size: 22px;
     font-weight: 800;
     line-height: 30px;
+    color: #fff;
 }

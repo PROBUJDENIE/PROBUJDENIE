@@ -22,6 +22,7 @@ export default function ModalAllCourses({isOpen, onClose}) {
                     <Logo onClick={() => {
                         navigate(MAIN_ROUTE);
                         onClose();
+
                     }}></Logo>
                     <div className="modal-block-courses_title"> Выбери свой курс!</div>
                     <div className="modal-block-courses_text"> Твой путь к новым знаниям начинается здесь </div>

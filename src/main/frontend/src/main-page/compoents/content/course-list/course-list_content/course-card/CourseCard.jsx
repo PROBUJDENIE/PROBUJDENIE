@@ -7,6 +7,11 @@ export default function CourseCard({ course }) {
         window.scrollTo(0, 0);
         navigate(`/course/${course.id}`);
     };
+    const handlePriceClick = (e) => {
+        e.stopPropagation();
+        console.log(`Куплен курс: ${course.title}`);
+    };
+
     return (
         <>
             <div className="course-card btnr">
@@ -14,7 +19,10 @@ export default function CourseCard({ course }) {
                     <img src={course.photoUrl} />
                     <p className="course-card_title">{course.title}</p>
                     <p className="course-card_subtitle">Нажмите, чтобы узнать больше... </p>
-                    <button className="course-card_price"> {course.price} ₽</button>
+
+                </button>
+                <button className="course-card_price" onClick={handlePriceClick}>
+                    Купить за {course.price} ₽
                 </button>
             </div>
         </>

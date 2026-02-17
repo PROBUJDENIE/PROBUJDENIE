@@ -64,18 +64,23 @@
 }
 
 .course-card_price {
-    width: 150px;
+    width: 200px;
     height: 50px;
     background-color: #d2fe66;
     border-radius: 25px;
     border: 1px #8A6CFF solid;
-    position: absolute;
-    z-index: 3;
-    margin-top: 300px;
-    font-size: 25px;
+    font-size: 20px;
     color: #333333;
+    transition: all 0.3s ease;
+}
+.course-card_price:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px #8A6CFF;
 }
 
+.course-card_price:active {
+    transform: scale(0.95);
+}
 .course-card {
     display: flex;
     flex-direction: column;

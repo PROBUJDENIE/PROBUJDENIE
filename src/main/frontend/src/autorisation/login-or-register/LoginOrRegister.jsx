@@ -3,17 +3,17 @@ import CommonBtn from "../../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import Logo from "../../main-page/compoents/prototype/logo/Logo.jsx";
 import {useNavigate} from "react-router-dom";
 
-export default function LoginOrRegister({authState, changeAuthState}) {
+export default function LoginOrRegister({modalState, changeModalState}) {
     const navigate = useNavigate();
 
-    if (authState !== 1) return null;
+    if (modalState !== 1) return null;
 
     return (
         <>
-            <div className="welcome-overlay" onClick={() => changeAuthState(0)}>
+            <div className="welcome-overlay" onClick={() => changeModalState(0)}>
                 <div className="welcome-block" onClick={e => e.stopPropagation()}>
                     <Logo onClick={() => {
-                        changeAuthState(0);
+                        changeModalState(0);
                     }}></Logo>
 
                     <div className="welcome-block_title"> Добро пожаловать!</div>
@@ -27,7 +27,7 @@ export default function LoginOrRegister({authState, changeAuthState}) {
                             bgColor={"#8A6CFF"}
                             size={20}
                             onClick={() => {
-                                changeAuthState(2);
+                                changeModalState(2);
                             }}
                         >Войти</CommonBtn>
 
@@ -39,7 +39,7 @@ export default function LoginOrRegister({authState, changeAuthState}) {
                             size={20}
                             onClick={() => {
                                 navigate("/user-profile");
-                                changeAuthState(0);
+                                changeModalState(0);
                             }}
                         >Зарегистрироваться</CommonBtn>
 
@@ -53,7 +53,7 @@ export default function LoginOrRegister({authState, changeAuthState}) {
                             size={20}
                             onClick={() => {
                                 navigate("/admin-profile");
-                                changeAuthState(0);
+                                changeModalState(0);
                             }}
                         >Войти как преподаватель</CommonBtn>
 
@@ -65,7 +65,7 @@ export default function LoginOrRegister({authState, changeAuthState}) {
                             size={20}
                             onClick={() => {
                                 navigate("/admin-profile");
-                                changeAuthState(0);
+                                changeModalState(0);
                             }}
                         >Войти как администратор</CommonBtn>
                     </div>

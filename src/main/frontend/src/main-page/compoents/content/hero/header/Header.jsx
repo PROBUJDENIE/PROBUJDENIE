@@ -13,7 +13,7 @@ import LoginBox from "@/autorisation/login/LoginBox.jsx";
 
 export default function Header() {
     const navigate = useNavigate();
-    const [authState, changeAuthState] = useState(0);
+    const [modalState, changeModalState] = useState(0);
 
     const { isHeaderVisible } = useHeaderVisibility();
     return (
@@ -27,7 +27,7 @@ export default function Header() {
                             size={45}
                             alt={"Личный кабинет"}
                             src={profileImg}
-                            onClick={() => changeAuthState(1)}
+                            onClick={() => changeModalState(1)}
                             backGround={115}
                         ></CircleImgBtn>
                     </div>
@@ -35,13 +35,13 @@ export default function Header() {
             </header>
 
             <LoginOrRegister
-                authState={authState}
-                changeAuthState={(arg) => changeAuthState(arg)}
+                modalState={modalState}
+                changeModalState={(arg) => changeModalState(arg)}
             />
 
             <LoginBox
-                authState={authState}
-                changeAuthState={(arg) => changeAuthState(arg)}
+                modalState={modalState}
+                changeModalState={(arg) => changeModalState(arg)}
             />
         </>
     )

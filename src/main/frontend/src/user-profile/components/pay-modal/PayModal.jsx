@@ -4,11 +4,11 @@ import leftIcon from "../../resourses/images/pay.svg";
 import back from "../../resourses/images/pay-back.svg";
 import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
 import hero from "../../resourses/images/hero_pay.svg"
-export default function PayModal({ authState, changeAuthState, course }) {
-     if (authState !== 4) return null;
+export default function PayModal({ modalState, changeModalState, course }) {
+     if (modalState !== 4) return null;
 
     return (
-        <div className="modal-overlay" onClick={() => changeAuthState(0)}>
+        <div className="modal-overlay" onClick={() => changeModalState(0)}>
             <div className="modal-pay" onClick={e => e.stopPropagation()}>
                 <div className="modal-pay-container">
                     <div className="modal-pay-content">
@@ -34,7 +34,7 @@ export default function PayModal({ authState, changeAuthState, course }) {
                             </CommonBtn>
                             <CommonBtn
                                 onClick={() => {
-                                    changeAuthState(0);
+                                    changeModalState(0);
                                 }}
                                 width={220}
                                 height={56}

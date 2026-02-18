@@ -1,13 +1,12 @@
-import {useNavigate} from "react-router-dom";
 import "./loginBox.css"
 import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
 import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import {useLogin} from "@/hooks/useLogin.jsx";
-export default function LoginBox({authState, changeAuthState}) {
+export default function LoginBox({ modalState, changeModalState}) {
 
     const { values, setField, submit, loading, error } = useLogin();
 
-    if (authState !== 2) return null;
+    if (modalState !== 2) return null;
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -15,7 +14,7 @@ export default function LoginBox({authState, changeAuthState}) {
     };
     return (
         <>
-            <div className="login-box-overlay" onClick={() => changeAuthState(0)}>
+            <div className="login-box-overlay" onClick={() => changeModalState(0)}>
                 <div className="login-box" onClick={e => e.stopPropagation()}>
                     <div className="login-box-header">
                         <Logo></Logo>
@@ -49,7 +48,6 @@ export default function LoginBox({authState, changeAuthState}) {
 
                         <h3>Нет аккаунта?</h3>
                         <CommonBtn size={18} fontColor={"#8A6CFF"}>Зарегестрироваться</CommonBtn>
-
 
                     </form>
                 </div>

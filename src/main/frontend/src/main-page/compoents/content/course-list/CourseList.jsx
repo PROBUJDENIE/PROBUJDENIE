@@ -10,13 +10,13 @@ import LoginBox from "@/autorisation/login/LoginBox.jsx";
 export default function CourseList() {
     const { courses, loading, error } = useCourses();
     const readyCourses = courses.filter(course => course.status === 'READY');
-    const [authState, changeAuthState] = useState(0);
+    const [modalState, changeModalState] = useState(0);
     if (loading) return <div>Загрузка курсов...</div>;
     if (error) return <div>Ошибка: {error}</div>;
     if (readyCourses.length === 0) return <div>Нет доступных курсов</div>;
 
     const handleBuy = () => {
-        changeAuthState(1);
+        changeModalState(1);
     };
     return (
         <>
@@ -27,10 +27,10 @@ export default function CourseList() {
                         <CourseCard key={course.id} course={course} from="public" onBuyClick={handleBuy}/>
                     ))}
                 </div>
-                <LoginOrRegister authState={authState} changeAuthState={(arg) => changeAuthState(arg)} />
+                <LoginOrRegister modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
                 <LoginBox
-                    authState={authState}
-                    changeAuthState={(arg) => changeAuthState(arg)}
+                    modalState={modalState}
+                    changeModalState={(arg) => changeModalState(arg)}
                 />
             </div>
         </>

@@ -7,14 +7,14 @@ import PayModal from "@/user-profile/components/pay-modal/PayModal.jsx";
 import LoginBox from "@/autorisation/login/LoginBox.jsx";
 
 export default function Price({course, from}) {
-    const [authState, changeAuthState] = useState(0);
+    const [modalState, changeModalState] = useState(0);
     const handleStart = () => {
         if (from === "public") {
-            changeAuthState(1);
+            changeModalState(1);
         }
 
         if (from === "cabinet") {
-            changeAuthState(4);
+            changeModalState(4);
         }
     };
     return (
@@ -44,11 +44,11 @@ export default function Price({course, from}) {
                     </CommonBtn>
                 </div>
             </div>
-            <LoginOrRegister authState={authState} changeAuthState={(arg) => changeAuthState(arg)} />
-            <PayModal course={course} authState={authState} changeAuthState={(arg) => changeAuthState(arg)} />
+            <LoginOrRegister modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
+            <PayModal course={course} modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
             <LoginBox
-                authState={authState}
-                changeAuthState={(arg) => changeAuthState(arg)}
+                modalState={modalState}
+                changeModalState={(arg) => changeModalState(arg)}
             />
         </>
     )

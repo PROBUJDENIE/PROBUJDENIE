@@ -6,9 +6,8 @@ import {useState} from "react";
 import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
 
 export default function UserProfile() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    const openModal = () => changeModalState(5);
+    const [modalState, changeModalState] = useState(0);
     return (
         <>
             <div className="profile-wrapper">
@@ -17,10 +16,8 @@ export default function UserProfile() {
                 <UserProfileCourseList onOpenModal={openModal}></UserProfileCourseList>
                 <Bottom></Bottom>
             </div>
-            <ModalAllCourses
-                isOpen={isModalOpen}
-                onClose={closeModal}
-            />
+            <ModalAllCourses modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
         </>
     )
+
 }

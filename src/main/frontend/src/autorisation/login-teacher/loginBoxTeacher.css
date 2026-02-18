@@ -1,0 +1,36 @@
+.login-box-teacher {
+    width: 415px;
+    height: 490px;
+    background-color: #EEE9E5;
+    border-radius: 15px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 200px #eee9e6;
+}
+.login-box-content-teacher {
+    height: 230px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.login-box-header-teacher {
+    margin-top: 84px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login-box-teacher h2{
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.login-box-teacher  h3{
+    margin-top: 10px;
+    font-size: 18px;
+}

@@ -10,6 +10,7 @@ import LoginOrRegister from "../../../../../autorisation/login-or-register/Login
 import {useHeaderVisibility} from "@/hooks/useHeaderVisibility.jsx";
 import {useState} from "react";
 import LoginBox from "@/autorisation/login/LoginBox.jsx";
+import LoginBoxTeacher from "@/autorisation/login-teacher/LoginBoxTeacher.jsx";
 
 export default function Header() {
     const navigate = useNavigate();
@@ -34,15 +35,11 @@ export default function Header() {
                 </Container>
             </header>
 
-            <LoginOrRegister
-                modalState={modalState}
-                changeModalState={(arg) => changeModalState(arg)}
-            />
+            <LoginOrRegister modalState={modalState} changeModalState={(arg) => changeModalState(arg)}/>
 
-            <LoginBox
-                modalState={modalState}
-                changeModalState={(arg) => changeModalState(arg)}
-            />
+            <LoginBox modalState={modalState} changeModalState={(arg) => changeModalState(arg)}/>
+
+            <LoginBoxTeacher modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
         </>
     )
 }

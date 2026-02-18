@@ -52,8 +52,7 @@ export default function LoginOrRegister({modalState, changeModalState}) {
                             borderColor={"white"}
                             size={20}
                             onClick={() => {
-                                navigate("/admin-profile");
-                                changeModalState(0);
+                                changeModalState(6);
                             }}
                         >Войти как преподаватель</CommonBtn>
 

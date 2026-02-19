@@ -9,11 +9,32 @@ export function useCourses() {
     useEffect(() => {
         const loadCourses = async () => {
             try {
-                const data = await courseApi.getCoursePage({
-                    offset: 0,
-                    count: 10,
+                const data = await courseApi.getCoursePage({ offset: 0, count: 10 });
+
+                const normalized = (data ?? []).map((c) => {
+                    const desc = c.description ?? "";
+
+                    if (!desc.includes("#БЛОК#")) {
+                        return { ...c, highlights: c.highlights ?? [] };
+                    }
+
+                    const [realDescRaw, afterRaw = ""] = desc.split("#БЛОК#");
+                    const realDesc = realDescRaw.trim();
+
+                    // highlights: берём строки после блока, режем по строкам и по "- "
+                    const highlights = afterRaw
+                        .split("-")
+                        .map((s) => s.trim())
+                        .filter(Boolean)
+
+                    return {
+                        ...c,
+                        description: realDesc,
+                        highlights,
+                    };
                 });
-                setCourses(data);
+
+                setCourses(normalized);
             } catch (e) {
                 setError(e.message);
             } finally {
@@ -23,6 +44,7 @@ export function useCourses() {
 
         loadCourses();
     }, []);
+
 
     return { courses, loading, error };
 }

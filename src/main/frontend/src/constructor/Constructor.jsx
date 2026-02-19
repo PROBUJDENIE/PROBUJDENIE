@@ -10,6 +10,7 @@ import create from "./resources/images/create.svg"
 import table from "./resources/images/table.svg"
 import back from "./resources/images/back.svg"
 import tasks from "./resources/images/const_tasks.svg"
+import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
 
 export default function Constructor() {
 
@@ -44,6 +45,7 @@ export default function Constructor() {
 
                 </div>
             </Container>
+            <Bottom></Bottom>
         </div>
 
     </>)

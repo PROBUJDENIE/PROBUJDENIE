@@ -1,4 +1,7 @@
 import "./constructorInfoPreview.css"
+import PriceConstructorPreview
+    from "@/constructor/components/info/infoPreview/staticBlocks/price/PriceConstructorPreview.jsx";
+
 
 
 export function ConstructorInfoPreview({course}) {
@@ -13,10 +16,15 @@ export function ConstructorInfoPreview({course}) {
                         <p>{course.description}</p>
                         <section>
                             <h4>Что вас ждет:</h4>
-
+                            {course.highlights.map((highlight, index) => (
+                                <div className="highlight" key={index}>{highlight}</div>
+                            ))}
                         </section>
                     </div>
                 </div>
+
+                <PriceConstructorPreview course={course} ></PriceConstructorPreview>
+
             </div>
 
         </>

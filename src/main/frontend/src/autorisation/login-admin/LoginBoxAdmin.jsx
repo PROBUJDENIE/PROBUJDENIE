@@ -1,11 +1,11 @@
 import "./loginBoxAdmin.css"
 import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
 import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";;
-import {useLoginAdmin} from "@/hooks/useLoginAdmin.jsx";
 import admin from "@/autorisation/resourses/admin.svg";
+import {useLogin} from "@/hooks/useLogin.jsx";
 export default function LoginBoxAdmin({ modalState, changeModalState}) {
 
-    const { values, setField, submit, loading, error } = useLoginAdmin();
+    const { values, setField, submit, loading, error } = useLogin();
 
     if (modalState !== 7) return null;
 

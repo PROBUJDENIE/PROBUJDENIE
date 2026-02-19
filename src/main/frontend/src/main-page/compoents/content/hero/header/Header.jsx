@@ -11,6 +11,7 @@ import {useHeaderVisibility} from "@/hooks/useHeaderVisibility.jsx";
 import {useState} from "react";
 import LoginBox from "@/autorisation/login/LoginBox.jsx";
 import LoginBoxTeacher from "@/autorisation/login-teacher/LoginBoxTeacher.jsx";
+import LoginBoxAdmin from "@/autorisation/login-admin/LoginBoxAdmin.jsx";
 
 export default function Header() {
     const navigate = useNavigate();
@@ -40,6 +41,8 @@ export default function Header() {
             <LoginBox modalState={modalState} changeModalState={(arg) => changeModalState(arg)}/>
 
             <LoginBoxTeacher modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
+
+            <LoginBoxAdmin modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
         </>
     )
 }

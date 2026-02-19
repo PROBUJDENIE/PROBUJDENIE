@@ -1,13 +1,13 @@
-import "./loginBoxTeacher.css"
+import "./loginBoxAdmin.css"
 import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
-import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
-import {useLoginTeacher} from "@/hooks/useLoginTeacher.jsx";
-import teacher from "../resourses/teacher.svg"
-export default function LoginBoxTeacher({ modalState, changeModalState}) {
+import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";;
+import {useLoginAdmin} from "@/hooks/useLoginAdmin.jsx";
+import admin from "@/autorisation/resourses/admin.svg";
+export default function LoginBoxAdmin({ modalState, changeModalState}) {
 
-    const { values, setField, submit, loading, error } = useLoginTeacher();
+    const { values, setField, submit, loading, error } = useLoginAdmin();
 
-    if (modalState !== 6) return null;
+    if (modalState !== 7) return null;
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -16,11 +16,11 @@ export default function LoginBoxTeacher({ modalState, changeModalState}) {
     return (
         <>
             <div className="login-box-overlay" onClick={() => changeModalState(0)}>
-                <div className="login-box-teacher" onClick={e => e.stopPropagation()}>
-                    <div className="login-box-header-teacher">
+                <div className="login-box-admin" onClick={e => e.stopPropagation()}>
+                    <div className="login-box-header-admin">
                         <Logo></Logo>
-                        <h2>Вход в аккаунт преподавателя</h2>
-                        <h3>Войдите, чтобы начать создавать курсы</h3>
+                        <h2>Вход в аккаунт администратора</h2>
+                        <h3>Добро пожаловать, мои создатели!</h3>
                     </div>
 
                     <form className="login-box-content-teacher" onSubmit={onSubmit}>
@@ -45,7 +45,7 @@ export default function LoginBoxTeacher({ modalState, changeModalState}) {
                             />
                         </div>
                         {error && <div style={{fontSize : "18px", color: "#EB4760"}}>{error}</div>}
-                        <CommonBtn leftIcon={<img src={teacher} height={30} width={30}/>} width={335} height={43} fontColor={"#8A6CFF"} borderColor={"#8A6CFF"} size={18} type="submit">{loading ? "Входим..." : "Войти как преподаватель"}</CommonBtn>
+                        <CommonBtn leftIcon={<img src={admin} height={30} width={30}/>} width={335} height={43} fontColor={"#EB4760"} borderColor={"#EB4760"} size={18} type="submit">{loading ? "Входим..." : "Войти как преподаватель"}</CommonBtn>
                     </form>
                 </div>
             </div>

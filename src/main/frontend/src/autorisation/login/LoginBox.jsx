@@ -2,6 +2,7 @@ import "./loginBox.css"
 import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
 import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import {useLogin} from "@/hooks/useLogin.jsx";
+import login from "@/autorisation/resourses/login.svg";
 export default function LoginBox({ modalState, changeModalState}) {
 
     const { values, setField, submit, loading, error } = useLogin();
@@ -44,7 +45,7 @@ export default function LoginBox({ modalState, changeModalState}) {
                             />
                         </div>
                         {error && <div style={{fontSize : "18px", color: "#EB4760"}}>{error}</div>}
-                        <CommonBtn width={335} height={43} bgColor={"#8A6CFF"} fontColor={"#fff"} size={18} type="submit">{loading ? "Входим..." : "Войти"}</CommonBtn>
+                        <CommonBtn leftIcon={<img src={login} height={30} width={30}/>} width={335} height={43} bgColor={"#8A6CFF"} fontColor={"#fff"} size={18} type="submit">{loading ? "Входим..." : "Войти"}</CommonBtn>
 
                         <h3>Нет аккаунта?</h3>
                         <CommonBtn size={18} fontColor={"#8A6CFF"}>Зарегестрироваться</CommonBtn>

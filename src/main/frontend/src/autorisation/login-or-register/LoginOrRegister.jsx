@@ -2,6 +2,8 @@ import "./loginOrRegister.css"
 import CommonBtn from "../../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import Logo from "../../main-page/compoents/prototype/logo/Logo.jsx";
 import {useNavigate} from "react-router-dom";
+import login from "@/autorisation/resourses/login.svg";
+import reg from "@/autorisation/resourses/reg.svg";
 
 export default function LoginOrRegister({modalState, changeModalState}) {
     const navigate = useNavigate();
@@ -21,6 +23,7 @@ export default function LoginOrRegister({modalState, changeModalState}) {
 
                     <div className="welcome-block_btns">
                         <CommonBtn
+                            leftIcon={<img src={login} height={30} width={30}/>}
                             width={300}
                             height={50}
                             fontColor={"white"}
@@ -32,6 +35,7 @@ export default function LoginOrRegister({modalState, changeModalState}) {
                         >Войти</CommonBtn>
 
                         <CommonBtn
+                            leftIcon={<img src={reg} height={30} width={30}/>}
                             width={300}
                             height={50}
                             bgColor={"#D2FE66"}
@@ -63,8 +67,7 @@ export default function LoginOrRegister({modalState, changeModalState}) {
                             borderColor={"white"}
                             size={20}
                             onClick={() => {
-                                navigate("/admin-profile");
-                                changeModalState(0);
+                                changeModalState(7);
                             }}
                         >Войти как администратор</CommonBtn>
                     </div>

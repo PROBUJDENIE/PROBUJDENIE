@@ -3,9 +3,8 @@ import Container from "../../../main-page/compoents/content/Container.jsx";
 import firstImage from "../../resourses/first.png";
 import secondImage from "../../resourses/second.png";
 import thirdImage from "../../resourses/third.png";
-
 import LearningBlock from "./LearningBlock.jsx";
-
+import gif1 from "../../resourses/gif/gif1.gif";
 export default function HowYourEducationWillLookLike() {
     return (
         <Container>
@@ -17,7 +16,7 @@ export default function HowYourEducationWillLookLike() {
                         imageSrc={firstImage}
                         title="Освоите теорию в интерактивном учебнике"
                         description="Начнёте с нуля и последовательно изучите всё, что нужно в профессии. Теория подаётся через практику: читаете урок и сразу применяете знания."
-                        videoComponent={<div className="placeholder-video">Видео 1</div>}
+                        videoComponent={<img src={gif1}  className="video_component" /> }
                     />
 
                     <LearningBlock

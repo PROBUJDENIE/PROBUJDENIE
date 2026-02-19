@@ -42,9 +42,8 @@ public class LectureController implements LectureApiDelegate {
     public ResponseEntity<LectureGetLectureResponseDto> getLecture(UUID id) {
         Lecture lecture = lectureService.getLecture(id);
 
-        LectureGetLectureResponseDto response = new LectureGetLectureResponseDto();
+        LectureGetLectureResponseDto response = lectureMapper.toDto(lecture);
         response.setSuccess(true);
-        response.data(lectureMapper.toDto(lecture));
         return ResponseEntity.ok(response);
     }
 

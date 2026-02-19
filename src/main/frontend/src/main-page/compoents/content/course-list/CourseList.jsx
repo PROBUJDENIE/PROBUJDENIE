@@ -11,9 +11,7 @@ export default function CourseList() {
     const { courses, loading, error } = useCourses();
     const readyCourses = courses.filter(course => course.status === 'READY');
     const [modalState, changeModalState] = useState(0);
-    if (loading) return <div>Загрузка курсов...</div>;
-    if (error) return <div>Ошибка: {error}</div>;
-    if (readyCourses.length === 0) return <div>Нет доступных курсов</div>;
+
 
     const handleBuy = () => {
         changeModalState(1);

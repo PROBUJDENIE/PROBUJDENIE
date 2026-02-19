@@ -1,8 +1,8 @@
 package org.hse.probujdenie.mapper;
 
 import org.hse.probujdenie.api.model.LectureCreateRequestDto;
-import org.hse.probujdenie.api.model.LectureGetLectureItemResponseDto;
 import org.hse.probujdenie.api.model.LectureGetLecturePageItemResponseDto;
+import org.hse.probujdenie.api.model.LectureGetLectureResponseDto;
 import org.hse.probujdenie.api.model.LectureUpdateRequestDto;
 import org.hse.probujdenie.model.content.Lecture;
 import org.mapstruct.*;
@@ -29,6 +29,7 @@ public interface LectureMapper {
     @Mapping(target = "status", ignore = true)
     Lecture toEntity(LectureUpdateRequestDto request);
 
-    LectureGetLectureItemResponseDto toDto(Lecture request);
+    LectureGetLectureResponseDto toDto(Lecture lecture);
+
 }
 

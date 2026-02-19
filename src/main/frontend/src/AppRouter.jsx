@@ -4,6 +4,7 @@ import {MAIN_ROUTE} from "./utils/constants.jsx";
 import MainPage from "./main-page/MainPage.jsx";
 import {publicRoutes} from "./routes.js";
 import CourseInfo from "@/course-info/CourseInfo.jsx";
+import Lecture from "@/lecture/Lecture.jsx";
 
 const AppRouter = () => {
     return (
@@ -18,7 +19,7 @@ const AppRouter = () => {
             ))}
 
             <Route path="/course/:id" element={<CourseInfo />} />
-
+            <Route path="/lecture/:courseId" element={<Lecture/>} />
         </Routes>
     );
 };

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="ec1ae2e6-ef96-4aaf-83d1-fd641b8051a0" author="Belikov-V">
+        <comment>Create RefreshToken table</comment>
+        <createTable tableName="REFRESH_TOKEN">
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ID" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TOKEN" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_REVOKED" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="01642421-2b4e-4671-8811-ee23341990c7" author="Belikov-V">
+        <comment>Add FK REFRESH_TOKEN.EMAIL -> USR.EMAIL (many-to-one)</comment>
+        <addForeignKeyConstraint
+                baseTableName="REFRESH_TOKEN"
+                baseColumnNames="EMAIL"
+                referencedTableName="USR"
+                referencedColumnNames="EMAIL"
+                constraintName="fk_refreshToken_usr"
+                onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

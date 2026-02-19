@@ -16,13 +16,13 @@
             )
             VALUES
             (
-            RANDOM_UUID(),
+            '05502775-7bdd-4eb7-b5d9-d94ac6f7f609',
             0,
             'Что такое система контроля версий и зачем она нужна',
             (SELECT id FROM SECTION
             WHERE title ILIKE '%Введение в Git и системы контроля версий%'
             LIMIT 1),
-            NULL,
+            null,
             1,
             'READY',
             CURRENT_TIMESTAMP,

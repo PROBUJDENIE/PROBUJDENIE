@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import {useCourses} from "@/api/hooks/useCourses.js";
 
 export function useCourseStorage(courseId) {
+    const { courses } = useCourses();
+
     const [course, setCourse] = useState(null);
-    const [shouldRefresh, setShouldRefresh] = useState(false);
+
     function createEmptyCourse() {
         return {
             id: uuidv4(),
             title: "",
-            desc: "",
-            photo: "",
-            highlights: [],
-            sections: []
+            description: "",
+            photoUrl: ""
         };
     }
 
     // загрузка / создание
     useEffect(() => {
-        const courses = JSON.parse(localStorage.getItem("courses")) || [];
 
         if (courseId) {
             const existing = courses.find(c => c.id === courseId);
@@ -30,35 +30,9 @@ export function useCourseStorage(courseId) {
         setCourse(createEmptyCourse());
     }, [courseId]);
 
-    // автосохранение
-    useEffect(() => {
-        if (!course) return;
 
-        const courses = JSON.parse(localStorage.getItem("courses")) || [];
-        const index = courses.findIndex(c => c.id === course.id);
 
-        if (index !== -1) {
-            courses[index] = course;
-        } else {
-            courses.push(course);
-        }
 
-        localStorage.setItem("courses", JSON.stringify(courses));
-    }, [course]);
-
-    function saveCourse() {
-        const courses = JSON.parse(localStorage.getItem("courses")) || [];
-
-        const index = courses.findIndex(c => c.id === course.id);
-
-        if (index !== -1) {
-            courses[index] = course; // update
-        } else {
-            courses.push(course); // create
-        }
-
-        localStorage.setItem("courses", JSON.stringify(courses));
-    }
 
 
 
@@ -69,18 +43,6 @@ export function useCourseStorage(courseId) {
         }));
     }
 
-    function deleteCourse() {
-        const courses = JSON.parse(localStorage.getItem("courses")) || [];
-        const updatedCourses = courses.filter(c => c.id !== course.id);
 
-        if (updatedCourses.length !== courses.length) {
-            localStorage.setItem("courses", JSON.stringify(updatedCourses));
-            setCourse(null);
-            setShouldRefresh(true);
-            return true;
-        }
-
-        return false;
-    }
-    return { course, setCourse, saveCourse, setField, deleteCourse, shouldRefresh};
+    return { course, setCourse, setField};
 }

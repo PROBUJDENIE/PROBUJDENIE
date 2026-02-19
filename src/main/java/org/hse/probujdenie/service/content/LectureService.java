@@ -54,6 +54,13 @@ public class LectureService {
         return lecture.get();
     }
 
+    public void updateLectureContent(UUID lectureId, UUID contentId) {
+        Lecture existing = getLecture(lectureId);
+        existing.setContentId(contentId);
+        lectureRepository.save(existing);
+    }
+
+
     private void formLecture(Lecture lecture, Section section) {
         lecture.setId(generateId());
         lecture.setCreationDateTime(LocalDateTime.now());

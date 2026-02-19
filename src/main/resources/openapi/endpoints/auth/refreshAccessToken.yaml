@@ -1,0 +1,18 @@
+put:
+  security: []
+  operationId: refreshAccessToken
+  tags:
+    - auth
+  parameters:
+    - name: refreshToken
+      in: cookie
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+              $ref: '../../components/auth/response/RefreshAccessTokenResponseDto.yaml'

@@ -29,21 +29,12 @@ export const courseApi = {
     },
     getCourseById: async (id) => {
         const url = new URL(`${API_CONFIG.BASE_URL}${COURSE_ENDPOINTS.GET_PAGE}`);
-        url.searchParams.set('offset', 0);
-        url.searchParams.set('count', 100);
 
         const response = await fetch(url.toString());
-        if (!response.ok) {
-            throw new Error('Ошибка загрузки курса');
-        }
 
         const result = await response.json();
 
         const course = result.data.find(c => c.id === id);
-
-        if (!course) {
-            throw new Error('Курс не найден');
-        }
 
         return {
             ...course,

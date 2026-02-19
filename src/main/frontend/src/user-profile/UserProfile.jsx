@@ -4,6 +4,7 @@ import UserProfileCourseList from "./components/course-list/UserProfileCourseLis
 import ModalAllCourses from "@/user-profile/components/modal-all-courses/ModalAllCourses.jsx";
 import {useState} from "react";
 import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
+import CourseListOfUser from "@/user-profile/components/course-list-of-user/CourseListOfUser.jsx";
 
 export default function UserProfile() {
     const openModal = () => changeModalState(5);
@@ -13,6 +14,7 @@ export default function UserProfile() {
             <div className="profile-wrapper">
                 <ProfileHeader></ProfileHeader>
                 <UserProfilePreview></UserProfilePreview>
+                <CourseListOfUser></CourseListOfUser>
                 <UserProfileCourseList onOpenModal={openModal}></UserProfileCourseList>
                 <Bottom></Bottom>
             </div>

@@ -1,0 +1,20 @@
+.lecture {
+    background-color: #eee9e6;
+}
+
+.lecture_content {
+    padding-top: 110px;
+    min-height: 100vh;
+}
+
+.lecture_content-header {
+    height: 120px;
+    width: 100%;
+    border: 1px solid black;
+    margin-bottom: 60px;
+}
+
+.lecture_content-material {
+    margin-top: 40px;
+}
+

@@ -1,7 +1,7 @@
 import ConstructorHeader from "./components/header/ConstructorHeader.jsx";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {useCourseStorage} from "./components/hooks/useCourseStorage.js";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import CommonBtn from "../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import ConstructorInfo from "./components/info/ConstructorInfo.jsx";
 import ConstructorContent from "./components/content/ConstructorContent.jsx";
@@ -11,7 +11,6 @@ import create from "./resources/images/create.svg"
 import table from "./resources/images/table.svg"
 import back from "./resources/images/back.svg"
 import tasks from "./resources/images/const_tasks.svg"
-import ConstructorTasks from "./components/tasks/ConstructorTasks.jsx";
 
 export default function Constructor() {
 
@@ -19,14 +18,15 @@ export default function Constructor() {
     const courseId = searchParams.get("id");
     const navigate = useNavigate();
 
-    const {course, setCourse, saveCourse, setField, deleteCourse} = useCourseStorage(courseId);
+
+
+
+
+    const {course, setField} = useCourseStorage(courseId);
 
     const [activeAd, setAdvert] = useState("info");
 
 
-    if (!course) {
-        return <div>Загрузка...</div>;
-    }
 
     return (<>
         <div className="profile-wrapper">
@@ -58,10 +58,9 @@ export default function Constructor() {
                             Назад к моим курсам
                         </CommonBtn>
                     </div>
-                    {activeAd === 'info' && (<ConstructorInfo course={course} setField={setField}
-                                                   saveCourse={saveCourse} deleteCourse={deleteCourse}></ConstructorInfo>)}
-                    {activeAd === 'content' && (<ConstructorContent course={course} setCourse={setCourse}></ConstructorContent>)}
-                    {activeAd === 'tasks' && (<ConstructorTasks course={course} setCourse={setCourse}></ConstructorTasks>)}
+                    {course!= null && activeAd === 'info' && (<ConstructorInfo course={course} setField={setField}
+                                                    ></ConstructorInfo>)}
+
                 </div>
             </Container>
         </div>

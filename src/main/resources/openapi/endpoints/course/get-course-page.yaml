@@ -1,4 +1,5 @@
 get:
+  security: []
   operationId: getCoursePage
   tags:
     - course

@@ -22,54 +22,15 @@ export default function LoginOrRegister({modalState, changeModalState}) {
                     <div className="welcome-block_text"> Войдите или зарегистрируйтесь, чтобы начать обучение</div>
 
                     <div className="welcome-block_btns">
-                        <CommonBtn
-                            leftIcon={<img src={login} height={30} width={30}/>}
-                            width={300}
-                            height={50}
-                            fontColor={"white"}
-                            bgColor={"#8A6CFF"}
-                            size={20}
-                            onClick={() => {
-                                changeModalState(2);
-                            }}
-                        >Войти</CommonBtn>
+                        <CommonBtn leftIcon={<img src={login} height={30} width={30}/>} width={300} height={50} fontColor={"white"} bgColor={"#8A6CFF"} size={20} onClick={() => {changeModalState(2);}}>Войти</CommonBtn>
 
-                        <CommonBtn
-                            leftIcon={<img src={reg} height={30} width={30}/>}
-                            width={300}
-                            height={50}
-                            bgColor={"#D2FE66"}
-                            borderColor={"#8A6CFF"}
-                            size={20}
-                            onClick={() => {
-                                navigate("/user-profile");
-                                changeModalState(0);
-                            }}
-                        >Зарегистрироваться</CommonBtn>
+                        <CommonBtn leftIcon={<img src={reg} height={30} width={30}/>} width={300} height={50} bgColor={"#D2FE66"} borderColor={"#8A6CFF"} size={20} onClick={() => {navigate("/user-profile");changeModalState(0);}}>Зарегистрироваться</CommonBtn>
 
                         <div className="welcome-block_btns_line"></div>
 
-                        <CommonBtn
-                            width={300}
-                            height={50}
-                            bgColor={"#DFD8D3"}
-                            borderColor={"white"}
-                            size={20}
-                            onClick={() => {
-                                changeModalState(6);
-                            }}
-                        >Войти как преподаватель</CommonBtn>
+                        <CommonBtn width={300} height={50} bgColor={"#DFD8D3"} borderColor={"white"} size={20} onClick={() => {changeModalState(6);}}>Войти как преподаватель</CommonBtn>
 
-                        <CommonBtn
-                            width={300}
-                            height={50}
-                            bgColor={"#DFD8D3"}
-                            borderColor={"white"}
-                            size={20}
-                            onClick={() => {
-                                changeModalState(7);
-                            }}
-                        >Войти как администратор</CommonBtn>
+                        <CommonBtn width={300} height={50} bgColor={"#DFD8D3"} borderColor={"white"} size={20} onClick={() => {changeModalState(7);}}>Войти как администратор</CommonBtn>
                     </div>
                 </div>
             </div>

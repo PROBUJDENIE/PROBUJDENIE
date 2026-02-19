@@ -25,13 +25,7 @@ export default function Header() {
                     <div className="header_content" id={"header"}>
                         <Logo onClick={() => navigate(MAIN_ROUTE)}></Logo>
                         <NavigationHedear></NavigationHedear>
-                        <CircleImgBtn
-                            size={45}
-                            alt={"Личный кабинет"}
-                            src={profileImg}
-                            onClick={() => changeModalState(1)}
-                            backGround={115}
-                        ></CircleImgBtn>
+                        <CircleImgBtn size={45} alt={"Личный кабинет"} src={profileImg} onClick={() => changeModalState(1)} backGround={115}></CircleImgBtn>
                     </div>
                 </Container>
             </header>

@@ -2,10 +2,11 @@ import "./loginBoxTeacher.css"
 import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
 import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import teacher from "../resourses/teacher.svg"
-import {useLogin} from "@/hooks/useLogin.jsx";
+
+import {useLoginTeacher} from "@/hooks/useLoginTeacher.jsx";
 export default function LoginBoxTeacher({ modalState, changeModalState}) {
 
-    const { values, setField, submit, loading, error } = useLogin();
+    const { values, setField, submit, loading, error } = useLoginTeacher();
 
     if (modalState !== 6) return null;
 

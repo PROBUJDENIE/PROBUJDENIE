@@ -1,0 +1,26 @@
+<svg viewBox="0 0 39.71 39.7097" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="39.709961" height="39.709724" fill="none" customFrame="#000000">
+	<defs>
+		<g id="pixso_custom_effect_1">
+			<effect x="0.000000" y="2.175874" visibility="visible" fill="rgb(0,0,0)" fill-opacity="0.25" effectType="dropShadow" stdDeviation="2.17587447" radius="0" />
+		</g>
+		<filter id="filter_1" width="39.709961" height="39.709724" x="0.000000" y="0.000000" filterUnits="userSpaceOnUse" customEffect="url(#pixso_custom_effect_1)" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix" />
+			<feOffset dx="0.000000" dy="2.175874" in="SourceAlpha" />
+			<feGaussianBlur stdDeviation="0.725291491" />
+			<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0 " />
+			<feBlend result="effect_dropShadow_1" in2="BackgroundImageFix" mode="normal" />
+			<feBlend result="shape" in="SourceGraphic" in2="effect_dropShadow_1" mode="normal" />
+		</filter>
+		<image id="image_1" width="100.000000" height="100.000000" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABHNCSVQICAgIfAhkiAAAAxpJREFUeJzt3bFPE2EcxvHnPTmLUAoOToqDoyExTuKfQIJAXHFVE5W4oYSlCyBsxsShccTJhRCIf4JxAQb8B0xwYcC02AQ839fBSKBWIb+r14fj+Wwted8e/ebt9e4gB4iIiNi4tBNMDIVCT6H6IMCNAxgA0J1+s06VbwA2A8JiZ1yqlN+5/TSTpQoyPVy/7KNkFRFupJknLzzCRkcSD8+sdG1Z5zAHmRgKhWJc+6gYjcJ6IS4NWldKZH3ZYmf1oWI0427uJ7v3raPNQeDduHlsznkf7lnHmoME4Lp17BkwYB1oDuIcitaxeZfmvbF/ZMl/oSBkFISMgpBREDIdWb/g3FLpn2cHpsaqIattYaQVQkZByCgIGQUhoyBkFISMgpDJ/DjkrB9nHEcrhIyCkFEQMgpCRkHIKAgZBSGjIGQUhIyuGJLRCiGjIGQUhIyCkFEQMgpCRkHI6IohGa0QMgpCRkHIKAgZBSGjIGQUhIyCkFEQMrpiSEYrhIyCkFEQMgpCRkHIKAgZBSGjK4ZktELIKAgZBSGjIGQUhIyCkFEQMgpCRkHIKAgZBSHTsnNZx10rz7tWnaPTCiGjIGQUhExm10NafR0kr/ssrRAyCkJGQcgoCBkFIWO/sWTA7uHHk3frV9Jvzuk0PVrvb3iqZp0rzY0lPx2ZKEkqTTYs96ZH6/0eSeXIkwGb1vnMxyEO4W2Au3XwOMKQR/J5aqwKIPvjhHb9vZdH8sdzAW7ROp95hdT2ShWPsGEdn1cebq3zfPGNdbw5yKv3bq8jiYeBsG6dI2883Frw0R3rvdSBlN+yZla6tgpxadA59wQBHxp39GdBCNj99bu7xxfi4u2F5e4vaebL7HNe57JORschZBSEjIKQyfz/Q/7GA1/PIbwEgB9wTyOgr93b1A4MK6TmHObdd39tdqm3PLvUWw5+72oIeA5gp90bl7V2fsuqOYfXft/Pv1jta/rGT45s90Su8Mg5PANw8fDP8votqx1Bjg3RqFmYvAbJch9yEGLuhCF+W1i+VAMwPzmy/fpQGEmjPLbTsp10K+cSkdPkJ6sN0gcZd7wzAAAAAElFTkSuQmCC" />
+		<pattern id="pattern_1" width="1.000000" height="1.000000" image-fill-type="fill" patternContentUnits="objectBoundingBox">
+			<use transform="matrix(0.01,0,0,0.01,0,0)" xlink:href="#image_1" />
+		</pattern>
+	</defs>
+	<g id="Сочетание 18">
+		<g filter="url(#filter_1)">
+			<rect id="Прямоугольник 80" width="35.357975" height="35.357975" x="2.175781" y="0.000000" rx="13.599225" fill="rgb(223,216,211)" />
+			<rect id="Прямоугольник 80" width="34.270039" height="34.270039" x="2.719750" y="0.543969" rx="13.055257" stroke="rgb(138,108,255)" stroke-width="1.087937" />
+		</g>
+		<rect id="image 59" width="27.198448" height="27.198448" x="6.528320" y="4.351721" fill="url(#pattern_1)" />
+	</g>
+</svg>

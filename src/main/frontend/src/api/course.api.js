@@ -29,6 +29,8 @@ export const courseApi = {
     },
     getCourseById: async (id) => {
         const url = new URL(`${API_CONFIG.BASE_URL}${COURSE_ENDPOINTS.GET_PAGE}`);
+        url.searchParams.set('offset', '0');
+        url.searchParams.set('count', '20');
 
         const response = await fetch(url.toString());
 

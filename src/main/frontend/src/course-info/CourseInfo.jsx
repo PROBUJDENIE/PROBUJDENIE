@@ -24,7 +24,7 @@ export default function CourseInfo() {
             setCourse(data);
         };
         loadCourse();
-    }, [id]);
+    }, [id, course]);
 
     if (!course) return <div>Загрузка...</div>;
     return (

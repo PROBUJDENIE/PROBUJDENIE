@@ -9,6 +9,7 @@ import org.hse.probujdenie.service.content.CourseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,8 +35,8 @@ public class CourseController implements CourseApiDelegate {
 
 
     @Override
-    public ResponseEntity<BaseResponseDto> deleteCourse(CourseDeleteRequestDto courseDeleteRequestDto) {
-        courseService.deleteCourse(courseDeleteRequestDto.getCourseId());
+    public ResponseEntity<BaseResponseDto> deleteCourse(UUID id) {
+        courseService.deleteCourse(id);
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 

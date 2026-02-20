@@ -1,8 +1,0 @@
-type: object
-
-required:
-  - courseId
-properties:
-  courseId:
-    type: string
-    format: UUID

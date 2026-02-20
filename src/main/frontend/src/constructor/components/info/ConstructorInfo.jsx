@@ -8,17 +8,17 @@ import {useCourseActions} from "@/constructor/components/info/infoPreview/constr
 import {constructorInfoConfirmHook} from "@/constructor/components/info/infoPreview/constructorInfoConfirmHook.js";
 import {ConstructorInfoSettings} from "@/constructor/components/info/infoSettings/ConstructorInfoSettings.jsx";
 
-export default function ConstructorInfo({course, setField, deleteCourse}) {
+export default function ConstructorInfo({course, setField, handleDeleteCourse, handleSave, saving}) {
     const { showConfirm, openConfirm, closeConfirm } = constructorInfoConfirmHook();
 
 
-    const { handleDelete, handleFile } = useCourseActions({setField, deleteCourse});
+    const { handleDelete, handleFile } = useCourseActions({setField, handleDeleteCourse, course});
 
 
     return (
         <>
             <div className="constructor-info">
-                <ConstructorInfoSettings course={course} openConfirm={openConfirm} handleFile={handleFile} setField={setField}></ConstructorInfoSettings>
+                <ConstructorInfoSettings course={course} openConfirm={openConfirm} handleFile={handleFile} setField={setField} saving={saving} handleSave={handleSave}></ConstructorInfoSettings>
                 <ConstructorInfoPreview course={course}></ConstructorInfoPreview>
             </div>
 

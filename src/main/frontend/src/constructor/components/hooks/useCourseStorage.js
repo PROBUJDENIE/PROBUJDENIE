@@ -1,45 +1,65 @@
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import {useCourses} from "@/api/hooks/useCourses.js";
+import { useEffect, useState, useCallback } from "react";
+import { useCourses } from "@/api/hooks/useCourses.js";
 
-export function useCourseStorage(courseId) {
+export function useCourseStorage(id) {
+    const {
+        courses,
+        loading,
+        saveCourse,
+        deleteCourse
+    } = useCourses({ id });
 
-    const { courses, loading } = useCourses();
     const [course, setCourse] = useState(null);
+    const [saving, setSaving] = useState(false);
+    const [error, setError] = useState(null);
 
     function createEmptyCourse() {
-        return {id: uuidv4(), title: "", description: "", photoUrl: ""};
+        return {id: null, title: "", description: "", price: 0, photoId: null, photo: null};
     }
 
     useEffect(() => {
         if (loading) return;
-        console.log("по идее иду в базу");
-        if (courseId) {
-            const existing = courses.find(c => c.id === courseId);
-            console.log("по идее нашел курсы");
-            console.log(courses);
+
+        if (id) {
+            const existing = courses.find(c => c.id === id);
             if (existing) {
-                setCourse(existing);
+                setCourse({ ...existing });
                 return;
             }
         }
 
         setCourse(createEmptyCourse());
-    }, [courseId, courses, loading]);
+    }, [id, courses, loading]);
 
-
-
-
-
-
-
-    function setField(name, value) {
+    const setField = useCallback((name, value) => {
         setCourse(prev => ({
             ...prev,
             [name]: value
         }));
-    }
+    }, []);
+
+    const handleSave = useCallback(async (draft = course) => {
+        if (!draft) return;
+
+        setSaving(true);
+        setError(null);
+
+        try {
+            const saved = await saveCourse(draft);
+            setCourse(saved);
+            return saved;
+        } catch (e) {
+            setError(e.message);
+            throw e;
+        } finally {
+            setSaving(false);
+        }
+    }, [course, saveCourse]);
+
+    const handleDeleteCourse = useCallback(async (id) => {
+        await deleteCourse(id);
+    },[]);
 
 
-    return { course, setCourse, setField, loading};
+    return {course, handleDeleteCourse, setField,setCourse , handleSave, loading, saving, error};
 }

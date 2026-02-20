@@ -6,26 +6,17 @@ import CompaniesThatUsePlatform from "./components/companies-that-use-platform/C
 import ExpectationsAfterCompletion from "./components/expectations-after-completion/ExpectationsAfterCompletion.jsx";
 import Header from "../main-page/compoents/content/hero/header/Header.jsx";
 import {useLocation, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {courseApi} from "@/api/course.api.js";
 import Jump from "@/main-page/compoents/content/jump/Jump.jsx";
 import Price from "@/course-info/components/price/Price.jsx";
 import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
+import {useCourses} from "@/api/hooks/useCourses.js";
 
 export default function CourseInfo() {
     const { id } = useParams();
-    const [course, setCourse] = useState(null);
     const location = useLocation();
     const from = location.state?.from ?? "public";
 
-    useEffect(() => {
-        const loadCourse = async () => {
-            const data = await courseApi.getCourseById(id);
-            setCourse(data);
-        };
-        loadCourse();
-    }, [id, course]);
-
+    const {course} = useCourses({id});
     if (!course) return <div>Загрузка...</div>;
     return (
         <>

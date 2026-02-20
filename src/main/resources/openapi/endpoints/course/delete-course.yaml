@@ -2,12 +2,13 @@ delete:
   operationId: deleteCourse
   tags:
     - course
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: '../../components/course/request/CourseDeleteRequestDto.yaml'
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
 
   responses:
     '200':

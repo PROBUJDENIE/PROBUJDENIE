@@ -14,7 +14,7 @@ export default function PriceConstructorPreview({course}) {
                     Полный доступ ко всем модулям и материалам курса. Начните обучение сегодня.
                 </h2>
                 <h3>
-                    500 ₽
+                    {course.price} ₽
                 </h3>
                 <CommonBtn width={300} height={50} bgColor="#D2FE66" borderColor="#8A6CFF" fontColor="#000000" size={16} leftIcon={<img src={leftIcon} alt="книга" />}>Начать обучение</CommonBtn>
 

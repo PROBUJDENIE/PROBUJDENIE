@@ -10,39 +10,73 @@ export const courseApi = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-            },
+            }
         });
 
-        if (!response.ok) {
-            throw new Error('Ошибка при загрузке курсов');
-        }
 
         const result = await response.json();
         const coursesWithPhotoUrl = result.data.map(course => ({
             ...course,
-            photoUrl: course.photoId
-                ? `${API_CONFIG.BASE_URL}/fileSaver/get?id=${course.photoId}`
-                : null
+            photoUrl: course.photoId ? `${API_CONFIG.BASE_URL}/fileSaver/get?id=${course.photoId}` : null,
+            photo: null
         }));
 
         return coursesWithPhotoUrl;
     },
-    getCourseById: async (id) => {
-        const url = new URL(`${API_CONFIG.BASE_URL}${COURSE_ENDPOINTS.GET_PAGE}`);
-        url.searchParams.set('offset', '0');
-        url.searchParams.set('count', '20');
+    createCourse: async ({ course }) => {
 
-        const response = await fetch(url.toString());
 
-        const result = await response.json();
+        const url = `${API_CONFIG.BASE_URL}/course/create`;
+        const body = { course };
 
-        const course = result.data.find(c => c.id === id);
+        const result = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
 
-        return {
-            ...course,
-            photoUrl: course.photoId
-                ? `${API_CONFIG.BASE_URL}/fileSaver/get?id=${course.photoId}`
-                : null,
-        };
-    }
+        const json = await result.json();
+
+        return json.id;
+    },
+    updateCourse: async (course) => {
+        const url = `${API_CONFIG.BASE_URL}/course/update`;
+        const body = course;
+
+        const result = await fetch(url, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+        });
+
+    },
+
+    deleteCourse: async (id) => {
+        const url = `${API_CONFIG.BASE_URL}/course/delete/${id}`;
+
+        const result = await fetch(url, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+        });
+
+    },
+
+
+    savePhotoMultipart: async (photoFile) => {
+        const url = `${API_CONFIG.BASE_URL}/fileSaver/save`;
+
+        const form = new FormData();
+        form.append("file", photoFile);
+
+        const res = await fetch(url, {
+            method: "POST",
+            body: form,
+        });
+
+        const json = await res.json();
+
+        return json.id;
+    },
 };

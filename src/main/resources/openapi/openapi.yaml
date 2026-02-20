@@ -23,7 +23,7 @@ paths:
     $ref: './endpoints/course/create-course.yaml'
   /course/update:
     $ref: './endpoints/course/update-course.yaml'
-  /course/delete:
+  /course/delete/{id}:
     $ref: './endpoints/course/delete-course.yaml'
 
   /fileSaver/save:

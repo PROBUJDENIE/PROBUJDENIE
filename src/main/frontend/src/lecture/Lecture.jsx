@@ -21,6 +21,14 @@ export default function Lecture() {
     const [activeChapter, setActiveChapter] = useState(null);
     const [activeLectureNumber, setActiveLectureNumber] = useState(null);
     const [totalLectures, setTotalLectures] = useState(null);
+    const [showBlink, setShowBlink] = useState(true);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowBlink(false);
+        }, 5000);
+
+        return () => clearTimeout(timer);
+    }, []);
 
 
     useEffect(() => {
@@ -56,7 +64,7 @@ export default function Lecture() {
                     <div className="lecture_content">
                         <div className="lecture_content-header">
                             <div className="lecture_content-header_menu">
-                                <button className={"btnr"} onClick={() => setIsOpen(true)}><img src={menu} height={70} width={70}/></button>
+                                <button className={`btnr ${showBlink && !isOpen ? 'blink' : ''}`} onClick={() => setIsOpen(true)}><img src={menu} height={70} width={70}/></button>
                                 <div className="lecture_content-header_menu_box">
                                     {activeLectureId !== "null" && ( <>
                                             <h2>Глава {activeChapter}</h2>

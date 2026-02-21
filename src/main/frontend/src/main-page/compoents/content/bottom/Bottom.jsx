@@ -4,7 +4,6 @@ import btImage from "../../../resources/images/bottom.png"
 import teleg from "../../../resources/images/teleg.svg"
 import mail from "../../../resources/images/mail.svg"
 export default function Bottom() {
-
     return (
         <>
             <div className="bottom">

@@ -23,11 +23,31 @@ export const courseApi = {
 
         return coursesWithPhotoUrl;
     },
-    createCourse: async ({ course }) => {
+    getCourse: async ({id}) => {
+        const url = new URL(`${API_CONFIG.BASE_URL}/course/getCourse?id=${id}`);
+
+        const response = await fetch(url.toString(), {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+
+        const result = await response.json();
+        const coursesWithPhotoUrl = result.data.map(course => ({
+            ...course,
+            photoUrl: course.photoId ? `${API_CONFIG.BASE_URL}/fileSaver/get?id=${course.photoId}` : null,
+            photo: null
+        }));
+
+        return coursesWithPhotoUrl;
+    },
+    createCourse: async (course) => {
 
 
         const url = `${API_CONFIG.BASE_URL}/course/create`;
-        const body = { course };
+        const body = course;
 
         const result = await fetch(url, {
             method: "POST",

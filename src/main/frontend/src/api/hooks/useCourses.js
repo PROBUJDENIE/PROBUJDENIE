@@ -1,10 +1,9 @@
-import {useCallback, useEffect, useMemo, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import { courseApi } from "@/api/course.api.js";
 import {denormalizeCourse, normalizeCourses} from "@/api/hooks/course.mapper.js";
 
-export function useCourses({ id } = {}) {
+export function useCourses() {
     const [courses, setCourses] = useState([]);
-    const [saving, setSaving] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -27,15 +26,19 @@ export function useCourses({ id } = {}) {
     }, []);
 
 
-    const course = useMemo(() => {
-        if (!id) return null;
-        return courses.find((c) => c.id === id) ?? null;
-    }, [id, courses]);
+    function createEmptyCourse() {
+        return {id: null, title: "", description: "", highlights: [], price: 0, photoId: null, photo: null};
+    }
+
+    const getCourse = useCallback((id) => {
+        const data = courses.find(c => String(c.id) === String(id)) ?? null;
+        if (!data) return createEmptyCourse();
+        return data;
+    }, [courses]);
 
 
 
     const createCourse = useCallback(async (courseDraft) => {
-        setSaving(true);
         setError(null);
         try {
             const payload = { ...courseDraft };
@@ -44,21 +47,22 @@ export function useCourses({ id } = {}) {
                 payload.photoId = await courseApi.savePhotoMultipart(payload.photo);
             }
 
-            const newId = await courseApi.createCourse({ payload });
-
+            const newId = await courseApi.createCourse(courseDraft);
             const created = { ...payload, id: newId };
-            setCourses((prev) => [created, ...prev]);
+
+
+            const answer = denormalizeCourse(created);
+
+            setCourses((prev) => [answer, ...prev]);
+
 
         } catch (e) {
             setError(e.message);
             throw e;
-        } finally {
-            setSaving(false);
         }
     }, []);
 
     const updateCourse = useCallback(async (courseDraft) => {
-        setSaving(true);
         setError(null);
         try {
             const payload = { ...courseDraft };
@@ -66,26 +70,24 @@ export function useCourses({ id } = {}) {
                 payload.photoId = await courseApi.savePhotoMultipart(payload.photo);
             }
 
-            await courseApi.updateCourse(payload);
-
             setCourses((prev) =>
                 prev.map((c) => (c.id === payload.id ? { ...c, ...payload } : c))
             );
+            const answer = denormalizeCourse(courseDraft);
+            await courseApi.updateCourse(answer);
+
 
         } catch (e) {
             setError(e.message);
             throw e;
-        } finally {
-            setSaving(false);
         }
     }, []);
 
     const saveCourse = useCallback(async (courseDraft) => {
-        const payload = denormalizeCourse(courseDraft);
-        const hasId = !!payload?.id;
-        const exists = hasId && courses.some((c) => c.id === payload.id);
+        const hasId = !!courseDraft?.id;
+        const exists = hasId && courses.some((c) => c.id === courseDraft.id);
 
-        return exists ? updateCourse(payload) : createCourse(payload);
+        return exists ? updateCourse(courseDraft) : createCourse(courseDraft);
     }, [courses, createCourse, updateCourse]);
 
     const deleteCourse = useCallback(async (id) => {
@@ -96,5 +98,5 @@ export function useCourses({ id } = {}) {
         );
     }, []);
 
-    return {course, deleteCourse, courses, loading, saving, error, saveCourse};
+    return {getCourse, deleteCourse, courses, loading, error, saveCourse};
 }

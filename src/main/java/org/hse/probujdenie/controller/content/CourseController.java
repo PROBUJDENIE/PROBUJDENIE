@@ -51,4 +51,13 @@ public class CourseController implements CourseApiDelegate {
         return ResponseEntity.ok(response);
 
     }
+
+    @Override
+    public ResponseEntity<CourseGetCourseResponseDto> getCourse(UUID id) {
+        Course course = courseService.getCourse(id);
+
+        CourseGetCourseResponseDto response = courseMapper.toDto(course);
+        response.setSuccess(true);
+        return ResponseEntity.ok(response);
+    }
 }

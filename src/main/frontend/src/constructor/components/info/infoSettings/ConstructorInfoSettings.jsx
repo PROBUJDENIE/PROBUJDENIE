@@ -8,7 +8,7 @@ import {useState} from "react";
 
 
 
-export function ConstructorInfoSettings({course, openConfirm, handleFile, setField, saving, handleSave}) {
+export function ConstructorInfoSettings({course, openConfirm, handleFile, setField, handleSave}) {
     const [highlightsDraft, setHighlightsDraft] = useState(
         (course.highlights ?? []).join("\n")
     );

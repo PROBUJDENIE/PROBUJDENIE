@@ -3,6 +3,7 @@ package org.hse.probujdenie.mapper;
 
 import org.hse.probujdenie.api.model.CourseCreateRequestDto;
 import org.hse.probujdenie.api.model.CourseGetCoursePageItemResponseDto;
+import org.hse.probujdenie.api.model.CourseGetCourseResponseDto;
 import org.hse.probujdenie.api.model.CourseUpdateRequestDto;
 import org.hse.probujdenie.model.content.Course;
 import org.mapstruct.*;
@@ -28,4 +29,8 @@ public interface CourseMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateCourseFromDto(Course source, @MappingTarget Course target);
+
+    @Mapping(target = "errors", ignore = true)
+    @Mapping(target = "success", ignore = true)
+    CourseGetCourseResponseDto toDto(Course course);
 }

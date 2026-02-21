@@ -19,6 +19,8 @@ security:
 paths:
   /course/getCoursePage:  #Public
     $ref: './endpoints/course/get-course-page.yaml'
+  /course/getCourse/{id}:
+    $ref: './endpoints/course/get-course.yaml'
   /course/create:
     $ref: './endpoints/course/create-course.yaml'
   /course/update:

@@ -1,0 +1,35 @@
+allOf:
+  - $ref: '../../BaseResponseDto.yaml'
+  - type: object
+    title: LectureGetCourseItemResponseDto
+    required:
+      - id
+      - title
+      - description
+    properties:
+      id:
+        type: string
+        format: UUID
+      title:
+        type: string
+        minLength: 3
+        maxLength: 255
+      description:
+        type: string
+        minLength: 3
+        maxLength: 5000
+      price:
+        type: number
+        minimum: 0
+        multipleOf: 0.01
+        example: 149.99
+      photoId:
+        type: string
+        format: UUID
+        description: Фото обложки (Поддериживаются .PNG размер 460 на 490)
+      status:
+        type: string
+        enum:
+          - CREATED
+          - READY
+          - DELETED

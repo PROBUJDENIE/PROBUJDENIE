@@ -1,7 +1,7 @@
 import ConstructorHeader from "./components/header/ConstructorHeader.jsx";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {useCourseStorage} from "./components/hooks/useCourseStorage.js";
-import {useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import CommonBtn from "../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import ConstructorInfo from "./components/info/ConstructorInfo.jsx";
 import Container from "../main-page/compoents/content/Container.jsx";
@@ -11,19 +11,37 @@ import table from "./resources/images/table.svg"
 import back from "./resources/images/back.svg"
 import tasks from "./resources/images/const_tasks.svg"
 import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
+import {useCourses} from "@/api/hooks/useCourses.js";
 
 export default function Constructor() {
 
     const [searchParams] = useSearchParams();
     const courseId = searchParams.get("id");
     const navigate = useNavigate();
-
-    const {course, handleDeleteCourse , setField, loading, saving, handleSave } = useCourseStorage(courseId);
-
     const [activeAd, setAdvert] = useState("info");
 
+    const {deleteCourse, saveCourse, loading,getCourse} = useCourses();
 
 
+    const [course, setCourse] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            const data = await getCourse(courseId);
+            setCourse(data);
+        })();
+    }, [courseId, getCourse]);
+
+    const setField = useCallback((name, value) => {
+        setCourse(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    }, []);
+
+
+    console.log(course);
+    if (loading) return <div>Загрузка...</div>;
     return (<>
         <div className="profile-wrapper">
             <ConstructorHeader></ConstructorHeader>
@@ -37,7 +55,7 @@ export default function Constructor() {
                         </div>
                         <CommonBtn width={298} height={50} bgColor={"#DFD8D3"} borderColor={"#8A6CFF"} fontColor={"white"} size={24} onClick={() => navigate(ADMIN_PROFILE_ROUTE)} leftIcon={<img src={back} />}>Назад к моим курсам</CommonBtn>
                     </div>
-                    {!loading && course  && activeAd === 'info' && (<ConstructorInfo handleDeleteCourse={handleDeleteCourse} course={course} setField={setField} saving={saving} handleSave={handleSave}></ConstructorInfo>)}
+                    {!loading  && activeAd === 'info' && (<ConstructorInfo handleDeleteCourse={deleteCourse} course={course} setField={setField} handleSave={() => saveCourse(course)}></ConstructorInfo>)}
 
                 </div>
             </Container>

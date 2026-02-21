@@ -1,0 +1,18 @@
+get:
+  operationId: getCourse
+  tags:
+    - course
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  responses:
+    '200':
+      description: Возвращается курс
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/course/response/CourseGetCourseResponseDto.yaml'

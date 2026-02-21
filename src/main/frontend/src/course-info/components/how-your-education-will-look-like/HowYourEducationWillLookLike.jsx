@@ -5,6 +5,7 @@ import secondImage from "../../resourses/second.png";
 import thirdImage from "../../resourses/third.png";
 import LearningBlock from "./LearningBlock.jsx";
 import gif1 from "../../resourses/gif/gif1.gif";
+import gif2 from "../../resourses/gif/gif2.gif";
 export default function HowYourEducationWillLookLike() {
     return (
         <Container>
@@ -23,14 +24,14 @@ export default function HowYourEducationWillLookLike() {
                         imageSrc={secondImage}
                         title="Практика на реальных проектах"
                         description="С первого модуля работаете над коммерческими задачами. К концу курса у вас будет 3–5 сильных проектов в портфолио."
-                        videoComponent={<div className="placeholder-video">Видео 2</div>}
+                        videoComponent={<img src={gif2}  className="video_component" />}
                     />
 
                     <LearningBlock
                         imageSrc={thirdImage}
                         title="Поддержка и трудоустройство"
                         description="Менторы проверяют каждую работу + помогаем с резюме, сопроводительными письмами и подготовкой к собеседованиям."
-                        videoComponent={<div className="placeholder-video">Видео 3</div>}
+                        videoComponent={<img src={gif2}  className="video_component" />}
                     />
                 </div>
             </div>

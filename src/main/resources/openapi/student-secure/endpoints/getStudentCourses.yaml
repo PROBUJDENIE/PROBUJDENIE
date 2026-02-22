@@ -1,0 +1,11 @@
+get:
+  operationId: getStudentCourses
+  tags:
+    - studentSecure
+  responses:
+    '200':
+      description: Возвращает список курсов.
+      content:
+        application/json:
+          schema:
+              $ref: '../response/GetUserCoursesResponseDto.yaml'

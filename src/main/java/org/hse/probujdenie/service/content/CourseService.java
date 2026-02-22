@@ -2,8 +2,12 @@ package org.hse.probujdenie.service.content;
 
 import lombok.RequiredArgsConstructor;
 import org.hse.probujdenie.mapper.CourseMapper;
+import org.hse.probujdenie.model.StudentToCourse;
 import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.content.enums.CourseStatus;
+import org.hse.probujdenie.model.user.User;
+import org.hse.probujdenie.service.UserService;
+import org.hse.probujdenie.storage.StudentToCourseRepository;
 import org.hse.probujdenie.storage.content.CourseRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +26,8 @@ public class CourseService {
 
     private final CourseRepository courseRepository;
     private final CourseMapper courseMapper;
+    private final UserService userService;
+    private final StudentToCourseRepository studentToCourseRepository;
 
     public void createCourse(Course course) {
         formCourse(course);
@@ -40,9 +46,9 @@ public class CourseService {
         courseRepository.save(existing);
     }
 
-    public List<Course> getAllActualCourses(Integer offset, Integer count) {
+    public List<Course> getAllReadyCourses(Integer offset, Integer count) {
         Pageable page = PageRequest.of(offset, count);
-        return courseRepository.findAllByStatusNot(CourseStatus.DELETED, page).getContent();
+        return courseRepository.findAllByStatus(CourseStatus.READY, page).getContent();
     }
 
     public void deleteCourse(UUID id) {
@@ -55,6 +61,17 @@ public class CourseService {
         Optional<Course> course = courseRepository.findCourseByIdAndStatusNot(id, CourseStatus.DELETED);
         if (course.isEmpty()) throw new IllegalArgumentException("Курс не существует.");
         return course.get();
+    }
+
+    public List<Course> getUserCourses(String userEmail) {
+        return courseRepository.getUserCourses(userEmail, CourseStatus.READY);
+    }
+
+    public void buyCourse(String userEmail, UUID courseId) {
+        Course course = getCourse(courseId);
+        User user = userService.getUserByEmail(userEmail);
+        StudentToCourse studentToCourse = StudentToCourse.builder().user(user).course(course).creationDateTime(LocalDateTime.now()).price(course.getPrice()).build();
+        studentToCourseRepository.save(studentToCourse);
     }
 
     private void formCourse(Course course) {

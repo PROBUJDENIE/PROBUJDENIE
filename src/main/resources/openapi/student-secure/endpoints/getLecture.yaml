@@ -1,0 +1,18 @@
+get:
+  operationId: getLecture
+  tags:
+    - studentSecure
+  parameters:
+    - name: lectureId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  responses:
+    '200':
+      description: Возвращает лекцию.
+      content:
+        application/json:
+          schema:
+              $ref: '../response/GetLectureResponseDto.yaml'

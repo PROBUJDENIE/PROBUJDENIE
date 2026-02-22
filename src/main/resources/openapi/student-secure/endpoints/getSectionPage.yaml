@@ -1,8 +1,14 @@
 get:
-  operationId: getCoursePage
+  operationId: getSectionPage
   tags:
-    - course
+    - studentSecure
   parameters:
+    - name: courseId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
     - name: offset
       in: query
       required: true
@@ -17,8 +23,8 @@ get:
         format: int32
   responses:
     '200':
-      description: Страница актуальных курсов
+      description: Возвращает список cекций указанного курса.
       content:
         application/json:
           schema:
-            $ref: '../../components/course/response/CourseGetCoursePageResponseDto.yaml'
+              $ref: '../response/GetSectionsResponseDto.yaml'

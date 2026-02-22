@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="ec75836a-1948-4dd4-b389-973609a9efaf" author="Belikov-V">
+        <comment>Create STUDENT_TO_COURSE table</comment>
+        <createTable tableName="STUDENT_TO_COURSE">
+            <column name="USER_EMAIL" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="COURSE_ID" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="PRICE" type="DECIMAL(12,2)"/>
+            <column name="CREATION_DATE_TIME" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2536fd98-1f16-4be4-aee2-e252b130f940" author="Belikov-V">
+        <comment>Add FK STUDENT_TO_COURSE.USER_EMAIL -> USR.EMAIL (many-to-one)</comment>
+        <addForeignKeyConstraint
+                baseTableName="STUDENT_TO_COURSE"
+                baseColumnNames="USER_EMAIL"
+                referencedTableName="USR"
+                referencedColumnNames="EMAIL"
+                constraintName="fk_STUDENT_TO_COURSE-USER_DATA"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="f9e37e79-2f9e-4998-bf2a-72c1cb271ca0" author="Belikov-V">
+        <comment>Add FK STUDENT_TO_COURSE.COURSE_ID -> COURSE.ID (many-to-one)</comment>
+        <addForeignKeyConstraint
+                baseTableName="STUDENT_TO_COURSE"
+                baseColumnNames="COURSE_ID"
+                referencedTableName="COURSE"
+                referencedColumnNames="ID"
+                constraintName="fk_STUDENT_TO_COURSE-COURSE"
+                onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

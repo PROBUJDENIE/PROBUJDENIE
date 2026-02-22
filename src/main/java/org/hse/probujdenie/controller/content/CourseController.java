@@ -42,7 +42,7 @@ public class CourseController implements CourseApiDelegate {
 
     @Override
     public ResponseEntity<CourseGetCoursePageResponseDto> getCoursePage(Integer offset, Integer count) {
-        List<Course> courses = courseService.getAllActualCourses(offset, count);
+        List<Course> courses = courseService.getAllReadyCourses(offset, count);
 
         CourseGetCoursePageResponseDto response = new CourseGetCoursePageResponseDto();
         response.setSuccess(true);

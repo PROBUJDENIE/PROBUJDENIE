@@ -1,0 +1,24 @@
+allOf:
+  - $ref: '../../components/BaseResponseDto.yaml'
+  - type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          title: GetLecturesResponseDtoItem
+          required:
+            - title
+            - orderNumber
+          properties:
+            title:
+              type: string
+              minLength: 3
+              maxLength: 255
+            contentId:
+              type: string
+              format: UUID
+            orderNumber:
+              type: integer
+              format: int32
+              minimum: 0

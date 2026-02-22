@@ -6,6 +6,7 @@ import org.hse.probujdenie.model.content.Lecture;
 import org.hse.probujdenie.model.exercise.enums.ExerciseStatus;
 import org.hse.probujdenie.model.exercise.enums.ProgrammingLanguage;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ import java.util.UUID;
 @Setter
 //@Entity
 //@Table(name = "EXERCISE")
-public class Exercise {
+public class Exercise implements Serializable {
 
     @Id
     @Column(name = "ID", nullable = false)

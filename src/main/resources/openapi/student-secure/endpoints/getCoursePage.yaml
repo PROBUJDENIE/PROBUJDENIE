@@ -1,7 +1,7 @@
 get:
   operationId: getCoursePage
   tags:
-    - course
+    - studentSecure
   parameters:
     - name: offset
       in: query
@@ -17,8 +17,8 @@ get:
         format: int32
   responses:
     '200':
-      description: Страница актуальных курсов
+      description: Возвращает список курсов.
       content:
         application/json:
           schema:
-            $ref: '../../components/course/response/CourseGetCoursePageResponseDto.yaml'
+              $ref: '../response/GetUserCoursesResponseDto.yaml'

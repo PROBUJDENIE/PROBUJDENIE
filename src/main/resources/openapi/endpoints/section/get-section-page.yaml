@@ -1,5 +1,4 @@
 get:
-  security: []
   operationId: getSectionPage
   tags:
     - section

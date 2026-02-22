@@ -13,7 +13,7 @@ export function useCourses() {
             setError(null);
 
             try {
-                const data = await courseApi.getCoursePage({ offset: 0, count: 10 });
+                const data = await courseApi.getCoursePageByStudent({ offset: 0, count: 10 });
                 setCourses(normalizeCourses(data));
             } catch (e) {
                 setError(e.message);

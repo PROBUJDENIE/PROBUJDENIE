@@ -1,30 +1,10 @@
 import {API_CONFIG, COURSE_ENDPOINTS} from './config';
 
 export const courseApi = {
-    getCoursePage: async ({offset = 0, count = 10}) => {
-        const url = new URL(`${API_CONFIG.BASE_URL}${COURSE_ENDPOINTS.GET_PAGE}`);
+    getCoursePageByStudent: async ({offset = 0, count = 10}) => {
+        const url = new URL(`${API_CONFIG.BASE_URL}/student/courses`);
         url.searchParams.set('offset', offset);
         url.searchParams.set('count', count);
-
-        const response = await fetch(url.toString(), {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-
-
-        const result = await response.json();
-        const coursesWithPhotoUrl = result.data.map(course => ({
-            ...course,
-            photoUrl: course.photoId ? `${API_CONFIG.BASE_URL}/fileSaver/get?id=${course.photoId}` : null,
-            photo: null
-        }));
-
-        return coursesWithPhotoUrl;
-    },
-    getCourse: async ({id}) => {
-        const url = new URL(`${API_CONFIG.BASE_URL}/course/getCourse?id=${id}`);
 
         const response = await fetch(url.toString(), {
             method: 'GET',

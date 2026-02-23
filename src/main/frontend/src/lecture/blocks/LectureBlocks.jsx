@@ -1,6 +1,9 @@
 import "./lectureBlocks.css"
-
-export default function LectureBlocks({material}) {
+import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
+import next from "../resourses/next_lect.svg"
+import like from "../resourses/like.svg"
+import dont from "../resourses/dont.svg"
+export default function LectureBlocks({material, onNext}) {
 
     return (
         <>
@@ -36,6 +39,20 @@ export default function LectureBlocks({material}) {
                             ); }
                     }
                 })}
+            </div>
+            <div className="lecture-blocks-btns">
+                <div className="lecture-btn-like">
+                    <h2> Как Вам урок? </h2>
+                    <div className="like-buttons">
+                        <button className="btnr" onClick={() => {}}>
+                            <img src={like} alt="like" />
+                        </button>
+                        <button className="btnr" onClick={() => {}}>
+                            <img src={dont} alt="dislike" />
+                        </button>
+                    </div>
+                </div>
+                <CommonBtn onClick={onNext} width={420} height={80} borderRadius={30} size={32} fontColor={"white"} bgColor={"#8A6CFF"} rightIcon={<img src={next} width={60}/>}> К следующему уроку</CommonBtn>
             </div>
         </>
     )

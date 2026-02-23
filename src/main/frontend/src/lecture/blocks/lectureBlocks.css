@@ -1,0 +1,58 @@
+.lecture-blocks {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.lecture-blocks h2 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.lecture-blocks p {
+    font-size: 22px;
+    margin: 30px 0;
+}
+
+.lecture-blocks img {
+    margin: 30px auto;
+}
+
+.lecture-imageBlock {
+    display: flex;
+    justify-content: center;
+    transform: scale(0.8);
+}
+.lecture-blocks-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+    gap: 20px;
+}
+
+.lecture-btn-like {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 420px;
+    height: 80px;
+    border-radius: 30px;
+    background: #DFD8D3;
+    border: 2px #8A6CFF solid;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.lecture-btn-like h2 {
+    font-size: 32px;
+    color: #fff;
+    margin: 0;
+}
+
+.like-buttons {
+    display: flex;
+    gap: 15px;
+}

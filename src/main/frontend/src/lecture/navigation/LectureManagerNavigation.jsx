@@ -86,7 +86,6 @@ export default function LectureManagerNavigation({isOpen, setOpen, courseId , ac
                                 </>
                             )
                         })}
-
                     </div>
                 </div>
             </div>

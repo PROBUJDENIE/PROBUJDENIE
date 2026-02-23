@@ -11,6 +11,7 @@ export default function CommonBtn({
                                       leftIcon,
                                       rightIcon,
                                       type,
+                                      borderRadius = 16,
                                       children
                                   }) {
 
@@ -24,7 +25,7 @@ export default function CommonBtn({
                     backgroundColor: bgColor,
                     color: fontColor,
                     border: `2px solid ${borderColor}`,
-                    borderRadius: '16px',
+                    borderRadius: `${borderRadius}px`,
                     width: `${width}px`,
                     height: `${height}px`,
                     fontSize: `${size}px`,
@@ -36,6 +37,7 @@ export default function CommonBtn({
             >
                 {leftIcon && <span className="btn-icon">{leftIcon}</span>}
                 {children}
+                {rightIcon && <span className="btn-icon">{rightIcon}</span>}
             </button>
         </>
     )

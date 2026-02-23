@@ -8,11 +8,8 @@ import {useState} from "react";
 import LoginBox from "@/autorisation/login/LoginBox.jsx";
 
 export default function CourseList() {
-    const { courses, loading, error } = useCourses();
-    const readyCourses = courses.filter(course => course.status === 'READY');
+    const { courses } = useCourses();
     const [modalState, changeModalState] = useState(0);
-
-
     const handleBuy = () => {
         changeModalState(1);
     };
@@ -21,7 +18,7 @@ export default function CourseList() {
             <div className="course-list" id="course-list">
                 <CourseListHeader ></CourseListHeader>
                 <div className="course-list-cards">
-                    {readyCourses.map(course => (
+                    {courses.map(course => (
                         <CourseCard key={course.id} course={course} from="public" onBuyClick={handleBuy}/>
                     ))}
                 </div>

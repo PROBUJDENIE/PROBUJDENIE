@@ -5,13 +5,14 @@ import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import leftIcon from "@/constructor/resources/images/save.svg";
 import delIcon from "@/constructor/resources/images/del_course.svg";
 import {useState} from "react";
-
-
+import create from "@/constructor/resources/images/create.svg";
+import table from "@/constructor/resources/images/table.svg";
 
 export function ConstructorInfoSettings({course, openConfirm, handleFile, setField, handleSave}) {
     const [highlightsDraft, setHighlightsDraft] = useState(
         (course.highlights ?? []).join("\n")
     );
+    const [activePub, setPub] = useState("publish");
     return (
         <>
             <div className="constructor-info-settings">
@@ -45,13 +46,17 @@ export function ConstructorInfoSettings({course, openConfirm, handleFile, setFie
                         value={highlightsDraft}
                         onChange={(e) => setHighlightsDraft(e.target.value)}
                     />
-                    <CommonBtn width={100} height={50} borderColor={"blue"}  onClick={() => {setField("highlights", highlightsDraft.split("\n").map(s => s.trim()).filter(Boolean));}}>Применить</CommonBtn>
+                    <CommonBtn width={100} height={50} borderColor={"#8A6CFF"}  onClick={() => {setField("highlights", highlightsDraft.split("\n").map(s => s.trim()).filter(Boolean));}}>Применить</CommonBtn>
                 </div>
                 <div className="constructor-info-settings_price">
                     <label>Цена</label>
                     <input value={course.price} onChange={e => setField("price", e.target.value)} placeholder={"500"}/>
                 </div>
                 <CommonBtn onClick={handleSave} width={300} height={58} bgColor="#D9FF6A" borderColor="#8A6CFF" size={18} leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} /> }>Сохранить курс</CommonBtn>
+                <div className="publish_btns">
+                    <CommonBtn width={140} height={40} borderRadius={10} bgColor={activePub === 'publish' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={17} fontColor={"white"}  onClick={() => setPub('publish')}> Опубликовано</CommonBtn>
+                    <CommonBtn width={140} height={40} borderRadius={10} bgColor={activePub === 'not' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={17} fontColor={"white"}  onClick={() => setPub('not')}> Не опубликовано</CommonBtn>
+                </div>
                 <CommonBtn width={300} height={58} bgColor="#EB4760" borderColor="white" fontColor="white" onClick={openConfirm} size={18} leftIcon={<img src={delIcon} width={25} height={25} />}>Удалить курс</CommonBtn>
             </div>
 

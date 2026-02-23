@@ -10,7 +10,6 @@ import {useNavigate} from "react-router-dom";
 export default function ModalAllCourses({modalState, changeModalState}) {
     const navigate = useNavigate();
     const {courses, loading, error} = useCourses();
-    const readyCourses = courses.filter(course => course.status === 'READY');
     const [selectedCourse, setSelectedCourse] = useState(null);
 
     const handleBuy = (course) => {
@@ -34,11 +33,11 @@ export default function ModalAllCourses({modalState, changeModalState}) {
 
                         {loading && <div>Загрузка курсов...</div>}
                         {error && <div>Ошибка: {error}</div>}
-                        {!loading && !error && readyCourses.length === 0 && <div>Нет доступных курсов</div>}
+                        {!loading && !error && courses.length === 0 && <div>Нет доступных курсов</div>}
 
-                        {!loading && !error && readyCourses.length > 0 && (
+                        {!loading && !error && courses.length > 0 && (
                             <div className="course-list-cards">
-                                {readyCourses.map(course => (
+                                {courses.map(course => (
                                     <CourseCard
                                         key={course.id}
                                         course={course}

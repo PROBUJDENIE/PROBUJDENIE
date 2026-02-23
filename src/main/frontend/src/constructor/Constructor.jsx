@@ -1,6 +1,5 @@
 import ConstructorHeader from "./components/header/ConstructorHeader.jsx";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import {useCourseStorage} from "./components/hooks/useCourseStorage.js";
 import {useCallback, useEffect, useState} from "react";
 import CommonBtn from "../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import ConstructorInfo from "./components/info/ConstructorInfo.jsx";

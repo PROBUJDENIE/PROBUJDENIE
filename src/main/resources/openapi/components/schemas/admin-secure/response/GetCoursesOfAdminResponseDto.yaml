@@ -1,0 +1,40 @@
+allOf:
+  - $ref: '../../../responses/BaseResponseDto.yaml'
+  - type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          title: GetCoursesOfAdminResponseDtoItem
+          required:
+            - id
+            - title
+            - description
+            - status
+          properties:
+            id:
+              type: string
+              format: UUID
+            title:
+              type: string
+              minLength: 3
+              maxLength: 255
+            description:
+              type: string
+              minLength: 3
+              maxLength: 5000
+            price:
+              type: number
+              minimum: 0
+              multipleOf: 0.01
+              example: 149.99
+            status:
+              type: string
+              enum:
+                - CREATED
+                - READY
+                - DELETED
+            photoId:
+              type: string
+              format: UUID

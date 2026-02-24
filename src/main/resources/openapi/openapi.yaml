@@ -5,80 +5,38 @@ info:
   version: 1.0.0
 
 servers:
-  - url: https://localhost:8080/api/v1
+  - url: http://localhost:8080
 
 paths:
-  /course/getCoursePage:
-    $ref: './endpoints/course/get-course-page.yaml'
-  /course/getCourse/{id}:
-    $ref: './endpoints/course/get-course.yaml'
-  /course/create:
-    $ref: './endpoints/course/create-course.yaml'
-  /course/update:
-    $ref: './endpoints/course/update-course.yaml'
-  /course/delete/{id}:
-    $ref: './endpoints/course/delete-course.yaml'
+  /api/v1/courses:
+    $ref: './paths/public/courses.yaml'
+  /api/v1/courses/{courseId}/sections:
+    $ref: './paths/public/courses-courseId-sections.yaml'
+  /api/v1/sections/{sectionId}/lectures:
+    $ref: './paths/public/sections-sectionId-lectures.yaml'
+  /api/v1/files/{fileId}:
+    $ref: './paths/public/files-fileId.yaml'
 
-  /fileSaver/save:
-    $ref: './endpoints/file-saver/save.yaml'
-  /fileSaver/get:
-    $ref: './endpoints/file-saver/get.yaml'
+  /student-secure/api/v1/courses/my-courses:
+    $ref: './paths/student-secure/courses.my-courses.yaml'
+  /student-secure/api/v1/courses/{courseId}/buy:
+    $ref: './paths/student-secure/courses-courseId-buy.yaml'
 
-  /section/getSectionPage/{courseId}:
-    $ref: './endpoints/section/get-section-page.yaml'
-  /section/create:
-    $ref: './endpoints/section/create-section.yaml'
-  /section/update:
-    $ref: './endpoints/section/update-section.yaml'
-  /section/delete:
-    $ref: './endpoints/section/delete-section.yaml'
-
-  /lecture/getLecturePage/{sectionId}:
-    $ref: './endpoints/lecture/get-lecture-page.yaml'
-  /lecture/create:
-    $ref: './endpoints/lecture/create-lecture.yaml'
-  /lecture/update:
-    $ref: './endpoints/lecture/update-lecture.yaml'
-  /lecture/delete:
-    $ref: './endpoints/lecture/delete-lecture.yaml'
-  /lecture/getLecture/{id}:
-    $ref: './endpoints/lecture/get-lecture.yaml'
-
-  /auth/login: #Public
-    $ref: './endpoints/auth/signIn.yaml'
-  /auth/refreshAccessToken: #Public
-    $ref: './endpoints/auth/refreshAccessToken.yaml'
-
-  /exercise/getAll:
-    $ref: './endpoints/exercise/get-all-exercises.yaml'
-  /exercise/create:
-    $ref: './endpoints/exercise/create-exercise.yaml'
-  /exercise/update:
-    $ref: './endpoints/exercise/update-exercise.yaml'
-  /exercise/delete:
-    $ref: './endpoints/exercise/delete-exercise.yaml'
-
-  /verificationRule/getAll:
-    $ref: './endpoints/verification-rule/get-rules-by-exerciseId.yaml'
-  /verificationRule/create:
-    $ref: './endpoints/verification-rule/create-verification-rule.yaml'
-  /verificationRule/update:
-    $ref: './endpoints/verification-rule/update-Rule.yaml'
-  /verificationRule/delete:
-    $ref: './endpoints/verification-rule/delete-rule.yaml'
+  /admin-secure/api/v1/courses:
+    $ref: './paths/admin-secure/courses.yaml'
+  /admin-secure/api/v1/courses/{id}:
+    $ref: './paths/admin-secure/courses-courseId.yaml'
+  /admin-secure/api/v1/files:
+    $ref: './paths/admin-secure/files.yaml'
+  /admin-secure/api/v1/files/{fileId}:
+    $ref: './paths/admin-secure/files-fileId.yaml'
+  /admin-secure/api/v1/courses/{courseId}/sections:
+    $ref: './paths/admin-secure/courses-courseId-sections.yaml'
+  /admin-secure/api/v1/sections/{sectionId}:
+    $ref: './paths/admin-secure/sections-sectionId.yaml'
+  /admin-secure/api/v1/sections/{sectionId}/lectures:
+    $ref: './paths/admin-secure/sections-sectionId-lectures.yaml'
+  /admin-secure/api/v1/lectures/{lectureId}:
+    $ref: './paths/admin-secure/lectures-lectureId.yaml'
 
 
-
-#################################################################################
-#STUDENT_SECURE
-#################################################################################
-  /student/courses:
-    $ref: './student-secure/endpoints/getCoursePage.yaml'
-  /student/courses/my-courses:
-    $ref: './student-secure/endpoints/getStudentCourses.yaml'
-  /student/courses/{courseId}/sections:
-    $ref: './student-secure/endpoints/getSectionPage.yaml'
-  /student/courses/{courseId}/sections/{sectionId}/lectures:
-    $ref: './student-secure/endpoints/getLecturePage.yaml'
-  /student/courses/{courseId}/buy:
-    $ref: './student-secure/endpoints/buyCourse.yaml'

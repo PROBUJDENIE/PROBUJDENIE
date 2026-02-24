@@ -10,6 +10,7 @@ import LoginBox from "@/autorisation/login/LoginBox.jsx";
 export default function CourseList() {
     const { courses } = useCourses();
     const [modalState, changeModalState] = useState(0);
+
     const handleBuy = () => {
         changeModalState(1);
     };

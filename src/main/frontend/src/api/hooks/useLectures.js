@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { lectureApi } from "@/api/lecture.api";
+import {useCallback, useEffect, useState} from "react";
+import {publicApi} from "@/api/public.api.js";
 
 export const useLectures = (sectionId) => {
     const [lectures, setLectures] = useState([]);
@@ -7,17 +7,16 @@ export const useLectures = (sectionId) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!sectionId) return;
+        if (sectionId === null) {
+            setLectures([]);
+            return;
+        }
+        const loadSections = async () => {
+            setLoading(true);
+            setError(null);
 
-        const loadLectures = async () => {
             try {
-                setLoading(true);
-                setError(null);
-
-                const data = await lectureApi.getLecturesBySectionId({
-                    sectionId,
-                });
-
+                const data = await publicApi.getLecturePage({sectionId:sectionId, offset: 0, count: 10 });
                 setLectures(data);
             } catch (e) {
                 setError(e.message);
@@ -26,8 +25,19 @@ export const useLectures = (sectionId) => {
             }
         };
 
-        loadLectures();
+        loadSections();
     }, [sectionId]);
 
-    return { lectures, loading, error };
+    const getLecture = useCallback(async (lectureId) => {
+        if (!lectureId) return null;
+
+        try {
+            const lecture = await publicApi.getLecture({ lectures: lectures, lectureId: lectureId });
+            return lecture;
+        } catch (err) {
+            console.error("Ошибка при загрузке лекции:", err);
+        }
+    }, [lectures]);
+
+    return {getLecture, lectures, loading, error};
 };

@@ -1,0 +1,19 @@
+get:
+  operationId: getFile
+  tags:
+    - public
+  parameters:
+    - name: fileId
+      in: path
+      required: true
+      schema:
+        type: string
+
+  responses:
+    '200':
+      description: Возвращает файл
+      content:
+        application/octet-stream:
+          schema:
+            type: string
+            format: binary

@@ -1,0 +1,18 @@
+post:
+  operationId: buyCourse
+  tags:
+    - studentSecure
+  parameters:
+    - name: courseId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  responses:
+    '200':
+      description: Покупка курса.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/BaseResponseDto.yaml'

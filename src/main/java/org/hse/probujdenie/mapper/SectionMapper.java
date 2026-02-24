@@ -1,8 +1,10 @@
 package org.hse.probujdenie.mapper;
 
-import org.hse.probujdenie.api.model.SectionCreateRequestDto;
-import org.hse.probujdenie.api.model.SectionGetSectionPageItemResponseDto;
-import org.hse.probujdenie.api.model.SectionUpdateRequestDto;
+import org.hse.probujdenie.api.model.CreateSectionRequestDto;
+import org.hse.probujdenie.api.model.GetCoursePageResponseDtoItem;
+import org.hse.probujdenie.api.model.GetSectionPageResponseDtoItem;
+import org.hse.probujdenie.api.model.UpdateSectionRequestDto;
+import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.content.Section;
 import org.mapstruct.*;
 
@@ -11,24 +13,24 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface SectionMapper {
 
-    List<SectionGetSectionPageItemResponseDto> toResponseDtoList(List<Section> sections);
+    List<GetSectionPageResponseDtoItem> toGetSectionPageResponseDtoList(List<Section> sections);
 
-    @Mapping(target = "version", ignore = true)
-    @Mapping(target = "creationDateTime", ignore = true)
-    @Mapping(target = "lastModificationDateTime", ignore = true)
-    @Mapping(target = "status", ignore = true)
-    @Mapping(target = "course", ignore = true)
-    Section toEntity(SectionUpdateRequestDto request);
-
-    @Mapping(target = "version", ignore = true)
-    @Mapping(target = "creationDateTime", ignore = true)
-    @Mapping(target = "lastModificationDateTime", ignore = true)
-    @Mapping(target = "status", ignore = true)
-    @Mapping(target = "course", ignore = true)
     @Mapping(target = "id", ignore = true)
-    Section toEntity(SectionCreateRequestDto request);
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "course", ignore = true)
+    Section toEntityFromCreateDto(CreateSectionRequestDto request);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "course", ignore = true)
+    Section toEntityFromUpdateDto(UpdateSectionRequestDto request);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateCourseFromDto(Section source, @MappingTarget Section target);
 }
-

@@ -1,7 +1,0 @@
-type: object
-required:
-  - exerciseId
-properties:
-  exerciseId:
-    type: string
-    format: UUID

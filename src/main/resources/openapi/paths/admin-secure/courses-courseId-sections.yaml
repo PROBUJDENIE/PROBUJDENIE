@@ -1,0 +1,24 @@
+post:
+  operationId: createSection
+  tags:
+    - adminSecure
+  parameters:
+    - name: courseId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/admin-secure/request/CreateSectionRequestDto.yaml'
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/BaseResponseDto.yaml'

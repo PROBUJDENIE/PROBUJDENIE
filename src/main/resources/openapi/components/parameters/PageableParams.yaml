@@ -1,0 +1,16 @@
+parameters:
+  OffsetParam:
+    name: offset
+    in: query
+    description: Смещение (количество пропущенных элементов). Начинается с 0.
+    required: true
+    schema:
+      type: integer
+      format: int32
+  CountParam:
+    name: count
+    in: query
+    required: true
+    schema:
+      type: integer
+      format: int32

@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from "react";
-import { courseApi } from "@/api/course.api.js";
 import {denormalizeCourse, normalizeCourses} from "@/api/hooks/course.mapper.js";
+import {publicApi} from "../public.api.js";
 
 export function useCourses() {
     const [courses, setCourses] = useState([]);
@@ -13,7 +13,7 @@ export function useCourses() {
             setError(null);
 
             try {
-                const data = await courseApi.getCoursePageByStudent({ offset: 0, count: 10 });
+                const data = await publicApi.getCoursePage({ offset: 0, count: 10 });
                 setCourses(normalizeCourses(data));
             } catch (e) {
                 setError(e.message);

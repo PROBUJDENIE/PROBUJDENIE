@@ -16,9 +16,13 @@ export default function CourseInfo() {
     const location = useLocation();
     const from = location.state?.from ?? "public";
 
+    console.log(id);
+
     const {getCourse} = useCourses();
 
     const course = getCourse(id);
+
+    console.log(course);
 
     if (!course) return <div>Загрузка...</div>;
     return (

@@ -1,0 +1,24 @@
+post:
+  operationId: createLecture
+  tags:
+    - adminSecure
+  parameters:
+    - name: sectionId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/admin-secure/request/CreateLectureRequestDto.yaml'
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/BaseResponseDto.yaml'

@@ -24,7 +24,6 @@ public class LectureService {
     private final LectureRepository lectureRepository;
     private final LectureMapper lectureMapper;
 
-
     public void createLecture(UUID sectionId, Lecture lecture) {
         Section section = sectionService.getSection(sectionId);
         formLecture(lecture, section);
@@ -42,8 +41,8 @@ public class LectureService {
         return lectureRepository.findAllBySectionIdAndStatusNot(sectionId, LectureStatus.DELETED, page).getContent();
     }
 
-    public void updateLecture(Lecture lecture) {
-        Lecture existing = getLecture(lecture.getId());
+    public void updateLecture(UUID lectureId, Lecture lecture) {
+        Lecture existing = getLecture(lectureId);
         lectureMapper.updateLectureFromDto(lecture, existing);
         lectureRepository.save(existing);
     }

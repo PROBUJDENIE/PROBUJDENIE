@@ -1,7 +1,0 @@
-type: object
-required:
-  - verificationRuleId
-properties:
-  verificationRuleId:
-    type: string
-    format: UUID

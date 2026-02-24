@@ -5,120 +5,33 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="9c8aa883-1258-4c4c-a17e-0a8bef67397a" author="your-name">
-        <comment>Добавление начальных лекций в первую секцию курса по Git</comment>
-
-        <sql>
-            INSERT INTO LECTURE (
-            id, version, title, section_id, content_id,
-            order_number, status,
-            creation_date_time, last_modification_date_time
-            )
-            VALUES
-            (
-            '05502775-7bdd-4eb7-b5d9-d94ac6f7f609',
-            0,
-            'Что такое система контроля версий и зачем она нужна',
-            (SELECT id FROM SECTION
-            WHERE title ILIKE '%Введение в Git и системы контроля версий%'
-            LIMIT 1),
-            null,
-            1,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP
-            ),
-            (
-            RANDOM_UUID(),
-            0,
-            'История Git и его создатель — Линус Торвальдс',
-            (SELECT id FROM SECTION
-            WHERE title ILIKE '%Введение в Git и системы контроля версий%'
-            LIMIT 1),
-            NULL,
-            2,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP
-            );
-        </sql>
-    </changeSet>
-
-    <changeSet id="6cd8aac0-86f1-4dbd-9a63-b912e4ca5c31" author="your-name">
+    <changeSet id="6cd8aac0-86f1-4dbd-9a63-b912e4ca5c31" author="Belikov-V">
         <comment>Начальные лекции в первую секцию курса по Java</comment>
 
-        <sql>
-            INSERT INTO LECTURE (
-            id, version, title, section_id, content_id,
-            order_number, status,
-            creation_date_time, last_modification_date_time
-            )
-            VALUES
-            (
-            RANDOM_UUID(),
-            0,
-            'Введение в условные конструкции',
-            (SELECT id FROM SECTION
-            WHERE title = 'Условные операторы'
-            LIMIT 1),
-            NULL,
-            1,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP
-            ),
-            (
-            RANDOM_UUID(),
-            0,
-            'Вложенные условия',
-            (SELECT id FROM SECTION
-            WHERE title = 'Условные операторы'
-            LIMIT 1),
-            NULL,
-            2,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP
-            );
-        </sql>
-    </changeSet>
+        <insert tableName="LECTURE">
+            <column name="ID" value="907a6077-c463-4bf8-838a-279fd1f90952"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Введение в условные конструкции"/>
+            <column name="SECTION_ID"
+                    valueComputed="(SELECT id FROM SECTION WHERE title = 'Условные операторы' LIMIT 1)"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="1"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
 
-    <changeSet id="4fa5414a-80e0-4f90-9d0f-483d05d08940" author="your-name">
-        <comment>Начальные лекции в первую секцию курса по Алгоритмам и структурам данных</comment>
-
-        <sql>
-            INSERT INTO LECTURE (
-            id, version, title, section_id, content_id,
-            order_number, status,
-            creation_date_time, last_modification_date_time
-            )
-            VALUES
-            (
-            RANDOM_UUID(),
-            0,
-            'MergeSort',
-            (SELECT id FROM SECTION
-            WHERE title = 'Сортировки'
-            LIMIT 1),
-            NULL,
-            1,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP
-            ),
-            (
-            RANDOM_UUID(),
-            0,
-            'Сложность алгоритмов. Big O нотация — просто и с примерами',
-            (SELECT id FROM SECTION
-            WHERE title = 'Сортировки'
-            LIMIT 1),
-            NULL,
-            2,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP
-            );
-        </sql>
+        <insert tableName="LECTURE">
+            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Вложенные условия"/>
+            <column name="SECTION_ID"
+                    valueComputed="(SELECT id FROM SECTION WHERE title = 'Условные операторы' LIMIT 1)"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="2"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

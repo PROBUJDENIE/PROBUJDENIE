@@ -3,15 +3,18 @@ import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
 import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import {useLogin} from "@/hooks/useLogin.jsx";
 import login from "@/autorisation/resourses/login.svg";
+import {useNavigate} from "react-router-dom";
+import {USER_PROFILE_ROUTE} from "@/utils/constants.jsx";
 export default function LoginBox({ modalState, changeModalState}) {
 
     const { values, setField, submit, loading, error } = useLogin();
-
+    const navigate = useNavigate();
     if (modalState !== 2) return null;
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await submit();
+        navigate(USER_PROFILE_ROUTE)
+      //  await submit();
     };
     return (
         <>

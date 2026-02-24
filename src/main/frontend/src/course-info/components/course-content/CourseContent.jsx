@@ -13,7 +13,7 @@ export default function CourseContent({ course }) {
         sections,
         loading: sectionsLoading,
         error: sectionsError,
-    } = useSections(course.id);
+    } = useSections({courseId: course.id});
 
     const {
         lectures,
@@ -29,7 +29,9 @@ export default function CourseContent({ course }) {
                 <h2 className="course-content-title">Программа курса:</h2>
                 <div className="course-content-grid">
                     <div className="chapters-list">
-                        {sections.map((section, index) => (
+                        {!sections ? (
+                            <p>Загрузка секций...</p>
+                        ) : sections.map((section, index) => (
                             <ChapterCard
                                 key={section.id}
                                 chapter={{

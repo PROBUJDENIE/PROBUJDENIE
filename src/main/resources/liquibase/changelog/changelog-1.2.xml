@@ -5,49 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="68291237-3a9b-4c78-a0f3-8c69ecf29d04" author="Belikov-V">
-        <comment>Seed start Sections for Git course</comment>
-        <sql>
-            INSERT INTO SECTION (id, version, title, course_id, order_number, status, creation_date_time, last_modification_date_time)
-            VALUES
-
-            (RANDOM_UUID(),
-            0,
-            'Введение в Git и системы контроля версий',
-            (SELECT ID FROM COURSE WHERE title = 'GitHub и командная разработка'),
-            1,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP),
-
-            (RANDOM_UUID(),
-            0,
-            'Основные команды Git: init, add, commit, status',
-            (SELECT ID FROM COURSE WHERE title = 'GitHub и командная разработка'),
-            2,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP),
-
-            (RANDOM_UUID(),
-            0,
-            'Работа с ветками: branch, checkout, merge',
-            (SELECT ID FROM COURSE WHERE title = 'GitHub и командная разработка'),
-            3,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP)
-
-        </sql>
-    </changeSet>
-
     <changeSet id="a75fdb37-dfb4-4a93-8554-a6cb50f272be" author="Belikov-V">
         <comment>Seed start Sections for Java course</comment>
         <sql>
             INSERT INTO SECTION (id, version, title, course_id, order_number, status, creation_date_time, last_modification_date_time)
             VALUES
 
-            (RANDOM_UUID(),
+            ('b9679c70-6a3a-4d97-b157-221bf46dc8ee',
             0,
             'Условные операторы',
             (SELECT ID FROM COURSE WHERE title = 'Java разработчик с нуля'),
@@ -69,42 +33,6 @@
             0,
             'Массивы',
             (SELECT ID FROM COURSE WHERE title = 'Java разработчик с нуля'),
-            3,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP)
-
-        </sql>
-    </changeSet>
-
-    <changeSet id="efee19e1-195e-4a18-8188-d1aaad2bf063" author="Belikov-V">
-        <comment>Seed start Sections for Algos course</comment>
-        <sql>
-            INSERT INTO SECTION (id, version, title, course_id, order_number, status, creation_date_time, last_modification_date_time)
-            VALUES
-
-            (RANDOM_UUID(),
-            0,
-            'Сортировки',
-            (SELECT ID FROM COURSE WHERE title = 'Алгоритмы и структуры данных'),
-            1,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP),
-
-            (RANDOM_UUID(),
-            0,
-            'Стеки/очереди',
-            (SELECT ID FROM COURSE WHERE title = 'Алгоритмы и структуры данных'),
-            2,
-            'READY',
-            CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP),
-
-            (RANDOM_UUID(),
-            0,
-            'Деревья',
-            (SELECT ID FROM COURSE WHERE title = 'Алгоритмы и структуры данных'),
             3,
             'READY',
             CURRENT_TIMESTAMP,

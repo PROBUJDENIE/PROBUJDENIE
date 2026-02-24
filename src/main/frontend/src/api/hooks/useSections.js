@@ -1,23 +1,19 @@
-import { useEffect, useState } from "react";
-import {sectionApi} from "@/api/section.api.js";
+import {useCallback, useEffect, useState} from "react";
+import {publicApi} from "@/api/public.api.js";
 
-export const useSections = (courseId) => {
+export function useSections({courseId}) {
+
     const [sections, setSections] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (!courseId) return;
-
         const loadSections = async () => {
+            setLoading(true);
+            setError(null);
+
             try {
-                setLoading(true);
-                setError(null);
-
-                const data = await sectionApi.getSectionsByCourseId({
-                    courseId,
-                });
-
+                const data = await publicApi.getSectionPage({courseId:courseId, offset: 0, count: 10 });
                 setSections(data);
             } catch (e) {
                 setError(e.message);
@@ -29,5 +25,16 @@ export const useSections = (courseId) => {
         loadSections();
     }, [courseId]);
 
-    return { sections, loading, error };
-};
+
+    function createEmptySection() {
+        return {id: null, title: "", description: ""};
+    }
+
+    const getSection = useCallback((id) => {
+        const data = sections.find(c => String(c.id) === String(id)) ?? null;
+        if (!data) return createEmptySection();
+        return data;
+    }, [sections]);
+
+    return {getSection, sections, loading, error};
+}

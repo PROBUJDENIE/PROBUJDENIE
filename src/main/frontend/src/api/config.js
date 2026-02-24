@@ -1,44 +1,46 @@
 export const API_CONFIG = {
-    BASE_URL: 'http://localhost:8080/api/v1',
+    BASE_URL: 'http://localhost:8080'
 };
 
-export const COURSE_ENDPOINTS = {
-    GET_PAGE: '/course/getCoursePage',
-    CREATE: '/course/create',
-    UPDATE: '/course/update',
-    DELETE: '/course/delete',
+export const PUBLIC_ENDPOINTS = {
+    GET_COURSE_PAGE: '/api/v1/courses',
+    GET_SECTION_PAGE: function(courseId) { return '/api/v1/courses/' + courseId + '/sections'; },
+    GET_LECTURE_PAGE: function(sectionId) { return '/api/v1/sections/' + sectionId + '/lectures'; },
+    GET_FILE: function(fileId) { return '/api/v1/files/' + fileId; }
 };
 
-export const SECTION_ENDPOINTS = {
-    GET_PAGE: '/section/getSectionPage',
-    CREATE: '/section/create',
-    UPDATE: '/section/update',
-    DELETE: '/section/delete',
+export const STUDENT_ENDPOINTS = {
+    GET_MY_COURSES: '/student-secure/api/v1/courses/my-courses',
+    BUY_COURSE: function(courseId) { return '/student-secure/api/v1/courses/' + courseId + '/buy'; },
 };
 
-export const LECTURE_ENDPOINTS = {
-    GET_PAGE: '/lecture/getLecturePage',
-    GET_ONE: '/lecture/getLecture',
-    CREATE: '/lecture/create',
-    UPDATE: '/lecture/update',
-    DELETE: '/lecture/delete',
+export const ADMIN_ENDPOINTS = {
+    GET_COURSES: '/admin-secure/api/v1/courses',
+    GET_COURSE: function(id) { return '/admin-secure/api/v1/courses/' + id; },
+    CREATE_COURSE: '/admin-secure/api/v1/courses',
+    UPDATE_COURSE: '/admin-secure/api/v1/courses',
+    DELETE_COURSE: function(id) { return '/admin-secure/api/v1/courses/' + id; },
+
+    UPLOAD_FILE: '/admin-secure/api/v1/files',
+    GET_FILE: function(fileId) { return '/admin-secure/api/v1/files/' + fileId; },
+
+    GET_COURSE_SECTIONS: function(courseId) { return '/admin-secure/api/v1/courses/' + courseId + '/sections'; },
+    GET_SECTION: function(sectionId) { return '/admin-secure/api/v1/sections/' + sectionId; },
+    CREATE_SECTION: function(courseId) { return '/admin-secure/api/v1/courses/' + courseId + '/sections'; },
+    UPDATE_SECTION: function(sectionId) { return '/admin-secure/api/v1/sections/' + sectionId; },
+    DELETE_SECTION: function(sectionId) { return '/admin-secure/api/v1/sections/' + sectionId; },
+
+    GET_SECTION_LECTURES: function(sectionId) { return '/admin-secure/api/v1/sections/' + sectionId + '/lectures'; },
+    GET_LECTURE: function(lectureId) { return '/admin-secure/api/v1/lectures/' + lectureId; },
+    CREATE_LECTURE: function(sectionId) { return '/admin-secure/api/v1/sections/' + sectionId + '/lectures'; },
+    UPDATE_LECTURE: function(lectureId) { return '/admin-secure/api/v1/lectures/' + lectureId; },
+    DELETE_LECTURE: function(lectureId) { return '/admin-secure/api/v1/lectures/' + lectureId; },
 };
 
-export const EXERCISE_ENDPOINTS = {
-    GET_ALL: '/exercise/getAll',
-    CREATE: '/exercise/create',
-    UPDATE: '/exercise/update',
-    DELETE: '/exercise/delete',
-};
-
-export const FILE_ENDPOINTS = {
-    SAVE: '/fileSaver/save',
-    GET: '/fileSaver/get',
-};
-
-export const VERIFICATION_RULE_ENDPOINTS = {
-    GET_ALL: '/verificationRule/getAll',
-    CREATE: '/verificationRule/create',
-    UPDATE: '/verificationRule/update',
-    DELETE: '/verificationRule/delete',
-};
+export function getUrl(base, replacements = {}) {
+    let url = base;
+    for (const [key, value] of Object.entries(replacements)) {
+        url = url.replace('{' + key + '}', value);
+    }
+    return API_CONFIG.BASE_URL + url;
+}

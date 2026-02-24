@@ -1,35 +1,36 @@
 package org.hse.probujdenie.mapper;
 
-import org.hse.probujdenie.api.model.LectureCreateRequestDto;
-import org.hse.probujdenie.api.model.LectureGetLecturePageItemResponseDto;
-import org.hse.probujdenie.api.model.LectureGetLectureResponseDto;
-import org.hse.probujdenie.api.model.LectureUpdateRequestDto;
+import org.hse.probujdenie.api.model.CreateLectureRequestDto;
+import org.hse.probujdenie.api.model.GetLecturePageResponseDtoItem;
+import org.hse.probujdenie.api.model.GetSectionPageResponseDtoItem;
+import org.hse.probujdenie.api.model.UpdateLectureRequestDto;
 import org.hse.probujdenie.model.content.Lecture;
+import org.hse.probujdenie.model.content.Section;
 import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring")
 public interface LectureMapper {
 
-    List<LectureGetLecturePageItemResponseDto> toResponseDtoList(List<Lecture> lectures);
+    List<GetLecturePageResponseDtoItem> toGetLecturePageResponseDtoList(List<Lecture> lectures);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "section", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    Lecture toEntityFromCreateDto(CreateLectureRequestDto request);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "section", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    Lecture toEntityFromUpdateDto(UpdateLectureRequestDto request);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateLectureFromDto(Lecture source, @MappingTarget Lecture target);
-
-    @Mapping(target = "version", ignore = true)
-    @Mapping(target = "creationDateTime", ignore = true)
-    @Mapping(target = "lastModificationDateTime", ignore = true)
-    @Mapping(target = "status", ignore = true)
-    Lecture toEntity(LectureCreateRequestDto request);
-
-    @Mapping(target = "version", ignore = true)
-    @Mapping(target = "creationDateTime", ignore = true)
-    @Mapping(target = "lastModificationDateTime", ignore = true)
-    @Mapping(target = "status", ignore = true)
-    Lecture toEntity(LectureUpdateRequestDto request);
-
-    LectureGetLectureResponseDto toDto(Lecture lecture);
-
 }
-

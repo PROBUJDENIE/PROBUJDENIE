@@ -30,8 +30,8 @@ public class SectionService {
         sectionRepository.save(section);
     }
 
-    public void updateSection(Section section) {
-        Section existing = getSection(section.getId());
+    public void updateSection(UUID sectionId, Section section) {
+        Section existing = getSection(sectionId);
         sectionMapper.updateCourseFromDto(section, existing);
         sectionRepository.save(existing);
     }

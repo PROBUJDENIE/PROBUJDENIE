@@ -12,6 +12,7 @@ export default defineConfig({
     build: {
         outDir: "../resources/static",
         emptyOutDir: true,
+        sourcemap: true
     },
     resolve: {
         alias: {

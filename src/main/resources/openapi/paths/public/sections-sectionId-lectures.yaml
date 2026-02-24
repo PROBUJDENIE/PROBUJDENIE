@@ -1,0 +1,20 @@
+get:
+  operationId: getLecturePage
+  tags:
+    - public
+  parameters:
+    - $ref: '../../components/parameters/PageableParams.yaml#/parameters/OffsetParam'
+    - $ref: '../../components/parameters/PageableParams.yaml#/parameters/CountParam'
+    - name: sectionId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  responses:
+    '200':
+      description: Список лекций указанной секции
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/public/response/GetLecturePageResponseDto.yaml'

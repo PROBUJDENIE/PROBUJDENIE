@@ -1,0 +1,14 @@
+get:
+  operationId: getCoursePage
+  tags:
+    - public
+  parameters:
+    - $ref: '../../components/parameters/PageableParams.yaml#/parameters/OffsetParam'
+    - $ref: '../../components/parameters/PageableParams.yaml#/parameters/CountParam'
+  responses:
+    '200':
+      description: Страница актуальных курсов
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/public/response/GetCoursePageResponseDto.yaml'

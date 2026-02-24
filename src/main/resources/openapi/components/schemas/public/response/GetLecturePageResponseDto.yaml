@@ -1,0 +1,35 @@
+allOf:
+  - $ref: '../../../responses/BaseResponseDto.yaml'
+  - type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          title: GetLecturePageResponseDtoItem
+          required:
+            - id
+            - title
+            - orderNumber
+            - status
+          properties:
+            id:
+              type: string
+              format: UUID
+            title:
+              type: string
+              minLength: 3
+              maxLength: 255
+            orderNumber:
+              type: integer
+              format: int32
+              minimum: 0
+            contentId:
+              type: string
+              format: UUID
+            status:
+              type: string
+              enum:
+                - CREATED
+                - READY
+                - DELETED

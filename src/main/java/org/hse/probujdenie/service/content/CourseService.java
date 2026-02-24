@@ -25,17 +25,17 @@ import static org.hse.probujdenie.util.UuidService.generateId;
 public class CourseService {
 
     private final CourseRepository courseRepository;
-    private final CourseMapper courseMapper;
     private final UserService userService;
     private final StudentToCourseRepository studentToCourseRepository;
+    private final CourseMapper courseMapper;
 
     public void createCourse(Course course) {
         formCourse(course);
         courseRepository.save(course);
     }
 
-    public void updateCourse(Course course) {
-        Course existing = getCourse(course.getId());
+    public void updateCourse(UUID courseId, Course course) {
+        Course existing = getCourse(courseId);
         courseMapper.updateCourseFromDto(course, existing);
         courseRepository.save(existing);
     }
@@ -49,6 +49,11 @@ public class CourseService {
     public List<Course> getAllReadyCourses(Integer offset, Integer count) {
         Pageable page = PageRequest.of(offset, count);
         return courseRepository.findAllByStatus(CourseStatus.READY, page).getContent();
+    }
+
+    public List<Course> getAllCoursesForAdmin(Integer offset, Integer count) {
+        Pageable page = PageRequest.of(offset, count);
+        return courseRepository.findAll(page).getContent();
     }
 
     public void deleteCourse(UUID id) {
@@ -70,6 +75,8 @@ public class CourseService {
     public void buyCourse(String userEmail, UUID courseId) {
         Course course = getCourse(courseId);
         User user = userService.getUserByEmail(userEmail);
+        Optional<StudentToCourse> exist = studentToCourseRepository.findById(new StudentToCourse.StudentCourseId(userEmail, courseId));
+        if (exist.isPresent()) throw new IllegalArgumentException("Курс уже куплен");
         StudentToCourse studentToCourse = StudentToCourse.builder().user(user).course(course).creationDateTime(LocalDateTime.now()).price(course.getPrice()).build();
         studentToCourseRepository.save(studentToCourse);
     }

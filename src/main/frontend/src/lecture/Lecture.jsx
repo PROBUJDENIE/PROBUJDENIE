@@ -1,18 +1,16 @@
 import Container from "@/main-page/compoents/content/Container.jsx";
 import Header from "@/main-page/compoents/content/hero/header/Header.jsx";
 import "./lecture.css"
-import LectureBlocks from "@/lecture/LectureBlocks.jsx";
 import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
 import Jump from "@/main-page/compoents/content/jump/Jump.jsx";
-import LectureManagerNavigation from "@/lecture/LectureManagerNavigation.jsx";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import menu from "./resourses/menu.svg"
 import emptySt from "./resourses/empty.svg";
 import {useLectures} from "@/api/hooks/useLectures.js";
 import {useSections} from "@/api/hooks/useSections.js";
-import next from "./resourses/next.svg"
-import {useLectureManager} from "@/api/hooks/useLectureManager.js";
+import LectureManagerNavigation from "@/lecture/navigation/LectureManagerNavigation.jsx";
+import LectureBlocks from "@/lecture/blocks/LectureBlocks.jsx";
 
 export default function Lecture() {
 

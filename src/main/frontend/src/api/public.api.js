@@ -16,6 +16,7 @@ export const publicApi = {
 
         const result = await response.json();
 
+        console.log(result);
         const coursesWithPhotoUrl = result.data.map(course => ({
             ...course,
             photoUrl: course.photoId ? getUrl(PUBLIC_ENDPOINTS.GET_FILE(course.photoId)) : null,

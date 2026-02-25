@@ -1,0 +1,7 @@
+type: object
+
+properties:
+  answer:
+    type: string
+    minLength: 3
+    maxLength: 5000

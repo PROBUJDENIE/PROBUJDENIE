@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="3695d77d-31b3-456c-a01e-e707398a80cd" author="Belikov-V">
+        <comment>Create Exercise table</comment>
+        <createTable tableName="EXERCISE">
+            <column name="ID" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TITLE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEFAULT_CODE" type="VARCHAR(2000)"/>
+            <column name="LECTURE_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="INPUT_DATA" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OUTPUT_DATA" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TIME_LIMIT" type="INT"/>
+            <column name="MEMORY_LIMIT" type="INT"/>
+            <column name="STATUS" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROGRAMMING_LANGUAGE" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATION_DATE_TIME" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_MODIFICATION_DATE_TIME" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="cde167ee-76ec-4031-a16a-81a8e5cad241" author="Belikov-V">
+        <comment>Create STUDENT_SUBMISSION table</comment>
+        <createTable tableName="STUDENT_SUBMISSION">
+            <column name="ID" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ANSWER" type="VARCHAR(2000)"/>
+            <column name="EXERCISE_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STUDENT_EMAIL" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATION_DATE_TIME" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2bc05a27-be2a-4e85-a745-75c6ad66e4c2" author="Belikov-V">
+        <comment>Add FK EXERCISE.LECTURE_ID -> LECTURE.ID (many-to-one)</comment>
+        <addForeignKeyConstraint
+                baseTableName="EXERCISE"
+                baseColumnNames="LECTURE_ID"
+                referencedTableName="LECTURE"
+                referencedColumnNames="ID"
+                constraintName="fk_EXERCISE_LECTURE"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="a2143380-df6a-4a79-a61b-d762032c483c" author="Belikov-V">
+        <comment>Add FK STUDENT_SUBMISSION.STUDENT_ID -> USR.EMAIL (many-to-one)</comment>
+        <addForeignKeyConstraint
+                baseTableName="STUDENT_SUBMISSION"
+                baseColumnNames="STUDENT_EMAIL"
+                referencedTableName="USR"
+                referencedColumnNames="EMAIL"
+                constraintName="fk_STUDENT_SUBMISSION_USR"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="e4da1b77-c056-4b53-89d1-b8c350f8abda" author="Belikov-V">
+        <comment>Add FK STUDENT_SUBMISSION.LECTURE_ID -> Exercise.ID (many-to-one)</comment>
+        <addForeignKeyConstraint
+                baseTableName="STUDENT_SUBMISSION"
+                baseColumnNames="EXERCISE_ID"
+                referencedTableName="EXERCISE"
+                referencedColumnNames="ID"
+                constraintName="fk_STUDENT_SUBMISSION_EXERCISE"
+                onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

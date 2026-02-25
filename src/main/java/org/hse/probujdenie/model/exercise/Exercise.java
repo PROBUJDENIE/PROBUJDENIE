@@ -15,8 +15,8 @@ import java.util.UUID;
 @Builder
 @Getter
 @Setter
-//@Entity
-//@Table(name = "EXERCISE")
+@Entity
+@Table(name = "EXERCISE")
 public class Exercise implements Serializable {
 
     @Id
@@ -43,6 +43,18 @@ public class Exercise implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "STATUS", nullable = false)
     private ExerciseStatus status;
+
+    @Column(name = "MEMORY_LIMIT")
+    private Integer memoryLimit;
+
+    @Column(name = "TIME_LIMIT")
+    private Integer timeLimit;
+
+    @Column(name = "INPUT_DATA", nullable = false)
+    private String inputData;
+
+    @Column(name = "OUTPUT_DATA", nullable = false)
+    private String outputData;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "LECTURE_ID", referencedColumnName = "ID", nullable = false)

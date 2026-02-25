@@ -17,8 +17,8 @@ post:
           $ref: '../../components/schemas/admin-secure/request/CreateSectionRequestDto.yaml'
   responses:
     '200':
-      description: Возвращает 'success'
+      description: Возвращает секцию
       content:
         application/json:
           schema:
-            $ref: '../../components/responses/BaseResponseDto.yaml'
+            $ref: '../../components/schemas/admin-secure/response/CreateSectionResponseDto.yaml'

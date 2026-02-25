@@ -5,25 +5,131 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="43920d08-54b9-4bee-8fe2-4fe6853d45d5" author="Belikov-V">
-        <comment>Seed 8 COURSES for landing page</comment>
-        <sql>
-            INSERT INTO COURSE (ID, VERSION, TITLE, DESCRIPTION, PRICE, PHOTO_ID, STATUS, CREATION_DATE_TIME, LAST_MODIFICATION_DATE_TIME)
-            VALUES
-            ('d3cc735b-87a0-4760-8af3-70793b4567d6', 0,
-            'GitHub и командная разработка',
-            'Современная разработка невозможна без командной работы. GitHub — один из главных инструментов для этого. Курс заточен под самых новичков. #БЛОК#-Создание коммитов -Основы веток -Merge/rebase -Pullrequest',
-            27499.00, NULL, 'READY', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    <changeSet id="608f4a80-d935-404a-92ea-be06316b80a8" author="Belikov-V">
+        <comment>Seed course: GitHub и командная разработка</comment>
+        <insert tableName="COURSE">
+            <column name="ID" value="d3cc735b-87a0-4760-8af3-70793b4567d6"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="GitHub и командная разработка"/>
+            <column name="DESCRIPTION"
+                    value="Современная разработка невозможна без командной работы. GitHub — один из главных инструментов для этого. Курс заточен под самых новичков. #БЛОК#-Создание коммитов -Основы веток -Merge/rebase -Pullrequest"/>
+            <column name="PRICE" valueNumeric="27499.00"/>
+            <column name="PHOTO_ID" valueComputed="NULL"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
 
-            ('b14d7eb5-6efe-4c17-a557-e3a4b4a9e564', 0,
-            'Java разработчик с нуля',
-            'Это мощный, надёжный и строго типизированный язык, который лежит в основе огромного количества enterprise-систем, банковского ПО, крупных backend-сервисов.#БЛОК#-Cинтаксис -ООП -Многопоточность -Работа с сетью и файлами -Тестирование',
-            77599.00, NULL, 'READY', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    <changeSet id="553f5e3b-7ff2-4417-837f-7cfa028f8d47" author="Belikov-V">
+        <comment>Seed course: Java разработчик с нуля</comment>
+        <insert tableName="COURSE">
+            <column name="ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Java разработчик с нуля"/>
+            <column name="DESCRIPTION"
+                    value="Это мощный, надёжный и строго типизированный язык, который лежит в основе огромного количества enterprise-систем, банковского ПО, крупных backend-сервисов.#БЛОК#-Cинтаксис -ООП -Многопоточность -Работа с сетью и файлами -Тестирование"/>
+            <column name="PRICE" valueNumeric="77599.00"/>
+            <column name="PHOTO_ID" valueComputed="NULL"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
 
-            ('40119ae7-3f55-4002-9c64-f2cb3e1c69a3', 0,
-            'Алгоритмы и структуры данных',
-            'Это фундамент любого программиста в 2026 году. Именно алгоритмы решают, будет ли твой код работать быстро, масштабироваться на миллионы пользователей и не «падать» под нагрузкой.#БЛОК#-Массивы и списки -Стеки/очереди -Деревья -Хеш-таблицы',
-            65599.00, NULL, 'READY', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-        </sql>
+    <changeSet id="c9591b94-5c71-4cac-af26-cf48f39dc203" author="Belikov-V">
+        <comment>Seed course: Алгоритмы и структуры данных</comment>
+        <insert tableName="COURSE">
+            <column name="ID" value="40119ae7-3f55-4002-9c64-f2cb3e1c69a3"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Алгоритмы и структуры данных"/>
+            <column name="DESCRIPTION"
+                    value="Это фундамент любого программиста в 2026 году. Именно алгоритмы решают, будет ли твой код работать быстро, масштабироваться на миллионы пользователей и не «падать» под нагрузкой.#БЛОК#-Массивы и списки -Стеки/очереди -Деревья -Хеш-таблицы"/>
+            <column name="PRICE" valueNumeric="65599.00"/>
+            <column name="PHOTO_ID" valueComputed="NULL"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="f3b1c2e4-1a3d-4d9c-9b0a-0c1d2e3f4a51" author="Belikov-V">
+        <comment>Seed course: Frontend разработчик с нуля</comment>
+        <insert tableName="COURSE">
+            <column name="ID" value="6f9d4e5a-0d3f-4f8a-9b7c-1a2b3c4d5e6f"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Frontend разработчик с нуля"/>
+            <column name="DESCRIPTION"
+                    value="Научишься делать современные веб-приложения: верстка, интерактив и работа с API. Курс для новичков, много практики и мини-проектов.#БЛОК#-HTML/CSS -JavaScript основы -React -Работа с REST API -Деплой"/>
+            <column name="PRICE" valueNumeric="64999.00"/>
+            <column name="PHOTO_ID" valueComputed="NULL"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="a6c4d8b1-7b2a-4c6b-8d1a-3e4f5a6b7c8d" author="Belikov-V">
+        <comment>Seed course: Операционные системы</comment>
+        <insert tableName="COURSE">
+            <column name="ID" value="b2c3d4e5-f607-4a18-9b2c-3d4e5f607182"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Операционные системы"/>
+            <column name="DESCRIPTION"
+                    value="Разберём, как устроена ОС изнутри: процессы, память, файловые системы и многопоточность. Курс помогает понимать, почему программы работают (или падают) именно так.#БЛОК#-Процессы и потоки -Планировщики -Память и виртуальная память -Файловые системы -Системные вызовы"/>
+            <column name="PRICE" valueNumeric="55999.00"/>
+            <column name="PHOTO_ID" valueComputed="NULL"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="d9e1f2a3-4b5c-6d7e-8f90-a1b2c3d4e5f6" author="Belikov-V">
+        <comment>Seed course: Архитектура компьютера</comment>
+        <insert tableName="COURSE">
+            <column name="ID" value="c3d4e5f6-7182-4b93-8c1d-2e3f4a5b6c7d"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Архитектура компьютера"/>
+            <column name="DESCRIPTION"
+                    value="Поймёшь, как работает компьютер на уровне железа: от битов до процессора. После курса легче даются ассемблер, оптимизация и понимание производительности.#БЛОК#-Представление данных -ALU и регистры -Конвейер и кэш -Память и шины -Ввод/вывод"/>
+            <column name="PRICE" valueNumeric="49999.00"/>
+            <column name="PHOTO_ID" valueComputed="NULL"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="1b2c3d4e-5f60-4a71-8b92-c3d4e5f60718" author="Belikov-V">
+        <comment>Seed course: SQL и базы данных</comment>
+        <insert tableName="COURSE">
+            <column name="ID" value="d4e5f607-1829-4c3d-8e4f-5a6b7c8d9e0f"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="SQL и базы данных"/>
+            <column name="DESCRIPTION"
+                    value="Научишься уверенно работать с SQL и понимать базы данных: запросы, индексы, транзакции и проектирование схем. Курс с практикой на реальных кейсах.#БЛОК#-SELECT/WHERE/JOIN -Агрегации и оконные функции -Индексы -Транзакции -Проектирование схем"/>
+            <column name="PRICE" valueNumeric="42999.00"/>
+            <column name="PHOTO_ID" valueComputed="NULL"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="7c8d9e0f-1a2b-4c3d-8e4f-5a6b7c8d9e0a" author="Belikov-V">
+        <comment>Seed course: Python разработчик с нуля</comment>
+        <insert tableName="COURSE">
+            <column name="ID" value="e5f60718-293a-4b5c-9d6e-7f8091a2b3c4"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Python разработчик с нуля"/>
+            <column name="DESCRIPTION"
+                    value="Быстрый старт в программировании на Python: синтаксис, структуры данных, функции и работа с файлами. Дальше — практика, мини-проекты и основы разработки.#БЛОК#-Синтаксис и типы -Коллекции -Функции -Работа с файлами -Мини-проекты"/>
+            <column name="PRICE" valueNumeric="59999.00"/>
+            <column name="PHOTO_ID" valueComputed="NULL"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

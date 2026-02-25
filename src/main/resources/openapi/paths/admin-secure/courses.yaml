@@ -25,9 +25,9 @@ post:
           $ref: '../../components/schemas/admin-secure/request/CreateCourseRequestDto.yaml'
   responses:
     '200':
-      description: Возвращает 'success'
+      description: Возвращает созданный курс.
       content:
         application/json:
           schema:
-            $ref: '../../components/responses/BaseResponseDto.yaml'
+            $ref: '../../components/schemas/admin-secure/response/CreateCourseResponseDto.yaml'
 

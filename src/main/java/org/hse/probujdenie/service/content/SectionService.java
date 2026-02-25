@@ -24,10 +24,11 @@ public class SectionService {
     private final SectionMapper sectionMapper;
 
 
-    public void createSection(UUID courseId, Section section) {
+    public Section createSection(UUID courseId, Section section) {
         Course course = courseService.getCourse(courseId);
         formSection(section, course);
         sectionRepository.save(section);
+        return section;
     }
 
     public void updateSection(UUID sectionId, Section section) {

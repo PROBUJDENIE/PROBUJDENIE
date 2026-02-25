@@ -1,0 +1,24 @@
+allOf:
+  - $ref: '../../../responses/BaseResponseDto.yaml'
+  - type: object
+    properties:
+      data:
+        type: object
+        title: GetStudentSubmissionResponseDtoItem
+        required:
+          - id
+          - exerciseId
+          - studentEmail
+        properties:
+          id:
+            type: string
+            format: UUID
+          answer:
+            type: string
+            minLength: 3
+            maxLength: 5000
+          exerciseId:
+            type: string
+            format: UUID
+          studentEmail:
+            type: string

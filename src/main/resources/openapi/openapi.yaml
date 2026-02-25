@@ -21,6 +21,10 @@ paths:
     $ref: './paths/student-secure/courses.my-courses.yaml'
   /student-secure/api/v1/courses/{courseId}/buy:
     $ref: './paths/student-secure/courses-courseId-buy.yaml'
+  /student-secure/api/v1/exercises/{exerciseId}/submissions:
+    $ref: './paths/student-secure/exercises-exerciseId-submit.yaml'
+  /student-secure/api/v1/exercises/{exerciseId}:
+    $ref: './paths/student-secure/exercises-exerciseId.yaml'
 
   /admin-secure/api/v1/courses:
     $ref: './paths/admin-secure/courses.yaml'
@@ -38,5 +42,9 @@ paths:
     $ref: './paths/admin-secure/sections-sectionId-lectures.yaml'
   /admin-secure/api/v1/lectures/{lectureId}:
     $ref: './paths/admin-secure/lectures-lectureId.yaml'
+  /admin-secure/api/v1/lectures/{lectureId}/exercises:
+    $ref: './paths/admin-secure/lectures-lectureId-exercises.yaml'
+  /admin-secure/api/v1/exercises/{exerciseId}:
+    $ref: './paths/admin-secure/exercises-exerciseId.yaml'
 
 

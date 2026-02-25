@@ -1,9 +1,6 @@
 package org.hse.probujdenie.mapper;
 
-import org.hse.probujdenie.api.model.CreateSectionRequestDto;
-import org.hse.probujdenie.api.model.GetCoursePageResponseDtoItem;
-import org.hse.probujdenie.api.model.GetSectionPageResponseDtoItem;
-import org.hse.probujdenie.api.model.UpdateSectionRequestDto;
+import org.hse.probujdenie.api.model.*;
 import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.content.Section;
 import org.mapstruct.*;
@@ -22,6 +19,8 @@ public interface SectionMapper {
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "course", ignore = true)
     Section toEntityFromCreateDto(CreateSectionRequestDto request);
+
+    CreateSectionResponseDtoItem toCreateDtoFromEntity(Section request);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "version", ignore = true)

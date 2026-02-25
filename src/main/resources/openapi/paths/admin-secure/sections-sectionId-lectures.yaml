@@ -17,8 +17,8 @@ post:
           $ref: '../../components/schemas/admin-secure/request/CreateLectureRequestDto.yaml'
   responses:
     '200':
-      description: Возвращает 'success'
+      description: Возвращает лекцию
       content:
         application/json:
           schema:
-            $ref: '../../components/responses/BaseResponseDto.yaml'
+            $ref: '../../components/schemas/admin-secure/response/CreateLectureResponseDto.yaml'

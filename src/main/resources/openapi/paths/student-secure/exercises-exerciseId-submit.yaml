@@ -1,0 +1,43 @@
+post:
+  operationId: createStudentSubmission
+  tags:
+    - studentSecure
+  parameters:
+    - name: exerciseId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/studentSecure/request/CreateStudentSubmissionRequestDto.yaml'
+  responses:
+    '200':
+      description: BaseResponse.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/studentSecure/response/CreateStudentSubmissionResponseDto.yaml'
+
+get:
+  operationId: getStudentSubmission
+  tags:
+    - studentSecure
+  parameters:
+    - name: exerciseId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  responses:
+    '200':
+      description: ответ пользователя.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/studentSecure/response/GetStudentSubmissionResponseDto.yaml'

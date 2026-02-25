@@ -1,9 +1,6 @@
 package org.hse.probujdenie.mapper;
 
-import org.hse.probujdenie.api.model.CreateLectureRequestDto;
-import org.hse.probujdenie.api.model.GetLecturePageResponseDtoItem;
-import org.hse.probujdenie.api.model.GetSectionPageResponseDtoItem;
-import org.hse.probujdenie.api.model.UpdateLectureRequestDto;
+import org.hse.probujdenie.api.model.*;
 import org.hse.probujdenie.model.content.Lecture;
 import org.hse.probujdenie.model.content.Section;
 import org.mapstruct.*;
@@ -22,6 +19,8 @@ public interface LectureMapper {
     @Mapping(target = "lastModificationDateTime", ignore = true)
     @Mapping(target = "status", ignore = true)
     Lecture toEntityFromCreateDto(CreateLectureRequestDto request);
+
+    CreateLectureResponseDtoItem toCreateDtoFromEntity(Lecture request);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "version", ignore = true)

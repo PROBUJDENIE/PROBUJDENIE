@@ -4,15 +4,18 @@ import lombok.AllArgsConstructor;
 import org.hse.probujdenie.api.AdminSecureApiDelegate;
 import org.hse.probujdenie.api.model.*;
 import org.hse.probujdenie.mapper.CourseMapper;
+import org.hse.probujdenie.mapper.ExerciseMapper;
 import org.hse.probujdenie.mapper.LectureMapper;
 import org.hse.probujdenie.mapper.SectionMapper;
 import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.content.Lecture;
 import org.hse.probujdenie.model.content.Section;
+import org.hse.probujdenie.model.exercise.Exercise;
 import org.hse.probujdenie.model.fileSaver.FileData;
 import org.hse.probujdenie.service.content.CourseService;
 import org.hse.probujdenie.service.content.LectureService;
 import org.hse.probujdenie.service.content.SectionService;
+import org.hse.probujdenie.service.exercise.ExerciseService;
 import org.hse.probujdenie.service.fileSaver.FileSaverService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
@@ -30,17 +33,23 @@ public class AdminSecureController implements AdminSecureApiDelegate {
     private final SectionService sectionService;
     private final LectureService lectureService;
     private final FileSaverService fileSaverService;
+    private final ExerciseService exerciseService;
 
     private final CourseMapper courseMapper;
     private final SectionMapper sectionMapper;
     private final LectureMapper lectureMapper;
+    private final ExerciseMapper exerciseMapper;
 
     @Override
-    public ResponseEntity<BaseResponseDto> createCourse(CreateCourseRequestDto createCourseRequestDto) {
+    public ResponseEntity<CreateCourseResponseDto> createCourse(CreateCourseRequestDto createCourseRequestDto) {
         Course course = courseMapper.toEntityFromCreateCourseDto(createCourseRequestDto);
-        courseService.createCourse(course);
+        Course created = courseService.createCourse(course);
 
-        return ResponseEntity.ok(new BaseResponseDto(true));
+        CreateCourseResponseDto response = new CreateCourseResponseDto();
+        response.data(courseMapper.toCreateCourseDtoFromEntity(created));
+        response.success(true);
+
+        return ResponseEntity.ok(response);
     }
 
     @Override
@@ -70,11 +79,15 @@ public class AdminSecureController implements AdminSecureApiDelegate {
 
 
     @Override
-    public ResponseEntity<BaseResponseDto> createSection(UUID courseId, CreateSectionRequestDto createSectionRequestDto) {
+    public ResponseEntity<CreateSectionResponseDto> createSection(UUID courseId, CreateSectionRequestDto createSectionRequestDto) {
         Section section = sectionMapper.toEntityFromCreateDto(createSectionRequestDto);
 
-        sectionService.createSection(courseId, section);
-        return ResponseEntity.ok(new BaseResponseDto(true));
+        Section created = sectionService.createSection(courseId, section);
+        CreateSectionResponseDto response = new CreateSectionResponseDto();
+        response.success(true);
+        response.data(sectionMapper.toCreateDtoFromEntity(created));
+
+        return ResponseEntity.ok(response);
     }
 
     @Override
@@ -93,11 +106,14 @@ public class AdminSecureController implements AdminSecureApiDelegate {
 
 
     @Override
-    public ResponseEntity<BaseResponseDto> createLecture(UUID sectionId, CreateLectureRequestDto createLectureRequestDto) {
+    public ResponseEntity<CreateLectureResponseDto> createLecture(UUID sectionId, CreateLectureRequestDto createLectureRequestDto) {
         Lecture lecture = lectureMapper.toEntityFromCreateDto(createLectureRequestDto);
-        lectureService.createLecture(sectionId, lecture);
+        Lecture created = lectureService.createLecture(sectionId, lecture);
 
-        return ResponseEntity.ok(new BaseResponseDto(true));
+        CreateLectureResponseDto response = new CreateLectureResponseDto();
+        response.success(true);
+        response.data(lectureMapper.toCreateDtoFromEntity(created));
+        return ResponseEntity.ok(response);
     }
 
     @Override
@@ -132,4 +148,43 @@ public class AdminSecureController implements AdminSecureApiDelegate {
                 .headers(fileData.getHttpHeaders())
                 .body(fileData.getInputStreamResource());
     }
+
+    @Override
+    public ResponseEntity<CreateExerciseResponseDto> createExercise(UUID lectureId, CreateExerciseRequestDto createExerciseRequestDto) {
+        Exercise exercise = exerciseMapper.toEntityFromCreateExerciseDto(createExerciseRequestDto);
+        Exercise created =  exerciseService.createExercise(lectureId, exercise);
+
+        CreateExerciseResponseDto response = new CreateExerciseResponseDto();
+        response.success(true);
+        response.data(exerciseMapper.toCreateExerciseDtoFromEntity(created));
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<UpdateExerciseResponseDto> updateExercise(UUID exerciseId, UpdateExerciseRequestDto updateExerciseRequestDto) {
+        Exercise exercise = exerciseMapper.toEntityFromUpdateExerciseDto(updateExerciseRequestDto);
+        Exercise created =  exerciseService.updateExercise(exerciseId, exercise);
+
+        UpdateExerciseResponseDto response = exerciseMapper.toUpdateExerciseDtoFromEntity(created);
+        response.success(true);
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<BaseResponseDto> deleteExercise(UUID exerciseId) {
+        exerciseService.deleteExercise(exerciseId);
+        return ResponseEntity.ok(new BaseResponseDto(true));
+    }
+
+    @Override
+    public ResponseEntity<GetExercisesResponseDto> getExercises(UUID lectureId) {
+        List<Exercise> exercises = exerciseService.getAllExercisesByLectureId(lectureId);
+
+        GetExercisesResponseDto response = new GetExercisesResponseDto();
+        response.success(true);
+        response.data(exerciseMapper.toGetExercisesResponseDtoList(exercises));
+        return ResponseEntity.ok(response);
+    }
+
+
 }

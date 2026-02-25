@@ -24,10 +24,11 @@ public class LectureService {
     private final LectureRepository lectureRepository;
     private final LectureMapper lectureMapper;
 
-    public void createLecture(UUID sectionId, Lecture lecture) {
+    public Lecture createLecture(UUID sectionId, Lecture lecture) {
         Section section = sectionService.getSection(sectionId);
         formLecture(lecture, section);
         lectureRepository.save(lecture);
+        return lecture;
     }
 
     public void deleteLecture(UUID lectureId) {

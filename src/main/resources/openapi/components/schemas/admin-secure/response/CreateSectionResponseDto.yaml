@@ -1,0 +1,23 @@
+allOf:
+  - $ref: '../../../responses/BaseResponseDto.yaml'
+  - type: object
+    properties:
+      data:
+        type: object
+        title: CreateSectionResponseDtoItem
+        required:
+          - id
+          - title
+          - orderNumber
+        properties:
+          id:
+            type: string
+            format: UUID
+          title:
+            type: string
+            minLength: 3
+            maxLength: 255
+          orderNumber:
+            type: integer
+            format: int32
+            minimum: 0

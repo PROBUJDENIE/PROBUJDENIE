@@ -2,6 +2,7 @@ package org.hse.probujdenie.model.exercise;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hse.probujdenie.model.user.User;
 import org.hse.probujdenie.model.user.UserData;
 
 import java.time.LocalDateTime;
@@ -12,8 +13,8 @@ import java.util.UUID;
 @Builder
 @Getter
 @Setter
-//@Entity
-//@Table(name = "STUDENT_SUBMISSION")
+@Entity
+@Table(name = "STUDENT_SUBMISSION")
 public class StudentSubmission {
 
     @Id
@@ -25,15 +26,13 @@ public class StudentSubmission {
     private Exercise exercise;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "STUDENT_ID", nullable = false)
-    private UserData student;
+    @JoinColumn(name = "STUDENT_EMAIL", referencedColumnName = "EMAIL" ,nullable = false)
+    private User student;
 
-    @JoinColumn(name = "ANSWER", nullable = false)
+    @JoinColumn(name = "ANSWER")
     private String answer;
 
     @Column(name = "CREATION_DATE_TIME", nullable = false)
     private LocalDateTime creationDateTime;
 
-    @Column(name = "LAST_MODIFICATION_DATE_TIME", nullable = false)
-    private LocalDateTime lastModificationDateTime;
 }

@@ -29,9 +29,10 @@ public class CourseService {
     private final StudentToCourseRepository studentToCourseRepository;
     private final CourseMapper courseMapper;
 
-    public void createCourse(Course course) {
+    public Course createCourse(Course course) {
         formCourse(course);
         courseRepository.save(course);
+        return course;
     }
 
     public void updateCourse(UUID courseId, Course course) {

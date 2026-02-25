@@ -1,0 +1,18 @@
+get:
+  operationId: getExercise
+  tags:
+    - studentSecure
+  parameters:
+    - name: exerciseId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/studentSecure/response/GetExerciseResponseDto.yaml'

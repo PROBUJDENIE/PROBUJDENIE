@@ -25,6 +25,8 @@ public interface CourseMapper {
     @Mapping(target = "status", ignore = true)
     Course toEntityFromCreateCourseDto(CreateCourseRequestDto request);
 
+    CreateCourseResponseDtoItem toCreateCourseDtoFromEntity(Course request);
+
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "version", ignore = true)
     @Mapping(target = "creationDateTime", ignore = true)

@@ -6,9 +6,9 @@ import org.hse.probujdenie.model.user.User;
 
 import java.util.UUID;
 
-@Entity
+//@Entity
 @AllArgsConstructor
-@Table(name = "REFRESH_TOKEN")
+//@Table(name = "REFRESH_TOKEN")
 @NoArgsConstructor
 @Builder
 @Getter

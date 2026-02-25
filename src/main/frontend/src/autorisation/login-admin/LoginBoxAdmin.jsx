@@ -3,7 +3,7 @@ import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
 import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";;
 import admin from "@/autorisation/resourses/admin.svg";
 import {useLogin} from "@/hooks/useLogin.jsx";
-import {USER_PROFILE_ROUTE} from "@/utils/constants.jsx";
+import {ADMIN_PROFILE_ROUTE, USER_PROFILE_ROUTE} from "@/utils/constants.jsx";
 import {useNavigate} from "react-router-dom";
 export default function LoginBoxAdmin({ modalState, changeModalState}) {
 
@@ -13,7 +13,7 @@ export default function LoginBoxAdmin({ modalState, changeModalState}) {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        navigate(USER_PROFILE_ROUTE)
+        navigate(ADMIN_PROFILE_ROUTE)
       //  await submit();
     };
     return (

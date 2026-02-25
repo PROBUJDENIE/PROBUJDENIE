@@ -1,152 +1,111 @@
-import { useEffect, useState, useCallback } from "react";
-import { lectureApi } from "@/api/lecture.api.js";
-import { sectionApi } from "@/api/section.api.js";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSections } from "@/api/hooks/useSections.js";
+import { useLectures } from "@/api/hooks/useLectures.js";
 
 export const useLectureManager = (courseId) => {
-    const [sections, setSections] = useState([]);
-    const [lecturesBySection, setLecturesBySection] = useState({});
+    const { sections, loading: loadingSections, error: sectionsError } = useSections({ courseId });
+    const [activeChapterIdx, setActiveChapterIdx] = useState(null);
+    const [activeLectureId, setActiveLectureId] = useState(null);
 
-    const [activeChapter, setActiveChapter] = useState(null);
-    const [activeLectureId, setActiveLectureId] = useState("null");
-    const [lecture, setLecture] = useState(null);
+    const activeSection = useMemo(() => {
+        if (
+            activeChapterIdx === null ||
+            activeChapterIdx < 0 ||
+            activeChapterIdx >= sections.length
+        ) {
+            return null;
+        }
+        return sections[activeChapterIdx];
+    }, [sections, activeChapterIdx]);
 
-    const [activeLectureNumber, setActiveLectureNumber] = useState(null);
-    const [totalLectures, setTotalLectures] = useState(null);
+    const activeSectionId = activeSection?.id ?? null;
 
-    const [isLoadingSections, setIsLoadingSections] = useState(false);
-    const [isLoadingLecture, setIsLoadingLecture] = useState(false);
-
-    // Загрузка списка секций курса
+    const {lectures, loading: loadingLectures, error: lecturesError, getLecture,} = useLectures(activeSectionId);
     useEffect(() => {
-        if (!courseId) return;
+        if (activeChapterIdx === null || !lectures?.length) {
+            setActiveLectureId(null);
+            return;
+        }
+        // Если лекция уже выбрана и она принадлежит текущей главе — ничего не делаем
+        const currentLectureBelongsToSection = lectures.some(
+            l => String(l.id) === String(activeLectureId)
+        );
 
-        const load = async () => {
-            setIsLoadingSections(true);
-            try {
-                const data = await sectionApi.getSectionsByCourseId({
-                    courseId,
-                    offset: 0,
-                    count: 10,
-                });
-                setSections(data || []);
-            } catch (err) {
-                console.error("Ошибка загрузки секций:", err);
-            } finally {
-                setIsLoadingSections(false);
-            }
-        };
-
-        load();
-    }, [courseId]);
-
-    // Загрузка лекций для конкретной секции (только когда она стала активной)
-    useEffect(() => {
-        if (!activeChapter || !sections.length) return;
-
-        const section = sections[activeChapter - 1];
-        if (!section) return;
-
-        const sectionId = section.id;
-        if (lecturesBySection[sectionId]) return;
-
-        const load = async () => {
-            try {
-                const data = await lectureApi.getLecturesBySectionId({
-                    sectionId,
-                    offset: 0,
-                    count: 100,
-                });
-                setLecturesBySection((prev) => ({
-                    ...prev,
-                    [sectionId]: data || [],
-                }));
-            } catch (err) {
-                console.error("Ошибка загрузки лекций секции:", err);
-            }
-        };
-
-        load();
-    }, [activeChapter, sections, lecturesBySection]);
-
-    useEffect(() => {
-        if (activeLectureId === "null") {
-            setLecture(null);
+        if (currentLectureBelongsToSection) {
             return;
         }
 
+        // Иначе выбираем первую лекцию новой главы
+        setActiveLectureId(String(lectures[0].id));
+    }, [activeChapterIdx, lectures, activeLectureId]);
+
+    const [currentLectureContent, setCurrentLectureContent] = useState(null);
+    const [loadingContent, setLoadingContent] = useState(false);
+
+    useEffect(() => {
+        if (!activeLectureId) {
+            setCurrentLectureContent(null);
+            return;
+        }
+
+        let cancelled = false;
+
         const load = async () => {
-            setIsLoadingLecture(true);
+            setLoadingContent(true);
             try {
-                const data = await lectureApi.getLecture({ lectureId: activeLectureId });
-                setLecture(data);
-            } catch (err) {
-                console.error("Ошибка загрузки лекции:", err);
+                const data = await getLecture(activeLectureId);
+                if (!cancelled) {
+                    setCurrentLectureContent(data);
+                }
+            } catch (e) {
+                console.error("Ошибка загрузки лекции", e);
             } finally {
-                setIsLoadingLecture(false);
+                if (!cancelled) setLoadingContent(false);
             }
         };
 
         load();
-    }, [activeLectureId]);
+        return () => {
+            cancelled = true;
+        };
+    }, [activeLectureId, getLecture]);
+
+    const activeLectureMeta = useMemo(() => {
+        return lectures.find(
+            (l) => String(l.id) === String(activeLectureId)
+        ) ?? null;
+    }, [lectures, activeLectureId]);
+
+    const activeChapter = activeChapterIdx !== null ? activeChapterIdx + 1 : null;
+
+    const activeLectureNumber = useMemo(() => {
+        const idx = lectures.findIndex(
+            (l) => String(l.id) === String(activeLectureId)
+        );
+        return idx >= 0 ? idx + 1 : null;
+    }, [lectures, activeLectureId]);
+
+    const totalLectures = lectures.length;
 
     const goToNextLecture = useCallback(() => {
-        if (activeLectureId === "null" || !activeChapter || !sections.length) return;
+        if (!lectures.length || activeLectureId === null) return;
 
-        const currentSectionIndex = activeChapter - 1;
-        const currentSection = sections[currentSectionIndex];
-        if (!currentSection) return;
-
-        const sectionLectures = lecturesBySection[currentSection.id] || [];
-        const currentLecIndex = sectionLectures.findIndex((l) => l.id === activeLectureId);
-
-        // 1. Следующая лекция в текущей секции
-        if (currentLecIndex >= 0 && currentLecIndex < sectionLectures.length - 1) {
-            const nextLec = sectionLectures[currentLecIndex + 1];
-            setActiveLectureId(nextLec.id);
-            setActiveLectureNumber(currentLecIndex + 2);
+        const currentIdx = lectures.findIndex(
+            (l) => String(l.id) === String(activeLectureId)
+        );
+        if (currentIdx < lectures.length - 1) {
+            setActiveLectureId(String(lectures[currentIdx + 1].id));
+            return;
+        }
+        if (activeChapterIdx < sections.length - 1) {
+            setActiveChapterIdx((prev) => prev + 1);
             return;
         }
 
-        // 2. Первая лекция следующей секции
-        if (currentSectionIndex < sections.length - 1) {
-            const nextSectionIndex = currentSectionIndex + 1;
-            const nextSection = sections[nextSectionIndex];
-            const nextSectionLectures = lecturesBySection[nextSection.id] || [];
+        console.log("Конец курса");
+    }, [lectures, activeLectureId, activeChapterIdx, sections.length]);
 
-            if (nextSectionLectures.length > 0) {
-                const firstLec = nextSectionLectures[0];
-                setActiveLectureId(firstLec.id);
-                setActiveChapter(nextSectionIndex + 1);
-                setActiveLectureNumber(1);
-                return;
-            }
-        }
-
-        alert("Это была последняя лекция курса!");
-    }, [
-        activeLectureId,
-        activeChapter,
-        sections,
-        lecturesBySection,
-        setActiveLectureId,
-        setActiveChapter,
-        setActiveLectureNumber,
-    ]);
-
-    return {
-        sections,
-        lecturesBySection,
-        activeChapter,
-        setActiveChapter,
-        activeLectureId,
-        setActiveLectureId,
-        lecture,
-        activeLectureNumber,
-        setActiveLectureNumber,
-        totalLectures,
-        setTotalLectures,
-        isLoadingSections,
-        isLoadingLecture,
-        goToNextLecture,
+    return {sections, lectures, activeChapter, activeChapterIdx, setActiveChapterIdx, activeLectureId, setActiveLectureId, lecture: currentLectureContent, activeLectureMeta,
+        activeLectureNumber, totalLectures, loading: loadingSections || loadingLectures || loadingContent, loadingSections, loadingLectures, loadingContent, goToNextLecture, error: sectionsError || lecturesError,
     };
 };

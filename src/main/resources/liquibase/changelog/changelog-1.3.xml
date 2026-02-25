@@ -6,10 +6,10 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
     <changeSet id="6cd8aac0-86f1-4dbd-9a63-b912e4ca5c31" author="Belikov-V">
-        <comment>Начальные лекции в первую секцию курса по Java</comment>
+        <comment>Начальные лекции во первую секцию курса по Java</comment>
 
         <insert tableName="LECTURE">
-            <column name="ID" value="907a6077-c463-4bf8-838a-279fd1f90952"/>
+            <column name="ID" value="9ba38dcc-bf51-4fb1-a76a-7ec4a217c76f"/>
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="Введение в условные конструкции"/>
             <column name="SECTION_ID"
@@ -22,11 +22,41 @@
         </insert>
 
         <insert tableName="LECTURE">
-            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="ID" value="ed34ca5d-ed47-466e-a7ed-01bd925b6001"/>
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="Вложенные условия"/>
             <column name="SECTION_ID"
                     valueComputed="(SELECT id FROM SECTION WHERE title = 'Условные операторы' LIMIT 1)"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="2"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="f5e4fbb6-e3da-41e0-a552-a037e56554c4" author="Belikov-V">
+        <comment>Начальные лекции в вторую секцию курса по Java</comment>
+
+        <insert tableName="LECTURE">
+            <column name="ID" value="907a6077-c463-4bf8-838a-279fd1f90952"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Цикл for"/>
+            <column name="SECTION_ID"
+                    valueComputed="(SELECT id FROM SECTION WHERE title = 'Циклы' LIMIT 1)"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="1"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="LECTURE">
+            <column name="ID" value="a423a81a-9911-4449-a4bd-eb25fd3f057f"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Цикл while"/>
+            <column name="SECTION_ID"
+                    valueComputed="(SELECT id FROM SECTION WHERE title = 'Циклы' LIMIT 1)"/>
             <column name="CONTENT_ID" valueComputed="NULL"/>
             <column name="ORDER_NUMBER" valueNumeric="2"/>
             <column name="STATUS" value="READY"/>

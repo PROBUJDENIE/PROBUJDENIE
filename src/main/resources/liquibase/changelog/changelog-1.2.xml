@@ -27,15 +27,6 @@
             2,
             'READY',
             CURRENT_TIMESTAMP,
-            CURRENT_TIMESTAMP),
-
-            (RANDOM_UUID(),
-            0,
-            'Массивы',
-            (SELECT ID FROM COURSE WHERE title = 'Java разработчик с нуля'),
-            3,
-            'READY',
-            CURRENT_TIMESTAMP,
             CURRENT_TIMESTAMP)
 
         </sql>

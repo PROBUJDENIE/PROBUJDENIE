@@ -3,7 +3,7 @@ import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import leftIcon from "@/main-page/resources/images/book.svg";
 import {useState} from "react";
 import LoginOrRegister from "@/autorisation/login-or-register/LoginOrRegister.jsx";
-import PayModal from "@/user-profile/components/pay-modal/PayModal.jsx";
+import {PayModal} from "@/user-profile/components/pay-modal/PayModal.jsx";
 import LoginBox from "@/autorisation/login/LoginBox.jsx";
 
 export default function Price({course, from}) {
@@ -30,26 +30,12 @@ export default function Price({course, from}) {
                     {course.price} ₽
                 </div>
                 <div className="course-content_btn">
-                    <CommonBtn
-                        width={330}
-                        height={56}
-                        bgColor="#D2FE66"
-                        borderColor="#8A6CFF"
-                        fontColor="#000000"
-                        size={18}
-                        onClick={() => handleStart()}
-                        leftIcon={<img src={leftIcon} alt="книга" />}
-                    >
-                        Начать обучение
-                    </CommonBtn>
+                    <CommonBtn width={330} height={56} bgColor="#D2FE66" borderColor="#8A6CFF" fontColor="#000000" size={18} onClick={() => handleStart()} leftIcon={<img src={leftIcon} alt="книга" />}>Начать обучение</CommonBtn>
                 </div>
             </div>
             <LoginOrRegister modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
             <PayModal course={course} modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
-            <LoginBox
-                modalState={modalState}
-                changeModalState={(arg) => changeModalState(arg)}
-            />
+            <LoginBox modalState={modalState} changeModalState={(arg) => changeModalState(arg)}/>
         </>
     )
 }

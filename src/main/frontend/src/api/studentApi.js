@@ -1,0 +1,46 @@
+import {getUrl, PUBLIC_ENDPOINTS, STUDENT_ENDPOINTS} from './config';
+
+export const studentApi = {
+    getMyCourses: async () => {
+        try {
+            const response = await fetch(getUrl(STUDENT_ENDPOINTS.GET_MY_COURSES), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {throw new Error(`Error: ${response.status}`);}
+
+            const result = await response.json();
+
+            const coursesWithPhotoUrl = result.data?.map(course => ({
+                ...course,
+                photoUrl: course.photoId ? getUrl(PUBLIC_ENDPOINTS.GET_FILE(course.photoId)) : null})) || [];
+
+            return {...result, data: coursesWithPhotoUrl};
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    },
+
+    buyCourse: async (courseId) => {
+        try {
+            const response = await fetch(getUrl(STUDENT_ENDPOINTS.BUY_COURSE(courseId)), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {throw new Error(`Error: ${response.status}`);}
+
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+};

@@ -12,6 +12,9 @@ export const PUBLIC_ENDPOINTS = {
 export const STUDENT_ENDPOINTS = {
     GET_MY_COURSES: '/student-secure/api/v1/courses/my-courses',
     BUY_COURSE: function(courseId) { return '/student-secure/api/v1/courses/' + courseId + '/buy'; },
+    GET_EXERCISE: function(exerciseId) { return '/student-secure/api/v1/exercises/' + exerciseId; },
+    GET_SUBMISSION: function(exerciseId) { return '/student-secure/api/v1/exercises/' + exerciseId + '/submissions';  },
+    CREATE_SUBMISSION: function(exerciseId) { return '/student-secure/api/v1/exercises/' + exerciseId + '/submissions';  },
 };
 
 export const ADMIN_ENDPOINTS = {

@@ -3,6 +3,7 @@ import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import next from "../resourses/next_lect.svg"
 import like from "../resourses/like.svg"
 import dont from "../resourses/dont.svg"
+import Task from "@/lecture/task/Task.jsx";
 export default function LectureBlocks({material, onNext}) {
 
     return (
@@ -37,6 +38,8 @@ export default function LectureBlocks({material, onNext}) {
                                     />
                                 </div>
                             ); }
+                        case "task":
+                            return (<Task key={index} exerciseData={block.exerciseData}/>);
                     }
                 })}
             </div>

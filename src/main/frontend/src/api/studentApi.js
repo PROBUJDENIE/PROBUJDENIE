@@ -42,5 +42,68 @@ export const studentApi = {
             console.error('Error:', error);
             throw error;
         }
+    },
+    getExercise: async (exerciseId) => {
+        try {
+            const response = await fetch(getUrl(STUDENT_ENDPOINTS.GET_EXERCISE(exerciseId)), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+            }
+
+            const result = await response.json();
+
+            return result.data;
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    },
+    getSubmission: async (exerciseId) => {
+        try {
+            const response = await fetch(getUrl(STUDENT_ENDPOINTS.GET_SUBMISSION(exerciseId)), {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok && response.status !== 404) {
+                throw new Error(`Error: ${response.status}`);
+            }
+
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    },
+
+    createSubmission: async (exerciseId, answer) => {
+        try {
+            const response = await fetch(getUrl(STUDENT_ENDPOINTS.CREATE_SUBMISSION(exerciseId)), {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ answer })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+            }
+
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
     }
 };

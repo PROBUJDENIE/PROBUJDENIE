@@ -90,3 +90,9 @@
         drop-shadow(0 0 15px #8A6CFF);
     }
 }
+
+.lecture_container {
+    margin: 0 auto;
+    line-height: 1.5;
+    width: 70%;
+}

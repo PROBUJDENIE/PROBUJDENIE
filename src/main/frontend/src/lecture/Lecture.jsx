@@ -49,15 +49,18 @@ export default function Lecture() {
                                 </div>
                             </div>
                         </div>
-                        {activeLectureId === null ? (
-                            <div className="lecture_empty-state">
-                                <img src={emptySt}/>
-                                <h2> Ты не выбрал лекцию(</h2>
-                                <h3> Выбери главу, затем лекцию и приступай к обучению!</h3>
-                            </div>
-                        ) : (
-                            lecture?.content && <LectureBlocks material={lecture.content} onNext={goToNextLecture}/>
-                        )}
+                        <div className="lecture_container">
+                            {activeLectureId === null ? (
+                                <div className="lecture_empty-state">
+                                    <img src={emptySt}/>
+                                    <h2> Ты не выбрал лекцию(</h2>
+                                    <h3> Выбери главу, затем лекцию и приступай к обучению!</h3>
+                                </div>
+                            ) : (
+                                lecture?.content && <LectureBlocks material={lecture.content} onNext={goToNextLecture}/>
+                            )}
+                        </div>
+
                     </div>
                 </Container>
                 <Bottom></Bottom>

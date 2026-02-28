@@ -1,10 +1,11 @@
 import "./lectureBlocks.css"
 import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import next from "../resourses/next_lect.svg"
+import prev from "../resourses/prev_lect.svg"
 import like from "../resourses/like.svg"
 import dont from "../resourses/dont.svg"
 import Task from "@/lecture/task/Task.jsx";
-export default function LectureBlocks({material, onNext}) {
+export default function LectureBlocks({material, onNext, onPrev}) {
 
     return (
         <>
@@ -44,6 +45,10 @@ export default function LectureBlocks({material, onNext}) {
                 })}
             </div>
             <div className="lecture-blocks-btns">
+                <div className="lecture-btn-navig">
+                    <CommonBtn onClick={onPrev} width={420} height={80} borderRadius={30} size={32} fontColor={"white"} bgColor={"#8A6CFF"} leftIcon={<img src={prev} width={60}/>}> К предыдущему уроку</CommonBtn>
+                    <CommonBtn onClick={onNext} width={420} height={80} borderRadius={30} size={32} fontColor={"white"} bgColor={"#8A6CFF"} rightIcon={<img src={next} width={60}/>}> К следующему уроку</CommonBtn>
+                </div>
                 <div className="lecture-btn-like">
                     <h2> Как Вам урок? </h2>
                     <div className="like-buttons">
@@ -55,7 +60,6 @@ export default function LectureBlocks({material, onNext}) {
                         </button>
                     </div>
                 </div>
-                <CommonBtn onClick={onNext} width={420} height={80} borderRadius={30} size={32} fontColor={"white"} bgColor={"#8A6CFF"} rightIcon={<img src={next} width={60}/>}> К следующему уроку</CommonBtn>
             </div>
         </>
     )

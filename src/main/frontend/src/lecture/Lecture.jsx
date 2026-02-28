@@ -18,7 +18,7 @@ export default function Lecture() {
     const {courseId} = useParams();
     const [showBlink, setShowBlink] = useState(true);
     const {sections, lectures, activeChapter, activeChapterIdx, setActiveChapterIdx, activeLectureId, setActiveLectureId,
-           lecture, activeLectureNumber, totalLectures, goToNextLecture} = useLectureManager(courseId);
+           lecture, activeLectureNumber, totalLectures, goToNextLecture, goToPrevLecture} = useLectureManager(courseId);
 
     useEffect(() => {
         const timer = setTimeout(() => setShowBlink(false), 5000);
@@ -57,7 +57,7 @@ export default function Lecture() {
                                     <h3> Выбери главу, затем лекцию и приступай к обучению!</h3>
                                 </div>
                             ) : (
-                                lecture?.content && <LectureBlocks material={lecture.content} onNext={goToNextLecture}/>
+                                lecture?.content && <LectureBlocks material={lecture.content} onNext={goToNextLecture} onPrev={goToPrevLecture}/>
                             )}
                         </div>
 

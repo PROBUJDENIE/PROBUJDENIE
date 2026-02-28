@@ -27,7 +27,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     margin-top: 50px;
+    width: 100%;
+    gap: 20px;
+}
+.lecture-btn-navig {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
     width: 100%;
     gap: 20px;
 }

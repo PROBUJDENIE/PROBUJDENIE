@@ -104,8 +104,27 @@ export const useLectureManager = (courseId) => {
 
         console.log("Конец курса");
     }, [lectures, activeLectureId, activeChapterIdx, sections.length]);
+     const goToPrevLecture = useCallback(
+         () => {
+             if (!lectures.length || activeLectureId === null) return;
+
+             const currentIdx = lectures.findIndex(
+                 (l) => String(l.id) === String(activeLectureId)
+             );
+             if (currentIdx > 0) {
+                 setActiveLectureId(String(lectures[currentIdx - 1].id));
+                 return;
+             }
+             if (activeChapterIdx > 0) {
+                 setActiveChapterIdx((prev) => prev - 1);
+                 return;
+             }
+
+             console.log("Начало курса");
+         }, [lectures, activeLectureId, activeChapterIdx]);
+
 
     return {sections, lectures, activeChapter, activeChapterIdx, setActiveChapterIdx, activeLectureId, setActiveLectureId, lecture: currentLectureContent, activeLectureMeta,
-        activeLectureNumber, totalLectures, loading: loadingSections || loadingLectures || loadingContent, loadingSections, loadingLectures, loadingContent, goToNextLecture, error: sectionsError || lecturesError,
+        activeLectureNumber, totalLectures, loading: loadingSections || loadingLectures || loadingContent, loadingSections, loadingLectures, loadingContent, goToNextLecture, goToPrevLecture, error: sectionsError || lecturesError,
     };
 };

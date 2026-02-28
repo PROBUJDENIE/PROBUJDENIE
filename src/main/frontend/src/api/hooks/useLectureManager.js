@@ -86,7 +86,12 @@ export const useLectureManager = (courseId) => {
     }, [lectures, activeLectureId]);
 
     const totalLectures = lectures.length;
-
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
     const goToNextLecture = useCallback(() => {
         if (!lectures.length || activeLectureId === null) return;
 
@@ -95,33 +100,36 @@ export const useLectureManager = (courseId) => {
         );
         if (currentIdx < lectures.length - 1) {
             setActiveLectureId(String(lectures[currentIdx + 1].id));
+            scrollToTop();
             return;
         }
         if (activeChapterIdx < sections.length - 1) {
             setActiveChapterIdx((prev) => prev + 1);
+            scrollToTop();
             return;
         }
 
         console.log("Конец курса");
     }, [lectures, activeLectureId, activeChapterIdx, sections.length]);
-     const goToPrevLecture = useCallback(
-         () => {
-             if (!lectures.length || activeLectureId === null) return;
+     const goToPrevLecture = useCallback(() => {
+         if (!lectures.length || activeLectureId === null) return;
 
-             const currentIdx = lectures.findIndex(
-                 (l) => String(l.id) === String(activeLectureId)
-             );
-             if (currentIdx > 0) {
-                 setActiveLectureId(String(lectures[currentIdx - 1].id));
-                 return;
-             }
-             if (activeChapterIdx > 0) {
-                 setActiveChapterIdx((prev) => prev - 1);
-                 return;
-             }
+         const currentIdx = lectures.findIndex(
+             (l) => String(l.id) === String(activeLectureId)
+         );
+         if (currentIdx > 0) {
+            setActiveLectureId(String(lectures[currentIdx - 1].id));
+            scrollToTop();
+            return;
+         }
+         if (activeChapterIdx > 0) {
+            setActiveChapterIdx((prev) => prev - 1);
+            scrollToTop();
+            return;
+         }
 
-             console.log("Начало курса");
-         }, [lectures, activeLectureId, activeChapterIdx]);
+         console.log("Начало курса");
+     }, [lectures, activeLectureId, activeChapterIdx]);
 
 
     return {sections, lectures, activeChapter, activeChapterIdx, setActiveChapterIdx, activeLectureId, setActiveLectureId, lecture: currentLectureContent, activeLectureMeta,

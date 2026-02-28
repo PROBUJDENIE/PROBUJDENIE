@@ -54,7 +54,7 @@ export default function Task({ exerciseData }) {
                                 onChange={(value) => setCode(value ?? "")}
                                 onMount={(editor) => (editorRef.current = editor)}
                                 options={{
-                                    fontSize: 22,
+                                    fontSize: 20,
                                     lineHeight: 1.5,
                                     minimap: { enabled: false },
                                     lineNumbers: 'on',

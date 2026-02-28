@@ -11,6 +11,7 @@ import LectureManagerNavigation from "@/lecture/navigation/LectureManagerNavigat
 import LectureBlocks from "@/lecture/blocks/LectureBlocks.jsx";
 import {useLectureManager} from "@/api/hooks/useLectureManager.js";
 import next from "./resourses/next.svg"
+import LectureProgress from "@/lecture/LectureProgress.jsx";
 
 export default function Lecture() {
 
@@ -48,7 +49,9 @@ export default function Lecture() {
                                     )}
                                 </div>
                             </div>
+                            <LectureProgress total={totalLectures} current={activeLectureNumber}/>
                         </div>
+
                         <div className="lecture_container">
                             {activeLectureId === null ? (
                                 <div className="lecture_empty-state">

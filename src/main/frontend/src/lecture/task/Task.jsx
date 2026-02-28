@@ -44,17 +44,6 @@ export default function Task({ exerciseData }) {
                         </div>
                     )}
 
-                    {(exerciseData.timeLimit || exerciseData.memoryLimit) && (
-                        <div className="task-block_limits">
-                            {exerciseData.timeLimit && (
-                                <span className="limit">Time limit: {exerciseData.timeLimit}s</span>
-                            )}
-                            {exerciseData.memoryLimit && (
-                                <span className="limit">Memory limit: {exerciseData.memoryLimit}MB</span>
-                            )}
-                        </div>
-                    )}
-
                     <div className="task-block_solve">
                         <div className="code-editor-container">
                             <Editor
@@ -65,7 +54,7 @@ export default function Task({ exerciseData }) {
                                 onChange={(value) => setCode(value ?? "")}
                                 onMount={(editor) => (editorRef.current = editor)}
                                 options={{
-                                    fontSize: 14,
+                                    fontSize: 22,
                                     lineHeight: 1.5,
                                     minimap: { enabled: false },
                                     lineNumbers: 'on',

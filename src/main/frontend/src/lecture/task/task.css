@@ -18,16 +18,7 @@
     justify-content: center;
     width: 100%;
 }
-.task-block_title {
-    min-height: 45px;
-    margin-bottom: 10px;
-    background: #F3F3F3;
-    border: 2px solid #ffffff;
-    width: 100%;
-    height: auto;
-    border-radius: 15px;
-    padding: 10px;
-}
+
 .task-block_title h2 {
     font-size: 27px;
     font-weight: 600;

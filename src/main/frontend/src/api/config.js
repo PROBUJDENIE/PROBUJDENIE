@@ -21,7 +21,7 @@ export const ADMIN_ENDPOINTS = {
     GET_COURSES: '/admin-secure/api/v1/courses',
     GET_COURSE: function(id) { return '/admin-secure/api/v1/courses/' + id; },
     CREATE_COURSE: '/admin-secure/api/v1/courses',
-    UPDATE_COURSE: '/admin-secure/api/v1/courses',
+    UPDATE_COURSE: function(id) { return '/admin-secure/api/v1/courses/' + id; },
     DELETE_COURSE: function(id) { return '/admin-secure/api/v1/courses/' + id; },
 
     UPLOAD_FILE: '/admin-secure/api/v1/files',

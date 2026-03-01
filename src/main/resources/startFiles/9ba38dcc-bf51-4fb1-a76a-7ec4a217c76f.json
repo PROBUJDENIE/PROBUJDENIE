@@ -14,11 +14,11 @@
   {
     "type": "task",
     "exerciseData": {
-      "id": 42,
-      "title": "Проверка числа",
+      "id": "fa8f9f7b-6b81-41e6-925b-44b17cbc7782",
+      "title": "Сумма чисел",
       "description": "Напишите программу, которая проверяет, положительное ли число.",
-      "inputData": "Одно целое число",
-      "outputData": "YES или NO",
+      "inputData": "2,3",
+      "outputData": "5",
       "timeLimit": 1,
       "memoryLimit": 64,
       "programmingLanguage": "JAVA",

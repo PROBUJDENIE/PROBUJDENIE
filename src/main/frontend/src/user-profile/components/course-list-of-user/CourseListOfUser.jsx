@@ -1,11 +1,11 @@
 import "./courseList.css"
 import CourseCardInUserList from "@/user-profile/components/course-list-of-user/course-list_content/course-card/CourseCardInUserList.jsx";
-import {useCourses} from "@/api/hooks/useCourses.js";
+import {useAdminCourses} from "@/api/hooks/useAdminCourses.js";
 
 
 
 export default function CourseListOfUser() {
-    const { courses } = useCourses();
+    const { courses } = useAdminCourses();
 
 
 

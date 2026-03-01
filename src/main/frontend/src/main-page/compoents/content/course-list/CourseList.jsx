@@ -1,14 +1,13 @@
 import "./courseList.css"
-
 import CourseListHeader from "./course-list_header/CourseListHeader.jsx";
 import CourseCard from "./course-list_content/course-card/CourseCard.jsx";
-import {useCourses} from "@/api/hooks/useCourses.js";
 import LoginOrRegister from "@/autorisation/login-or-register/LoginOrRegister.jsx";
 import {useState} from "react";
 import LoginBox from "@/autorisation/login/LoginBox.jsx";
+import {usePublicCourses} from "@/api/hooks/usePublicCourses.js";
 
 export default function CourseList() {
-    const { courses } = useCourses();
+    const { courses } = usePublicCourses();
     const [modalState, changeModalState] = useState(0);
 
     const handleBuy = () => {
@@ -24,10 +23,7 @@ export default function CourseList() {
                     ))}
                 </div>
                 <LoginOrRegister modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
-                <LoginBox
-                    modalState={modalState}
-                    changeModalState={(arg) => changeModalState(arg)}
-                />
+                <LoginBox modalState={modalState} changeModalState={(arg) => changeModalState(arg)}/>
             </div>
         </>
     )

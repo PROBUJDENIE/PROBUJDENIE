@@ -4,13 +4,13 @@ import {MAIN_ROUTE} from "@/utils/constants.jsx";
 import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
 import {PayModal} from "@/user-profile/components/pay-modal/PayModal.jsx";
 import {useState} from "react";
-import {useCourses} from "@/api/hooks/useCourses.js";
 import {useNavigate} from "react-router-dom";
 import {useStudentCourses} from "@/api/hooks/useStudentCourses.js";
+import {usePublicCourses} from "@/api/hooks/usePublicCourses.js";
 
 export default function ModalAllCourses({modalState, changeModalState}) {
     const navigate = useNavigate();
-    const {courses, loading, error} = useCourses();
+    const { courses, loading, error } = usePublicCourses();
     const [selectedCourse, setSelectedCourse] = useState(null);
     const {courses: boughtCourses, loading: boughtLoading} = useStudentCourses();
 

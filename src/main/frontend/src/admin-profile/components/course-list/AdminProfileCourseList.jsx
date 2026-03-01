@@ -11,11 +11,11 @@ import {CONSTRUCTOR} from "@/utils/constants.jsx";
 import AdminProfileCourseCard from "./AdminProfileCourseCard.jsx";
 import AdminCourseCardAdd from "./add/AdminCourseCardAdd.jsx";
 import Image from "../../resources/images/plus.png"
-import {useCourses} from "@/api/hooks/useCourses.js";
+import {useAdminCourses} from "@/api/hooks/useAdminCourses.js";
 import defaultImg from "@/constructor/resources/images/default.png";
 
 export default function AdminProfileCourseList() {
-    const { courses } = useCourses();
+    const { courses } = useAdminCourses();
     const navigate = useNavigate();
     const [isHovered, setIsHovered] = useState(false);
 

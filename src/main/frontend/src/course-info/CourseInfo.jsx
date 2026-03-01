@@ -9,7 +9,7 @@ import {useLocation, useParams} from "react-router-dom";
 import Jump from "@/main-page/compoents/content/jump/Jump.jsx";
 import Price from "@/course-info/components/price/Price.jsx";
 import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
-import {useCourses} from "@/api/hooks/useCourses.js";
+import {useAdminCourses} from "@/api/hooks/useAdminCourses.js";
 
 export default function CourseInfo() {
     const { id } = useParams();
@@ -18,7 +18,7 @@ export default function CourseInfo() {
 
     console.log(id);
 
-    const {getCourse} = useCourses();
+    const {getCourse} = useAdminCourses();
 
     const course = getCourse(id);
 

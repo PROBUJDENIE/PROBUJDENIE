@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {studentApi} from "@/api/studentApi.js";
+import {studentApi} from "@/api/student.api.js";
 
 export function useSubmission(exerciseId) {
     const [submission, setSubmission] = useState(null);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {studentApi} from "../studentApi.js";
+import {studentApi} from "../student.api.js";
 export function useExercise(exerciseId) {
     const [exercise, setExercise] = useState(null);
     const [loading, setLoading] = useState(false);

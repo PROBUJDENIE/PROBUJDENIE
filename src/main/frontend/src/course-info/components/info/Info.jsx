@@ -1,6 +1,7 @@
 import Container from "../../../main-page/compoents/content/Container.jsx";
 import "./info.css"
 import pointerImage from "../../resourses/pointer.png";
+import defaultImg from "@/constructor/resources/images/default.png";
 
 export default function Info({ course }) {
     return (
@@ -9,7 +10,7 @@ export default function Info({ course }) {
                 <div className="info-grid">
                     <div className="info-image">
                         <img
-                            src={course.photoUrl}
+                            src={course.photoUrl || defaultImg}
                             className="course-main-image"
                         />
                     </div>

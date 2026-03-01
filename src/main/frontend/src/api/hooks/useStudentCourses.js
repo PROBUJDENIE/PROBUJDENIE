@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { studentApi } from '@/api/studentApi';
+import { studentApi } from '@/api/student.api.js';
 
 export const useStudentCourses = () => {
     const [courses, setCourses] = useState([]);

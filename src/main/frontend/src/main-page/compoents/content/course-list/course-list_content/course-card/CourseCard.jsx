@@ -1,5 +1,6 @@
 import "./courseCard.css"
 import {useNavigate} from "react-router-dom";
+import defaultImg from "@/constructor/resources/images/default.png";
 
 export default function CourseCard({ course, from, onBuyClick}) {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function CourseCard({ course, from, onBuyClick}) {
         <>
             <div className="course-card btnr">
                 <button className="course-card_view" onClick={handleClick}>
-                    <img src={course.photoUrl} />
+                    <img src={course.photoUrl || defaultImg} />
                     <p className="course-card_title">{course.title}</p>
                     <p className="course-card_subtitle">Нажмите, чтобы узнать больше... </p>
 

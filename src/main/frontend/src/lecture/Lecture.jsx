@@ -11,7 +11,7 @@ import LectureManagerNavigation from "@/lecture/navigation/LectureManagerNavigat
 import LectureBlocks from "@/lecture/blocks/LectureBlocks.jsx";
 import {useLectureManager} from "@/api/hooks/useLectureManager.js";
 import next from "./resourses/next.svg"
-import LectureProgress from "@/lecture/LectureProgress.jsx";
+import LectureProgress from "@/lecture/progress/LectureProgress.jsx";
 
 export default function Lecture() {
 
@@ -42,9 +42,7 @@ export default function Lecture() {
                                     {activeLectureId && (<>
                                             <h2>Глава {activeChapter}</h2>
                                             <img src={next} alt="вправо" width={50} height={50}/>
-                                            <h2>
-                                                Лекция {activeLectureNumber}/{totalLectures}
-                                            </h2>
+                                            <h2> Лекция {activeLectureNumber}/{totalLectures} </h2>
                                         </>
                                     )}
                                 </div>

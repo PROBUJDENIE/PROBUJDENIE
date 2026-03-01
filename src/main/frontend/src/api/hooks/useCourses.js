@@ -45,6 +45,8 @@ export function useCourses() {
 
             if (payload.photo) {
                 payload.photoId = await courseApi.savePhotoMultipart(payload.photo);
+            } else {
+                payload.photoId = null;
             }
 
             const newId = await courseApi.createCourse(courseDraft);

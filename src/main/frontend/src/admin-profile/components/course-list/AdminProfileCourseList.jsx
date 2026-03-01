@@ -12,6 +12,7 @@ import AdminProfileCourseCard from "./AdminProfileCourseCard.jsx";
 import AdminCourseCardAdd from "./add/AdminCourseCardAdd.jsx";
 import Image from "../../resources/images/plus.png"
 import {useCourses} from "@/api/hooks/useCourses.js";
+import defaultImg from "@/constructor/resources/images/default.png";
 
 export default function AdminProfileCourseList() {
     const { courses } = useCourses();
@@ -25,7 +26,7 @@ export default function AdminProfileCourseList() {
                     {courses.length > 0 ? (
                         <div className="profile-course-list-cards">
                             {courses.map((course, index) => (
-                                <AdminProfileCourseCard key={index} src={course.photoUrl} course={course} onClick={() => navigate(`${CONSTRUCTOR}?id=${course.id}`)}></AdminProfileCourseCard>
+                                <AdminProfileCourseCard key={index} src={course.photoUrl || defaultImg} course={course} onClick={() => navigate(`${CONSTRUCTOR}?id=${course.id}`)}></AdminProfileCourseCard>
 
                             ))}
                             <AdminCourseCardAdd src={Image} onClick={() => navigate(CONSTRUCTOR)}></AdminCourseCardAdd>

@@ -2,13 +2,16 @@ package org.hse.probujdenie.service.content;
 
 import lombok.RequiredArgsConstructor;
 import org.hse.probujdenie.mapper.SectionMapper;
+import org.hse.probujdenie.model.TeacherToCourse;
 import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.content.Section;
 import org.hse.probujdenie.model.content.enums.SectionStatus;
+import org.hse.probujdenie.storage.TeacherToCourseRepository;
 import org.hse.probujdenie.storage.content.SectionRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -22,23 +25,31 @@ public class SectionService {
     private final CourseService courseService;
     private final SectionRepository sectionRepository;
     private final SectionMapper sectionMapper;
+    private final TeacherToCourseRepository teacherToCourseRepository;
 
-
-    public Section createSection(UUID courseId, Section section) {
+    public Section createSection(UUID courseId, Section section, String email) {
         Course course = courseService.getCourse(courseId);
+        Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, courseId));
+        if (teacherToCourse.isEmpty()) throw new IllegalArgumentException("У вас нет прав.");
         formSection(section, course);
         sectionRepository.save(section);
         return section;
     }
 
-    public void updateSection(UUID sectionId, Section section) {
+    @Transactional
+    public void updateSection(UUID sectionId, Section section, String email) {
         Section existing = getSection(sectionId);
+        Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, section.getCourse().getId()));
+        if (teacherToCourse.isEmpty()) throw new IllegalArgumentException("У вас нет прав.");
         sectionMapper.updateCourseFromDto(section, existing);
         sectionRepository.save(existing);
     }
 
-    public void deleteSection(UUID sectionId) {
+    @Transactional
+    public void deleteSection(UUID sectionId, String email) {
         Section section = getSection(sectionId);
+        Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, section.getCourse().getId()));
+        if (teacherToCourse.isEmpty()) throw new IllegalArgumentException("У вас нет прав.");
         section.setStatus(SectionStatus.DELETED);
         sectionRepository.save(section);
     }

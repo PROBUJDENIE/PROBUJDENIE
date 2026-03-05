@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="c33c62f4-0aaa-4628-80ce-458315a51157" author="Belikov-V">
+        <comment>Create TEACHER_TO_COURSE table</comment>
+        <createTable tableName="TEACHER_TO_COURSE">
+            <column name="TEACHER_EMAIL" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="COURSE_ID" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="CREATION_DATE_TIME" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="d0c5cd5c-96ef-4562-8580-91fc759099e1" author="Belikov-V">
+        <comment>Add FK TEACHER_TO_COURSE.TEACHER_EMAIL -> USR.EMAIL (many-to-one)</comment>
+        <addForeignKeyConstraint
+                baseTableName="TEACHER_TO_COURSE"
+                baseColumnNames="TEACHER_EMAIL"
+                referencedTableName="USR"
+                referencedColumnNames="EMAIL"
+                constraintName="fk_TEACHER_TO_COURSE-USR"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="4da66eb7-7d76-4945-8a60-c58e893aa2c6" author="Belikov-V">
+        <comment>Add FK TEACHER_TO_COURSE.COURSE_ID -> COURSE.ID (many-to-one)</comment>
+        <addForeignKeyConstraint
+                baseTableName="TEACHER_TO_COURSE"
+                baseColumnNames="COURSE_ID"
+                referencedTableName="COURSE"
+                referencedColumnNames="ID"
+                constraintName="fk_TEACHER_TO_COURSE-COURSE"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="b8c9d0e1-f2a3-4567-bcde-678901234567" author="Belikov-V">
+        <insert tableName="TEACHER_TO_COURSE">
+            <column name="TEACHER_EMAIL" value="teacher1@mail.ru"/>
+            <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="a1b2c3d4-e5f6-7890-abcd-ef1234567890" author="Belikov-V">
+        <insert tableName="TEACHER_TO_COURSE">
+            <column name="TEACHER_EMAIL" value="teacher1@mail.ru"/>
+            <column name="COURSE_ID" value="d3cc735b-87a0-4760-8af3-70793b4567d6"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="b2c3d4e5-f6a7-8901-bcde-f12345678901" author="Belikov-V">
+        <insert tableName="TEACHER_TO_COURSE">
+            <column name="TEACHER_EMAIL" value="teacher1@mail.ru"/>
+            <column name="COURSE_ID" value="40119ae7-3f55-4002-9c64-f2cb3e1c69a3"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="c3d4e5f6-a7b8-9012-cdef-123456789012" author="Belikov-V">
+        <insert tableName="TEACHER_TO_COURSE">
+            <column name="TEACHER_EMAIL" value="teacher1@mail.ru"/>
+            <column name="COURSE_ID" value="6f9d4e5a-0d3f-4f8a-9b7c-1a2b3c4d5e6f"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="d4e5f6a7-b8c9-0123-defa-234567890123" author="Belikov-V">
+        <insert tableName="TEACHER_TO_COURSE">
+            <column name="TEACHER_EMAIL" value="teacher1@mail.ru"/>
+            <column name="COURSE_ID" value="b2c3d4e5-f607-4a18-9b2c-3d4e5f607182"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="e5f6a7b8-c9d0-1234-efab-345678901234" author="Belikov-V">
+        <insert tableName="TEACHER_TO_COURSE">
+            <column name="TEACHER_EMAIL" value="teacher1@mail.ru"/>
+            <column name="COURSE_ID" value="c3d4e5f6-7182-4b93-8c1d-2e3f4a5b6c7d"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="f6a7b8c9-d0e1-2345-fabc-456789012345" author="Belikov-V">
+        <insert tableName="TEACHER_TO_COURSE">
+            <column name="TEACHER_EMAIL" value="teacher1@mail.ru"/>
+            <column name="COURSE_ID" value="d4e5f607-1829-4c3d-8e4f-5a6b7c8d9e0f"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="a7b8c9d0-e1f2-3456-abcd-567890123456" author="Belikov-V">
+        <insert tableName="TEACHER_TO_COURSE">
+            <column name="TEACHER_EMAIL" value="teacher1@mail.ru"/>
+            <column name="COURSE_ID" value="e5f60718-293a-4b5c-9d6e-7f8091a2b3c4"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

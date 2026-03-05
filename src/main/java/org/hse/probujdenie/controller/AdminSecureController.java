@@ -39,11 +39,12 @@ public class AdminSecureController implements AdminSecureApiDelegate {
     private final SectionMapper sectionMapper;
     private final LectureMapper lectureMapper;
     private final ExerciseMapper exerciseMapper;
+    private static final String EMAIL = "teacher1@mail.ru";
 
     @Override
     public ResponseEntity<CreateCourseResponseDto> createCourse(CreateCourseRequestDto createCourseRequestDto) {
         Course course = courseMapper.toEntityFromCreateCourseDto(createCourseRequestDto);
-        Course created = courseService.createCourse(course);
+        Course created = courseService.createCourse(course, EMAIL);
 
         CreateCourseResponseDto response = new CreateCourseResponseDto();
         response.data(courseMapper.toCreateCourseDtoFromEntity(created));
@@ -55,14 +56,14 @@ public class AdminSecureController implements AdminSecureApiDelegate {
     @Override
     public ResponseEntity<BaseResponseDto> updateCourse(UUID id, UpdateCourseRequestDto updateCourseRequestDto) {
         Course course = courseMapper.toEntityFromUpdateCourseDto(updateCourseRequestDto);
-        courseService.updateCourse(id, course);
+        courseService.updateCourse(id, course, EMAIL);
 
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 
     @Override
     public ResponseEntity<GetCoursesOfAdminResponseDto> getCoursesOfAdmin(Integer offset, Integer count) {
-        List<Course> courses = courseService.getAllCoursesForAdmin(offset, count);
+        List<Course> courses = courseService.getAllCoursesForAdmin(offset, count, EMAIL);
 
         GetCoursesOfAdminResponseDto response = new GetCoursesOfAdminResponseDto();
         response.setSuccess(true);
@@ -73,7 +74,7 @@ public class AdminSecureController implements AdminSecureApiDelegate {
 
     @Override
     public ResponseEntity<BaseResponseDto> deleteCourse(UUID id) {
-        courseService.deleteCourse(id);
+        courseService.deleteCourse(id, EMAIL);
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 
@@ -82,7 +83,7 @@ public class AdminSecureController implements AdminSecureApiDelegate {
     public ResponseEntity<CreateSectionResponseDto> createSection(UUID courseId, CreateSectionRequestDto createSectionRequestDto) {
         Section section = sectionMapper.toEntityFromCreateDto(createSectionRequestDto);
 
-        Section created = sectionService.createSection(courseId, section);
+        Section created = sectionService.createSection(courseId, section, EMAIL);
         CreateSectionResponseDto response = new CreateSectionResponseDto();
         response.success(true);
         response.data(sectionMapper.toCreateDtoFromEntity(created));
@@ -93,14 +94,14 @@ public class AdminSecureController implements AdminSecureApiDelegate {
     @Override
     public ResponseEntity<BaseResponseDto> updateSection(UUID sectionId, UpdateSectionRequestDto updateSectionRequestDto) {
         Section section = sectionMapper.toEntityFromUpdateDto(updateSectionRequestDto);
-        sectionService.updateSection(sectionId, section);
+        sectionService.updateSection(sectionId, section, EMAIL);
 
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 
     @Override
     public ResponseEntity<BaseResponseDto> deleteSection(UUID sectionId) {
-        sectionService.deleteSection(sectionId);
+        sectionService.deleteSection(sectionId, EMAIL);
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 
@@ -108,7 +109,7 @@ public class AdminSecureController implements AdminSecureApiDelegate {
     @Override
     public ResponseEntity<CreateLectureResponseDto> createLecture(UUID sectionId, CreateLectureRequestDto createLectureRequestDto) {
         Lecture lecture = lectureMapper.toEntityFromCreateDto(createLectureRequestDto);
-        Lecture created = lectureService.createLecture(sectionId, lecture);
+        Lecture created = lectureService.createLecture(sectionId, lecture, EMAIL);
 
         CreateLectureResponseDto response = new CreateLectureResponseDto();
         response.success(true);
@@ -119,14 +120,14 @@ public class AdminSecureController implements AdminSecureApiDelegate {
     @Override
     public ResponseEntity<BaseResponseDto> updateLecture(UUID lectureId, UpdateLectureRequestDto updateLectureRequestDto) {
         Lecture lecture = lectureMapper.toEntityFromUpdateDto(updateLectureRequestDto);
-        lectureService.updateLecture(lectureId, lecture);
+        lectureService.updateLecture(lectureId, lecture, EMAIL);
 
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 
     @Override
     public ResponseEntity<BaseResponseDto> deleteLecture(UUID lectureId) {
-        lectureService.deleteLecture(lectureId);
+        lectureService.deleteLecture(lectureId, EMAIL);
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 

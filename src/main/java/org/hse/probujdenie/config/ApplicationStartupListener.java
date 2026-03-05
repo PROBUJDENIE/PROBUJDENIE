@@ -50,7 +50,7 @@ public class ApplicationStartupListener {
                 String[] partsOfFile = file.getOriginalFilename().split("\\.");
                 if (partsOfFile[1].equals("json")){
                     String lectureId = partsOfFile[0];
-                    lectureService.updateLectureContent(UUID.fromString(lectureId), fileId);
+                    lectureService.updateLectureContent(UUID.fromString(lectureId), fileId, "teacher1@mail.ru");
                 }else {
                     String courseId = partsOfFile[0];
                     courseService.updateCoursePhoto(UUID.fromString(courseId), fileId);

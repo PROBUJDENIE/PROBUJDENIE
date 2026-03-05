@@ -13,4 +13,5 @@
     <include file="changelog-1.5.xml" relativeToChangelogFile="true"/> <!--fill start users-->
     <include file="changelog-1.7.xml" relativeToChangelogFile="true"/> <!--studentToCourse table-->
     <include file="changelog-1.8.xml" relativeToChangelogFile="true"/> <!--exercise tables-->
+    <include file="changelog-1.9.xml" relativeToChangelogFile="true"/> <!--teacherToCourse tables-->
 </databaseChangeLog>

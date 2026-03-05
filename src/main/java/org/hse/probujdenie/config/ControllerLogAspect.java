@@ -35,9 +35,9 @@ public class ControllerLogAspect {
         String query = (req != null && req.getQueryString() != null) ? req.getQueryString() : "";
 
         if (query.isEmpty()) {
-            log.info("[{}] Входящий запрос {}", httpMethod, uri);
+            log.info("[Входящий запрос] {}:{}", httpMethod, uri);
         } else {
-            log.info("[{}] Входящий запрос  {}?{}", httpMethod, uri, query);
+            log.info("[Входящий запрос] {}:{}?{}", httpMethod, uri, query);
         }
     }
 
@@ -51,7 +51,7 @@ public class ControllerLogAspect {
         Boolean successed = extractSuccessed(body);
         Object errors = extractErrors(body);
 
-        log.info("[{}] Ответ на запрос successed={} errors={}", controllerMethod, successed, errors);
+        log.info("[Ответ на запрос] {}:successed={} errors={}", controllerMethod, successed, errors);
     }
 
 

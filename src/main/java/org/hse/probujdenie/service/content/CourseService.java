@@ -3,15 +3,18 @@ package org.hse.probujdenie.service.content;
 import lombok.RequiredArgsConstructor;
 import org.hse.probujdenie.mapper.CourseMapper;
 import org.hse.probujdenie.model.StudentToCourse;
+import org.hse.probujdenie.model.TeacherToCourse;
 import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.content.enums.CourseStatus;
 import org.hse.probujdenie.model.user.User;
 import org.hse.probujdenie.service.UserService;
 import org.hse.probujdenie.storage.StudentToCourseRepository;
+import org.hse.probujdenie.storage.TeacherToCourseRepository;
 import org.hse.probujdenie.storage.content.CourseRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,15 +31,22 @@ public class CourseService {
     private final UserService userService;
     private final StudentToCourseRepository studentToCourseRepository;
     private final CourseMapper courseMapper;
+    private final TeacherToCourseRepository teacherToCourseRepository;
 
-    public Course createCourse(Course course) {
+    @Transactional
+    public Course createCourse(Course course, String email) {
+        User user = userService.getUserByEmail(email);
         formCourse(course);
         courseRepository.save(course);
+        TeacherToCourse teacherToCourse = TeacherToCourse.builder().user(user).course(course).creationDateTime(LocalDateTime.now()).build();
+        teacherToCourseRepository.save(teacherToCourse);
         return course;
     }
 
-    public void updateCourse(UUID courseId, Course course) {
+    public void updateCourse(UUID courseId, Course course, String email) {
         Course existing = getCourse(courseId);
+        Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, courseId));
+        if (teacherToCourse.isEmpty()) throw new IllegalArgumentException("У вас нет прав.");
         courseMapper.updateCourseFromDto(course, existing);
         courseRepository.save(existing);
     }
@@ -52,13 +62,16 @@ public class CourseService {
         return courseRepository.findAllByStatus(CourseStatus.READY, page).getContent();
     }
 
-    public List<Course> getAllCoursesForAdmin(Integer offset, Integer count) {
+    public List<Course> getAllCoursesForAdmin(Integer offset, Integer count, String email) {
         Pageable page = PageRequest.of(offset, count);
-        return courseRepository.findAll(page).getContent();
+        return courseRepository.getCoursesOfAdmin(email, page);
     }
 
-    public void deleteCourse(UUID id) {
+    @Transactional
+    public void deleteCourse(UUID id, String email) {
         Course course = getCourse(id);
+        Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, id));
+        if (teacherToCourse.isEmpty()) throw new IllegalArgumentException("У вас нет прав.");
         course.setStatus(CourseStatus.DELETED);
         courseRepository.save(course);
     }

@@ -21,9 +21,6 @@
                 <constraints nullable="false"/>
             </column>
             <column name="DEFAULT_CODE" type="VARCHAR(2000)"/>
-            <column name="LECTURE_ID" type="UUID">
-                <constraints nullable="false"/>
-            </column>
             <column name="INPUT_DATA" type="VARCHAR(1000)">
                 <constraints nullable="false"/>
             </column>
@@ -66,17 +63,6 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="2bc05a27-be2a-4e85-a745-75c6ad66e4c2" author="Belikov-V">
-        <comment>Add FK EXERCISE.LECTURE_ID -> LECTURE.ID (many-to-one)</comment>
-        <addForeignKeyConstraint
-                baseTableName="EXERCISE"
-                baseColumnNames="LECTURE_ID"
-                referencedTableName="LECTURE"
-                referencedColumnNames="ID"
-                constraintName="fk_EXERCISE_LECTURE"
-                onDelete="CASCADE"/>
-    </changeSet>
-
     <changeSet id="a2143380-df6a-4a79-a61b-d762032c483c" author="Belikov-V">
         <comment>Add FK STUDENT_SUBMISSION.STUDENT_ID -> USR.EMAIL (many-to-one)</comment>
         <addForeignKeyConstraint
@@ -97,5 +83,25 @@
                 referencedColumnNames="ID"
                 constraintName="fk_STUDENT_SUBMISSION_EXERCISE"
                 onDelete="CASCADE"/>
+    </changeSet>
+
+
+    <changeSet id="2f2ebad4-605a-4e5a-bbfc-ad0e5de1cef3" author="Belikov-V">
+        <comment>Seed exercise: Сумма чисел</comment>
+        <insert tableName="EXERCISE">
+            <column name="ID" value="fa8f9f7b-6b81-41e6-925b-44b17cbc7782"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Сумма чисел"/>
+            <column name="DESCRIPTION" value="Напишите программу, которая проверяет, положительное ли число."/>
+            <column name="DEFAULT_CODE" value="public class Main {&#10;    public static void main(String[] args) {&#10;        // ваш код&#10;    }&#10;}"/>
+            <column name="INPUT_DATA" value="2,3"/>
+            <column name="OUTPUT_DATA" value="5"/>
+            <column name="TIME_LIMIT" valueNumeric="1"/>
+            <column name="MEMORY_LIMIT" valueNumeric="64"/>
+            <column name="STATUS" value="READY"/>
+            <column name="PROGRAMMING_LANGUAGE" value="JAVA"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

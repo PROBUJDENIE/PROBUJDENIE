@@ -1,13 +1,18 @@
 package org.hse.probujdenie.service.exercise;
 
 import lombok.RequiredArgsConstructor;
+import org.hse.probujdenie.ExerciseToCourse;
 import org.hse.probujdenie.mapper.ExerciseMapper;
+import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.content.Lecture;
 import org.hse.probujdenie.model.exercise.Exercise;
 import org.hse.probujdenie.model.exercise.enums.ExerciseStatus;
+import org.hse.probujdenie.service.content.CourseService;
 import org.hse.probujdenie.service.content.LectureService;
 import org.hse.probujdenie.storage.exercise.ExerciseRepository;
+import org.hse.probujdenie.storage.exercise.ExerciseToCourseRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,17 +26,19 @@ import static org.hse.probujdenie.util.UuidService.generateId;
 public class ExerciseService {
 
     private final ExerciseRepository exerciseRepository;
-    private final LectureService lectureService;
+    private final CourseService courseService;
     private final ExerciseMapper exerciseMapper;
+    private final ExerciseToCourseRepository exerciseToCourseRepo;
 
-    public Exercise createExercise(UUID lectureId, Exercise exercise) {
-        Lecture lecture = lectureService.getLecture(lectureId);
+    @Transactional
+    public Exercise createExercise(UUID courseId, Exercise exercise) {
+        Course course = courseService.getCourse(courseId);
         exercise.setId(generateId());
         exercise.setStatus(ExerciseStatus.READY);
-        exercise.setLecture(lecture);
         exercise.setCreationDateTime(LocalDateTime.now());
         exercise.setLastModificationDateTime(LocalDateTime.now());
         exerciseRepository.save(exercise);
+        exerciseToCourseRepo.save(ExerciseToCourse.builder().course(course).exercise(exercise).creationDateTime(LocalDateTime.now()).build());
         return exercise;
     }
 
@@ -42,8 +49,8 @@ public class ExerciseService {
         exerciseRepository.save(exercise);
     }
 
-    public List<Exercise> getAllExercisesByLectureId(UUID lectureId) {
-        return exerciseRepository.findAllByLectureIdAndStatus(lectureId, ExerciseStatus.READY);
+    public List<Exercise> getAllExercisesByCourseId(UUID courseId) {
+        return exerciseRepository.findAllByCourseIdAndStatus(courseId, ExerciseStatus.READY.name());
     }
 
     public Exercise updateExercise(UUID exerciseId, Exercise exercise) {

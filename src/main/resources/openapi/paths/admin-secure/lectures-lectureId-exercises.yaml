@@ -3,7 +3,7 @@ post:
   tags:
     - adminSecure
   parameters:
-    - name: lectureId
+    - name: courseId
       in: path
       required: true
       schema:
@@ -28,7 +28,7 @@ get:
   tags:
     - adminSecure
   parameters:
-    - name: lectureId
+    - name: courseId
       in: path
       required: true
       schema:

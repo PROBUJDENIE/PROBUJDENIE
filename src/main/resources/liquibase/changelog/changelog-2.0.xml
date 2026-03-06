@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="a1f2e3d4-b5c6-7890-abcd-ef1234567890" author="Belikov-V">
+        <comment>Create EXERCISE_TO_COURSE table</comment>
+        <createTable tableName="EXERCISE_TO_COURSE">
+            <column name="EXERCISE_ID" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="COURSE_ID" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="CREATION_DATE_TIME" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="b2e3f4a5-c6d7-8901-bcde-f12345678901" author="Belikov-V">
+        <comment>Add FK EXERCISE_TO_COURSE.EXERCISE_ID -> EXERCISE.ID (many-to-one)</comment>
+        <addForeignKeyConstraint
+                baseTableName="EXERCISE_TO_COURSE"
+                baseColumnNames="EXERCISE_ID"
+                referencedTableName="EXERCISE"
+                referencedColumnNames="ID"
+                constraintName="fk_EXERCISE_TO_COURSE-EXERCISE"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="c3f4a5b6-d7e8-9012-cdef-123456789012" author="Belikov-V">
+        <comment>Add FK EXERCISE_TO_COURSE.COURSE_ID -> COURSE.ID (many-to-one)</comment>
+        <addForeignKeyConstraint
+                baseTableName="EXERCISE_TO_COURSE"
+                baseColumnNames="COURSE_ID"
+                referencedTableName="COURSE"
+                referencedColumnNames="ID"
+                constraintName="fk_EXERCISE_TO_COURSE-COURSE"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="a7b8c9d0-e1f2-3456-abcd-567890123456" author="Belikov-V">
+        <insert tableName="EXERCISE_TO_COURSE">
+            <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
+            <column name="EXERCISE_ID" value="fa8f9f7b-6b81-41e6-925b-44b17cbc7782"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

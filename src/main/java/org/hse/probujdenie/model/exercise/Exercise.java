@@ -56,10 +56,6 @@ public class Exercise implements Serializable {
     @Column(name = "OUTPUT_DATA", nullable = false)
     private String outputData;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "LECTURE_ID", referencedColumnName = "ID", nullable = false)
-    private Lecture lecture;
-
     @Column(name = "CREATION_DATE_TIME", nullable = false)
     private LocalDateTime creationDateTime;
 

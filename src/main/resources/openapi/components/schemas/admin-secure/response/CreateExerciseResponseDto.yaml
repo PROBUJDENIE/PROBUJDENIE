@@ -29,9 +29,6 @@ allOf:
               type: string
               minLength: 3
               maxLength: 5000
-            lectureId:
-              type: string
-              format: UUID
             timeLimit:
               type: integer
               format: int32

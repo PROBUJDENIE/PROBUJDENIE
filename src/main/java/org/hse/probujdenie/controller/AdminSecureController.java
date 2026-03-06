@@ -178,8 +178,8 @@ public class AdminSecureController implements AdminSecureApiDelegate {
     }
 
     @Override
-    public ResponseEntity<GetExercisesResponseDto> getExercises(UUID lectureId) {
-        List<Exercise> exercises = exerciseService.getAllExercisesByLectureId(lectureId);
+    public ResponseEntity<GetExercisesResponseDto> getExercises(UUID courseId) {
+        List<Exercise> exercises = exerciseService.getAllExercisesByCourseId(courseId);
 
         GetExercisesResponseDto response = new GetExercisesResponseDto();
         response.success(true);

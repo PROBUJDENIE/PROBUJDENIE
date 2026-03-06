@@ -5,8 +5,6 @@ import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import leftIcon from "@/constructor/resources/images/save.svg";
 import delIcon from "@/constructor/resources/images/del_course.svg";
 import {useState} from "react";
-import create from "@/constructor/resources/images/create.svg";
-import table from "@/constructor/resources/images/table.svg";
 
 export function ConstructorInfoSettings({course, openConfirm, handleFile, setField, handleSave}) {
     const [highlightsDraft, setHighlightsDraft] = useState(

@@ -4,7 +4,7 @@ import next from "../resourses/next_lect.svg"
 import prev from "../resourses/prev_lect.svg"
 import like from "../resourses/like.svg"
 import dont from "../resourses/dont.svg"
-import Task from "@/lecture/task/Task.jsx";
+import LectureTaskLoader from "@/lecture/task/task-loader/LectureTaskLoader.jsx";
 export default function LectureBlocks({material, onNext, onPrev}) {
 
     return (
@@ -40,7 +40,7 @@ export default function LectureBlocks({material, onNext, onPrev}) {
                                 </div>
                             ); }
                         case "task":
-                            return (<Task key={index} exerciseData={block.exerciseData}/>);
+                            return ( <LectureTaskLoader key={index} exerciseId={block.exerciseId}/>);
                     }
                 })}
             </div>

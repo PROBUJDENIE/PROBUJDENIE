@@ -1,4 +1,4 @@
-import {getUrl, PUBLIC_ENDPOINTS, STUDENT_ENDPOINTS} from './config';
+import {API_CONFIG, getUrl, PUBLIC_ENDPOINTS, STUDENT_ENDPOINTS} from './config';
 
 export const studentApi = {
     getMyCourses: async () => {
@@ -44,25 +44,20 @@ export const studentApi = {
         }
     },
     getExercise: async (exerciseId) => {
-        try {
-            const response = await fetch(getUrl(STUDENT_ENDPOINTS.GET_EXERCISE(exerciseId)), {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
+        const response = await fetch(API_CONFIG.BASE_URL + STUDENT_ENDPOINTS.GET_EXERCISE(exerciseId),
+            {
+                method: "GET",
+                headers: { "Content-Type": "application/json" }
             }
+        );
 
-            const result = await response.json();
-
-            return result.data;
-        } catch (error) {
-            console.error('Error:', error);
-            throw error;
+        if (!response.ok) {
+            throw new Error("Ошибка загрузки задания");
         }
+
+        const json = await response.json();
+
+        return json.data;
     },
     getSubmission: async (exerciseId) => {
         try {

@@ -54,7 +54,6 @@
             <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
         </insert>
 
-
     </changeSet>
 
     <changeSet id="6cd8aac0-86f1-4dbd-9a63-b912e4ca5c31" author="Belikov-V">
@@ -79,6 +78,54 @@
                     valueComputed="(SELECT id FROM SECTION WHERE title = 'Условные операторы' LIMIT 1)"/>
             <column name="CONTENT_ID" valueComputed="NULL"/>
             <column name="ORDER_NUMBER" valueNumeric="2"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="LECTURE">
+            <column name="ID" value="f703484a-d27c-48f8-a3dd-8c63f9e84f5b"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Цепочки else if"/>
+            <column name="SECTION_ID" value="c2d3e4f5-a6b7-8901-cdef-234567890123"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="3"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="LECTURE">
+            <column name="ID" value="a86cccd6-f61c-4882-89b4-73771d787f0f"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Конструкция if-else"/>
+            <column name="SECTION_ID" value="c2d3e4f5-a6b7-8901-cdef-234567890123"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="4"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="LECTURE">
+            <column name="ID" value="7c26aaca-73b1-4ac6-a8ff-1dc377e829f6"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Тернарный оператор"/>
+            <column name="SECTION_ID" value="c2d3e4f5-a6b7-8901-cdef-234567890123"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="5"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="LECTURE">
+            <column name="ID" value="eb2e7db6-839d-44d7-bd56-f88ec3d936e9"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Распространённые ошибки и стиль"/>
+            <column name="SECTION_ID" value="c2d3e4f5-a6b7-8901-cdef-234567890123"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="6"/>
             <column name="STATUS" value="READY"/>
             <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>

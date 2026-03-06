@@ -36,7 +36,7 @@
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="Циклы"/>
             <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
-            <column name="ORDER_NUMBER" valueNumeric="2"/>
+            <column name="ORDER_NUMBER" valueNumeric="3"/>
             <column name="STATUS" value="READY"/>
             <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
@@ -45,9 +45,86 @@
         <insert tableName="SECTION">
             <column name="ID" valueComputed="RANDOM_UUID()"/>
             <column name="VERSION" valueNumeric="0"/>
-            <column name="TITLE" value="Массивы"/>
+            <column name="TITLE" value="Методы"/>
             <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
-            <column name="ORDER_NUMBER" valueNumeric="2"/>
+            <column name="ORDER_NUMBER" valueNumeric="4"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="SECTION">
+            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Классы и объекты"/>
+            <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
+            <column name="ORDER_NUMBER" valueNumeric="5"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="SECTION">
+            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Список"/>
+            <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
+            <column name="ORDER_NUMBER" valueNumeric="6"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="SECTION">
+            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Хеш-таблица"/>
+            <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
+            <column name="ORDER_NUMBER" valueNumeric="7"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="SECTION">
+            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Хеш-таблица"/>
+            <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
+            <column name="ORDER_NUMBER" valueNumeric="7"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="SECTION">
+            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="ООП"/>
+            <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
+            <column name="ORDER_NUMBER" valueNumeric="8"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="SECTION">
+            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Работа с файлами"/>
+            <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
+            <column name="ORDER_NUMBER" valueNumeric="9"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="SECTION">
+            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Исключения"/>
+            <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
+            <column name="ORDER_NUMBER" valueNumeric="10"/>
             <column name="STATUS" value="READY"/>
             <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>

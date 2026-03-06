@@ -6,9 +6,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
     <changeSet id="a75fdb37-dfb4-4a93-8554-a6cb50f272be" author="Belikov-V">
-        <comment>Seed start Sections for Java course</comment>
-
-
+        <comment>Seed section: Знакомство</comment>
         <insert tableName="SECTION">
             <column name="ID" value="b9679c70-6a3a-4d97-b157-221bf46dc8ee"/>
             <column name="VERSION" valueNumeric="0"/>
@@ -19,9 +17,12 @@
             <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
+    </changeSet>
 
+    <changeSet id="b1c2d3e4-f5a6-7890-bcde-f12345678901" author="Belikov-V">
+        <comment>Seed section: Условные операторы</comment>
         <insert tableName="SECTION">
-            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="ID" value="c2d3e4f5-a6b7-8901-cdef-234567890123"/>
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="Условные операторы"/>
             <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
@@ -30,9 +31,12 @@
             <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
+    </changeSet>
 
+    <changeSet id="d4e5f6a7-b8c9-0123-defa-345678901234" author="Belikov-V">
+        <comment>Seed section: Циклы</comment>
         <insert tableName="SECTION">
-            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="ID" value="e5f6a7b8-c9d0-1234-efab-456789012345"/>
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="Циклы"/>
             <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
@@ -41,9 +45,12 @@
             <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
+    </changeSet>
 
+    <changeSet id="f6a7b8c9-d0e1-2345-fabc-567890123456" author="Belikov-V">
+        <comment>Seed section: Методы</comment>
         <insert tableName="SECTION">
-            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="ID" value="a7b8c9d0-e1f2-3456-abcd-678901234567"/>
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="Методы"/>
             <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
@@ -52,9 +59,12 @@
             <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
+    </changeSet>
 
+    <changeSet id="b8c9d0e1-f2a3-4567-bcde-789012345678" author="Belikov-V">
+        <comment>Seed section: Классы и объекты</comment>
         <insert tableName="SECTION">
-            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="ID" value="c9d0e1f2-a3b4-5678-cdef-890123456789"/>
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="Классы и объекты"/>
             <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
@@ -63,9 +73,12 @@
             <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
+    </changeSet>
 
+    <changeSet id="d0e1f2a3-b4c5-6789-defa-901234567890" author="Belikov-V">
+        <comment>Seed section: Список</comment>
         <insert tableName="SECTION">
-            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="ID" value="e1f2a3b4-c5d6-7890-efab-012345678901"/>
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="Список"/>
             <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
@@ -74,9 +87,12 @@
             <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
+    </changeSet>
 
+    <changeSet id="f2a3b4c5-d6e7-8901-fabc-123456789012" author="Belikov-V">
+        <comment>Seed section: Хеш-таблица</comment>
         <insert tableName="SECTION">
-            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="ID" value="a3b4c5d6-e7f8-9012-abcd-234567890123"/>
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="Хеш-таблица"/>
             <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
@@ -85,20 +101,12 @@
             <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
+    </changeSet>
 
+    <changeSet id="a4b5c6d7-e8f9-0123-abcd-345678901234" author="Belikov-V">
+        <comment>Seed section: ООП</comment>
         <insert tableName="SECTION">
-            <column name="ID" valueComputed="RANDOM_UUID()"/>
-            <column name="VERSION" valueNumeric="0"/>
-            <column name="TITLE" value="Хеш-таблица"/>
-            <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
-            <column name="ORDER_NUMBER" valueNumeric="7"/>
-            <column name="STATUS" value="READY"/>
-            <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
-            <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
-        </insert>
-
-        <insert tableName="SECTION">
-            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="ID" value="b5c6d7e8-f9a0-1234-bcde-456789012345"/>
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="ООП"/>
             <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
@@ -107,9 +115,12 @@
             <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
+    </changeSet>
 
+    <changeSet id="c6d7e8f9-a0b1-2345-cdef-567890123456" author="Belikov-V">
+        <comment>Seed section: Работа с файлами</comment>
         <insert tableName="SECTION">
-            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="ID" value="d7e8f9a0-b1c2-3456-defa-678901234567"/>
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="Работа с файлами"/>
             <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>
@@ -118,9 +129,12 @@
             <column name="CREATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueComputed="CURRENT_TIMESTAMP"/>
         </insert>
+    </changeSet>
 
+    <changeSet id="e8f9a0b1-c2d3-4567-efab-789012345678" author="Belikov-V">
+        <comment>Seed section: Исключения</comment>
         <insert tableName="SECTION">
-            <column name="ID" valueComputed="RANDOM_UUID()"/>
+            <column name="ID" value="f9a0b1c2-d3e4-5678-fabc-890123456789"/>
             <column name="VERSION" valueNumeric="0"/>
             <column name="TITLE" value="Исключения"/>
             <column name="COURSE_ID" value="b14d7eb5-6efe-4c17-a557-e3a4b4a9e564"/>

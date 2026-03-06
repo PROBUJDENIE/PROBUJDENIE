@@ -5,9 +5,59 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="6cd8aac0-86f1-4dbd-9a63-b912e4ca5c31" author="Belikov-V">
-        <comment>Начальные лекции во первую секцию курса по Java</comment>
+    <changeSet id="e46c353c-512a-4717-b9a7-f807beb6c247" author="Belikov-V">
+        <insert tableName="LECTURE">
+            <column name="ID" value="6d62868b-45c0-43fb-baab-e66453db6079"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Как компьютер принимает решения"/>
+            <column name="SECTION_ID" value="b9679c70-6a3a-4d97-b157-221bf46dc8ee"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="1"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
 
+        <insert tableName="LECTURE">
+            <column name="ID" value="6fcc9473-70b8-4e62-8632-8a3c31e98685"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Логический тип данных"/>
+            <column name="SECTION_ID" value="b9679c70-6a3a-4d97-b157-221bf46dc8ee"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="2"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="LECTURE">
+            <column name="ID" value="dd99a06f-5df2-4f31-b950-7ba0d30f3b08"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Операторы сравнения"/>
+            <column name="SECTION_ID" value="b9679c70-6a3a-4d97-b157-221bf46dc8ee"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="3"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+        <insert tableName="LECTURE">
+            <column name="ID" value="f90b5978-5527-41c0-87d5-28902590b09c"/>
+            <column name="VERSION" valueNumeric="0"/>
+            <column name="TITLE" value="Что дальше"/>
+            <column name="SECTION_ID" value="b9679c70-6a3a-4d97-b157-221bf46dc8ee"/>
+            <column name="CONTENT_ID" valueComputed="NULL"/>
+            <column name="ORDER_NUMBER" valueNumeric="4"/>
+            <column name="STATUS" value="READY"/>
+            <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+            <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
+        </insert>
+
+
+    </changeSet>
+
+    <changeSet id="6cd8aac0-86f1-4dbd-9a63-b912e4ca5c31" author="Belikov-V">
         <insert tableName="LECTURE">
             <column name="ID" value="9ba38dcc-bf51-4fb1-a76a-7ec4a217c76f"/>
             <column name="VERSION" valueNumeric="0"/>
@@ -36,8 +86,6 @@
     </changeSet>
 
     <changeSet id="f5e4fbb6-e3da-41e0-a552-a037e56554c4" author="Belikov-V">
-        <comment>Начальные лекции в вторую секцию курса по Java</comment>
-
         <insert tableName="LECTURE">
             <column name="ID" value="907a6077-c463-4bf8-838a-279fd1f90952"/>
             <column name="VERSION" valueNumeric="0"/>

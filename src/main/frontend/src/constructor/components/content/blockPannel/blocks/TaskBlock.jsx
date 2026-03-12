@@ -3,7 +3,7 @@ export default function TaskBlock({block, onChange}) {
     if (!exercise?.id) return null;
 
     const handleChange = (field, value) => {
-        onChange({ [field]: value }); // отправляем изменения поверх exercise
+        onChange({ [field]: value });
     };
 
     return (

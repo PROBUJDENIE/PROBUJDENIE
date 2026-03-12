@@ -63,8 +63,6 @@ export function useAdminExercises(courseId) {
     const updateExercise = useCallback(
         async (exercise) => {
             if (!exercise?.id) throw new Error("Нет ID задания");
-
-            // Формируем payload строго под бэкенд
             const payload = {
                 title: exercise.title,
                 description: exercise.description,
@@ -74,11 +72,7 @@ export function useAdminExercises(courseId) {
                 outputData: exercise.outputData,
                 defaultCode: exercise.defaultCode
             };
-
-            // Передаём ID через URL, payload через тело
             await adminApi.updateExercise(exercise.id, payload);
-
-            // Обновляем локальный стейт
             setExercises(prev =>
                 prev.map(ex => (ex.id === exercise.id ? { ...ex, ...payload } : ex))
             );

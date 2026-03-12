@@ -1,14 +1,12 @@
 import "./blockPannelTasks.css"
-import task from "../../../resources/images/task.svg"
-export default function ConstructorBlocksPanelTasks({ onAdd }) {
+export default function ConstructorBlocksPanelTasks() {
 
     return (
         <>
             <aside className="blocks-panel">
-                <h3>Блоки</h3>
-                <button className={"btn_add"} onClick={() => onAdd("task")}>
-                    <img src={task}/>
-                    Задание</button>
+                <div className="blocks-panel-tasks">
+                    <h3>Задания</h3>
+                </div>
             </aside>
         </>
     )

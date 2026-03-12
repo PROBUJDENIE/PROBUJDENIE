@@ -72,4 +72,124 @@ export const adminApi = {
         const json = await response.json();
         return json.id;
     },
+    createSection: async (courseId, section) => {
+        const response = await fetch(
+            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_SECTION(courseId),
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(section),
+            }
+        );
+
+        const json = await response.json();
+        return json.data;
+    },
+    updateSection: async (section) => {
+        await fetch(
+            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_SECTION(section.id),
+            {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(section),
+            }
+        );
+    },
+    deleteSection: async (id) => {
+        await fetch(
+            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.DELETE_SECTION(id),
+            {
+                method: "DELETE"
+            }
+        );
+    },
+    createLecture: async (sectionId, lecture) => {
+        const response = await fetch(
+            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_LECTURE(sectionId),
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(lecture),
+            }
+        );
+
+        const json = await response.json();
+        return json.data;
+    },
+    updateLecture: async (lecture) => {
+        await fetch(
+            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_LECTURE(lecture.id),
+            {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(lecture),
+            }
+        );
+    },
+    deleteLecture: async (id) => {
+        await fetch(
+            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.DELETE_LECTURE(id),
+            {
+                method: "DELETE"
+            }
+        );
+    },
+
+    getExercises: async (courseId) => {
+
+        const response = await fetch(
+            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.GET_EXERCISES(courseId),
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+
+        const json = await response.json();
+
+        return json.data;
+    },
+
+    createExercise: async (courseId, exercise) => {
+
+        const response = await fetch(
+            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_EXERCISE(courseId),
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(exercise)
+            }
+        );
+
+        const json = await response.json();
+
+        return json.data;
+    },
+
+    updateExercise: async (exerciseId, payload) => {
+        await fetch(
+            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_EXERCISE(exerciseId),
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            }
+        );
+    },
+
+    deleteExercise: async (exerciseId) => {
+
+        await fetch(
+            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.DELETE_EXERCISE(exerciseId),
+            {
+                method: "DELETE"
+            }
+        );
+    },
 };

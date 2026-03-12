@@ -19,6 +19,7 @@
     border: 2px solid #8A6CFF;
     border-radius: 30px;
     padding: 10px;
+    overflow-y: auto;
 }
 
 
@@ -39,7 +40,7 @@
 
 .constructor-lecture-btn {
     width: 200px;
-    height: 50px;
+    height: 70px;
     border-radius: 15px;
     border: 2px solid #8A6CFF;
     display: flex;
@@ -48,6 +49,8 @@
     font-size: 20px;
     margin-left: auto;
     margin-top: 20px;
+    padding: 0 10px;
+    text-align: center;
 }
 
 .constructor-lecture-btn input {
@@ -71,7 +74,7 @@
 
 .constructor-section-btn {
     width: 250px;
-    height: 50px;
+    height: 70px;
     border-radius: 15px;
     border: 2px solid #8A6CFF;
     display: flex;

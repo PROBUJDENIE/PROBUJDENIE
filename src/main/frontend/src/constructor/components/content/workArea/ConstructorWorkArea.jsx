@@ -49,13 +49,24 @@ export default function ConstructorWorkArea({
                                             }) {
 
     const handleChange = useCallback(
-        (blockId, content) => {
-            updateBlock(blockId, {content});
+        (block) => {
+            if (block.type === "task") {
+                updateBlock(block.exercise);
+            } else {
+                updateBlock(block.id, { content: block.content });
+            }
         },
         [updateBlock]
     );
     const getOnChange = useCallback(
-        (blockId) => (content) => handleChange(blockId, content),
+        (block) => (updatedContent) => {
+            if (block.type === "task") {
+                const updatedExercise = { ...block.exercise, ...updatedContent };
+                handleChange({ ...block, exercise: updatedExercise });
+            } else {
+                handleChange({ ...block, content: updatedContent });
+            }
+        },
         [handleChange]
     );
 
@@ -95,7 +106,7 @@ export default function ConstructorWorkArea({
                     <div className="block-wrapper">
                         <BlockRenderer
                             block={block}
-                            onChange={getOnChange(block.id)}
+                            onChange={getOnChange(block)}
                             activeLecture={activeLecture}
                             mode={mode}
                         />

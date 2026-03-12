@@ -9,7 +9,8 @@ import CommonBtn from "../../../main-page/compoents/prototype/btn/CommonBtn.jsx"
 import leftIcon from "../../resources/images/save.svg";
 import {moveDelete, moveDown, moveUp} from "../hooks/blockOperations.js";
 import Image from "../../resources/images/lPanel.svg"
-export default function ConstructorContent({course, setCourse, saveCourse}) {
+import {useAdminCourseContent} from "@/api/hooks/useAdminCourseContent.js";
+export default function ConstructorContent({course, setCourse, handleSave}) {
 
     const [open, setOpen] = useState(false);
     const [hoveredBlockId, setHoveredBlockId] = useState(null);
@@ -26,6 +27,14 @@ export default function ConstructorContent({course, setCourse, saveCourse}) {
         updateBlock,
         activeLecture
     } = useConstructorCourse(course, setCourse, "content");
+
+    useAdminCourseContent(
+        course.id,
+        activeSectionId,
+        setActiveSectionId,
+        setCourse
+    );
+
     const handleMoveUp = (blockId) => {
         const updatedCourse = moveUp(course, activeSectionId, activeLectureId, blockId);
         setCourse(updatedCourse);
@@ -80,15 +89,9 @@ export default function ConstructorContent({course, setCourse, saveCourse}) {
                         <div className="constructor-content_workArea_empty">
                             <div className="empty-state">
                                 <h2 className="empty-state_title">Редактирование лекции</h2>
-                                <p className="empty-state_text">
-                                    Выберите главу из списка слева, затем лекцию, чтобы начать редактирование, а затем добавьте необходимые блоки.
-                                </p>
+                                <p className="empty-state_text"> Выберите главу из списка слева, затем лекцию, чтобы начать редактирование, а затем добавьте необходимые блоки.</p>
                                 <div className="empty-state_image">
-                                    <img
-                                        src={editImage}
-                                        alt="Выберите лекцию"
-                                        className="empty-state_img"
-                                    />
+                                    <img src={editImage} alt="" className="empty-state_img"/>
                                 </div>
                             </div>
                         </div>
@@ -97,17 +100,7 @@ export default function ConstructorContent({course, setCourse, saveCourse}) {
                 <div className="constructor-content_tools">
                     <ConstructorBlocksPanel onAdd={addBlock}></ConstructorBlocksPanel>
                     <div className="constructor-content_tools_btn">
-                        <CommonBtn
-                            width={235}
-                            height={50}
-                            bgColor="#D9FF6A"
-                            borderColor="#8A6CFF"
-                            onClick={saveCourse}
-                            size={20}
-                            leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} />}
-                        >
-                            Сохранить курс
-                        </CommonBtn>
+                        <CommonBtn width={235} height={50} bgColor="#D9FF6A" borderColor="#8A6CFF" onClick={handleSave} size={20} leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} />}>Сохранить курс</CommonBtn>
                     </div>
                 </div>
             </div>

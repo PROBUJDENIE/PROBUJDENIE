@@ -38,6 +38,11 @@ export const ADMIN_ENDPOINTS = {
     CREATE_LECTURE: function(sectionId) { return '/admin-secure/api/v1/sections/' + sectionId + '/lectures'; },
     UPDATE_LECTURE: function(lectureId) { return '/admin-secure/api/v1/lectures/' + lectureId; },
     DELETE_LECTURE: function(lectureId) { return '/admin-secure/api/v1/lectures/' + lectureId; },
+
+    GET_EXERCISES: (courseId) => `/admin-secure/api/v1/courses/${courseId}/exercises`,
+    CREATE_EXERCISE: (courseId) => `/admin-secure/api/v1/courses/${courseId}/exercises`,
+    UPDATE_EXERCISE: (exerciseId) => `/admin-secure/api/v1/exercises/${exerciseId}`,
+    DELETE_EXERCISE: (exerciseId) => `/admin-secure/api/v1/exercises/${exerciseId}`,
 };
 
 export function getUrl(base, replacements = {}) {

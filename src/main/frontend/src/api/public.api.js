@@ -59,7 +59,7 @@ export const publicApi = {
                 getUrl(PUBLIC_ENDPOINTS.GET_FILE(lecture.contentId)),
             );
 
-            contentString = await fileResponse.json();
+            contentString = await fileResponse.text();
         }
 
         return {

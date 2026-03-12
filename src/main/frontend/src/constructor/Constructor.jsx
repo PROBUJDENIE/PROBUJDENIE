@@ -11,6 +11,9 @@ import back from "./resources/images/back.svg"
 import tasks from "./resources/images/const_tasks.svg"
 import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
 import {useAdminCourses} from "@/api/hooks/useAdminCourses.js";
+import ConstructorContent from "@/constructor/components/content/ConstructorContent.jsx";
+import ConstructorTasks from "@/constructor/components/tasks/ConstructorTasks.jsx";
+import {useAdminExercises} from "@/api/hooks/useAdminExercises.js";
 
 export default function Constructor() {
 
@@ -21,8 +24,9 @@ export default function Constructor() {
 
     const {deleteCourse, saveCourse, loading,getCourse, addOrUpdateCourse} = useAdminCourses();
 
-    const emptyCourse = {id: null, title: "", description: "", highlights: [], price: "", photo: null, photoId: null,};
+    const emptyCourse = {id: null, title: "", description: "", highlights: [], price: "", photo: null, photoId: null, sections: []};
     const [course, setCourse] = useState(emptyCourse);
+    const { exercises } = useAdminExercises(course.id);
 
     useEffect(() => {
         if (!courseId) return;
@@ -60,7 +64,8 @@ export default function Constructor() {
                         <CommonBtn width={298} height={50} bgColor={"#DFD8D3"} borderColor={"#8A6CFF"} fontColor={"white"} size={24} onClick={() => navigate(ADMIN_PROFILE_ROUTE)} leftIcon={<img src={back} />}>Назад к моим курсам</CommonBtn>
                     </div>
                     {!loading  && activeAd === 'info' && (<ConstructorInfo handleDeleteCourse={deleteCourse} course={course} setField={setField} handleSave={handleSave}></ConstructorInfo>)}
-
+                    {!loading  && activeAd === 'content' && (<ConstructorContent  course={course} setCourse={setCourse} handleSave={handleSave}></ConstructorContent>)}
+                    {!loading  && activeAd === 'tasks' && (<ConstructorTasks  course={course} setCourse={setCourse} handleSave={handleSave} exercises={exercises}></ConstructorTasks>)}
                 </div>
             </Container>
             <Bottom></Bottom>

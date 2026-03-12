@@ -25,20 +25,20 @@ export default function ConstructorNavigation({
     const [hoveredLectureId, setHoveredLectureId] = useState(null);
 
     if (!open) return null;
+
+    const sections = course.sections || [];
+
     return (
         <div className="overlay" onClick={onClose}>
             <div className="constructor_modal" onClick={(e) => e.stopPropagation()}>
                 <button className="btnn" onClick={onClose}>
                     <img alt="меню" src={lPanelImage} />
                 </button>
+
                 <div className="constructor_modal_content">
-                    {course.sections.map((section) => (
-                        <div
-                            key={section.id}
-                            className="nav-item"
-                            onMouseEnter={() => setHoveredSectionId(section.id)}
-                            onMouseLeave={() => setHoveredSectionId(null)}
-                        >
+
+                    {sections.map((section) => (
+                        <div key={section.id} className="nav-item" onMouseEnter={() => setHoveredSectionId(section.id)} onMouseLeave={() => setHoveredSectionId(null)}>
                             <div className="nav-item-content">
                                 {hoveredSectionId === section.id && allowCreate && (
                                     <button
@@ -46,11 +46,14 @@ export default function ConstructorNavigation({
                                         onClick={() => {
                                             setCourse((prev) => ({
                                                 ...prev,
-                                                sections: prev.sections.filter(
+                                                sections: (prev.sections || []).filter(
                                                     (s) => s.id !== section.id
                                                 )
                                             }));
-                                            if (activeSectionId === section.id) setActiveSectionId(null);
+
+                                            if (activeSectionId === section.id) {
+                                                setActiveSectionId(null);
+                                            }
                                         }}
                                     >
                                         <img src={del} />
@@ -65,7 +68,7 @@ export default function ConstructorNavigation({
                                             ? (newTitle) =>
                                                 setCourse((prev) => ({
                                                     ...prev,
-                                                    sections: prev.sections.map((s) =>
+                                                    sections: (prev.sections || []).map((s) =>
                                                         s.id === section.id
                                                             ? { ...s, title: newTitle }
                                                             : s
@@ -77,34 +80,40 @@ export default function ConstructorNavigation({
                                 />
                             </div>
 
+
                             {activeSectionId === section.id &&
-                                section.lectures.map((lecture) => (
+                                (section.lectures || []).map((lecture) => (
+
                                     <div
                                         key={lecture.id}
                                         className="nav-item lecture-item"
                                         onMouseEnter={() => setHoveredLectureId(lecture.id)}
                                         onMouseLeave={() => setHoveredLectureId(null)}
                                     >
+
                                         <div className="nav-item-content">
+
                                             {hoveredLectureId === lecture.id && allowCreate && (
                                                 <button
                                                     className="btn-delete"
                                                     onClick={() => {
                                                         setCourse((prev) => ({
                                                             ...prev,
-                                                            sections: prev.sections.map((section) =>
+                                                            sections: (prev.sections || []).map((section) =>
                                                                 section.id !== activeSectionId
                                                                     ? section
                                                                     : {
                                                                         ...section,
-                                                                        lectures: section.lectures.filter(
+                                                                        lectures: (section.lectures || []).filter(
                                                                             (l) => l.id !== lecture.id
                                                                         )
                                                                     }
                                                             )
                                                         }));
-                                                        if (activeLectureId === lecture.id)
+
+                                                        if (activeLectureId === lecture.id) {
                                                             setActiveLectureId(null);
+                                                        }
                                                     }}
                                                 >
                                                     <img src={del} />
@@ -119,18 +128,17 @@ export default function ConstructorNavigation({
                                                         ? (newTitle) =>
                                                             setCourse((prev) => ({
                                                                 ...prev,
-                                                                sections: prev.sections.map(
+                                                                sections: (prev.sections || []).map(
                                                                     (section) =>
                                                                         section.id !== activeSectionId
                                                                             ? section
                                                                             : {
                                                                                 ...section,
-                                                                                lectures: section.lectures.map(
+                                                                                lectures: (section.lectures || []).map(
                                                                                     (lec) =>
-                                                                                        lec.id !==
-                                                                                        activeLectureId
-                                                                                            ? lec
-                                                                                            : { ...lec, title: newTitle }
+                                                                                        lec.id === lecture.id
+                                                                                            ? { ...lec, title: newTitle }
+                                                                                            : lec
                                                                                 )
                                                                             }
                                                                 )
@@ -148,7 +156,6 @@ export default function ConstructorNavigation({
                             )}
                         </div>
                     ))}
-
                     {allowCreate && <ConstructorCreateSection onClick={saveSection} />}
                 </div>
             </div>

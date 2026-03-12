@@ -27,7 +27,7 @@ export function useAdminCourses() {
 
 
     function createEmptyCourse() {
-        return {id: null, title: "", description: "", highlights: [], price: 0, photoId: null, photo: null};
+        return {id: null, title: "", description: "", highlights: [], price: 0, photoId: null, photo: null, sections: []};
     }
 
     const getCourse = useCallback((id) => {
@@ -85,7 +85,7 @@ export function useAdminCourses() {
             );
 
             return payload;
-        } catch (e) {
+        } catch (e) {sections: []
             setError(e.message);
             throw e;
         }

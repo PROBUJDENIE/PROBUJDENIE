@@ -1,8 +1,7 @@
 import "./lectureTasksPreviewBlock.css"
-export default function LectureTasksPreviewBlock({ lecture, block, onChange }) {
+export default function LectureTasksPreviewBlock({ lecture, block, onChange, allExercises=[] }) {
     if (!lecture) return <div className="block block-task">Выберите лекцию</div>;
 
-    const tasks = lecture.taskBlocks || [];
     const selectedTaskId = block.content?.taskId || "";
 
     const handleSelect = (e) => {
@@ -17,9 +16,9 @@ export default function LectureTasksPreviewBlock({ lecture, block, onChange }) {
         <div className="block block-task">
             <select value={selectedTaskId} onChange={handleSelect}>
                 <option value="">Выберите задание</option>
-                {tasks.map(task => (
+                {allExercises.map(task => (
                     <option key={task.id} value={task.id}>
-                        {task.content?.content?.title || "Без названия"}
+                        {task.title || "Без названия"}
                     </option>
                 ))}
             </select>

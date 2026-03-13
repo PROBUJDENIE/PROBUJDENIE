@@ -9,7 +9,7 @@ import moveUpImg from "../../..//resources/images/move-up.svg"
 import moveDownImg from "../../..//resources/images/move-down.svg"
 import moveDeleteImg from "../../..//resources/images/move-delete.svg"
 
-const BlockRenderer = function BlockRenderer({block, onChange, activeLecture, mode, createExercise, updateExercise,deleteExercise, setDraftExercise }) {
+const BlockRenderer = function BlockRenderer({block, onChange, activeLecture, mode, createExercise, updateExercise,deleteExercise, setDraftExercise, allExercises }) {
     if (mode === "tasks" && block.type === "lectureTasksPreview") {
         return null;
     }
@@ -28,6 +28,7 @@ const BlockRenderer = function BlockRenderer({block, onChange, activeLecture, mo
                     lecture={activeLecture}
                     block={block}
                     onChange={onChange}
+                    allExercises={allExercises}
                 />
             );
         default:
@@ -45,7 +46,7 @@ export default function ConstructorWorkArea({
                                                 setHoveredBlockId,
                                                 onMoveUp,
                                                 onMoveDown,
-                                                onDelete, updateExercise, createExercise, deleteExercise, setDraftExercise
+                                                onDelete, updateExercise, createExercise, deleteExercise, setDraftExercise, allExercises
                                             }) {
 
     const handleChange = useCallback(
@@ -113,6 +114,7 @@ export default function ConstructorWorkArea({
                             createExercise={createExercise}
                             deleteExercise={deleteExercise}
                             setDraftExercise={setDraftExercise}
+                            allExercises={allExercises}
                         />
                     </div>
                 </div>

@@ -10,6 +10,7 @@ import leftIcon from "../../resources/images/save.svg";
 import {moveDelete, moveDown, moveUp} from "../hooks/blockOperations.js";
 import Image from "../../resources/images/lPanel.svg"
 import {useAdminCourseContent} from "@/api/hooks/useAdminCourseContent.js";
+import {useAdminExercises} from "@/api/hooks/useAdminExercises.js";
 export default function ConstructorContent({course, setCourse, handleSave}) {
 
     const [open, setOpen] = useState(false);
@@ -27,7 +28,9 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
         updateBlock,
         activeLecture
     } = useConstructorCourse(course, setCourse, "content");
-
+    const {
+        exercises
+    } = useAdminExercises(course?.id);
     useAdminCourseContent(
         course.id,
         activeSectionId,
@@ -84,6 +87,7 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
                             onMoveUp={handleMoveUp}
                             onMoveDown={handleMoveDown}
                             onDelete={handleDelete}
+                            allExercises={exercises}
                         />
                     ) : (
                         <div className="constructor-content_workArea_empty">

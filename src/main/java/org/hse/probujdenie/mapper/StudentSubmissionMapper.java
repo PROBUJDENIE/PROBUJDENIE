@@ -10,7 +10,6 @@ public interface StudentSubmissionMapper {
 
 
     @Mapping(target = "creationDateTime", ignore = true)
-    @Mapping(target = "id", ignore = true)
     StudentSubmission toEntityFromCreateStudentSubmissionDto(CreateStudentSubmissionRequestDto request);
 
     @Mapping(target = "exerciseId", source = "exercise.id")

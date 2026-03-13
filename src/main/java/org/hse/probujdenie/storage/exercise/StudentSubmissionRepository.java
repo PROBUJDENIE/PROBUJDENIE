@@ -10,5 +10,5 @@ import java.util.UUID;
 @Repository
 public interface StudentSubmissionRepository extends JpaRepository<StudentSubmission, UUID> {
 
-    Optional<StudentSubmission> findTopByExerciseIdAndStudentEmailOrderByCreationDateTimeDesc(UUID exerciseId, String email);
+    Optional<StudentSubmission> findByExerciseIdAndStudentEmail(UUID exerciseId, String email);
 }

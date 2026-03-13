@@ -1,7 +1,12 @@
 type: object
-
+required:
+  - answer
 properties:
   answer:
     type: string
     minLength: 3
     maxLength: 5000
+  id:
+    type: string
+    format: UUID
+

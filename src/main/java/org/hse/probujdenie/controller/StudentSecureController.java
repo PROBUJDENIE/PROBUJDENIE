@@ -55,8 +55,12 @@ public class StudentSecureController implements StudentSecureApiDelegate {
         String email = "student@mail.ru";
 
         StudentSubmission studentSubmission = studentSubmissionMapper.toEntityFromCreateStudentSubmissionDto(createStudentSubmissionRequestDto);
-        StudentSubmission created =  studentSubmissionService.createStudentSubmission(email, exerciseId, studentSubmission);
-
+        StudentSubmission created;
+        if (createStudentSubmissionRequestDto.getId() == null) {
+            created =  studentSubmissionService.createStudentSubmission(email, exerciseId, studentSubmission);
+        }else {
+            created =  studentSubmissionService.updateStudentSubmission(email, exerciseId, studentSubmission);
+        }
         CreateStudentSubmissionResponseDto response = new CreateStudentSubmissionResponseDto();
         response.success(true);
         response.data(studentSubmissionMapper.toCreateStudentSubmissionDtoFromEntity(created));
@@ -67,7 +71,7 @@ public class StudentSecureController implements StudentSecureApiDelegate {
     public ResponseEntity<GetStudentSubmissionResponseDto> getStudentSubmission(UUID exerciseId) {
         String email = "student@mail.ru";
 
-        StudentSubmission studentSubmission =  studentSubmissionService.getStudentSubmission(exerciseId, email);
+        StudentSubmission studentSubmission =  studentSubmissionService.getStudentSubmissionByExerciseIdAndEmail(exerciseId, email);
 
         GetStudentSubmissionResponseDto response = new GetStudentSubmissionResponseDto();
         response.success(true);

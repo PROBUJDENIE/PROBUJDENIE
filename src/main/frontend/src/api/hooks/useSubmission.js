@@ -25,7 +25,12 @@ export function useSubmission(exerciseId) {
     const submitSolution = async (answer) => {
         try {
             setLoading(true);
-            const result = await studentApi.createSubmission(exerciseId, answer);
+            const data = {
+                answer: answer,
+                ...(submission?.data?.id && { id: submission.data.id })
+            };
+
+            const result = await studentApi.createSubmission(exerciseId, data);
             setSubmission(result);
             return result;
         } catch (e) {

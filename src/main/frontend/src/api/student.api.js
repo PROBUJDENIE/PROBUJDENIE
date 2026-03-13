@@ -80,14 +80,14 @@ export const studentApi = {
         }
     },
 
-    createSubmission: async (exerciseId, answer) => {
+    createSubmission: async (exerciseId, data) => {
         try {
             const response = await fetch(getUrl(STUDENT_ENDPOINTS.CREATE_SUBMISSION(exerciseId)), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ answer })
+                body: JSON.stringify(data)
             });
 
             if (!response.ok) {

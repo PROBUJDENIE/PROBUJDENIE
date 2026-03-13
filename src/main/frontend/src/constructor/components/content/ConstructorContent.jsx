@@ -7,7 +7,7 @@ import {useConstructorCourse} from "../hooks/useConstructorCourse.js";
 import editImage from "../../resources/images/edit.png";
 import CommonBtn from "../../../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import leftIcon from "../../resources/images/save.svg";
-import {moveDelete, moveDown, moveUp} from "../hooks/blockOperations.js";
+import { moveDown, moveUp} from "../hooks/blockOperations.js";
 import Image from "../../resources/images/lPanel.svg"
 import {useAdminCourseContent} from "@/api/hooks/useAdminCourseContent.js";
 import {useAdminExercises} from "@/api/hooks/useAdminExercises.js";
@@ -26,7 +26,7 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
         addSection,
         addLecture,
         updateBlock,
-        activeLecture
+        activeLecture, setLocalBlocks, deleteBlock
     } = useConstructorCourse(course, setCourse, "content");
     const {
         exercises
@@ -37,21 +37,6 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
         setActiveSectionId,
         setCourse
     );
-
-    const handleMoveUp = (blockId) => {
-        const updatedCourse = moveUp(course, activeSectionId, activeLectureId, blockId);
-        setCourse(updatedCourse);
-    };
-
-    const handleMoveDown = (blockId) => {
-        const updatedCourse = moveDown(course, activeSectionId, activeLectureId, blockId);
-        setCourse(updatedCourse);
-    };
-
-    const handleDelete = (blockId) => {
-        const updatedCourse = moveDelete(course, activeSectionId, activeLectureId, blockId);
-        setCourse(updatedCourse);
-    };
 
     return (
         <>
@@ -84,9 +69,9 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
                             mode="content"
                             hoveredBlockId={hoveredBlockId}
                             setHoveredBlockId={setHoveredBlockId}
-                            onMoveUp={handleMoveUp}
-                            onMoveDown={handleMoveDown}
-                            onDelete={handleDelete}
+                            onDelete={deleteBlock}
+                            onMoveUp={blockId => setLocalBlocks(prev => moveUp(prev, blockId))}
+                            onMoveDown={blockId => setLocalBlocks(prev => moveDown(prev, blockId))}
                             allExercises={exercises}
                         />
                     ) : (
@@ -104,7 +89,7 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
                 <div className="constructor-content_tools">
                     <ConstructorBlocksPanel onAdd={addBlock}></ConstructorBlocksPanel>
                     <div className="constructor-content_tools_btn">
-                        <CommonBtn width={235} height={50} bgColor="#D9FF6A" borderColor="#8A6CFF" onClick={handleSave} size={20} leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} />}>Сохранить курс</CommonBtn>
+                        <CommonBtn width={235} height={50} bgColor="#D9FF6A" borderColor="#8A6CFF"  size={20} leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} />}>Сохранить курс</CommonBtn>
                     </div>
                 </div>
             </div>

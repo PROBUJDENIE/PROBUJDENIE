@@ -1,7 +1,7 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 
-export function useConstructorCourse(course, setCourse, mode = "content") {
+export function useConstructorCourse(course, setCourse) {
     const [activeSectionId, setActiveSectionId] = useState(null);
     const [activeLectureId, setActiveLectureId] = useState(null);
 
@@ -15,81 +15,31 @@ export function useConstructorCourse(course, setCourse, mode = "content") {
         [activeSection, activeLectureId]
     );
 
-    const blocks =
-        mode === "tasks"
-            ? activeLecture?.taskBlocks || []
-            : activeLecture?.contentBlocks || [];
+    const [localBlocks, setLocalBlocks] = useState([]);
 
+    useEffect(() => {
+        setLocalBlocks(activeLecture?.contentBlocks || []);
+    }, [activeLectureId, activeLecture?.contentBlocks]);
+
+    const blocks = localBlocks;
 
     function addBlock(type) {
         if (!activeSectionId || !activeLectureId) return;
 
-        const newBlock = {
-            id: uuid(),
-            type,
-            content: "",
-        };
-
-        setCourse(prev => ({
-            ...prev,
-            sections: prev.sections.map(section =>
-                section.id !== activeSectionId
-                    ? section
-                    : {
-                        ...section,
-                        lectures: section.lectures.map(lecture =>
-                            lecture.id !== activeLectureId
-                                ? lecture
-                                : mode === "tasks"
-                                    ? {
-                                        ...lecture,
-                                        taskBlocks: [...(lecture.taskBlocks || []), newBlock]
-                                    }
-                                    : {
-                                        ...lecture,
-                                        contentBlocks: [...(lecture.contentBlocks || []), newBlock]
-                                    }
-                        )
-                    }
-            )
-        }));
+        const newBlock = { id: uuid(), type, content: "" };
+        setLocalBlocks(prev => [...prev, newBlock]);
     }
 
     function updateBlock(id, data) {
-        if (!activeSectionId || !activeLectureId) return;
+        setLocalBlocks(prev => prev.map(b => (b.id === id ? { ...b, ...data } : b)));
+    }
 
-        setCourse(prev => ({
-            ...prev,
-            sections: prev.sections.map(section =>
-                section.id !== activeSectionId
-                    ? section
-                    : {
-                        ...section,
-                        lectures: section.lectures.map(lecture => {
-                            if (lecture.id !== activeLectureId) return lecture;
+    function deleteBlock(id) {
+        setLocalBlocks(prev => prev.filter(b => b.id !== id));
+    }
 
-                            if (mode === "tasks") {
-                                return {
-                                    ...lecture,
-                                    taskBlocks: lecture.taskBlocks.map(b =>
-                                        b.id === id ? {
-                                            ...b,
-                                            content: data // ← обновляем только content
-                                        } : b
-                                    )
-                                };
-                            }
-
-                            return {
-                                ...lecture,
-                                contentBlocks: lecture.contentBlocks.map(b =>
-                                    b.id === id ? { ...b, ...data } : b
-                                )
-                            };
-                        })
-                    }
-            )
-        }));
+    function resetLocalBlocks() {
+        setLocalBlocks(activeLecture?.contentBlocks || []);
     }
 
     function addSection() {
@@ -97,11 +47,7 @@ export function useConstructorCourse(course, setCourse, mode = "content") {
             ...prev,
             sections: [
                 ...(prev.sections ?? []),
-                {
-                    id: uuid(),
-                    title: "Новая глава",
-                    lectures: []
-                }
+                { id: uuid(), title: "Новая глава", lectures: [] }
             ]
         }));
     }
@@ -118,11 +64,7 @@ export function useConstructorCourse(course, setCourse, mode = "content") {
                         ...section,
                         lectures: [
                             ...(section.lectures ?? []),
-                            {
-                                id: uuid(),
-                                title: "Новая лекция",
-                                blocks: []
-                            }
+                            { id: uuid(), title: "Новая лекция", contentBlocks: [] }
                         ]
                     }
             )
@@ -137,8 +79,11 @@ export function useConstructorCourse(course, setCourse, mode = "content") {
         activeSection,
         activeLecture,
         blocks,
+        setLocalBlocks,
+        resetLocalBlocks,
         addBlock,
         updateBlock,
+        deleteBlock,
         addSection,
         addLecture
     };

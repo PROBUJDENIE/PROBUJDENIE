@@ -22,7 +22,7 @@ const BlockRenderer = function BlockRenderer({block, onChange, activeLecture, mo
             return <ImageBlock block={block} onChange={onChange}/>;
         case "task":
             return <TaskBlock block={block} onChange={onChange} createExercise={createExercise} updateExercise={updateExercise} deleteExercise={deleteExercise} setDraftExercise={setDraftExercise}/>;
-        case "lectureTasksPreview":
+        case "exercise":
             return (
                 <LectureTasksPreviewBlock
                     lecture={activeLecture}

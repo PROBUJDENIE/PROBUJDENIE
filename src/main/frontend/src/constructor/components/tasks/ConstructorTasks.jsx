@@ -17,32 +17,21 @@ export default function ConstructorTasks({course}) {
     } = useAdminExercises(course?.id);
     const [draftExercise, setDraftExercise] = useState(null);
 
+    const [selectedExerciseId, setSelectedExerciseId] = useState(null);
+
     const handleCreate = () => {
         if (draftExercise) return;
-        setDraftExercise({
-            id: null,
-            title: "",
-            description: "",
-            programmingLanguage: "JAVA",
-            inputData: "",
-            outputData: "",
-            defaultCode: ""
-        });
-    };
+        setSelectedExerciseId(null);
+        setDraftExercise({id: null, title: "", description: "", programmingLanguage: "JAVA", inputData: "", outputData: "", defaultCode: ""});};
+
     const exerciseBlocks = [
-        ...(draftExercise ? [{
-            id: "draft",
-            type: "task",
-            exercise: draftExercise
-        }] : []),
-        ...(exercises || []).map(ex => ({
-            id: ex.id,
-            type: "task",
-            exercise: ex
-        }))
-    ];
+        ...(draftExercise ? [{id: "draft", type: "task", exercise: draftExercise}] : []),
+        ...(exercises || [])
+            .filter(ex => ex.id === selectedExerciseId)
+            .map(ex => ({id: ex.id, type: "task", exercise: ex}))];
     if (loading) return <div>Загрузка заданий...</div>;
     if (error) return <div>Ошибка: {error}</div>;
+
     return (
         <>
             <div className="constructor-content">
@@ -54,7 +43,7 @@ export default function ConstructorTasks({course}) {
                     </div>
                 </div>
                 <div className="constructor-content_workArea">
-                    {exercises.length ? (
+                    {exerciseBlocks.length ? (
                         <ConstructorWorkArea
                             blocks={exerciseBlocks}
                             mode="tasks"
@@ -77,7 +66,7 @@ export default function ConstructorTasks({course}) {
                         <div className="constructor-content_workArea_empty">
                             <div className="empty-state">
                                 <h2 className="empty-state_title">Создание задания</h2>
-                                <p className="empty-state_text">Нажми на плюсик слева и создай задание, редактируй и прикрепляй к лекции!</p>
+                                <p className="empty-state_text">Нажми на плюсик слева и создай задание, редактируй и сохраняй! Выбирай уже созданные справа</p>
                                 <div className="empty-state_image">
                                     <img src={editImage} alt="" className="empty-state_img"/>
                                 </div>
@@ -86,7 +75,9 @@ export default function ConstructorTasks({course}) {
                     )}
                 </div>
                 <div className="constructor-content_tools">
-                    <ConstructorBlocksPanelTasks></ConstructorBlocksPanelTasks>
+                    <ConstructorBlocksPanelTasks exercises={exercises}
+                                                 selectedExerciseId={selectedExerciseId}
+                                                 onSelect={setSelectedExerciseId}></ConstructorBlocksPanelTasks>
                 </div>
             </div>
         </>

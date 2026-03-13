@@ -31,7 +31,7 @@ export function useAdminCourseContent(courseId, activeSectionId, setActiveSectio
                 const lecturesWithContent = await Promise.all(
                     lectures.map(async (lecture) => {
 
-                        const fullLecture = await publicApi.getLecture({
+                        const fullLecture = await publicApi.getLectureAdmin({
                             lectures,
                             lectureId: lecture.id
                         });

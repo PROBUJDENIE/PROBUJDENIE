@@ -32,7 +32,7 @@ export const useLectures = (sectionId) => {
         if (!lectureId) return null;
 
         try {
-            const lecture = await publicApi.getLecture({ lectures: lectures, lectureId: lectureId });
+            const lecture = await publicApi.getLectureStudent({ lectures: lectures, lectureId: lectureId });
             return lecture;
         } catch (err) {
             console.error("Ошибка при загрузке лекции:", err);

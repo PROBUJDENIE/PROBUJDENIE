@@ -50,7 +50,24 @@ export const publicApi = {
         return result.data;
     },
 
-    getLecture: async ({lectures, lectureId }) => {
+    getLectureStudent: async ({lectures, lectureId }) => {
+        const lecture = lectures.find(lecture => String(lecture.id) === String(lectureId));
+
+        let contentString = null;
+        if (lecture.contentId) {
+            const fileResponse = await fetch(
+                getUrl(PUBLIC_ENDPOINTS.GET_FILE(lecture.contentId)),
+            );
+
+            contentString = await fileResponse.json();
+        }
+
+        return {
+            ...lecture,
+            content: contentString
+        };
+    },
+    getLectureAdmin: async ({lectures, lectureId }) => {
         const lecture = lectures.find(lecture => String(lecture.id) === String(lectureId));
 
         let contentString = null;

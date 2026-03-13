@@ -13,34 +13,34 @@ export default function ConstructorTasks({course}) {
         loading,
         error,
         createExercise,
-        updateExercise
+        updateExercise, deleteExercise, updateExerciseLocal
     } = useAdminExercises(course?.id);
+    const [draftExercise, setDraftExercise] = useState(null);
 
-    const handleCreate = async () => {
-        try {
-            await createExercise({
-                title: `Задание ${exercises.length + 1}`,
-                description: "Описание задания",
-                programmingLanguage: "JAVA",
-                inputData: "123",
-                outputData: "123",
-                defaultCode: "public class Main { public static void main(String[] args) {} }",
-                timeLimit: 1,
-                memoryLimit: 64
-            });
-        } catch (err) {
-            console.error(err);
-            alert("Не удалось создать задание");
-        }
+    const handleCreate = () => {
+        if (draftExercise) return;
+        setDraftExercise({
+            id: null,
+            title: "",
+            description: "",
+            programmingLanguage: "JAVA",
+            inputData: "",
+            outputData: "",
+            defaultCode: ""
+        });
     };
-    const exerciseBlocks = (exercises || [])
-        .filter(Boolean)
-        .map(ex => ({
+    const exerciseBlocks = [
+        ...(draftExercise ? [{
+            id: "draft",
+            type: "task",
+            exercise: draftExercise
+        }] : []),
+        ...(exercises || []).map(ex => ({
             id: ex.id,
             type: "task",
-            content: ex.title,
             exercise: ex
-        }));
+        }))
+    ];
     if (loading) return <div>Загрузка заданий...</div>;
     if (error) return <div>Ошибка: {error}</div>;
     return (
@@ -60,7 +60,18 @@ export default function ConstructorTasks({course}) {
                             mode="tasks"
                             hoveredBlockId={hoveredBlockId}
                             setHoveredBlockId={setHoveredBlockId}
-                            updateBlock={(updatedExercise) => updateExercise(updatedExercise)}
+                            updateBlock={(exercise) => {
+                                if (!exercise.id) {
+                                    setDraftExercise(exercise);
+                                } else {
+                                    updateExerciseLocal(exercise);
+                                }
+                            }}
+                            createExercise={createExercise}
+                            updateExercise={updateExercise}
+                            deleteExercise={deleteExercise}
+                            setDraftExercise={setDraftExercise}
+
                         />
                     ) : (
                         <div className="constructor-content_workArea_empty">

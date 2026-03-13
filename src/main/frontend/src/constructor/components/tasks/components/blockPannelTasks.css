@@ -157,3 +157,9 @@
     box-shadow: 0 0 20px #8A6CFF;
     border: 2px solid #8A6CFF;
 }
+
+.task-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

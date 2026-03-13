@@ -79,6 +79,11 @@ export function useAdminExercises(courseId) {
         },
         [exercises]
     );
+    const updateExerciseLocal = (exercise) => {
+        setExercises(prev =>
+            prev.map(ex => ex.id === exercise.id ? exercise : ex)
+        );
+    };
 
     return {
         exercises,
@@ -87,6 +92,6 @@ export function useAdminExercises(courseId) {
         createExercise,
         deleteExercise,
         updateExercise,
-        refreshExercises: fetchExercises
+        refreshExercises: fetchExercises, updateExerciseLocal
     };
 }

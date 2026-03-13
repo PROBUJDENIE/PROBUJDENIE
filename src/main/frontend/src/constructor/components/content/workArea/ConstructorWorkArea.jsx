@@ -9,7 +9,7 @@ import moveUpImg from "../../..//resources/images/move-up.svg"
 import moveDownImg from "../../..//resources/images/move-down.svg"
 import moveDeleteImg from "../../..//resources/images/move-delete.svg"
 
-const BlockRenderer = function BlockRenderer({block, onChange, activeLecture, mode}) {
+const BlockRenderer = function BlockRenderer({block, onChange, activeLecture, mode, createExercise, updateExercise,deleteExercise, setDraftExercise }) {
     if (mode === "tasks" && block.type === "lectureTasksPreview") {
         return null;
     }
@@ -21,7 +21,7 @@ const BlockRenderer = function BlockRenderer({block, onChange, activeLecture, mo
         case "image":
             return <ImageBlock block={block} onChange={onChange}/>;
         case "task":
-            return <TaskBlock block={block} onChange={onChange}/>;
+            return <TaskBlock block={block} onChange={onChange} createExercise={createExercise} updateExercise={updateExercise} deleteExercise={deleteExercise} setDraftExercise={setDraftExercise}/>;
         case "lectureTasksPreview":
             return (
                 <LectureTasksPreviewBlock
@@ -45,7 +45,7 @@ export default function ConstructorWorkArea({
                                                 setHoveredBlockId,
                                                 onMoveUp,
                                                 onMoveDown,
-                                                onDelete
+                                                onDelete, updateExercise, createExercise, deleteExercise, setDraftExercise
                                             }) {
 
     const handleChange = useCallback(
@@ -109,6 +109,10 @@ export default function ConstructorWorkArea({
                             onChange={getOnChange(block)}
                             activeLecture={activeLecture}
                             mode={mode}
+                            updateExercise={updateExercise}
+                            createExercise={createExercise}
+                            deleteExercise={deleteExercise}
+                            setDraftExercise={setDraftExercise}
                         />
                     </div>
                 </div>

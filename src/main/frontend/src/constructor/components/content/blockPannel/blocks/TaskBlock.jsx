@@ -1,32 +1,13 @@
 import delTask from "../../../../resources/images/del_task.svg"
 import confirmTask from "../../../../resources/images/confirm_task.svg"
-export default function TaskBlock({block, onChange, updateExercise, createExercise, setDraftExercise, deleteExercise}) {
+export default function TaskBlock({block, onChange, openDeleteModal, openSaveModal, openErrorModal}) {
     const exercise = block.exercise;
     if (!exercise) return null;
 
     const handleChange = (field, value) => {
         onChange({ [field]: value });
     };
-    const handleSave = async () => {
-        try {
-            if (exercise.id) {
-                await updateExercise(exercise);
-            } else {
-                await createExercise(exercise);
-                setDraftExercise(null);
-            }
-        } catch (e) {
-            console.error(e);
-        }
-    };
 
-    const handleDel = async () => {
-        if (!exercise.id) {
-            setDraftExercise(null);
-        } else {
-            await deleteExercise(exercise.id);
-        }
-    };
     const programmingLanguages = [
         { value: "java", label: "Java" },
         { value: "python", label: "Python" },
@@ -75,8 +56,16 @@ export default function TaskBlock({block, onChange, updateExercise, createExerci
                    onChange={(e) => handleChange("memoryLimit", e.target.value)} style={{fontFamily: "monospace"}}/>
 
             <div className="task-buttons">
-                <button className={"btnr"} onClick={handleDel}> <img src={delTask}/></button>
-                <button className={"btnr"} onClick={handleSave}> <img src={confirmTask}/></button>
+                <button className={"btnr"} onClick={() => openDeleteModal(exercise.id)}> <img src={delTask}/></button>
+                <button className={"btnr"} onClick={() => {
+                    if (!exercise.title || !exercise.description || !exercise.inputData || !exercise.outputData || !exercise.defaultCode || !exercise.timeLimit || !exercise.memoryLimit
+                    ) {
+                        openErrorModal();
+                        return;
+                    }
+
+                    openSaveModal(exercise.id);
+                }}> <img src={confirmTask}/></button>
             </div>
         </div>
     );

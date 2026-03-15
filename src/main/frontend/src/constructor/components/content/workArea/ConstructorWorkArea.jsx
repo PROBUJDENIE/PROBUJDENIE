@@ -9,7 +9,7 @@ import moveUpImg from "../../..//resources/images/move-up.svg"
 import moveDownImg from "../../..//resources/images/move-down.svg"
 import moveDeleteImg from "../../..//resources/images/move-delete.svg"
 
-const BlockRenderer = function BlockRenderer({block, onChange, activeLecture, mode, createExercise, updateExercise,deleteExercise, setDraftExercise, allExercises }) {
+const BlockRenderer = function BlockRenderer({block, onChange, activeLecture, mode, allExercises, openDeleteModal, openSaveModal, openErrorModal }) {
     if (mode === "tasks" && block.type === "lectureTasksPreview") {
         return null;
     }
@@ -21,33 +21,16 @@ const BlockRenderer = function BlockRenderer({block, onChange, activeLecture, mo
         case "image":
             return <ImageBlock block={block} onChange={onChange}/>;
         case "task":
-            return <TaskBlock block={block} onChange={onChange} createExercise={createExercise} updateExercise={updateExercise} deleteExercise={deleteExercise} setDraftExercise={setDraftExercise}/>;
+            return <TaskBlock block={block} onChange={onChange} openSaveModal={openSaveModal} openDeleteModal={openDeleteModal} openErrorModal={openErrorModal}/>;
         case "exercise":
-            return (
-                <LectureTasksPreviewBlock
-                    lecture={activeLecture}
-                    block={block}
-                    onChange={onChange}
-                    allExercises={allExercises}
-                />
-            );
+            return <LectureTasksPreviewBlock lecture={activeLecture} block={block} onChange={onChange} allExercises={allExercises}/>;
         default:
             return null;
     }
 };
 
 
-export default function ConstructorWorkArea({
-                                                blocks,
-                                                updateBlock,
-                                                mode,
-                                                activeLecture,
-                                                hoveredBlockId,
-                                                setHoveredBlockId,
-                                                onMoveUp,
-                                                onMoveDown,
-                                                onDelete, updateExercise, createExercise, deleteExercise, setDraftExercise, allExercises
-                                            }) {
+export default function ConstructorWorkArea({blocks, updateBlock, mode, activeLecture, hoveredBlockId, setHoveredBlockId, onMoveUp, onMoveDown, onDelete, updateExercise, createExercise, deleteExercise, setDraftExercise, allExercises, openDeleteModal, openSaveModal, openErrorModal}) {
 
     const handleChange = useCallback(
         (block) => {
@@ -105,17 +88,7 @@ export default function ConstructorWorkArea({
                     )}
 
                     <div className="block-wrapper">
-                        <BlockRenderer
-                            block={block}
-                            onChange={getOnChange(block)}
-                            activeLecture={activeLecture}
-                            mode={mode}
-                            updateExercise={updateExercise}
-                            createExercise={createExercise}
-                            deleteExercise={deleteExercise}
-                            setDraftExercise={setDraftExercise}
-                            allExercises={allExercises}
-                        />
+                        <BlockRenderer block={block} onChange={getOnChange(block)} activeLecture={activeLecture} mode={mode} updateExercise={updateExercise} createExercise={createExercise} deleteExercise={deleteExercise} setDraftExercise={setDraftExercise} allExercises={allExercises} openSaveModal={openSaveModal} openDeleteModal={openDeleteModal} openErrorModal={openErrorModal}/>
                     </div>
                 </div>
             ))}

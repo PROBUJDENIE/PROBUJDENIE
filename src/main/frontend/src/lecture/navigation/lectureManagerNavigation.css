@@ -1,7 +1,7 @@
 .lectureManagerNavigation {
     position: fixed;
     inset: 0;
-    width: 25vw;
+    width: 20vw;
     height: 100vh;
     background-color: #DFD8D3;
     z-index: 1000000;

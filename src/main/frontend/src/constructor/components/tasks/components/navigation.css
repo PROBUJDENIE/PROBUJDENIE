@@ -21,7 +21,9 @@
     padding: 10px;
     overflow-y: auto;
 }
-
+body.modal-open {
+    overflow: hidden;
+}
 
 .overlay {
     position: fixed;

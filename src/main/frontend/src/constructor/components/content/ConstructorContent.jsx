@@ -11,32 +11,19 @@ import { moveDown, moveUp} from "../hooks/blockOperations.js";
 import Image from "../../resources/images/lPanel.svg"
 import {useAdminCourseContent} from "@/api/hooks/useAdminCourseContent.js";
 import {useAdminExercises} from "@/api/hooks/useAdminExercises.js";
-export default function ConstructorContent({course, setCourse, handleSave}) {
+import {adminApi} from "@/api/admin.api.js";
+import {ConfirmModalDelLecture} from "@/modal-confirm/lecture/ConfirmModalDelLecture.jsx";
+import {ConfirmModalDelSection} from "@/modal-confirm/section/ConfirmModalDelSection.jsx";
+export default function ConstructorContent({course, setCourse}) {
 
     const [open, setOpen] = useState(false);
     const [hoveredBlockId, setHoveredBlockId] = useState(null);
-
-    const {
-        activeSectionId,
-        setActiveSectionId,
-        activeLectureId,
-        setActiveLectureId,
-        blocks,
-        addBlock,
-        addSection,
-        addLecture,
-        updateBlock,
-        activeLecture, setLocalBlocks, deleteBlock
-    } = useConstructorCourse(course, setCourse, "content");
-    const {
-        exercises
-    } = useAdminExercises(course?.id);
-    useAdminCourseContent(
-        course.id,
-        activeSectionId,
-        setActiveSectionId,
-        setCourse
-    );
+    const [modalState, setModalState] = useState(0);
+    const [activeSectionIdForDelete, setActiveSectionIdForDelete] = useState(null);
+    const [activeLectureIdForDelete, setActiveLectureIdForDelete] = useState(null);
+    const {activeSectionId, setActiveSectionId, activeLectureId, setActiveLectureId, blocks, addBlock, addSection, addLecture, updateBlock, activeLecture, setLocalBlocks, deleteBlock} = useConstructorCourse(course, setCourse, "content");
+    const {exercises} = useAdminExercises(course?.id);
+    useAdminCourseContent(course.id, activeSectionId, setActiveSectionId, setCourse);
 
     return (
         <>
@@ -47,32 +34,17 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
                             <img alt={"меню"} src={Image} />
                         </button>
                     </div>
-                    <ConstructorNavigation
-                        course={course}
-                        activeSectionId={activeSectionId}
-                        setActiveSectionId={setActiveSectionId}
-                        activeLectureId={activeLectureId}
-                        setActiveLectureId={setActiveLectureId}
-                        open={open}
-                        onClose={() => setOpen(false)}
-                        saveSection={addSection}
-                        saveLecture={addLecture}
-                        setCourse={setCourse}
+                    <ConstructorNavigation course={course} activeSectionId={activeSectionId} setActiveSectionId={setActiveSectionId} activeLectureId={activeLectureId} setActiveLectureId={setActiveLectureId}
+                        open={open} onClose={() => setOpen(false)} saveSection={addSection} saveLecture={addLecture} setCourse={setCourse}
+                        openDeleteSection={(id) => {setActiveSectionIdForDelete(id);setModalState(27);}}
+                        openDeleteLecture={(id) => {setActiveLectureIdForDelete(id);setModalState(26);}}
                     ></ConstructorNavigation>
                 </div>
                 <div className="constructor-content_workArea">
                     {blocks.length ? (
-                        <ConstructorWorkArea
-                            blocks={blocks}
-                            updateBlock={updateBlock}
-                            activeLecture={activeLecture}
-                            mode="content"
-                            hoveredBlockId={hoveredBlockId}
-                            setHoveredBlockId={setHoveredBlockId}
-                            onDelete={deleteBlock}
-                            onMoveUp={blockId => setLocalBlocks(prev => moveUp(prev, blockId))}
-                            onMoveDown={blockId => setLocalBlocks(prev => moveDown(prev, blockId))}
-                            allExercises={exercises}
+                        <ConstructorWorkArea blocks={blocks} updateBlock={updateBlock} activeLecture={activeLecture} mode="content" hoveredBlockId={hoveredBlockId}
+                            setHoveredBlockId={setHoveredBlockId} onDelete={deleteBlock} onMoveUp={blockId => setLocalBlocks(prev => moveUp(prev, blockId))}
+                            onMoveDown={blockId => setLocalBlocks(prev => moveDown(prev, blockId))} allExercises={exercises}
                         />
                     ) : (
                         <div className="constructor-content_workArea_empty">
@@ -93,6 +65,15 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
                     </div>
                 </div>
             </div>
+            <ConfirmModalDelSection modalState={modalState} changeModalState={setModalState} courseId={activeSectionIdForDelete}
+                onConfirm={async (id) => {await adminApi.deleteSection(id);
+                    setCourse(prev => ({...prev, sections: prev.sections.filter(s => s.id !== id)}));}}
+            />
+
+            <ConfirmModalDelLecture modalState={modalState} changeModalState={setModalState} courseId={activeLectureIdForDelete}
+                onConfirm={async (id) => {await adminApi.deleteLecture(id);
+                    setCourse(prev => ({...prev, sections: prev.sections.map(section => ({...section, lectures: section.lectures.filter(l => l.id !== id)}))}));}}
+            />
 
         </>
     )

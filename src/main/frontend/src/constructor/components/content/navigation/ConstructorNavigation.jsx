@@ -7,20 +7,8 @@ import lPanelImage from "../../../resources/images/lPanel.svg";
 import del from "../../../resources/images/sec_lec_del.svg";
 import "./navigation.css";
 
-export default function ConstructorNavigation({
-                                                  course,
-                                                  open,
-                                                  activeSectionId,
-                                                  setActiveSectionId,
-                                                  activeLectureId,
-                                                  setActiveLectureId,
-                                                  onClose,
-                                                  saveSection,
-                                                  setCourse,
-                                                  saveLecture,
-                                                  allowCreate = true,
-                                                  allowRename = true
-                                              }) {
+export default function ConstructorNavigation({course, open, activeSectionId, setActiveSectionId, activeLectureId, setActiveLectureId, onClose, saveSection,
+                                                  setCourse, saveLecture, allowCreate = true, allowRename = true, openDeleteLecture, openDeleteSection}) {
     const [hoveredSectionId, setHoveredSectionId] = useState(null);
     const [hoveredLectureId, setHoveredLectureId] = useState(null);
 
@@ -41,24 +29,7 @@ export default function ConstructorNavigation({
                         <div key={section.id} className="nav-item" onMouseEnter={() => setHoveredSectionId(section.id)} onMouseLeave={() => setHoveredSectionId(null)}>
                             <div className="nav-item-content">
                                 {hoveredSectionId === section.id && allowCreate && (
-                                    <button
-                                        className="btn-delete"
-                                        onClick={() => {
-                                            setCourse((prev) => ({
-                                                ...prev,
-                                                sections: (prev.sections || []).filter(
-                                                    (s) => s.id !== section.id
-                                                )
-                                            }));
-
-                                            if (activeSectionId === section.id) {
-                                                setActiveSectionId(null);
-                                            }
-                                        }}
-                                    >
-                                        <img src={del} />
-                                    </button>
-                                )}
+                                    <button className="btn-delete" onClick={() => openDeleteSection(section.id)}><img src={del} /></button>)}
 
                                 <ConstructorSectionBtn
                                     isActive={activeSectionId === section.id}
@@ -94,31 +65,7 @@ export default function ConstructorNavigation({
                                         <div className="nav-item-content">
 
                                             {hoveredLectureId === lecture.id && allowCreate && (
-                                                <button
-                                                    className="btn-delete"
-                                                    onClick={() => {
-                                                        setCourse((prev) => ({
-                                                            ...prev,
-                                                            sections: (prev.sections || []).map((section) =>
-                                                                section.id !== activeSectionId
-                                                                    ? section
-                                                                    : {
-                                                                        ...section,
-                                                                        lectures: (section.lectures || []).filter(
-                                                                            (l) => l.id !== lecture.id
-                                                                        )
-                                                                    }
-                                                            )
-                                                        }));
-
-                                                        if (activeLectureId === lecture.id) {
-                                                            setActiveLectureId(null);
-                                                        }
-                                                    }}
-                                                >
-                                                    <img src={del} />
-                                                </button>
-                                            )}
+                                                <button className="btn-delete" onClick={() => openDeleteLecture(lecture.id)}><img src={del} /></button>)}
 
                                             <ConstructorLectureBtn
                                                 isActive={activeLectureId === lecture.id}

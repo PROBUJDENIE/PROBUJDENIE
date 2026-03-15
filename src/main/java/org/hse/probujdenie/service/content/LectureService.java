@@ -56,7 +56,7 @@ public class LectureService {
     @Transactional
     public void updateLecture(UUID lectureId, Lecture lecture, String email) {
         Lecture existing = getLecture(lectureId);
-        Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, lecture.getSection().getCourse().getId()));
+        Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, existing.getSection().getCourse().getId()));
         if (teacherToCourse.isEmpty()) throw new IllegalArgumentException("У вас нет прав.");
         lectureMapper.updateLectureFromDto(lecture, existing);
         lectureRepository.save(existing);

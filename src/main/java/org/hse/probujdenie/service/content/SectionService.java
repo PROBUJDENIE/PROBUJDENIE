@@ -39,7 +39,7 @@ public class SectionService {
     @Transactional
     public void updateSection(UUID sectionId, Section section, String email) {
         Section existing = getSection(sectionId);
-        Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, section.getCourse().getId()));
+        Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, existing.getCourse().getId()));
         if (teacherToCourse.isEmpty()) throw new IllegalArgumentException("У вас нет прав.");
         sectionMapper.updateCourseFromDto(section, existing);
         sectionRepository.save(existing);

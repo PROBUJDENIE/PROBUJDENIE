@@ -1,4 +1,4 @@
-.modal-block {
+.modal-block-del {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,6 +12,36 @@
     padding: 80px 20px 20px;
     margin: 15% auto;
     box-shadow: 0 0 200px #EB4760;
+}
+.modal-block-save {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 300px;
+    width: 400px;
+    background-color: #EEE9E5;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 80px 20px 20px;
+    margin: 15% auto;
+    box-shadow: 0 0 200px #D2FE66;
+}
+.modal-block-back {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 350px;
+    width: 400px;
+    background-color: #EEE9E5;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 80px 20px 20px;
+    margin: 15% auto;
+    box-shadow: 0 0 200px #8A6CFF;
 }
 .modal-block_title {
     font-size: 28px;

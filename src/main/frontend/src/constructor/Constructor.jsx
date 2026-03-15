@@ -14,6 +14,7 @@ import {useAdminCourses} from "@/api/hooks/useAdminCourses.js";
 import ConstructorContent from "@/constructor/components/content/ConstructorContent.jsx";
 import ConstructorTasks from "@/constructor/components/tasks/ConstructorTasks.jsx";
 import {useAdminExercises} from "@/api/hooks/useAdminExercises.js";
+import {ConfirmModalBackCourse} from "@/modal-confirm/course/ConfirmModalBackCourse.jsx";
 
 export default function Constructor() {
 
@@ -21,6 +22,7 @@ export default function Constructor() {
     const courseId = searchParams.get("id");
     const navigate = useNavigate();
     const [activeAd, setAdvert] = useState("info");
+    const [modalState, setModalState] = useState(0);
 
     const {deleteCourse, saveCourse, loading,getCourse, addOrUpdateCourse} = useAdminCourses();
 
@@ -61,13 +63,14 @@ export default function Constructor() {
                             <CommonBtn width={260} height={50} bgColor={activeAd === 'content' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={20} fontColor={"white"} leftIcon={<img src={table}  />} onClick={() => setAdvert('content')}>Содержание курса</CommonBtn>
                             <CommonBtn width={260} height={50} bgColor={activeAd === 'tasks' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={20} fontColor={"white"} leftIcon={<img src={tasks}  />} onClick={() => setAdvert('tasks')}>Задания курса</CommonBtn>
                         </div>
-                        <CommonBtn width={298} height={50} bgColor={"#DFD8D3"} borderColor={"#8A6CFF"} fontColor={"white"} size={24} onClick={() => navigate(ADMIN_PROFILE_ROUTE)} leftIcon={<img src={back} />}>Назад к моим курсам</CommonBtn>
+                        <CommonBtn width={298} height={50} bgColor={"#DFD8D3"} borderColor={"#8A6CFF"} fontColor={"white"} size={24} onClick={() => setModalState(22)} leftIcon={<img src={back} />}>Назад к моим курсам</CommonBtn>
                     </div>
-                    {!loading  && activeAd === 'info' && (<ConstructorInfo handleDeleteCourse={deleteCourse} course={course} setField={setField} handleSave={handleSave}></ConstructorInfo>)}
+                    {!loading  && activeAd === 'info' && (<ConstructorInfo handleDeleteCourse={deleteCourse} course={course} setField={setField} handleSave={handleSave} modalState={modalState} changeModalState={setModalState}></ConstructorInfo>)}
                     {!loading  && activeAd === 'content' && (<ConstructorContent  course={course} setCourse={setCourse} handleSave={handleSave}></ConstructorContent>)}
                     {!loading  && activeAd === 'tasks' && (<ConstructorTasks  course={course} setCourse={setCourse} handleSave={handleSave} exercises={exercises}></ConstructorTasks>)}
                 </div>
             </Container>
+            <ConfirmModalBackCourse modalState={modalState} changeModalState={setModalState} onConfirm={() => navigate(ADMIN_PROFILE_ROUTE)}/>
             <Bottom></Bottom>
         </div>
 

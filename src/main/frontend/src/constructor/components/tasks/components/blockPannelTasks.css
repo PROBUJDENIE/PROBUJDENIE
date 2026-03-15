@@ -172,8 +172,9 @@
 
 .task-item {
     padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid #8b6cff;
+    border-radius: 10px;
+    border: 2px solid #8b6cff;
+    margin: 10px;
 }
 
 .task-item:hover {

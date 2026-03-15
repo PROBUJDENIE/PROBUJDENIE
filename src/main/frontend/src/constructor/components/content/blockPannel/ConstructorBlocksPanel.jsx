@@ -20,7 +20,7 @@ export default function ConstructorBlocksPanel({ onAdd }) {
                     Изображение</button>
                 <button className={"btn_add"} onClick={() => onAdd("exercise")}>
                     <img src={task}/>
-                    Задания лекции
+                    Задание
                 </button>
             </aside>
 

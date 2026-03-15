@@ -22,7 +22,7 @@ export default function LectureTaskLoader({ exerciseId }) {
     }, [exerciseId]);
 
     if (!exerciseData) {
-        return <div>Загрузка задания...</div>;
+        return null;
     }
 
     return <Task exerciseData={exerciseData} />;

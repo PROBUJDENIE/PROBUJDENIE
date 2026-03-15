@@ -20,11 +20,17 @@ export default function Task({ exerciseData }) {
     };
 
     const getMonacoLanguage = (programmingLanguage) => {
-        switch (programmingLanguage) {
+        switch (programmingLanguage?.toUpperCase()) {
             case 'JAVA':
                 return 'java';
             case 'PYTHON':
                 return 'python';
+            case 'JAVASCRIPT':
+                return 'javascript';
+            case 'CPP':
+                return 'cpp';
+            case 'CSHARP':
+                return 'csharp';
             default:
                 return 'java';
         }

@@ -14,7 +14,7 @@
 
 .constructor_modal {
     width: 350px;
-    height: 1400px;
+    height: 100vh;
     background-color: #DFD8D3;
     border: 2px solid #8A6CFF;
     border-radius: 30px;

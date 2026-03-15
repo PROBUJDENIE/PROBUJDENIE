@@ -1,13 +1,14 @@
 .lectureManagerNavigation {
     position: fixed;
     inset: 0;
-    width: 20vw;
+    width: 25vw;
     height: 100vh;
     background-color: #DFD8D3;
     z-index: 1000000;
     border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
     border: 1px solid #8A6CFF;
+    overflow-y: auto;
 }
 
 .lectureManagerNavigation {

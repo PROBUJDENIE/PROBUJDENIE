@@ -15,4 +15,5 @@
     <include file="changelog-1.8.xml" relativeToChangelogFile="true"/> <!--exercise tables-->
     <include file="changelog-1.9.xml" relativeToChangelogFile="true"/> <!--teacherToCourse tables-->
     <include file="changelog-2.0.xml" relativeToChangelogFile="true"/>
+    <include file="changelog-2.1.xml" relativeToChangelogFile="true"/> <!--SHEDLOCK tables-->
 </databaseChangeLog>

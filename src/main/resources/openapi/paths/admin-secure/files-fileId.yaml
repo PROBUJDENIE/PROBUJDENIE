@@ -17,3 +17,27 @@ get:
           schema:
             type: string
             format: binary
+
+post:
+  operationId: updateFile
+  tags:
+    - adminSecure
+  parameters:
+    - name: fileId
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          $ref: '../../components/schemas/admin-secure/request/SaveFileRequestDto.yaml'
+  responses:
+    '200':
+      description: Возвращает id объекта в S3
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/admin-secure/response/SaveFileResponseDto.yaml'

@@ -132,16 +132,6 @@ public class AdminSecureController implements AdminSecureApiDelegate {
     }
 
     @Override
-    public ResponseEntity<SaveFileResponseDto> saveFile(MultipartFile file) {
-        UUID id = fileSaverService.save(file);
-
-        SaveFileResponseDto response = new SaveFileResponseDto();
-        response.setId(id);
-
-        return ResponseEntity.ok(response);
-    }
-
-    @Override
     public ResponseEntity<Resource> getFile(String fileId) {
         FileData fileData = fileSaverService.get(fileId);
 
@@ -187,5 +177,23 @@ public class AdminSecureController implements AdminSecureApiDelegate {
         return ResponseEntity.ok(response);
     }
 
+    @Override
+    public ResponseEntity<SaveFileResponseDto> updateFile(String fileId, MultipartFile file) {
+        UUID id = fileSaverService.update(UUID.fromString(fileId), file);
 
+        SaveFileResponseDto response = new SaveFileResponseDto();
+        response.setId(id);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<SaveFileResponseDto> saveFile(MultipartFile file) {
+        UUID id = fileSaverService.save(file);
+
+        SaveFileResponseDto response = new SaveFileResponseDto();
+        response.setId(id);
+
+        return ResponseEntity.ok(response);
+    }
 }

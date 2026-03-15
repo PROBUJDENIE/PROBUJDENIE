@@ -3,6 +3,7 @@ package org.hse.probujdenie.service.exercise;
 import lombok.RequiredArgsConstructor;
 import org.hse.probujdenie.model.exercise.Exercise;
 import org.hse.probujdenie.model.exercise.StudentSubmission;
+import org.hse.probujdenie.model.exercise.enums.StudentSubmissionStatus;
 import org.hse.probujdenie.model.user.User;
 import org.hse.probujdenie.service.UserService;
 import org.hse.probujdenie.storage.exercise.StudentSubmissionRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -30,6 +32,7 @@ public class StudentSubmissionService {
         Exercise exercise = exerciseService.getExercise(exerciseId);
         studentSubmission.setId(generateId());
         studentSubmission.setStudent(user);
+        studentSubmission.setStatus(StudentSubmissionStatus.SUBMITTED);
         studentSubmission.setExercise(exercise);
         studentSubmission.setCreationDateTime(LocalDateTime.now());
         studentSubmissionRepository.save(studentSubmission);
@@ -42,6 +45,8 @@ public class StudentSubmissionService {
         StudentSubmission existing = getStudentSubmission(studentSubmission.getId());
         existing.setStudent(user);
         existing.setExercise(exercise);
+        existing.setStatus(StudentSubmissionStatus.SUBMITTED);
+        existing.setErrorDesc(null);
         existing.setAnswer(studentSubmission.getAnswer());
         existing.setCreationDateTime(LocalDateTime.now());
         studentSubmissionRepository.save(existing);
@@ -59,6 +64,10 @@ public class StudentSubmissionService {
         Optional<StudentSubmission> studentSubmission = studentSubmissionRepository.findById(submissionId);
         if (studentSubmission.isEmpty()) throw new IllegalArgumentException("Ответа пользователя не существует.");
         return studentSubmission.get();
+    }
+
+    public List<StudentSubmission> getAllSendedSubmissions() {
+        return studentSubmissionRepository.findAllByStatus(StudentSubmissionStatus.SUBMITTED);
     }
 }
 

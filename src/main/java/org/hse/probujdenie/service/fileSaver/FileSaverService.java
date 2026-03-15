@@ -36,6 +36,16 @@ public class FileSaverService {
         }
     }
 
+    public UUID update(UUID fileKey, MultipartFile file) {
+        PutObjectRequest metadata = createMetadata(fileKey.toString(), file);
+        try {
+            client.putObject(metadata, RequestBody.fromInputStream(file.getInputStream(), metadata.contentLength()));
+            return fileKey;
+        } catch (IOException e) {
+            throw new RuntimeException("Ошибка сохранения файла: " + e.getMessage());
+        }
+    }
+
     public void createBucketIfNotExists(String bucketName) {
         if (!bucketExists(bucketName)) {
             client.createBucket(CreateBucketRequest.builder().bucket(bucketName).build());

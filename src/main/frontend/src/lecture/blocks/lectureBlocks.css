@@ -17,6 +17,11 @@
 .lecture-blocks img {
     margin: 30px auto;
 }
+.lecture-imageBlock img {
+    margin: 30px auto;
+    width: 30vw;
+    border-radius: 30px;
+}
 
 .lecture-imageBlock {
     display: flex;

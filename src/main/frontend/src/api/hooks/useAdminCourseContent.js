@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { publicApi } from "@/api/public.api.js";
+import {getUrl, PUBLIC_ENDPOINTS} from "@/api/config.js";
 
 export function useAdminCourseContent(courseId, activeSectionId, setActiveSectionId, setCourse) {
     useEffect(() => {
@@ -40,11 +41,23 @@ export function useAdminCourseContent(courseId, activeSectionId, setActiveSectio
 
                         if (fullLecture.content) {
                             const parsed = JSON.parse(fullLecture.content);
-
                             blocks = parsed.map((item, index) => ({
                                 id: `${lecture.id}-${index}`,
-                                type: item.type === "heading" ? "title" : "text",
-                                content: item.content
+                                type: (() => {
+                                    switch (item.type) {
+                                        case "heading": return "title";
+                                        case "paragraph": return "text";
+                                        case "image": return "image";
+                                        case "exercise": return "exercise";
+                                        default: return "text";
+                                    }
+                                })(),
+                                content: item.type === "image"
+                                    ? {
+                                        fileId: item.fileId,
+                                        imageUrl: getUrl(PUBLIC_ENDPOINTS.GET_FILE(item.fileId))
+                                    }
+                                    : item.content
                             }));
                         }
 

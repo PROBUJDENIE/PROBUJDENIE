@@ -17,11 +17,32 @@ export function useConstructorCourse(course, setCourse) {
 
     const [localBlocks, setLocalBlocks] = useState([]);
 
-    useEffect(() => {
-        setLocalBlocks(activeLecture?.contentBlocks || []);
-    }, [activeLectureId, activeLecture?.contentBlocks]);
+    useEffect(() => {setLocalBlocks(activeLecture?.contentBlocks || []);}, [activeLectureId, activeLecture?.contentBlocks]);
 
     const blocks = localBlocks;
+    useEffect(() => {
+        if (!activeSectionId || !activeLectureId) return;
+
+        setCourse(prev => ({
+            ...prev,
+            sections: prev.sections.map(section =>
+                section.id !== activeSectionId
+                    ? section
+                    : {
+                        ...section,
+                        lectures: section.lectures.map(lecture =>
+                            lecture.id !== activeLectureId
+                                ? lecture
+                                : {
+                                    ...lecture,
+                                    contentBlocks: localBlocks
+                                }
+                        )
+                    }
+            )
+        }));
+
+    }, [localBlocks]);
 
     function addBlock(type) {
         if (!activeSectionId || !activeLectureId) return;

@@ -14,7 +14,9 @@ import {useAdminExercises} from "@/api/hooks/useAdminExercises.js";
 import {adminApi} from "@/api/admin.api.js";
 import {ConfirmModalDelLecture} from "@/modal-confirm/lecture/ConfirmModalDelLecture.jsx";
 import {ConfirmModalDelSection} from "@/modal-confirm/section/ConfirmModalDelSection.jsx";
-export default function ConstructorContent({course, setCourse}) {
+import {ConfirmModalSaveCourse} from "@/modal-confirm/course/ConfirmModalSaveCourse.jsx";
+import {useSaveCourseContent} from "@/api/hooks/useSaveCourseContent.js";
+export default function ConstructorContent({course, setCourse, handleSave}) {
 
     const [open, setOpen] = useState(false);
     const [hoveredBlockId, setHoveredBlockId] = useState(null);
@@ -24,6 +26,11 @@ export default function ConstructorContent({course, setCourse}) {
     const {activeSectionId, setActiveSectionId, activeLectureId, setActiveLectureId, blocks, addBlock, addSection, addLecture, updateBlock, activeLecture, setLocalBlocks, deleteBlock} = useConstructorCourse(course, setCourse, "content");
     const {exercises} = useAdminExercises(course?.id);
     useAdminCourseContent(course.id, activeSectionId, setActiveSectionId, setCourse);
+    const { saveLectures } = useSaveCourseContent(course);
+    async function handleConfirmSave() {
+        await saveLectures();
+        await handleSave(course);
+    }
 
     return (
         <>
@@ -61,7 +68,7 @@ export default function ConstructorContent({course, setCourse}) {
                 <div className="constructor-content_tools">
                     <ConstructorBlocksPanel onAdd={addBlock}></ConstructorBlocksPanel>
                     <div className="constructor-content_tools_btn">
-                        <CommonBtn width={235} height={50} bgColor="#D9FF6A" borderColor="#8A6CFF"  size={20} leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} />}>Сохранить курс</CommonBtn>
+                        <CommonBtn onClick={() => setModalState(21)} width={235} height={50} bgColor="#D9FF6A" borderColor="#8A6CFF"  size={20} leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} />}>Сохранить курс</CommonBtn>
                     </div>
                 </div>
             </div>
@@ -74,7 +81,7 @@ export default function ConstructorContent({course, setCourse}) {
                 onConfirm={async (id) => {await adminApi.deleteLecture(id);
                     setCourse(prev => ({...prev, sections: prev.sections.map(section => ({...section, lectures: section.lectures.filter(l => l.id !== id)}))}));}}
             />
-
+            <ConfirmModalSaveCourse modalState={modalState} changeModalState={setModalState} courseId={course?.id} onConfirm={handleConfirmSave}/>
         </>
     )
 }

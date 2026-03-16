@@ -5,6 +5,7 @@ import prev from "../resourses/prev_lect.svg"
 import like from "../resourses/like.svg"
 import dont from "../resourses/dont.svg"
 import LectureTaskLoader from "@/lecture/task/task-loader/LectureTaskLoader.jsx";
+import {getUrl, PUBLIC_ENDPOINTS} from "@/api/config.js";
 export default function LectureBlocks({material, onNext, onPrev}) {
 
     return (
@@ -15,31 +16,23 @@ export default function LectureBlocks({material, onNext, onPrev}) {
                     switch (block.type) {
                         case "heading":
                             return (
-                                <h2  key={index} className="lecture-headingBlock">
-                                    {block.content}
-                                </h2>
+                                <h2  key={index} className="lecture-headingBlock">{block.content}</h2>
                             );
 
                         case "paragraph":
                             return (
-                                <p key={index} className="lecture-paragraphBlock">
-                                    {block.content}
-                                </p>
+                                <p key={index} className="lecture-paragraphBlock">{block.content}</p>
                             );
 
                         case "image":
-                            { const src = block.imageUrl;
+                            { const src = block.fileId ? getUrl(PUBLIC_ENDPOINTS.GET_FILE(block.fileId)) : null;
 
                             return (
                                 <div key={index} className="lecture-imageBlock">
-                                    <img
-                                        src={src}
-                                        alt={"Изображение к лекции"}
-                                        loading="lazy"
-                                    />
+                                    <img src={src} alt={"Изображение к лекции"} loading="lazy"/>
                                 </div>
                             ); }
-                        case "task":
+                        case "exercise":
                             return ( <LectureTaskLoader key={index} exerciseId={block.exerciseId}/>);
                     }
                 })}

@@ -4,11 +4,10 @@ import "../../constructorContent.css";
 export default function ImageBlock({ block, onChange }) {
     const content = block.content;
     const previewUrl = useMemo(() => {
-        if (content instanceof File) {
-            return URL.createObjectURL(content);
-        }
-        if (typeof content === "string" && content) {
-            return content;
+        if (!content) return null;
+        if (content.imageUrl) return content.imageUrl;
+        if (content.file instanceof File) {
+            return URL.createObjectURL(content.file);
         }
         return null;
     }, [content]);
@@ -16,28 +15,19 @@ export default function ImageBlock({ block, onChange }) {
     const handleFileChange = (e) => {
         const file = e.target.files?.[0];
         if (!file) return;
-        onChange(file);
+        onChange({file, imageUrl: URL.createObjectURL(file), fileId: null});
     };
 
     return (
         <div className="block block-img">
             {previewUrl ? (
                 <div className="image-preview">
-                    <img
-                        src={previewUrl}
-                        alt="Предпросмотр изображения"
-                        style={{ maxWidth: "100%", maxHeight: "300px", objectFit: "contain" }}
-                    />
+                    <img src={previewUrl} alt="Предпросмотр" style={{ maxWidth: "100%", maxHeight: "300px", objectFit: "contain" }}/>
                 </div>
             ) : (
                 ""
             )}
-            <input
-                className="image-input"
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-            />
+            <input className="image-input" type="file" accept="image/*" onChange={handleFileChange}/>
             {content && content instanceof File && (
                 <small>Выбрано: {content.name} ({(content.size / 1024).toFixed(1)} KB)</small>
             )}

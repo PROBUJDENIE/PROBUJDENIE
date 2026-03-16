@@ -72,6 +72,22 @@ export const adminApi = {
         const json = await response.json();
         return json.id;
     },
+    updateFileMultipart: async (fileId, file) => {
+
+        const form = new FormData();
+        form.append("file", file);
+
+        const response = await fetch(
+            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.GET_FILE(fileId),
+            {
+                method: "POST",
+                body: form
+            }
+        );
+
+        const json = await response.json();
+        return json.id;
+    },
     createSection: async (courseId, section) => {
         const response = await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_SECTION(courseId),
@@ -85,15 +101,13 @@ export const adminApi = {
         const json = await response.json();
         return json.data;
     },
-    updateSection: async (section) => {
-        await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_SECTION(section.id),
-            {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(section),
-            }
-        );
+    updateSection: async ({ id, title, orderNumber }) => {
+        const payload = { title, orderNumber };
+        await fetch(API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_SECTION(id), {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
     },
     deleteSection: async (id) => {
         await fetch(
@@ -117,12 +131,19 @@ export const adminApi = {
         return json.data;
     },
     updateLecture: async (lecture) => {
+
+        const payload = {
+            title: lecture.title,
+            orderNumber: lecture.orderNumber,
+            contentId: lecture.contentId
+        };
+
         await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_LECTURE(lecture.id),
             {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(lecture),
+                body: JSON.stringify(payload),
             }
         );
     },

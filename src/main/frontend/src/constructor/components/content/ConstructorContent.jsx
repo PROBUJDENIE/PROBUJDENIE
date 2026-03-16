@@ -16,6 +16,7 @@ import {ConfirmModalDelLecture} from "@/modal-confirm/lecture/ConfirmModalDelLec
 import {ConfirmModalDelSection} from "@/modal-confirm/section/ConfirmModalDelSection.jsx";
 import {ConfirmModalSaveCourse} from "@/modal-confirm/course/ConfirmModalSaveCourse.jsx";
 import {useSaveCourseContent} from "@/api/hooks/useSaveCourseContent.js";
+import {saveLectureTitles, saveSectionTitles} from "@/api/saveTitles.js";
 export default function ConstructorContent({course, setCourse, handleSave}) {
 
     const [open, setOpen] = useState(false);
@@ -28,6 +29,8 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
     useAdminCourseContent(course.id, activeSectionId, setActiveSectionId, setCourse);
     const { saveLectures } = useSaveCourseContent(course);
     async function handleConfirmSave() {
+        await saveSectionTitles(course);
+        await saveLectureTitles(course);
         await saveLectures();
         await handleSave(course);
     }

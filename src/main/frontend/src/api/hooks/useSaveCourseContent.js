@@ -16,7 +16,7 @@ export function useSaveCourseContent(course) {
                         return { type: "image", fileId: b.content?.fileId || b.fileId };
 
                     case "exercise":
-                        return { type: "exercise", exerciseId: b.content.taskId };
+                        return { type: "exercise", exerciseId: b.content?.taskId || b.exerciseId };
 
                     default:
                         return b;

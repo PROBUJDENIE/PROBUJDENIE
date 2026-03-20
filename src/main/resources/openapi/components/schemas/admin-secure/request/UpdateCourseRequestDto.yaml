@@ -21,3 +21,9 @@ properties:
     type: string
     format: UUID
     description: Фото обложки (Поддериживаются .PNG размер 460 на 490)
+  status:
+    type: string
+    enum:
+      - CREATED
+      - READY
+      - DELETED

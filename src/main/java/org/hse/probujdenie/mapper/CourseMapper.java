@@ -31,6 +31,5 @@ public interface CourseMapper {
     @Mapping(target = "version", ignore = true)
     @Mapping(target = "creationDateTime", ignore = true)
     @Mapping(target = "lastModificationDateTime", ignore = true)
-    @Mapping(target = "status", ignore = true)
     Course toEntityFromUpdateCourseDto(UpdateCourseRequestDto request);
 }

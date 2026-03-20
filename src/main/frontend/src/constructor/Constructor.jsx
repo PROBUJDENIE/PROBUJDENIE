@@ -44,8 +44,9 @@ export default function Constructor() {
         }));
     }, []);
 
-    const handleSave = async () => {
-        const savedCourse = await saveCourse(course);
+    const handleSave = async (updatedCourse) => {
+        const courseToSave = updatedCourse ?? course;
+        const savedCourse = await saveCourse(courseToSave);
         addOrUpdateCourse(savedCourse);
         setCourse(savedCourse);
     };
@@ -65,7 +66,7 @@ export default function Constructor() {
                         </div>
                         <CommonBtn width={298} height={50} bgColor={"#DFD8D3"} borderColor={"#8A6CFF"} fontColor={"white"} size={24} onClick={() => setModalState(22)} leftIcon={<img src={back} />}>Назад к моим курсам</CommonBtn>
                     </div>
-                    {!loading  && activeAd === 'info' && (<ConstructorInfo handleDeleteCourse={deleteCourse} course={course} setField={setField} handleSave={handleSave} modalState={modalState} changeModalState={setModalState}></ConstructorInfo>)}
+                    {!loading  && activeAd === 'info' && (<ConstructorInfo setCourse={setCourse} handleDeleteCourse={deleteCourse} course={course} setField={setField} handleSave={handleSave} modalState={modalState} changeModalState={setModalState}></ConstructorInfo>)}
                     {!loading  && activeAd === 'content' && (<ConstructorContent  course={course} setCourse={setCourse} handleSave={handleSave}></ConstructorContent>)}
                     {!loading  && activeAd === 'tasks' && (<ConstructorTasks  course={course} setCourse={setCourse} handleSave={handleSave} exercises={exercises}></ConstructorTasks>)}
                 </div>
@@ -73,6 +74,5 @@ export default function Constructor() {
             <ConfirmModalBackCourse modalState={modalState} changeModalState={setModalState} onConfirm={() => navigate(ADMIN_PROFILE_ROUTE)}/>
             <Bottom></Bottom>
         </div>
-
     </>)
 }

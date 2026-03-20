@@ -5,12 +5,18 @@ import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import leftIcon from "@/constructor/resources/images/save.svg";
 import delIcon from "@/constructor/resources/images/del_course.svg";
 import {useState} from "react";
+import {ConfirmModalPublishCourse} from "@/modal-confirm/course/ConfirmModalPublishCourse.jsx";
+import {ConfirmModalNotPublishCourse} from "@/modal-confirm/course/ConfirmModalNotPublishCourse.jsx";
 
-export function ConstructorInfoSettings({course, openConfirm, handleFile, setField, openSaveConfirm}) {
+export function ConstructorInfoSettings({course, openConfirm, handleFile, setField, openSaveConfirm, changeModalState, modalState, handleSave}) {
     const [highlightsDraft, setHighlightsDraft] = useState(
         (course.highlights ?? []).join("\n")
     );
-    const [activePub, setPub] = useState("publish");
+    const activePub = course.status === "READY" ? "publish" : "not";
+    const handleSaveCourse = async (updatedFields) => {
+        const updatedCourse = { ...course, ...updatedFields };
+        await handleSave(updatedCourse);
+    };
     return (
         <>
             <div className="constructor-info-settings">
@@ -52,12 +58,13 @@ export function ConstructorInfoSettings({course, openConfirm, handleFile, setFie
                 </div>
                 <CommonBtn onClick={openSaveConfirm} width={300} height={58} bgColor="#D9FF6A" borderColor="#8A6CFF" size={18} leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} /> }>Сохранить курс</CommonBtn>
                 <div className="publish_btns">
-                    <CommonBtn width={140} height={40} borderRadius={10} bgColor={activePub === 'publish' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={17} fontColor={"white"}  onClick={() => setPub('publish')}> Опубликовано</CommonBtn>
-                    <CommonBtn width={140} height={40} borderRadius={10} bgColor={activePub === 'not' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={17} fontColor={"white"}  onClick={() => setPub('not')}> Не опубликовано</CommonBtn>
+                    <CommonBtn width={140} height={40} borderRadius={10} bgColor={activePub === 'publish' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={17} fontColor={"white"} onClick={() => changeModalState(28)}> Опубликовано</CommonBtn>
+                    <CommonBtn width={140} height={40} borderRadius={10} bgColor={activePub === 'not' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={17} fontColor={"white"}  onClick={() => changeModalState(29)}> Не опубликовано</CommonBtn>
                 </div>
                 <CommonBtn width={300} height={58} bgColor="#EB4760" borderColor="white" fontColor="white" onClick={openConfirm} size={18} leftIcon={<img src={delIcon} width={25} height={25} />}>Удалить курс</CommonBtn>
             </div>
-
+            <ConfirmModalPublishCourse modalState={modalState} changeModalState={changeModalState} onConfirm={() => handleSaveCourse({ status: "READY" })}/>
+            <ConfirmModalNotPublishCourse modalState={modalState} changeModalState={changeModalState} onConfirm={() => handleSaveCourse({ status: "CREATED" })}/>
         </>
     );
 }

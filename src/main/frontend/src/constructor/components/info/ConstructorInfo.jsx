@@ -14,10 +14,9 @@ export default function ConstructorInfo({course, setField, handleDeleteCourse, h
     return (
         <>
             <div className="constructor-info">
-                <ConstructorInfoSettings course={course} openConfirm={() => changeModalState(20)} openSaveConfirm={() => changeModalState(21)} handleFile={handleFile} setField={setField} handleSave={handleSave}></ConstructorInfoSettings>
+                <ConstructorInfoSettings courseId={course?.id} modalState={modalState} changeModalState={changeModalState} onConfirm={handleSave} course={course} openConfirm={() => changeModalState(20)} openSaveConfirm={() => changeModalState(21)} handleFile={handleFile} setField={setField} handleSave={handleSave}></ConstructorInfoSettings>
                 <ConstructorInfoPreview course={course}></ConstructorInfoPreview>
             </div>
-
             <ConfirmModalDelCourse modalState={modalState} changeModalState={changeModalState} onConfirm={handleDelete} courseId={course?.id}/>
             <ConfirmModalSaveCourse modalState={modalState} changeModalState={changeModalState} courseId={course?.id} onConfirm={handleSave}/>
         </>

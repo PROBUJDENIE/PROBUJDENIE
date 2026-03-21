@@ -4,14 +4,13 @@ import fileImage from "@/constructor/resources/images/file.svg";
 import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import leftIcon from "@/constructor/resources/images/save.svg";
 import delIcon from "@/constructor/resources/images/del_course.svg";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ConfirmModalPublishCourse} from "@/modal-confirm/course/ConfirmModalPublishCourse.jsx";
 import {ConfirmModalNotPublishCourse} from "@/modal-confirm/course/ConfirmModalNotPublishCourse.jsx";
 
 export function ConstructorInfoSettings({course, openConfirm, handleFile, setField, openSaveConfirm, changeModalState, modalState, handleSave}) {
-    const [highlightsDraft, setHighlightsDraft] = useState(
-        (course.highlights ?? []).join("\n")
-    );
+    const [highlightsDraft, setHighlightsDraft] = useState((course.highlights ?? []).join("\n"));
+    useEffect(() => {setHighlightsDraft((course.highlights ?? []).join("\n"));}, [course.highlights]);
     const activePub = course.status === "READY" ? "publish" : "not";
     const handleSaveCourse = async (updatedFields) => {
         const updatedCourse = { ...course, ...updatedFields };
@@ -45,11 +44,8 @@ export function ConstructorInfoSettings({course, openConfirm, handleFile, setFie
                 </div>
                 <div className="constructor-info-settings_advert">
                     <label>Что вас ждет</label>
-                    <p>Что ждет студентов во время обучения, каждая сторка-отдельный пункт (до 5 пунктов)</p>
-                    <textarea
-                        value={highlightsDraft}
-                        onChange={(e) => setHighlightsDraft(e.target.value)}
-                    />
+                    <p>Что ждет студентов во время обучения, каждая сторка-отдельный пункт</p>
+                    <textarea value={highlightsDraft} onChange={(e) => setHighlightsDraft(e.target.value)}/>
                     <CommonBtn width={100} height={50} borderColor={"#8A6CFF"}  onClick={() => {setField("highlights", highlightsDraft.split("\n").map(s => s.trim()).filter(Boolean));}}>Применить</CommonBtn>
                 </div>
                 <div className="constructor-info-settings_price">

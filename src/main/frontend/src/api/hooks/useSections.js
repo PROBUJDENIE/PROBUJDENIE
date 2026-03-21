@@ -13,7 +13,7 @@ export function useSections({courseId}) {
             setError(null);
 
             try {
-                const data = await publicApi.getSectionPage({courseId:courseId, offset: 0, count: 10 });
+                const data = await publicApi.getSectionPage({courseId:courseId, offset: 0, count: 20 });
                 setSections(data);
             } catch (e) {
                 setError(e.message);

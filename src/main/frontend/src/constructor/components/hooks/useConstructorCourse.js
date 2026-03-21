@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { v4 as uuid } from "uuid";
+import {adminApi} from "@/api/admin.api.js";
 
 export function useConstructorCourse(course, setCourse) {
     const [activeSectionId, setActiveSectionId] = useState(null);
@@ -63,33 +64,50 @@ export function useConstructorCourse(course, setCourse) {
         setLocalBlocks(activeLecture?.contentBlocks || []);
     }
 
-    function addSection() {
+    async function addSection() {
+        if (!course?.id) return;
+
+        const newSection = {
+            title: "Новая глава",
+            orderNumber: course.sections?.length || 0
+        };
+
+        const created = await adminApi.createSection(course.id, newSection);
+
         setCourse(prev => ({
             ...prev,
-            sections: [
-                ...(prev.sections ?? []),
-                { id: uuid(), title: "Новая глава", lectures: [] }
-            ]
+            sections: [...(prev.sections || []), { ...created, lectures: [] }]
         }));
+
+        setActiveSectionId(created.id);
     }
 
-    function addLecture() {
+    async function addLecture() {
         if (!activeSectionId) return;
+
+        const section = course.sections.find(s => s.id === activeSectionId);
+        if (!section) return;
+
+        const newLecture = {
+            title: "Новая лекция",
+            orderNumber: section.lectures?.length || 0
+        };
+
+        const created = await adminApi.createLecture(activeSectionId, newLecture);
 
         setCourse(prev => ({
             ...prev,
-            sections: prev.sections.map(section =>
-                section.id !== activeSectionId
-                    ? section
-                    : {
-                        ...section,
-                        lectures: [
-                            ...(section.lectures ?? []),
-                            { id: uuid(), title: "Новая лекция", contentBlocks: [] }
-                        ]
+            sections: prev.sections.map(s =>
+                s.id === activeSectionId
+                    ? {
+                        ...s,
+                        lectures: [...(s.lectures || []), created]
                     }
+                    : s
             )
         }));
+
+        setActiveLectureId(created.id);
     }
 
     return {

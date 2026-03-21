@@ -56,12 +56,14 @@ export function ConstructorInfoSettings({course, openConfirm, handleFile, setFie
                     <label>Цена</label>
                     <input value={course.price} onChange={e => setField("price", e.target.value)} placeholder={"500"}/>
                 </div>
-                <CommonBtn onClick={openSaveConfirm} width={300} height={58} bgColor="#D9FF6A" borderColor="#8A6CFF" size={18} leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} /> }>Сохранить курс</CommonBtn>
                 <div className="publish_btns">
-                    <CommonBtn width={140} height={40} borderRadius={10} bgColor={activePub === 'publish' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={17} fontColor={"white"} onClick={() => changeModalState(28)}> Опубликовано</CommonBtn>
-                    <CommonBtn width={140} height={40} borderRadius={10} bgColor={activePub === 'not' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={17} fontColor={"white"}  onClick={() => changeModalState(29)}> Не опубликовано</CommonBtn>
+                    <CommonBtn width={200} height={40} borderRadius={10} bgColor={activePub === 'publish' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={17} fontColor={"white"} onClick={() => changeModalState(28)}> Опубликовано</CommonBtn>
+                    <CommonBtn width={200} height={40} borderRadius={10} bgColor={activePub === 'not' ? "#8A6CFF" : "transparent"} borderColor={"#8A6CFF"} size={17} fontColor={"white"}  onClick={() => changeModalState(29)}> Не опубликовано</CommonBtn>
                 </div>
-                <CommonBtn width={300} height={58} bgColor="#EB4760" borderColor="white" fontColor="white" onClick={openConfirm} size={18} leftIcon={<img src={delIcon} width={25} height={25} />}>Удалить курс</CommonBtn>
+                <div className="edit_btns">
+                    <CommonBtn onClick={openSaveConfirm} width={220} height={58} bgColor="#D9FF6A" borderColor="#8A6CFF" size={18} leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} /> }>Сохранить курс</CommonBtn>
+                    <CommonBtn width={220} height={58} bgColor="#EB4760" borderColor="white" fontColor="white" onClick={openConfirm} size={18} leftIcon={<img src={delIcon} width={25} height={25} />}>Удалить курс</CommonBtn>
+                </div>
             </div>
             <ConfirmModalPublishCourse modalState={modalState} changeModalState={changeModalState} onConfirm={() => handleSaveCourse({ status: "READY" })}/>
             <ConfirmModalNotPublishCourse modalState={modalState} changeModalState={changeModalState} onConfirm={() => handleSaveCourse({ status: "CREATED" })}/>

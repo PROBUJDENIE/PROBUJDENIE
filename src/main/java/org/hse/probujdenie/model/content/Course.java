@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Digits;
 import lombok.*;
 import org.hse.probujdenie.model.content.enums.CourseStatus;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -16,7 +18,10 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "COURSE")
-public class Course {
+public class Course implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 7829136421241571165L;
 
     @Version
     @Column(name = "VERSION", nullable = false)

@@ -27,8 +27,6 @@ allOf:
               maxLength: 5000
             defaultCode:
               type: string
-              minLength: 3
-              maxLength: 5000
             timeLimit:
               type: integer
               format: int32

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hse.probujdenie.model.user.enums.UserRole;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,7 +15,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-public class User {
+public class User implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 7829136421241571165L;
 
     @Version
     @Column(name = "VERSION", nullable = false)

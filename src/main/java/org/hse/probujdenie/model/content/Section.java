@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hse.probujdenie.model.content.enums.SectionStatus;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -14,7 +16,10 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "SECTION")
-public class Section {
+public class Section implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 7829136421241571165L;
 
     @Version
     @Column(name = "VERSION", nullable = false)

@@ -7,6 +7,8 @@ import org.hse.probujdenie.model.exercise.enums.StudentSubmissionStatus;
 import org.hse.probujdenie.model.user.User;
 import org.hse.probujdenie.model.user.UserData;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -18,7 +20,10 @@ import java.util.UUID;
 @ToString(exclude = {"exercise", "student"})
 @Entity
 @Table(name = "STUDENT_SUBMISSION")
-public class StudentSubmission {
+public class StudentSubmission implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 7829136421241571165L;
 
     @Id
     @Column(name = "ID", nullable = false)

@@ -3,6 +3,8 @@ package org.hse.probujdenie.model.user;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -13,7 +15,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserData {
+public class UserData implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 7829136421241571165L;
 
     @Version
     @Column(name = "VERSION", nullable = false)

@@ -6,6 +6,7 @@ import lombok.*;
 import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.user.User;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -18,7 +19,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TeacherToCourse {
+public class TeacherToCourse implements Serializable{
+
+    @Serial
+    private static final long serialVersionUID = 7829136421241571165L;
 
     @EmbeddedId
     @Builder.Default

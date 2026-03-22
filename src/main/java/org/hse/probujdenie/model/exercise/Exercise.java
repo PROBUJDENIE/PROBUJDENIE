@@ -6,6 +6,7 @@ import org.hse.probujdenie.model.content.Lecture;
 import org.hse.probujdenie.model.exercise.enums.ExerciseStatus;
 import org.hse.probujdenie.model.exercise.enums.ProgrammingLanguage;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -18,6 +19,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "EXERCISE")
 public class Exercise implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 7829136421241571165L;
 
     @Id
     @Column(name = "ID", nullable = false)

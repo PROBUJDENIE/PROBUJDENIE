@@ -7,6 +7,7 @@ import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.user.User;
 import org.hse.probujdenie.model.user.UserData;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,7 +20,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class StudentToCourse {
+public class StudentToCourse implements Serializable{
+
+    @Serial
+    private static final long serialVersionUID = 7829136421241571165L;
 
     @EmbeddedId
     @Builder.Default

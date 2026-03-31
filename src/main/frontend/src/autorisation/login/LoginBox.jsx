@@ -51,7 +51,7 @@ export default function LoginBox({ modalState, changeModalState}) {
                         <CommonBtn leftIcon={<img src={login} height={30} width={30}/>} width={335} height={43} bgColor={"#8A6CFF"} fontColor={"#fff"} size={18} type="submit">{loading ? "Входим..." : "Войти"}</CommonBtn>
 
                         <h3>Нет аккаунта?</h3>
-                        <CommonBtn size={18} fontColor={"#8A6CFF"}>Зарегестрироваться</CommonBtn>
+                        <CommonBtn size={18} fontColor={"#8A6CFF"} onClick={() => {changeModalState(3);}}>Зарегестрироваться</CommonBtn>
 
                     </form>
                 </div>

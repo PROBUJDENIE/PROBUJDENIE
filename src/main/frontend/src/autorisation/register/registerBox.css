@@ -1,0 +1,110 @@
+.register-box {
+    width: 415px;
+    height: 900px;
+    background-color: #EEE9E5;
+    border-radius: 15px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 200px #D2FE66;
+}
+.register-box-header {
+    margin-top: 84px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-box h2{
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.register-box  h3{
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.login-box-content_field {
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.login-box-content_field_rules {
+    font-size: 16px;
+    font-weight: lighter;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.login-box-content_field_rules h2 {
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.login-box-content_field > input {
+    width: 335px;
+    height: 43px;
+    border-radius: 15px;
+    padding: 0 12px;
+    font-size: 17px;
+}
+
+.login-box-content_field > label {
+    font-weight: 800;
+}
+
+.register-box-content {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    gap: 10px;
+}
+
+.register-box-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+.password-error-container {
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #FFF0F2;
+    border-radius: 8px;
+    width: 100%;
+    border: 2px solid #EB4760;
+}
+
+.password-error-item {
+    margin: 2px 0;
+}
+
+.password-confirm-error {
+    font-size: 12px;
+    color: #EB4760;
+    margin-top: 5px;
+}
+
+.password-input-error {
+    border-color: #EB4760 !important;
+}
+
+.error-message {
+    font-size: 18px;
+    color: #EB4760;
+    text-align: center;
+}

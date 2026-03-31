@@ -12,6 +12,7 @@ import {useState} from "react";
 import LoginBox from "@/autorisation/login/LoginBox.jsx";
 import LoginBoxTeacher from "@/autorisation/login-teacher/LoginBoxTeacher.jsx";
 import LoginBoxAdmin from "@/autorisation/login-admin/LoginBoxAdmin.jsx";
+import RegisterBox from "@/autorisation/register/RegisterBox.jsx";
 
 export default function Header() {
     const navigate = useNavigate();
@@ -33,6 +34,7 @@ export default function Header() {
             <LoginOrRegister modalState={modalState} changeModalState={(arg) => changeModalState(arg)}/>
 
             <LoginBox modalState={modalState} changeModalState={(arg) => changeModalState(arg)}/>
+            <RegisterBox modalState={modalState} changeModalState={(arg) => changeModalState(arg)}/>
 
             <LoginBoxTeacher modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
 

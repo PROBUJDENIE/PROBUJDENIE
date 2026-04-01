@@ -1,6 +1,7 @@
 package org.hse.probujdenie.service.exercise;
 
 import lombok.RequiredArgsConstructor;
+import org.hse.probujdenie.mapper.StudentSubmissionMapper;
 import org.hse.probujdenie.model.exercise.Exercise;
 import org.hse.probujdenie.model.exercise.StudentSubmission;
 import org.hse.probujdenie.model.exercise.enums.StudentSubmissionStatus;
@@ -26,44 +27,41 @@ public class StudentSubmissionService {
     private final UserService userService;
     private final StudentSubmissionRepository studentSubmissionRepository;
 
-
-    public StudentSubmission createStudentSubmission(String userEmail, UUID exerciseId, StudentSubmission studentSubmission) {
+    public StudentSubmission create(String userEmail, UUID exerciseId, StudentSubmission studentSubmission) {
         User user = userService.getUserByEmail(userEmail);
         Exercise exercise = exerciseService.getExercise(exerciseId);
-        studentSubmission.setId(generateId());
+
         studentSubmission.setStudent(user);
-        studentSubmission.setStatus(StudentSubmissionStatus.SUBMITTED);
         studentSubmission.setExercise(exercise);
+        studentSubmission.setStatus(StudentSubmissionStatus.SUBMITTED);
         studentSubmission.setCreationDateTime(LocalDateTime.now());
-        studentSubmissionRepository.save(studentSubmission);
-        return studentSubmission;
-    }
+        studentSubmission.setId(generateId());
 
-    public StudentSubmission updateStudentSubmission(String userEmail, UUID exerciseId, StudentSubmission studentSubmission) {
-        User user = userService.getUserByEmail(userEmail);
-        Exercise exercise = exerciseService.getExercise(exerciseId);
-        StudentSubmission existing = getStudentSubmission(studentSubmission.getId());
-        existing.setStudent(user);
-        existing.setExercise(exercise);
-        existing.setStatus(StudentSubmissionStatus.SUBMITTED);
-        existing.setErrorDesc(null);
-        existing.setAnswer(studentSubmission.getAnswer());
-        existing.setCreationDateTime(LocalDateTime.now());
-        studentSubmissionRepository.save(existing);
-        return existing;
+        studentSubmissionRepository.save(studentSubmission);
+
+        return studentSubmission;
     }
 
     public StudentSubmission update(StudentSubmission studentSubmission) {
         StudentSubmission existing = getStudentSubmission(studentSubmission.getId());
-        existing.setStudent(studentSubmission.getStudent());
-        existing.setExercise(studentSubmission.getExercise());
-        existing.setStatus(studentSubmission.getStatus());
-        existing.setErrorDesc(studentSubmission.getErrorDesc());
+
         existing.setAnswer(studentSubmission.getAnswer());
+        if (studentSubmission.getStatus() == null) {
+            existing.setStatus(StudentSubmissionStatus.SUBMITTED);
+            existing.setAnswer(studentSubmission.getAnswer());
+            existing.setErrorDesc(null);
+        } else {
+            existing.setStatus(studentSubmission.getStatus());
+            existing.setErrorDesc(studentSubmission.getErrorDesc());
+        }
+
         existing.setCreationDateTime(LocalDateTime.now());
+
         studentSubmissionRepository.save(existing);
-        return existing;
+
+        return studentSubmission;
     }
+
 
     public StudentSubmission getStudentSubmissionByExerciseIdAndEmail(UUID exerciseId, String email){
         User user = userService.getUserByEmail(email);
@@ -77,6 +75,7 @@ public class StudentSubmissionService {
         if (studentSubmission.isEmpty()) throw new IllegalArgumentException("Ответа пользователя не существует.");
         return studentSubmission.get();
     }
+
 
     public List<StudentSubmission> getAllSendedSubmissions() {
         return studentSubmissionRepository.findAllByStatus(StudentSubmissionStatus.SUBMITTED);

@@ -57,9 +57,9 @@ public class StudentSecureController implements StudentSecureApiDelegate {
         StudentSubmission studentSubmission = studentSubmissionMapper.toEntityFromCreateStudentSubmissionDto(createStudentSubmissionRequestDto);
         StudentSubmission created;
         if (createStudentSubmissionRequestDto.getId() == null) {
-            created =  studentSubmissionService.createStudentSubmission(email, exerciseId, studentSubmission);
+            created =  studentSubmissionService.create(email, exerciseId, studentSubmission);
         }else {
-            created =  studentSubmissionService.updateStudentSubmission(email, exerciseId, studentSubmission);
+            created =  studentSubmissionService.update(studentSubmission);
         }
         CreateStudentSubmissionResponseDto response = new CreateStudentSubmissionResponseDto();
         response.success(true);

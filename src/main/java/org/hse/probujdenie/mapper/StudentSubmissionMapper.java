@@ -1,6 +1,7 @@
 package org.hse.probujdenie.mapper;
 
 import org.hse.probujdenie.api.model.*;
+import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.exercise.Exercise;
 import org.hse.probujdenie.model.exercise.StudentSubmission;
 import org.mapstruct.*;
@@ -20,5 +21,7 @@ public interface StudentSubmissionMapper {
     @Mapping(target = "studentEmail", source = "student.email")
     GetStudentSubmissionResponseDtoItem toGetStudentSubmissionResponseDtoItem(StudentSubmission request);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateSubmission(StudentSubmission source, @MappingTarget StudentSubmission target);
 
 }

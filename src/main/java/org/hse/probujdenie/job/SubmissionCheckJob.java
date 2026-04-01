@@ -19,9 +19,7 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.hse.probujdenie.model.exercise.enums.ProgrammingLanguage.JAVA;
 
@@ -39,11 +37,14 @@ public class SubmissionCheckJob {
             lockAtLeastFor = "${submission-check.lock-at-least-for}"
     )
     @Scheduled(fixedDelayString = "${submission-check.fixed-delay-ms}")
-    @Transactional
     public void checkPendingSubmissions() throws IOException, InterruptedException {
         List<StudentSubmission> submissions = studentSubmissionService.getAllSendedSubmissions();
         for (StudentSubmission submission: submissions) {
 
+            submission.setStatus(StudentSubmissionStatus.IN_REVIEW);
+            studentSubmissionService.update(submission);
+
+            System.out.println("Мы прошли ревью");
             if (JAVA.equals(submission.getExercise().getProgrammingLanguage())){
                 prepareDirectionForStudentSubmission(submission);
 
@@ -81,14 +82,12 @@ public class SubmissionCheckJob {
 
         if (exitCode != 0) {
             String errors = getErrorsFromLogs(logs);
-            System.out.println("exit code != 0 in image");
             rejectSubmission(errors, submission);
-            DockerService.cleanupDanglingImages();
         }
+        DockerService.cleanupDanglingImages();
         return exitCode;
     }
 
-    @Transactional
     private void startContainer(StudentSubmission submission) throws IOException, InterruptedException {
         Process p = executeRunningContainerScript(submission);
 
@@ -121,7 +120,6 @@ public class SubmissionCheckJob {
                 errors = logs;
             }
             rejectSubmission(errors, submission);
-            DockerService.cleanupDanglingImages();
         } else {
             if (logs.equals(answer)) {
                 approveSubmission(submission);
@@ -129,7 +127,7 @@ public class SubmissionCheckJob {
                 rejectSubmission(logs + "!=" + answer, submission);
             }
         }
-
+        DockerService.cleanupDanglingImages();
     }
 
 
@@ -145,7 +143,6 @@ public class SubmissionCheckJob {
         return p.start();
     }
 
-    @Transactional
     private Process executeRunningContainerScript(StudentSubmission submission) throws IOException {
         Integer timeout = submission.getExercise().getTimeLimit();
         if (timeout == null) timeout = 30;

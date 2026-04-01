@@ -33,11 +33,11 @@ public class StudentSubmission implements Serializable {
     @Column(name = "VERSION", nullable = false)
     private Integer version;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "EXERCISE_ID", nullable = false)
     private Exercise exercise;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "STUDENT_EMAIL", referencedColumnName = "EMAIL" ,nullable = false)
     private User student;
 

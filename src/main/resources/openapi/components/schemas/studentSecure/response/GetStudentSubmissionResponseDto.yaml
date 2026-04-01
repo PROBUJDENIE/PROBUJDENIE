@@ -22,3 +22,10 @@ allOf:
             format: UUID
           studentEmail:
             type: string
+          status:
+            type: string
+            enum:
+              - SUBMITTED
+              - IN_REVIEW
+              - APPROVED
+              - REJECTED

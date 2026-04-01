@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import {studentApi} from "@/api/student.api.js";
 
+const FINAL_STATUSES = ['APPROVED', 'REJECTED'];
+const POLLING_INTERVAL = 5000;
+
 export function useSubmission(exerciseId) {
     const [submission, setSubmission] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -22,6 +25,17 @@ export function useSubmission(exerciseId) {
         }
     };
 
+    useEffect(() => {
+        const status = submission?.data?.status;
+        if (!status || FINAL_STATUSES.includes(status)) return;
+
+        const interval = setInterval(() => {
+            fetchSubmission();
+        }, POLLING_INTERVAL);
+
+        return () => clearInterval(interval);
+    }, [submission?.data?.status]);
+
     const submitSolution = async (answer) => {
         try {
             setLoading(true);
@@ -29,7 +43,6 @@ export function useSubmission(exerciseId) {
                 answer: answer,
                 ...(submission?.data?.id && { id: submission.data.id })
             };
-
             const result = await studentApi.createSubmission(exerciseId, data);
             setSubmission(result);
             return result;
@@ -47,5 +60,5 @@ export function useSubmission(exerciseId) {
         }
     }, [exerciseId]);
 
-    return {submission, loading, error, submitSolution, refetch: fetchSubmission};
+    return { submission, loading, error, submitSolution, refetch: fetchSubmission };
 }

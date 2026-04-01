@@ -1,5 +1,5 @@
 import "./task.css"
-import { useRef } from "react";
+import {useRef, useState} from "react";
 import Editor from "@monaco-editor/react";
 import check from "../resourses/check.svg"
 import {useSubmission} from "@/api/hooks/useSubmission.js";
@@ -9,10 +9,12 @@ export default function Task({ exerciseData }) {
     const editorRef = useRef(null);
     const {submission, loading, submitSolution, refetch} = useSubmission(exerciseData?.id);
     const { code, setCode } = usePersistedCode(exerciseData?.id, exerciseData?.defaultCode);
+    const [submitted, setSubmitted] = useState(false);
     const handleSubmit = async () => {
         try {
             await submitSolution(code);
             await refetch();
+            setSubmitted(true);
             console.log("Решение отправлено");
         } catch (e) {
             console.error("Ошибка при отправке решения", e);
@@ -91,7 +93,7 @@ export default function Task({ exerciseData }) {
                         <div className="task-block-panel_status">Статус: {submission?.data?.status || "Не отправлено"}</div>
 
                     </div>
-                    {submission && (
+                    {submitted && submission && (
                         <div className={`error_desc ${submission.data?.error_desc ? 'error' : 'success'}`}>
                             {submission.data?.error_desc ? (
                                 <div className="error-message">

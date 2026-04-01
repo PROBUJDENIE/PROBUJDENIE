@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Comparator;
 import java.util.List;
 
 @UtilityClass
@@ -22,6 +23,21 @@ public class FileService {
                 } else {
                     Files.copy(path, targetPath, StandardCopyOption.REPLACE_EXISTING);
                 }
+            }
+        }
+    }
+
+    public static void deleteDirectory(Path path) throws IOException {
+        if (Files.exists(path)) {
+            try (var walk = Files.walk(path)) {
+                walk.sorted(Comparator.reverseOrder())
+                    .forEach(p -> {
+                        try {
+                                Files.delete(p);
+                        } catch (IOException e) {
+                                System.err.println("Не удалось удалить: " + p + " → " + e.getMessage());
+                        }
+                    });
             }
         }
     }

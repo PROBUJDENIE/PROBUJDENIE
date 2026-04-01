@@ -53,6 +53,18 @@ public class StudentSubmissionService {
         return existing;
     }
 
+    public StudentSubmission update(StudentSubmission studentSubmission) {
+        StudentSubmission existing = getStudentSubmission(studentSubmission.getId());
+        existing.setStudent(studentSubmission.getStudent());
+        existing.setExercise(studentSubmission.getExercise());
+        existing.setStatus(studentSubmission.getStatus());
+        existing.setErrorDesc(studentSubmission.getErrorDesc());
+        existing.setAnswer(studentSubmission.getAnswer());
+        existing.setCreationDateTime(LocalDateTime.now());
+        studentSubmissionRepository.save(existing);
+        return existing;
+    }
+
     public StudentSubmission getStudentSubmissionByExerciseIdAndEmail(UUID exerciseId, String email){
         User user = userService.getUserByEmail(email);
         Optional<StudentSubmission> studentSubmission = studentSubmissionRepository.findByExerciseIdAndStudentEmail(exerciseId, email);

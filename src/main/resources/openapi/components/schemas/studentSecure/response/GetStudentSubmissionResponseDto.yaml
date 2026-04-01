@@ -22,6 +22,8 @@ allOf:
             format: UUID
           studentEmail:
             type: string
+          error_desc:
+            type: string
           status:
             type: string
             enum:

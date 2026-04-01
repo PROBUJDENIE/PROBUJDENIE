@@ -13,6 +13,8 @@ import LoginBox from "@/autorisation/login/LoginBox.jsx";
 import LoginBoxTeacher from "@/autorisation/login-teacher/LoginBoxTeacher.jsx";
 import LoginBoxAdmin from "@/autorisation/login-admin/LoginBoxAdmin.jsx";
 import RegisterBox from "@/autorisation/register/RegisterBox.jsx";
+import {ProfileExit} from "@/modal-confirm/profile/ProfileExit.jsx";
+import {MyProfile} from "@/modal-confirm/profile/MyProfile.jsx";
 
 export default function Header() {
     const navigate = useNavigate();
@@ -37,8 +39,10 @@ export default function Header() {
             <RegisterBox modalState={modalState} changeModalState={(arg) => changeModalState(arg)}/>
 
             <LoginBoxTeacher modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
-
             <LoginBoxAdmin modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
+
+            <ProfileExit modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
+            <MyProfile modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
         </>
     )
 }

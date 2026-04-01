@@ -12,6 +12,7 @@ import LectureBlocks from "@/lecture/blocks/LectureBlocks.jsx";
 import {useLectureManager} from "@/api/hooks/useLectureManager.js";
 import next from "./resourses/next.svg"
 import LectureProgress from "@/lecture/progress/LectureProgress.jsx";
+import ProfileHeader from "@/user-profile/components/header/ProfileHeader.jsx";
 
 export default function Lecture() {
 
@@ -29,7 +30,7 @@ export default function Lecture() {
     return (
         <>
             <div className="lecture">
-                <Header/>
+                <ProfileHeader/>
                 <Jump></Jump>
                 <LectureManagerNavigation isOpen={isOpen} setIsOpen={() => setIsOpen(false)} sections={sections} lectures={lectures}
                                           activeChapterIdx={activeChapterIdx} setActiveChapterIdx={setActiveChapterIdx} activeLectureId={activeLectureId} setActiveLectureId={setActiveLectureId}/>

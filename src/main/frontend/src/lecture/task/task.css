@@ -142,6 +142,7 @@
 
 .error-message, .success-message {
     width: 100%;
+    text-align: left;
 }
 
 @keyframes slideDown {

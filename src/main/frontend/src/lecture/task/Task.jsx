@@ -4,7 +4,9 @@ import Editor from "@monaco-editor/react";
 import check from "../resourses/check.svg"
 import {useSubmission} from "@/api/hooks/useSubmission.js";
 import {usePersistedCode} from "@/api/hooks/usePersistedCode.js";
-
+import good from "./resourses/task_good.svg"
+import bad from "./resourses/task_bad.svg"
+import think from "./resourses/task_think.svg"
 export default function Task({ exerciseData }) {
     const editorRef = useRef(null);
     const {submission, loading, submitSolution, refetch} = useSubmission(exerciseData?.id);
@@ -90,19 +92,28 @@ export default function Task({ exerciseData }) {
                         <button className="btnr" onClick={handleSubmit}>
                             <img src={check} alt="submit" />
                         </button>
-                        <div className="task-block-panel_status">Статус: {submission?.data?.status || "Не отправлено"}</div>
+                        <div className={`task-block-panel_status ${!submission?.data?.status ? 'not_submitted' : submission?.data?.status}`}>
+                            Статус: {submission?.data?.status || "Не отправлено"}
+                        </div>
 
                     </div>
                     {submitted && submission && (
-                        <div className={`error_desc ${submission.data?.error_desc ? 'error' : 'success'}`}>
-                            {submission.data?.error_desc ? (
+                        <div className={`error_desc ${submission.data?.error_desc || submission.data?.status === 'REJECTED' ? 'error' : 'success'}`}>
+                            {submission.data?.error_desc || submission.data?.status === 'REJECTED' ? (
                                 <div className="error-message">
-                                    <strong>Ошибка компиляции/выполнения:</strong>
+                                    <strong>Ошибка компиляции/выполнения, Боб расстроен, подумай и исправь ошибку</strong>
+                                    <img src={bad}/>
                                     <pre>{submission.data?.error_desc}</pre>
+                                </div>
+                            ) : submission.data?.status === 'APPROVED' ? (
+                                <div className="success-message">
+                                    <strong>Ура, ты молодец, Боб гордится тобой!</strong>
+                                    <img src={good}/>
                                 </div>
                             ) : (
                                 <div className="success-message">
-                                    <strong>Решение успешно отправлено!</strong>
+                                    <strong>Решение успешно отправлено! Пару секунд, Боб проверяет...</strong>
+                                    <img src={think}/>
                                 </div>
                             )}
                         </div>

@@ -7,12 +7,15 @@ import {usePersistedCode} from "@/api/hooks/usePersistedCode.js";
 import good from "./resourses/task_good.svg"
 import bad from "./resourses/task_bad.svg"
 import think from "./resourses/task_think.svg"
+import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 export default function Task({ exerciseData }) {
     const editorRef = useRef(null);
     const {submission, loading, submitSolution, refetch} = useSubmission(exerciseData?.id);
     const { code, setCode } = usePersistedCode(exerciseData?.id, exerciseData?.defaultCode);
     const [submitted, setSubmitted] = useState(false);
+    const isButtonDisabled = loading || submission?.data?.status === 'SUBMITTED' || submission?.data?.status === 'IN_REVIEW';
     const handleSubmit = async () => {
+        if (isButtonDisabled) return;
         try {
             await submitSolution(code);
             await refetch();
@@ -89,9 +92,7 @@ export default function Task({ exerciseData }) {
                     </div>
 
                     <div className="task-block-panel">
-                        <button className="btnr" onClick={handleSubmit}>
-                            <img src={check} alt="submit" />
-                        </button>
+                        <CommonBtn fontWeight={800} size={20} leftIcon={!isButtonDisabled ? <img src={check} width={35} height={35}/> : null} width={220} height={45} onClick={handleSubmit} bgColor={isButtonDisabled ? "#CCCCCC" : "#8A6CFF"} fontColor={isButtonDisabled ? "#999999" : "white"} borderColor={isButtonDisabled ? "#999999" : "white"} borderRadius={20}>{loading ? "ОТПРАВКА" : submission?.data?.status === 'SUBMITTED' || submission?.data?.status === 'IN_REVIEW' ? "ПРОВЕРЯЕТСЯ" : "ПРОВЕРИТЬ"}</CommonBtn>
                         <div className={`task-block-panel_status ${!submission?.data?.status ? 'not_submitted' : submission?.data?.status}`}>
                             Статус: {submission?.data?.status || "Не отправлено"}
                         </div>

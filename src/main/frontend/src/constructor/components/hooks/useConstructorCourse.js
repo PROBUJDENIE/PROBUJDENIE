@@ -18,7 +18,7 @@ export function useConstructorCourse(course, setCourse) {
 
     const [localBlocks, setLocalBlocks] = useState([]);
 
-    useEffect(() => {setLocalBlocks(activeLecture?.contentBlocks || []);}, [activeLectureId, activeLecture?.contentBlocks]);
+    useEffect(() => {setLocalBlocks(activeLecture?.contentBlocks || []);}, [activeLectureId]);
 
     const blocks = localBlocks;
     useEffect(() => {

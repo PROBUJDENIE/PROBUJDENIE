@@ -57,8 +57,10 @@ export function useAdminCourseContent(courseId, activeSectionId, setActiveSectio
                                         fileId: item.fileId,
                                         imageUrl: getUrl(PUBLIC_ENDPOINTS.GET_FILE(item.fileId))
                                     }
-                                    : item.content
+                                    : item.content,
+                                ...(item.type === "exercise" && { exerciseId: item.exerciseId })
                             }));
+                            console.log("parsed blocks:", blocks);
                         }
 
                         return {

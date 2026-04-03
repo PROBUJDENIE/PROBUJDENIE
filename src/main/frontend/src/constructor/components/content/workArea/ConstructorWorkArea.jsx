@@ -47,11 +47,13 @@ export default function ConstructorWorkArea({blocks, updateBlock, mode, activeLe
             if (block.type === "task") {
                 const updatedExercise = { ...block.exercise, ...updatedContent };
                 handleChange({ ...block, exercise: updatedExercise });
+            } else if (block.type === "exercise") {
+                updateBlock(block.id, updatedContent);
             } else {
                 handleChange({ ...block, content: updatedContent });
             }
         },
-        [handleChange]
+        [handleChange, updateBlock]
     );
 
     return (

@@ -25,6 +25,26 @@ export default function Task({ exerciseData }) {
             console.error("Ошибка при отправке решения", e);
         }
     };
+    const getStatusClass = () => {
+        if (submission.data?.error_desc || submission.data?.status === 'REJECTED') {
+            return 'error';
+        }
+        if (submission.data?.status === 'IN_REVIEW' || submission.data?.status === 'SUBMITTED') {
+            return 'waiting';
+        }
+        return 'success';
+    };
+    const STATUS_RUSSIAN = {
+        'SUBMITTED': 'ПРИНЯТО',
+        'IN_REVIEW': 'НА ПРОВЕРКЕ',
+        'APPROVED': 'КОРРЕКТНО',
+        'REJECTED': 'НЕКОРРЕКТНО',
+        'NOT_SUBMITTED': 'НЕ ОТПРАВЛЕНО'
+    };
+    const getRussianStatus = (status) => {
+        if (!status) return STATUS_RUSSIAN.NOT_SUBMITTED;
+        return STATUS_RUSSIAN[status] || status;
+    };
 
     const getMonacoLanguage = (programmingLanguage) => {
         switch (programmingLanguage?.toUpperCase()) {
@@ -94,12 +114,12 @@ export default function Task({ exerciseData }) {
                     <div className="task-block-panel">
                         <CommonBtn fontWeight={800} size={20} leftIcon={!isButtonDisabled ? <img src={check} width={35} height={35}/> : null} width={220} height={45} onClick={handleSubmit} bgColor={isButtonDisabled ? "#CCCCCC" : "#8A6CFF"} fontColor={isButtonDisabled ? "#999999" : "white"} borderColor={isButtonDisabled ? "#999999" : "white"} borderRadius={20}>{loading ? "ОТПРАВКА" : submission?.data?.status === 'SUBMITTED' || submission?.data?.status === 'IN_REVIEW' ? "ПРОВЕРЯЕТСЯ" : "ПРОВЕРИТЬ"}</CommonBtn>
                         <div className={`task-block-panel_status ${!submission?.data?.status ? 'not_submitted' : submission?.data?.status}`}>
-                            Статус: {submission?.data?.status || "Не отправлено"}
+                            Статус: {getRussianStatus(submission?.data?.status)}
                         </div>
 
                     </div>
                     {submitted && submission && (
-                        <div className={`error_desc ${submission.data?.error_desc || submission.data?.status === 'REJECTED' ? 'error' : 'success'}`}>
+                        <div className={`error_desc ${getStatusClass()}`}>
                             {submission.data?.error_desc || submission.data?.status === 'REJECTED' ? (
                                 <div className="error-message">
                                     <strong>Ошибка компиляции/выполнения, Боб расстроен, подумай и исправь ошибку</strong>

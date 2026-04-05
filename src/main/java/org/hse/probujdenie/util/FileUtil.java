@@ -1,16 +1,28 @@
 package org.hse.probujdenie.util;
 
 import lombok.experimental.UtilityClass;
+import org.hse.probujdenie.model.exercise.StudentSubmission;
+import org.jspecify.annotations.NonNull;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 
 @UtilityClass
-public class FileService {
+public class FileUtil {
+
+    public static @NonNull Path getSubmissionFolder(UUID submissionId) {
+        return Path.of("/app/student_submissions/", submissionId.toString());
+    }
+
+    public static @NonNull File getSubmissionFolderAsFile(StudentSubmission submission) {
+        return getSubmissionFolder(submission.getId()).toFile();
+    }
 
     public static void copyDirectory(Path source, Path target) throws IOException {
         try (var paths = Files.walk(source)) {

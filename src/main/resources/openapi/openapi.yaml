@@ -8,6 +8,10 @@ servers:
   - url: http://localhost:8080
 
 paths:
+  /api/v1/login:
+    $ref: './paths/public/login.yaml'
+  /api/v1/register:
+    $ref: './paths/public/register.yaml'
   /api/v1/courses:
     $ref: './paths/public/courses.yaml'
   /api/v1/courses/{courseId}/sections:

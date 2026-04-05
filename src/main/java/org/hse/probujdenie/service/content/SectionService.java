@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static org.hse.probujdenie.util.UuidService.generateId;
+import static org.hse.probujdenie.util.UuidUtil.generateId;
 
 @Service
 @RequiredArgsConstructor

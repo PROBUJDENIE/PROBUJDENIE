@@ -4,11 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.hse.probujdenie.ExerciseToCourse;
 import org.hse.probujdenie.mapper.ExerciseMapper;
 import org.hse.probujdenie.model.content.Course;
-import org.hse.probujdenie.model.content.Lecture;
 import org.hse.probujdenie.model.exercise.Exercise;
 import org.hse.probujdenie.model.exercise.enums.ExerciseStatus;
 import org.hse.probujdenie.service.content.CourseService;
-import org.hse.probujdenie.service.content.LectureService;
 import org.hse.probujdenie.storage.exercise.ExerciseRepository;
 import org.hse.probujdenie.storage.exercise.ExerciseToCourseRepository;
 import org.springframework.stereotype.Service;
@@ -19,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.hse.probujdenie.util.UuidService.generateId;
+import static org.hse.probujdenie.util.UuidUtil.generateId;
 
 @Service
 @RequiredArgsConstructor

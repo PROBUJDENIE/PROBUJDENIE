@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.hse.probujdenie.util.UuidService.generateId;
+import static org.hse.probujdenie.util.UuidUtil.generateId;
 
 @Service
 @RequiredArgsConstructor

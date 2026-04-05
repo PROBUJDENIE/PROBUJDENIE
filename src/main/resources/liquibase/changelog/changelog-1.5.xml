@@ -19,7 +19,7 @@
         <insert tableName="USR">
             <column name="VERSION" valueNumeric="0"/>
             <column name="EMAIL" value="belikov_v2@mail.ru"/>
-            <column name="PASSWORD" value="qwerty"/>
+            <column name="PASSWORD" value="$2a$10$j22s39Qmr32eWjSgr3kGlOdIE7EIJkET6W62PAksKNpZ1hlAsAH5."/>
             <column name="ROLE" value="ADMIN"/>
             <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
@@ -40,7 +40,7 @@
         <insert tableName="USR">
             <column name="VERSION" valueNumeric="0"/>
             <column name="EMAIL" value="teacher1@mail.ru"/>
-            <column name="PASSWORD" value="qwerty"/>
+            <column name="PASSWORD" value="$2a$10$j22s39Qmr32eWjSgr3kGlOdIE7EIJkET6W62PAksKNpZ1hlAsAH5."/>
             <column name="ROLE" value="TEACHER"/>
             <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
@@ -61,7 +61,7 @@
         <insert tableName="USR">
             <column name="VERSION" valueNumeric="0"/>
             <column name="EMAIL" value="teacher2@mail.ru"/>
-            <column name="PASSWORD" value="qwerty"/>
+            <column name="PASSWORD" value="$2a$10$j22s39Qmr32eWjSgr3kGlOdIE7EIJkET6W62PAksKNpZ1hlAsAH5."/>
             <column name="ROLE" value="TEACHER"/>
             <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
@@ -82,7 +82,7 @@
         <insert tableName="USR">
             <column name="VERSION" valueNumeric="0"/>
             <column name="EMAIL" value="student@mail.ru"/>
-            <column name="PASSWORD" value="qwerty"/>
+            <column name="PASSWORD" value="$2a$10$j22s39Qmr32eWjSgr3kGlOdIE7EIJkET6W62PAksKNpZ1hlAsAH5."/>
             <column name="ROLE" value="STUDENT"/>
             <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
@@ -103,7 +103,7 @@
         <insert tableName="USR">
             <column name="VERSION" valueNumeric="0"/>
             <column name="EMAIL" value="student2@mail.ru"/>
-            <column name="PASSWORD" value="qwerty"/>
+            <column name="PASSWORD" value="$2a$10$j22s39Qmr32eWjSgr3kGlOdIE7EIJkET6W62PAksKNpZ1hlAsAH5."/>
             <column name="ROLE" value="STUDENT"/>
             <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>

@@ -1,0 +1,32 @@
+type: object
+
+required:
+  - email
+  - password
+  - role
+  - firstName
+  - lastName
+
+properties:
+  firstName:
+    type: string
+    minLength: 3
+    maxLength: 50
+  lastName:
+    type: string
+    minLength: 3
+    maxLength: 50
+  email:
+    type: string
+    minLength: 3
+    maxLength: 50
+  password:
+    type: string
+    minLength: 3
+    maxLength: 50
+  role:
+    type: string
+    enum:
+      - STUDENT
+      - TEACHER
+      - ADMIN

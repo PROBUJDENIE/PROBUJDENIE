@@ -16,7 +16,7 @@ import software.amazon.awssdk.services.s3.model.*;
 import java.io.IOException;
 import java.util.UUID;
 
-import static org.hse.probujdenie.util.UuidService.generateId;
+import static org.hse.probujdenie.util.UuidUtil.generateId;
 
 @Service
 @RequiredArgsConstructor

@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 import java.util.UUID;
 
 @UtilityClass
-public class UuidService {
+public class UuidUtil {
 
     public static UUID generateId(){
        return UUID.randomUUID();

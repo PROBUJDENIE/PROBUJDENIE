@@ -1,0 +1,17 @@
+post:
+  operationId: login
+  tags:
+    - public
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/public/request/LoginRequestDto.yaml'
+  responses:
+    '200':
+      description: Токен.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/public/response/LoginResponseDto.yaml'

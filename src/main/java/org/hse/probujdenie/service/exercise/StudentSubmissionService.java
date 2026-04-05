@@ -1,7 +1,6 @@
 package org.hse.probujdenie.service.exercise;
 
 import lombok.RequiredArgsConstructor;
-import org.hse.probujdenie.mapper.StudentSubmissionMapper;
 import org.hse.probujdenie.model.exercise.Exercise;
 import org.hse.probujdenie.model.exercise.StudentSubmission;
 import org.hse.probujdenie.model.exercise.enums.StudentSubmissionStatus;
@@ -9,14 +8,13 @@ import org.hse.probujdenie.model.user.User;
 import org.hse.probujdenie.service.UserService;
 import org.hse.probujdenie.storage.exercise.StudentSubmissionRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.hse.probujdenie.util.UuidService.generateId;
+import static org.hse.probujdenie.util.UuidUtil.generateId;
 
 
 @Service
@@ -79,6 +77,11 @@ public class StudentSubmissionService {
 
     public List<StudentSubmission> getAllSendedSubmissions() {
         return studentSubmissionRepository.findAllByStatus(StudentSubmissionStatus.SUBMITTED);
+    }
+
+    public void setStatus(StudentSubmission submission, StudentSubmissionStatus newStatus) {
+        submission.setStatus(newStatus);
+        update(submission);
     }
 }
 

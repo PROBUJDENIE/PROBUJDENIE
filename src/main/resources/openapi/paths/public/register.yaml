@@ -1,0 +1,17 @@
+post:
+  operationId: register
+  tags:
+    - public
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/public/request/RegisterRequestDto.yaml'
+  responses:
+    '200':
+      description: Пользователь.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/public/response/RegisterResponseDto.yaml'

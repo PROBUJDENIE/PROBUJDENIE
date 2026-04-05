@@ -1,6 +1,6 @@
 package org.hse.probujdenie.util;
 
-public class DockerService {
+public class DockerUtil {
     public static void cleanupDanglingImages() {
         try {
             ProcessBuilder cleanPb = new ProcessBuilder(

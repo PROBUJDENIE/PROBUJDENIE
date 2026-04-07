@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {normalizeCourses} from "@/api/hooks/course.mapper.js";
 import {publicApi} from "../public.api.js";
 
@@ -24,6 +24,9 @@ export function usePublicCourses() {
 
         loadCourses();
     }, []);
+    const getCourse = useCallback((id) => {
+        return courses.find(c => String(c.id) === String(id)) ?? null;
+    }, [courses]);
 
-    return { courses, loading, error};
+    return { courses, loading, error, getCourse };
 }

@@ -4,7 +4,7 @@ import {
     MAIN_ROUTE,
     ADMIN_PROFILE_ROUTE,
     USER_PROFILE_ROUTE,
-    LOGIN_OR_REGISTER, LectureContent
+    LOGIN_OR_REGISTER, LectureContent, TEACHER_PROFILE_ROUTE
 } from "./utils/constants.jsx";
 import AdminProfile from "./admin-profile/AdminProfile.jsx";
 import MainPage from "./main-page/MainPage.jsx";
@@ -13,9 +13,11 @@ import CourseInfo from "./course-info/CourseInfo.jsx";
 import UserProfile from "./user-profile/UserProfile.jsx";
 import LoginOrRegister from "./autorisation/login-or-register/LoginOrRegister.jsx";
 import Lecture from "@/lecture/Lecture.jsx";
+import TeacherProfile from "@/teacher-profile/TeacherProfile.jsx";
 
 export const authRoutes = [
     { path: ADMIN_PROFILE_ROUTE, Component: AdminProfile },
+    { path: TEACHER_PROFILE_ROUTE, Component: TeacherProfile },
     { path: USER_PROFILE_ROUTE, Component: UserProfile },
     { path: CONSTRUCTOR, Component: Constructor },
     { path: LectureContent, Component: Lecture },

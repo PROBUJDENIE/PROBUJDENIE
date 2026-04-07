@@ -1,4 +1,5 @@
 export const ADMIN_PROFILE_ROUTE = '/admin-profile'
+export const TEACHER_PROFILE_ROUTE = '/teacher-profile'
 export const MAIN_ROUTE = '/'
 export const CONSTRUCTOR = '/constructor'
 export const COURSE_INFO = '/course-info'

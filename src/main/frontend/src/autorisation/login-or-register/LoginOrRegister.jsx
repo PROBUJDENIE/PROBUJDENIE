@@ -1,12 +1,10 @@
 import "./loginOrRegister.css"
 import CommonBtn from "../../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import Logo from "../../main-page/compoents/prototype/logo/Logo.jsx";
-import {useNavigate} from "react-router-dom";
 import login from "@/autorisation/resourses/login.svg";
 import reg from "@/autorisation/resourses/reg.svg";
 
 export default function LoginOrRegister({modalState, changeModalState}) {
-    const navigate = useNavigate();
 
     if (modalState !== 1) return null;
 

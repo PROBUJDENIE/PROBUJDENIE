@@ -15,11 +15,11 @@ import LoginBoxAdmin from "@/autorisation/login-admin/LoginBoxAdmin.jsx";
 import RegisterBox from "@/autorisation/register/RegisterBox.jsx";
 import {ProfileExit} from "@/modal-confirm/profile/ProfileExit.jsx";
 import {MyProfile} from "@/modal-confirm/profile/MyProfile.jsx";
+import {MyProfileAdmin} from "@/modal-confirm/profile/MyProfileAdmin.jsx";
 
 export default function Header() {
     const navigate = useNavigate();
     const [modalState, changeModalState] = useState(0);
-
     const { isHeaderVisible } = useHeaderVisibility();
     return (
         <>
@@ -43,6 +43,7 @@ export default function Header() {
 
             <ProfileExit modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
             <MyProfile modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
+            <MyProfileAdmin modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
         </>
     )
 }

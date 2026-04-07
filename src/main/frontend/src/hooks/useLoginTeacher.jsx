@@ -25,7 +25,7 @@ export function useLoginTeacher() {
             });
             const response = await res.json();
             if (response.success === true) {
-                navigate("/admin-profile");
+                navigate("/teacher-profile");
                 localStorage.setItem("token", response.token);
             }else {
                 setError("Не удалось войти. Проверьте данные.");

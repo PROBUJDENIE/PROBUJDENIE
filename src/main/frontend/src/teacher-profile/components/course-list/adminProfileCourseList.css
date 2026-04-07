@@ -1,0 +1,10 @@
+.profile-course-list-cards {
+    display: flex;
+    gap: 130px;
+    flex-wrap: wrap;
+    padding-bottom: 70vh;
+}
+
+.profile-course-list {
+    width: 100%;
+}

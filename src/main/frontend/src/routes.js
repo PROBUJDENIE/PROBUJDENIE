@@ -14,39 +14,15 @@ import UserProfile from "./user-profile/UserProfile.jsx";
 import LoginOrRegister from "./autorisation/login-or-register/LoginOrRegister.jsx";
 import Lecture from "@/lecture/Lecture.jsx";
 
-
 export const authRoutes = [
-
+    { path: ADMIN_PROFILE_ROUTE, Component: AdminProfile },
+    { path: USER_PROFILE_ROUTE, Component: UserProfile },
+    { path: CONSTRUCTOR, Component: Constructor },
+    { path: LectureContent, Component: Lecture },
 ]
 
 export const publicRoutes = [
-    {
-        path: MAIN_ROUTE,
-        Component: MainPage
-    },
-    {
-        path: ADMIN_PROFILE_ROUTE,
-        Component: AdminProfile
-    },
-    {
-        path: USER_PROFILE_ROUTE,
-        Component: UserProfile
-    },
-    {
-        path: CONSTRUCTOR,
-        Component: Constructor
-    },
-    {
-        path: COURSE_INFO,
-        Component: CourseInfo
-    },
-    {
-        path: LOGIN_OR_REGISTER,
-        Component: LoginOrRegister
-    },
-    {
-        path: LectureContent,
-        Component: Lecture
-    }
-
+    { path: MAIN_ROUTE, Component: MainPage },
+    { path: COURSE_INFO, Component: CourseInfo },
+    { path: LOGIN_OR_REGISTER, Component: LoginOrRegister },
 ]

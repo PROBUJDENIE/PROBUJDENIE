@@ -1,13 +1,11 @@
-import {API_CONFIG, getUrl, PUBLIC_ENDPOINTS, STUDENT_ENDPOINTS} from './config';
+import {API_CONFIG, getAuthHeaders, getUrl, PUBLIC_ENDPOINTS, STUDENT_ENDPOINTS} from './config';
 
 export const studentApi = {
     getMyCourses: async () => {
         try {
             const response = await fetch(getUrl(STUDENT_ENDPOINTS.GET_MY_COURSES), {
                 method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
+                headers: getAuthHeaders()
             });
 
             if (!response.ok) {throw new Error(`Error: ${response.status}`);}
@@ -29,9 +27,7 @@ export const studentApi = {
         try {
             const response = await fetch(getUrl(STUDENT_ENDPOINTS.BUY_COURSE(courseId)), {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
+                headers: getAuthHeaders()
             });
 
             if (!response.ok) {throw new Error(`Error: ${response.status}`);}
@@ -47,7 +43,7 @@ export const studentApi = {
         const response = await fetch(API_CONFIG.BASE_URL + STUDENT_ENDPOINTS.GET_EXERCISE(exerciseId),
             {
                 method: "GET",
-                headers: { "Content-Type": "application/json" }
+                headers: getAuthHeaders()
             }
         );
 
@@ -63,9 +59,7 @@ export const studentApi = {
         try {
             const response = await fetch(getUrl(STUDENT_ENDPOINTS.GET_SUBMISSION(exerciseId)), {
                 method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
+                headers: getAuthHeaders()
             });
 
             if (!response.ok && response.status !== 404) {
@@ -84,9 +78,7 @@ export const studentApi = {
         try {
             const response = await fetch(getUrl(STUDENT_ENDPOINTS.CREATE_SUBMISSION(exerciseId)), {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(data)
             });
 

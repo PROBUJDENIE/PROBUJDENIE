@@ -12,6 +12,7 @@ import {useState} from "react";
 export default function ProfileHeader() {
     const navigate = useNavigate();
     const [modalState, changeModalState] = useState(0);
+    const handleLogout = () => {localStorage.removeItem("token");};
     return (
         <>
             <header className="profile-header">
@@ -26,13 +27,10 @@ export default function ProfileHeader() {
                             onClick={() => changeModalState(31)}
                         ></CircleImgBtn>
                     </div>
-
                 </Container>
-
             </header>
-            <ProfileExit modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
+            <ProfileExit onConfirm={handleLogout} modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
             <MyProfile modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
-
         </>
     )
 }

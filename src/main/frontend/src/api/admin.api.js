@@ -1,4 +1,4 @@
-import {API_CONFIG, ADMIN_ENDPOINTS, getUrl, PUBLIC_ENDPOINTS} from "./config";
+import {API_CONFIG, ADMIN_ENDPOINTS, getUrl, PUBLIC_ENDPOINTS, getAuthHeaders} from "./config";
 
 export const adminApi = {
     getCourses: async ({ offset = 0, count = 10 } = {}) => {
@@ -8,12 +8,10 @@ export const adminApi = {
 
         const response = await fetch(url.toString(), {
             method: "GET",
-            headers: { "Content-Type": "application/json" },
+            headers: getAuthHeaders(),
         });
 
         const result = await response.json();
-
-        console.log(result);
         const coursesWithPhotoUrl = result.data.map(course => ({
             ...course,
             photoUrl: course.photoId ? getUrl(PUBLIC_ENDPOINTS.GET_FILE(course.photoId)) : null,
@@ -22,12 +20,13 @@ export const adminApi = {
 
         return coursesWithPhotoUrl;
     },
+
     createCourse: async (course) => {
         const response = await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_COURSE,
             {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(course),
             }
         );
@@ -41,7 +40,7 @@ export const adminApi = {
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_COURSE(course.id),
             {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(course),
             }
         );
@@ -52,7 +51,7 @@ export const adminApi = {
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.DELETE_COURSE(id),
             {
                 method: "DELETE",
-                headers: { "Content-Type": "application/json" },
+                headers: getAuthHeaders(),
             }
         );
     },
@@ -61,39 +60,44 @@ export const adminApi = {
         const form = new FormData();
         form.append("file", photoFile);
 
+        const token = localStorage.getItem('token');
         const response = await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPLOAD_FILE,
             {
                 method: "POST",
                 body: form,
+                headers: token ? { 'Authorization': `Bearer ${token}` } : {}
             }
         );
 
         const json = await response.json();
         return json.id;
     },
-    updateFileMultipart: async (fileId, file) => {
 
+    updateFileMultipart: async (fileId, file) => {
         const form = new FormData();
         form.append("file", file);
 
+        const token = localStorage.getItem('token');
         const response = await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.GET_FILE(fileId),
             {
                 method: "POST",
-                body: form
+                body: form,
+                headers: token ? { 'Authorization': `Bearer ${token}` } : {}
             }
         );
 
         const json = await response.json();
         return json.id;
     },
+
     createSection: async (courseId, section) => {
         const response = await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_SECTION(courseId),
             {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(section),
             }
         );
@@ -101,28 +105,32 @@ export const adminApi = {
         const json = await response.json();
         return json.data;
     },
+
     updateSection: async ({ id, title, orderNumber }) => {
         const payload = { title, orderNumber };
         await fetch(API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_SECTION(id), {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: getAuthHeaders(),
             body: JSON.stringify(payload)
         });
     },
+
     deleteSection: async (id) => {
         await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.DELETE_SECTION(id),
             {
-                method: "DELETE"
+                method: "DELETE",
+                headers: getAuthHeaders(),
             }
         );
     },
+
     createLecture: async (sectionId, lecture) => {
         const response = await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_LECTURE(sectionId),
             {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(lecture),
             }
         );
@@ -130,8 +138,8 @@ export const adminApi = {
         const json = await response.json();
         return json.data;
     },
-    updateLecture: async (lecture) => {
 
+    updateLecture: async (lecture) => {
         const payload = {
             title: lecture.title,
             orderNumber: lecture.orderNumber,
@@ -142,52 +150,46 @@ export const adminApi = {
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_LECTURE(lecture.id),
             {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(payload),
             }
         );
     },
+
     deleteLecture: async (id) => {
         await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.DELETE_LECTURE(id),
             {
-                method: "DELETE"
+                method: "DELETE",
+                headers: getAuthHeaders(),
             }
         );
     },
 
     getExercises: async (courseId) => {
-
         const response = await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.GET_EXERCISES(courseId),
             {
                 method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+                headers: getAuthHeaders(),
             }
         );
 
         const json = await response.json();
-
         return json.data;
     },
 
     createExercise: async (courseId, exercise) => {
-
         const response = await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_EXERCISE(courseId),
             {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(exercise)
             }
         );
 
         const json = await response.json();
-
         return json.data;
     },
 
@@ -196,20 +198,18 @@ export const adminApi = {
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_EXERCISE(exerciseId),
             {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: getAuthHeaders(),
                 body: JSON.stringify(payload)
             }
         );
     },
 
     deleteExercise: async (exerciseId) => {
-
         await fetch(
             API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.DELETE_EXERCISE(exerciseId),
             {
-                method: "DELETE"
+                method: "DELETE",
+                headers: getAuthHeaders(),
             }
         );
     },

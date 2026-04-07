@@ -3,13 +3,17 @@ import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
 import conf from "../resourses/confSave.svg"
 import cancel from "../../constructor/resources/images/cancel.svg"
+import {MAIN_ROUTE} from "@/utils/constants.jsx";
+import {useNavigate} from "react-router-dom";
 
 export function ProfileExit({modalState, changeModalState, onConfirm}) {
+    const navigate = useNavigate();
     if (modalState !== 30) return null;
 
     const handleConfirm = async () => {
         onConfirm();
         changeModalState(0);
+        navigate(MAIN_ROUTE);
     };
 
     const handleCancel = () => {

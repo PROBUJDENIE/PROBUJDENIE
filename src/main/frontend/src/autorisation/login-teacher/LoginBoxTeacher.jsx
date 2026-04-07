@@ -4,18 +4,14 @@ import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";
 import teacher from "../resourses/teacher.svg"
 
 import {useLoginTeacher} from "@/hooks/useLoginTeacher.jsx";
-import {useNavigate} from "react-router-dom";
-import {ADMIN_PROFILE_ROUTE} from "@/utils/constants.jsx";
 export default function LoginBoxTeacher({ modalState, changeModalState}) {
-    const navigate = useNavigate();
     const { values, setField, submit, loading, error } = useLoginTeacher();
 
     if (modalState !== 6) return null;
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        navigate(ADMIN_PROFILE_ROUTE)
-        //  await submit();
+        await submit();
     };
     return (
         <>

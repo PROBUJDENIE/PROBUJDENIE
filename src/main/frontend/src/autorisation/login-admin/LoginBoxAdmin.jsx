@@ -2,19 +2,15 @@ import "./loginBoxAdmin.css"
 import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
 import CommonBtn from "@/main-page/compoents/prototype/btn/CommonBtn.jsx";;
 import admin from "@/autorisation/resourses/admin.svg";
-import {useLogin} from "@/hooks/useLogin.jsx";
-import {ADMIN_PROFILE_ROUTE, USER_PROFILE_ROUTE} from "@/utils/constants.jsx";
-import {useNavigate} from "react-router-dom";
+import {useLoginAdmin} from "@/hooks/useLoginAdmin.jsx";
 export default function LoginBoxAdmin({ modalState, changeModalState}) {
 
-    const { values, setField, submit, loading, error } = useLogin();
-    const navigate = useNavigate();
+    const { values, setField, submit, loading, error } = useLoginAdmin();
     if (modalState !== 7) return null;
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        navigate(ADMIN_PROFILE_ROUTE)
-      //  await submit();
+        await submit();
     };
     return (
         <>

@@ -5,9 +5,14 @@ import CircleImgBtn from "../../../main-page/compoents/prototype/btn/CircleImgBt
 import {MAIN_ROUTE} from "@/utils/constants.jsx";
 import {useNavigate} from "react-router-dom";
 import profImage from "../../../main-page/resources/images/profileNew.png"
+import {ProfileExit} from "@/modal-confirm/profile/ProfileExit.jsx";
+import {useState} from "react";
+import {MyProfileAdmin} from "@/modal-confirm/profile/MyProfileAdmin.jsx";
 
 export default function ProfileHeader() {
     const navigate = useNavigate();
+    const [modalState, changeModalState] = useState(0);
+    const handleLogout = () => {localStorage.removeItem("token");};
     return (
         <>
             <header className="profile-header">
@@ -19,11 +24,13 @@ export default function ProfileHeader() {
                             alt={"Личный кабинет"}
                             src={profImage}
                             backGround={115}
+                            onClick={() => changeModalState(32)}
                         ></CircleImgBtn>
                     </div>
                 </Container>
             </header>
-
+            <ProfileExit onConfirm={handleLogout} modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
+            <MyProfileAdmin modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
         </>
     )
 }

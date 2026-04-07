@@ -2,17 +2,17 @@ import "./myProfile.css"
 import Logo from "@/main-page/compoents/prototype/logo/Logo.jsx";
 import CommonLink from "@/main-page/compoents/prototype/link/CommonLink.jsx";
 import courses from "./resourses/courses.svg"
-import notifications from "./resourses/notifications.svg"
+import analysis from "./resourses/analysis.svg"
 import settings from "./resourses/settings.svg"
 import logout from "./resourses/logout.svg"
 import avatar from "./resourses/avatar.png"
-import {USER_PROFILE_ROUTE} from "@/utils/constants.jsx";
+import {ADMIN_PROFILE_ROUTE, USER_PROFILE_ROUTE} from "@/utils/constants.jsx";
 import {useNavigate} from "react-router-dom";
 
 
-export function MyProfile({ modalState, changeModalState}) {
+export function MyProfileAdmin({ modalState, changeModalState}) {
     const navigate = useNavigate();
-    if (modalState !== 31) return null;
+    if (modalState !== 32) return null;
     const handleCancel = () => changeModalState(0);
 
     return (
@@ -29,19 +29,19 @@ export function MyProfile({ modalState, changeModalState}) {
                 <p className="profile-email">example@mail.ru</p>
 
                 <ul className="profile-nav">
-                    <li className="nav-item-profile" onClick={() => navigate(USER_PROFILE_ROUTE)}>
+                    <li className="nav-item-profile" onClick={() => navigate(ADMIN_PROFILE_ROUTE)}>
                         <CommonLink size={16} weight={800}>
                             <span className="nav-content-profile">
                                 <img src={courses} alt="Мои курсы" className="nav-icon-profile-b" />
-                                <p>Мои курсы</p>
+                                <p>Все курсы</p>
                             </span>
                         </CommonLink>
                     </li>
                     <li className="nav-item-profile">
                         <CommonLink size={16} weight={800}>
                             <span className="nav-content-profile">
-                                <img src={notifications} alt="Уведомления" className="nav-icon-profile-s" />
-                                <p>Уведомления</p>
+                                <img src={analysis} alt="Уведомления" className="nav-icon-profile-s" />
+                                <p>Аналитика</p>
                             </span>
                         </CommonLink>
                     </li>

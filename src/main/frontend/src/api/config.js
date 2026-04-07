@@ -52,3 +52,10 @@ export function getUrl(base, replacements = {}) {
     }
     return API_CONFIG.BASE_URL + url;
 }
+export function getAuthHeaders() {
+    const token = localStorage.getItem('token');
+    return {
+        'Content-Type': 'application/json',
+        ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+    };
+}

@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 
 export function useLoginAdmin() {
     const navigate = useNavigate();
-    const [values, setValues] = useState({ email: "", password: "" });
+    const [values, setValues] = useState({ email: "", password: "",role:"ADMIN" });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -18,7 +18,7 @@ export function useLoginAdmin() {
         setLoading(true);
 
         try {
-            const res = await fetch("/api/v1/auth/login/admin", {
+            const res = await fetch("/api/v1/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values),

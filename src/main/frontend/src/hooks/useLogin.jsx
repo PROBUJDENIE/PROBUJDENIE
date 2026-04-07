@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 
 export function useLogin() {
     const navigate = useNavigate();
-    const [values, setValues] = useState({ email: "", password: "" });
+    const [values, setValues] = useState({ email: "", password: "", role:"STUDENT" });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -18,15 +18,15 @@ export function useLogin() {
         setLoading(true);
 
         try {
-            const res = await fetch("/api/v1/auth/login", {
+            const res = await fetch("/api/v1/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values),
             });
             const response = await res.json();
             if (response.success === true) {
-                navigate("/user-profile");
                 localStorage.setItem("token", response.token);
+                navigate("/user-profile");
             }else {
                 setError("Не удалось войти. Проверьте данные.");
             }

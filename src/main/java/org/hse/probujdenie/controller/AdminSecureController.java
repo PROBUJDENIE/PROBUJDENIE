@@ -68,9 +68,7 @@ public class AdminSecureController implements AdminSecureApiDelegate {
 
     @Override
     public ResponseEntity<GetCoursesOfAdminResponseDto> getCoursesOfAdmin(Integer offset, Integer count) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        List<Course> courses = courseService.getAllCoursesForAdmin(offset, count, email);
+        List<Course> courses = courseService.getAllReadyCourses(offset, count);
 
         GetCoursesOfAdminResponseDto response = new GetCoursesOfAdminResponseDto();
         response.setSuccess(true);

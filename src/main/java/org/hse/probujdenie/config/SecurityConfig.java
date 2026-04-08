@@ -32,6 +32,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/",
+                                "/user-profile",
+                                "/admin-profile",
                                 "/index.html",
                                 "/favicon.ico",
                                 "/assets/**",

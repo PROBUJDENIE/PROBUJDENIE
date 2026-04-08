@@ -41,6 +41,7 @@ public class SecurityConfig {
                                 "/*.js",
                                 "/*.css",
                                 "/course/**",
+                                "/lecture/**",
                                 "/h2-console/**",
                                 "/api/**"
                         ).permitAll()

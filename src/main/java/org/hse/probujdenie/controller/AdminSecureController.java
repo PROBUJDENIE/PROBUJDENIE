@@ -19,6 +19,8 @@ import org.hse.probujdenie.service.exercise.ExerciseService;
 import org.hse.probujdenie.service.fileSaver.FileSaverService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,12 +41,13 @@ public class AdminSecureController implements AdminSecureApiDelegate {
     private final SectionMapper sectionMapper;
     private final LectureMapper lectureMapper;
     private final ExerciseMapper exerciseMapper;
-    private static final String EMAIL = "teacher1@mail.ru";
 
     @Override
     public ResponseEntity<CreateCourseResponseDto> createCourse(CreateCourseRequestDto createCourseRequestDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
         Course course = courseMapper.toEntityFromCreateCourseDto(createCourseRequestDto);
-        Course created = courseService.createCourse(course, EMAIL);
+        Course created = courseService.createCourse(course, email);
 
         CreateCourseResponseDto response = new CreateCourseResponseDto();
         response.data(courseMapper.toCreateCourseDtoFromEntity(created));
@@ -55,15 +58,19 @@ public class AdminSecureController implements AdminSecureApiDelegate {
 
     @Override
     public ResponseEntity<BaseResponseDto> updateCourse(UUID id, UpdateCourseRequestDto updateCourseRequestDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
         Course course = courseMapper.toEntityFromUpdateCourseDto(updateCourseRequestDto);
-        courseService.updateCourse(id, course, EMAIL);
+        courseService.updateCourse(id, course, email);
 
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 
     @Override
     public ResponseEntity<GetCoursesOfAdminResponseDto> getCoursesOfAdmin(Integer offset, Integer count) {
-        List<Course> courses = courseService.getAllCoursesForAdmin(offset, count, EMAIL);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        List<Course> courses = courseService.getAllCoursesForAdmin(offset, count, email);
 
         GetCoursesOfAdminResponseDto response = new GetCoursesOfAdminResponseDto();
         response.setSuccess(true);
@@ -74,16 +81,20 @@ public class AdminSecureController implements AdminSecureApiDelegate {
 
     @Override
     public ResponseEntity<BaseResponseDto> deleteCourse(UUID id) {
-        courseService.deleteCourse(id, EMAIL);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        courseService.deleteCourse(id, email);
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 
 
     @Override
     public ResponseEntity<CreateSectionResponseDto> createSection(UUID courseId, CreateSectionRequestDto createSectionRequestDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
         Section section = sectionMapper.toEntityFromCreateDto(createSectionRequestDto);
 
-        Section created = sectionService.createSection(courseId, section, EMAIL);
+        Section created = sectionService.createSection(courseId, section, email);
         CreateSectionResponseDto response = new CreateSectionResponseDto();
         response.success(true);
         response.data(sectionMapper.toCreateDtoFromEntity(created));
@@ -93,23 +104,29 @@ public class AdminSecureController implements AdminSecureApiDelegate {
 
     @Override
     public ResponseEntity<BaseResponseDto> updateSection(UUID sectionId, UpdateSectionRequestDto updateSectionRequestDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
         Section section = sectionMapper.toEntityFromUpdateDto(updateSectionRequestDto);
-        sectionService.updateSection(sectionId, section, EMAIL);
+        sectionService.updateSection(sectionId, section, email);
 
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 
     @Override
     public ResponseEntity<BaseResponseDto> deleteSection(UUID sectionId) {
-        sectionService.deleteSection(sectionId, EMAIL);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        sectionService.deleteSection(sectionId, email);
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 
 
     @Override
     public ResponseEntity<CreateLectureResponseDto> createLecture(UUID sectionId, CreateLectureRequestDto createLectureRequestDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
         Lecture lecture = lectureMapper.toEntityFromCreateDto(createLectureRequestDto);
-        Lecture created = lectureService.createLecture(sectionId, lecture, EMAIL);
+        Lecture created = lectureService.createLecture(sectionId, lecture, email);
 
         CreateLectureResponseDto response = new CreateLectureResponseDto();
         response.success(true);
@@ -119,15 +136,19 @@ public class AdminSecureController implements AdminSecureApiDelegate {
 
     @Override
     public ResponseEntity<BaseResponseDto> updateLecture(UUID lectureId, UpdateLectureRequestDto updateLectureRequestDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
         Lecture lecture = lectureMapper.toEntityFromUpdateDto(updateLectureRequestDto);
-        lectureService.updateLecture(lectureId, lecture, EMAIL);
+        lectureService.updateLecture(lectureId, lecture, email);
 
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 
     @Override
     public ResponseEntity<BaseResponseDto> deleteLecture(UUID lectureId) {
-        lectureService.deleteLecture(lectureId, EMAIL);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        lectureService.deleteLecture(lectureId, email);
         return ResponseEntity.ok(new BaseResponseDto(true));
     }
 

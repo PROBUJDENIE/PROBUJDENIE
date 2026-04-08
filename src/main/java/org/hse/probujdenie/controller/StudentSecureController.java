@@ -13,6 +13,8 @@ import org.hse.probujdenie.service.content.CourseService;
 import org.hse.probujdenie.service.exercise.ExerciseService;
 import org.hse.probujdenie.service.exercise.StudentSubmissionService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -31,7 +33,8 @@ public class StudentSecureController implements StudentSecureApiDelegate {
 
     @Override
     public ResponseEntity<BaseResponseDto> buyCourse(UUID courseId) {
-        String email = "student@mail.ru";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
 
         courseService.buyCourse(email, courseId);
         return ResponseEntity.ok(new BaseResponseDto(true));
@@ -39,7 +42,8 @@ public class StudentSecureController implements StudentSecureApiDelegate {
 
     @Override
     public ResponseEntity<GetUserCoursesResponseDto> getStudentCourses() {
-        String email = "student@mail.ru";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
 
         List<Course> courses = courseService.getUserCourses(email);
 
@@ -52,7 +56,8 @@ public class StudentSecureController implements StudentSecureApiDelegate {
 
     @Override
     public ResponseEntity<CreateStudentSubmissionResponseDto> createStudentSubmission(UUID exerciseId, CreateStudentSubmissionRequestDto createStudentSubmissionRequestDto) {
-        String email = "student@mail.ru";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
 
         StudentSubmission studentSubmission = studentSubmissionMapper.toEntityFromCreateStudentSubmissionDto(createStudentSubmissionRequestDto);
         StudentSubmission created;
@@ -69,7 +74,8 @@ public class StudentSecureController implements StudentSecureApiDelegate {
 
     @Override
     public ResponseEntity<GetStudentSubmissionResponseDto> getStudentSubmission(UUID exerciseId) {
-        String email = "student@mail.ru";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
 
         StudentSubmission studentSubmission =  studentSubmissionService.getStudentSubmissionByExerciseIdAndEmail(exerciseId, email);
 

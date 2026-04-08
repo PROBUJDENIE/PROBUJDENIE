@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,15 @@ public class UserService {
                     new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
             );
 
+            boolean hasRole = authentication.getAuthorities().stream()
+                    .anyMatch(a -> a.getAuthority().equals("ROLE_" + user.getRole().name()));
+
+            if (!hasRole) {
+                throw new IllegalArgumentException("Не верные данные!");
+            }
+
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
             return jwtUtil.generateToken(userDetails);
         } catch (BadCredentialsException e) {
             throw new IllegalArgumentException("Не верные данные!");

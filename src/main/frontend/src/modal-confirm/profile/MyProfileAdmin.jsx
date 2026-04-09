@@ -24,9 +24,9 @@ export function MyProfileAdmin({ modalState, changeModalState}) {
                     <img src={avatar} alt="avatar" className="profile-avatar__img" />
                 </div>
 
-                <p className="profile-name">Иван</p>
+                <p className="profile-name">Владимир</p>
                 <hr className="profile-divider" />
-                <p className="profile-email">example@mail.ru</p>
+                <p className="profile-email">belokov_v2@mail.ru</p>
 
                 <ul className="profile-nav">
                     <li className="nav-item-profile" onClick={() => navigate(ADMIN_PROFILE_ROUTE)}>
@@ -40,7 +40,7 @@ export function MyProfileAdmin({ modalState, changeModalState}) {
                     <li className="nav-item-profile">
                         <CommonLink size={16} weight={800}>
                             <span className="nav-content-profile">
-                                <img src={analysis} alt="Уведомления" className="nav-icon-profile-s" />
+                                <img src={analysis} alt="Аналитика" className="nav-icon-profile-s" />
                                 <p>Аналитика</p>
                             </span>
                         </CommonLink>

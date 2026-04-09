@@ -1,18 +1,16 @@
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
+import {useAuth} from "@/autorisation/AuthContext.jsx";
 
 export function useLogin() {
     const navigate = useNavigate();
     const [values, setValues] = useState({ email: "", password: "", role:"STUDENT" });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
-
+    const {login} = useAuth();
     const setField = (name) => (e) => {
         setValues((v) => ({ ...v, [name]: e.target.value }));
     };
-
-
 
     const submit = async () => {
         setLoading(true);
@@ -25,7 +23,7 @@ export function useLogin() {
             });
             const response = await res.json();
             if (response.success === true) {
-                localStorage.setItem("token", response.token);
+                login("STUDENT",response.token);
                 navigate("/user-profile");
             }else {
                 setError("Не удалось войти. Проверьте данные.");

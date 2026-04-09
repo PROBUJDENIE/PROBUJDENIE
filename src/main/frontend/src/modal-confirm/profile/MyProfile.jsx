@@ -26,7 +26,7 @@ export function MyProfile({ modalState, changeModalState}) {
 
                 <p className="profile-name">Иван</p>
                 <hr className="profile-divider" />
-                <p className="profile-email">example@mail.ru</p>
+                <p className="profile-email">student@mail.ru</p>
 
                 <ul className="profile-nav">
                     <li className="nav-item-profile" onClick={() => navigate(USER_PROFILE_ROUTE)}>

@@ -16,11 +16,20 @@ import RegisterBox from "@/autorisation/register/RegisterBox.jsx";
 import {ProfileExit} from "@/modal-confirm/profile/ProfileExit.jsx";
 import {MyProfile} from "@/modal-confirm/profile/MyProfile.jsx";
 import {MyProfileAdmin} from "@/modal-confirm/profile/MyProfileAdmin.jsx";
+import {useAuth} from "@/autorisation/AuthContext.jsx";
 
 export default function Header() {
     const navigate = useNavigate();
     const [modalState, changeModalState] = useState(0);
     const { isHeaderVisible } = useHeaderVisibility();
+    const {isAuthenticated, logout, role} = useAuth();
+    const handleProfileClick = () => {
+        if (!isAuthenticated) {
+            changeModalState(1);
+        } else {
+            role === "ADMIN" ? (changeModalState(32)) : (changeModalState(31));
+        }
+    };
     return (
         <>
             <header className={`header ${!isHeaderVisible ? 'header-hidden' : ''}`}>
@@ -28,7 +37,7 @@ export default function Header() {
                     <div className="header_content" id={"header"}>
                         <Logo onClick={() => navigate(MAIN_ROUTE)}></Logo>
                         <NavigationHedear></NavigationHedear>
-                        <CircleImgBtn size={45} alt={"Личный кабинет"} src={profileImg} onClick={() => changeModalState(1)} backGround={115}></CircleImgBtn>
+                        <CircleImgBtn size={45} alt={"Личный кабинет"} src={profileImg} onClick={handleProfileClick} backGround={115}></CircleImgBtn>
                     </div>
                 </Container>
             </header>
@@ -41,7 +50,7 @@ export default function Header() {
             <LoginBoxTeacher modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
             <LoginBoxAdmin modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
 
-            <ProfileExit modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
+            <ProfileExit onConfirm={logout} modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
             <MyProfile modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
             <MyProfileAdmin modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
         </>

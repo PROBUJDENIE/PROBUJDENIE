@@ -45,7 +45,6 @@ export default function MainPage() {
                 <Cta></Cta>
                 <Question/>
                 <Bottom></Bottom>
-                <PayModal></PayModal>
             </div>
         </>
     )

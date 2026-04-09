@@ -39,7 +39,7 @@ export default function CourseList() {
                 <LoginOrRegister modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
                 <LoginBox modalState={modalState} changeModalState={(arg) => changeModalState(arg)}/>
                 <RegisterBox modalState={modalState} changeModalState={(arg) => changeModalState(arg)}/>
-                <PayModal course={selectedCourse} modalState={modalState} changeModalState={changeModalState} onPaymentSuccess={handlePaymentSuccess}/>
+                {isAuthenticated && <PayModal course={selectedCourse} modalState={modalState} changeModalState={changeModalState} onPaymentSuccess={handlePaymentSuccess}/>}
             </div>
         </>
     )

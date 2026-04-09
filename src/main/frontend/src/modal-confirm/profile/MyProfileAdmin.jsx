@@ -8,12 +8,17 @@ import logout from "./resourses/logout.svg"
 import avatar from "./resourses/avatar.png"
 import {ADMIN_PROFILE_ROUTE, USER_PROFILE_ROUTE} from "@/utils/constants.jsx";
 import {useNavigate} from "react-router-dom";
+import {useAuth} from "@/autorisation/AuthContext.jsx";
+import {useUserData} from "@/api/hooks/useUserData.js";
 
 
 export function MyProfileAdmin({ modalState, changeModalState}) {
     const navigate = useNavigate();
+    const { token } = useAuth();
+    const { userData, loading } = useUserData(token);
     if (modalState !== 32) return null;
     const handleCancel = () => changeModalState(0);
+    const fullName = `${userData?.firstName || ''} ${userData?.lastName || ''}`.trim();
 
     return (
         <div className="modal-overlay" onClick={handleCancel}>
@@ -24,9 +29,15 @@ export function MyProfileAdmin({ modalState, changeModalState}) {
                     <img src={avatar} alt="avatar" className="profile-avatar__img" />
                 </div>
 
-                <p className="profile-name">Владимир</p>
-                <hr className="profile-divider" />
-                <p className="profile-email">belokov_v2@mail.ru</p>
+                {loading ? (
+                    <p className="profile-name">Загрузка...</p>
+                ) : (
+                    <>
+                        <p className="profile-name">{fullName || "Пользователь"}</p>
+                        <hr className="profile-divider" />
+                        <p className="profile-email">{userData?.email || "email@example.com"}</p>
+                    </>
+                )}
 
                 <ul className="profile-nav">
                     <li className="nav-item-profile" onClick={() => navigate(ADMIN_PROFILE_ROUTE)}>

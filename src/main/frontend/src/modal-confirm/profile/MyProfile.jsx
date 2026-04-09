@@ -8,12 +8,17 @@ import logout from "./resourses/logout.svg"
 import avatar from "./resourses/avatar.png"
 import {USER_PROFILE_ROUTE} from "@/utils/constants.jsx";
 import {useNavigate} from "react-router-dom";
+import {useUserData} from "@/api/hooks/useUserData.js";
+import {useAuth} from "@/autorisation/AuthContext.jsx";
 
 
 export function MyProfile({ modalState, changeModalState}) {
     const navigate = useNavigate();
+    const { token } = useAuth();
+    const { userData, loading } = useUserData(token);
     if (modalState !== 31) return null;
     const handleCancel = () => changeModalState(0);
+    const fullName = `${userData?.firstName || ''} ${userData?.lastName || ''}`.trim();
 
     return (
         <div className="modal-overlay" onClick={handleCancel}>
@@ -24,9 +29,15 @@ export function MyProfile({ modalState, changeModalState}) {
                     <img src={avatar} alt="avatar" className="profile-avatar__img" />
                 </div>
 
-                <p className="profile-name">Иван</p>
-                <hr className="profile-divider" />
-                <p className="profile-email">student@mail.ru</p>
+                {loading ? (
+                    <p className="profile-name">Загрузка...</p>
+                ) : (
+                    <>
+                        <p className="profile-name">{fullName || "Пользователь"}</p>
+                        <hr className="profile-divider" />
+                        <p className="profile-email">{userData?.email || "email@example.com"}</p>
+                    </>
+                )}
 
                 <ul className="profile-nav">
                     <li className="nav-item-profile" onClick={() => navigate(USER_PROFILE_ROUTE)}>

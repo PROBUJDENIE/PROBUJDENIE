@@ -5,7 +5,7 @@ import HowYourEducationWillLookLike from "./components/how-your-education-will-l
 import CompaniesThatUsePlatform from "./components/companies-that-use-platform/CompaniesThatUsePlatform.jsx";
 import ExpectationsAfterCompletion from "./components/expectations-after-completion/ExpectationsAfterCompletion.jsx";
 import Header from "../main-page/compoents/content/hero/header/Header.jsx";
-import {useLocation, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Jump from "@/main-page/compoents/content/jump/Jump.jsx";
 import Price from "@/course-info/components/price/Price.jsx";
 import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
@@ -13,9 +13,6 @@ import {usePublicCourses} from "@/api/hooks/usePublicCourses.js";
 
 export default function CourseInfo() {
     const { id } = useParams();
-    const location = useLocation();
-    const from = location.state?.from ?? "public";
-
     console.log(id);
 
     const {getCourse} = usePublicCourses();
@@ -32,7 +29,7 @@ export default function CourseInfo() {
                     <Header />
                     <Jump/>
                     <Info course={course}></Info>
-                    <Price course={course} from={from}></Price>
+                    <Price course={course}></Price>
                     <CourseContent course={course}></CourseContent>
                     <StillThink></StillThink>
                     <HowYourEducationWillLookLike></HowYourEducationWillLookLike>
@@ -42,6 +39,5 @@ export default function CourseInfo() {
                 </div>
             </div>
         </>
-
     )
 }

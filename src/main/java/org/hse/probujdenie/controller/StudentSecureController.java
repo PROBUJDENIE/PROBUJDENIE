@@ -9,6 +9,8 @@ import org.hse.probujdenie.mapper.StudentSubmissionMapper;
 import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.exercise.Exercise;
 import org.hse.probujdenie.model.exercise.StudentSubmission;
+import org.hse.probujdenie.model.user.UserData;
+import org.hse.probujdenie.service.UserService;
 import org.hse.probujdenie.service.content.CourseService;
 import org.hse.probujdenie.service.exercise.ExerciseService;
 import org.hse.probujdenie.service.exercise.StudentSubmissionService;
@@ -30,6 +32,23 @@ public class StudentSecureController implements StudentSecureApiDelegate {
     private final StudentSubmissionMapper studentSubmissionMapper;
     private final ExerciseService exerciseService;
     private final ExerciseMapper exerciseMapper;
+    private final UserService userService;
+
+    @Override
+    public ResponseEntity<GetUserResponseDto> getUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        UserData userData = userService.getUserDataByEmail(email);
+
+
+        GetUserResponseDto response = new GetUserResponseDto();
+        response.setSuccess(true);
+        response.setEmail(email);
+        response.setFirstName(userData.getFirstName());
+        response.setLastName(userData.getLastName());
+
+        return ResponseEntity.ok(response);
+    }
 
     @Override
     public ResponseEntity<BaseResponseDto> buyCourse(UUID courseId) {

@@ -1,0 +1,11 @@
+get:
+  operationId: getUser
+  tags:
+    - studentSecure
+  responses:
+    '200':
+      description: Возвращает пользователя.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/studentSecure/response/GetUserResponseDto.yaml'

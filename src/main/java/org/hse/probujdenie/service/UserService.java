@@ -75,4 +75,11 @@ public class UserService {
         return user.get();
     }
 
+    @Transactional
+    public UserData getUserDataByEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isEmpty()) throw new IllegalArgumentException("Пользователь не существует.");
+        return user.get().getUserData();
+    }
+
 }

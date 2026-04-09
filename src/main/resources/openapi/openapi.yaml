@@ -23,6 +23,8 @@ paths:
 
   /student-secure/api/v1/courses/my-courses:
     $ref: './paths/student-secure/courses.my-courses.yaml'
+  /student-secure/api/v1/users:
+    $ref: './paths/student-secure/get-user.yaml'
   /student-secure/api/v1/courses/{courseId}/buy:
     $ref: './paths/student-secure/courses-courseId-buy.yaml'
   /student-secure/api/v1/exercises/{exerciseId}/submissions:

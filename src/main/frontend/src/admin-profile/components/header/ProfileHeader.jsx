@@ -8,11 +8,12 @@ import profImage from "../../../main-page/resources/images/profileNew.png"
 import {ProfileExit} from "@/modal-confirm/profile/ProfileExit.jsx";
 import {useState} from "react";
 import {MyProfileAdmin} from "@/modal-confirm/profile/MyProfileAdmin.jsx";
+import {useAuth} from "@/autorisation/AuthContext.jsx";
 
 export default function ProfileHeader() {
     const navigate = useNavigate();
     const [modalState, changeModalState] = useState(0);
-    const handleLogout = () => {localStorage.removeItem("token");};
+    const {logout} = useAuth();
     return (
         <>
             <header className="profile-header">
@@ -29,7 +30,7 @@ export default function ProfileHeader() {
                     </div>
                 </Container>
             </header>
-            <ProfileExit onConfirm={handleLogout} modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
+            <ProfileExit onConfirm={logout} modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
             <MyProfileAdmin modalState={modalState} changeModalState={(arg) => changeModalState(arg)} />
         </>
     )

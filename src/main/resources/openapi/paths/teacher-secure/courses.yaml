@@ -1,7 +1,7 @@
 get:
-  operationId: getCoursesOfAdmin
+  operationId: getTeacherCourses
   tags:
-    - adminSecure
+    - teacherSecure
   parameters:
     - $ref: '../../components/parameters/PageableParams.yaml#/parameters/OffsetParam'
     - $ref: '../../components/parameters/PageableParams.yaml#/parameters/CountParam'
@@ -11,23 +11,23 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../components/schemas/admin-secure/response/GetCoursesOfAdminResponseDto.yaml'
+            $ref: '../../components/schemas/teacher-secure/response/GetCoursesOfAdminResponseDto.yaml'
 
 post:
   operationId: createCourse
   tags:
-    - adminSecure
+    - teacherSecure
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: '../../components/schemas/admin-secure/request/CreateCourseRequestDto.yaml'
+          $ref: '../../components/schemas/teacher-secure/request/CreateCourseRequestDto.yaml'
   responses:
     '200':
       description: Возвращает созданный курс.
       content:
         application/json:
           schema:
-            $ref: '../../components/schemas/admin-secure/response/CreateCourseResponseDto.yaml'
+            $ref: '../../components/schemas/teacher-secure/response/CreateCourseResponseDto.yaml'
 

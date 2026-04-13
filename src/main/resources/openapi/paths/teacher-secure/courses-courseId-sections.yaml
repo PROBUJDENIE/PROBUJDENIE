@@ -1,7 +1,7 @@
 post:
   operationId: createSection
   tags:
-    - adminSecure
+    - teacherSecure
   parameters:
     - name: courseId
       in: path
@@ -14,11 +14,11 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../../components/schemas/admin-secure/request/CreateSectionRequestDto.yaml'
+          $ref: '../../components/schemas/teacher-secure/request/CreateSectionRequestDto.yaml'
   responses:
     '200':
       description: Возвращает секцию
       content:
         application/json:
           schema:
-            $ref: '../../components/schemas/admin-secure/response/CreateSectionResponseDto.yaml'
+            $ref: '../../components/schemas/teacher-secure/response/CreateSectionResponseDto.yaml'

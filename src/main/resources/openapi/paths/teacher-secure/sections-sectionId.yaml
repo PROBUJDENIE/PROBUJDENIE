@@ -1,7 +1,7 @@
 delete:
   operationId: deleteSection
   tags:
-    - adminSecure
+    - teacherSecure
   parameters:
     - name: sectionId
       in: path
@@ -20,7 +20,7 @@ delete:
 put:
   operationId: updateSection
   tags:
-    - adminSecure
+    - teacherSecure
   parameters:
     - name: sectionId
       in: path
@@ -33,7 +33,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: '../../components/schemas/admin-secure/request/UpdateSectionRequestDto.yaml'
+          $ref: '../../components/schemas/teacher-secure/request/UpdateSectionRequestDto.yaml'
   responses:
     '200':
       description: Возвращает 'success'

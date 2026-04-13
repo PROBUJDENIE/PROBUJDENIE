@@ -1,17 +1,17 @@
 post:
   operationId: saveFile
   tags:
-    - adminSecure
+    - teacherSecure
   requestBody:
     required: true
     content:
       multipart/form-data:
         schema:
-          $ref: '../../components/schemas/admin-secure/request/SaveFileRequestDto.yaml'
+          $ref: '../../components/schemas/teacher-secure/request/SaveFileRequestDto.yaml'
   responses:
     '200':
       description: Возвращает id объекта в S3
       content:
         application/json:
           schema:
-            $ref: '../../components/schemas/admin-secure/response/SaveFileResponseDto.yaml'
+            $ref: '../../components/schemas/teacher-secure/response/SaveFileResponseDto.yaml'

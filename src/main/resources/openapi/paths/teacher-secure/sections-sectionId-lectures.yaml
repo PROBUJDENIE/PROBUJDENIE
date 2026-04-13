@@ -1,7 +1,7 @@
 post:
   operationId: createLecture
   tags:
-    - adminSecure
+    - teacherSecure
   parameters:
     - name: sectionId
       in: path
@@ -14,11 +14,11 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../../components/schemas/admin-secure/request/CreateLectureRequestDto.yaml'
+          $ref: '../../components/schemas/teacher-secure/request/CreateLectureRequestDto.yaml'
   responses:
     '200':
       description: Возвращает лекцию
       content:
         application/json:
           schema:
-            $ref: '../../components/schemas/admin-secure/response/CreateLectureResponseDto.yaml'
+            $ref: '../../components/schemas/teacher-secure/response/CreateLectureResponseDto.yaml'

@@ -35,7 +35,7 @@ public interface CourseRepository extends JpaRepository<Course, UUID> {
         SELECT c.*
         FROM course c
         JOIN teacher_to_course ttc ON c.id = ttc.course_id
-        WHERE ttc.teacher_email = :email
+        WHERE ttc.teacher_email = :email AND ( NOT c.status = "DELETED")
     """, nativeQuery = true)
-    List<Course> getCoursesOfAdmin(@Param("email")String email, Pageable page);
+    List<Course> getTeacherCourses(@Param("email")String email, Pageable page);
 }

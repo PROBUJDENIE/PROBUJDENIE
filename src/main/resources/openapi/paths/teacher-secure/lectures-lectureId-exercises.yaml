@@ -1,7 +1,7 @@
 post:
   operationId: createExercise
   tags:
-    - adminSecure
+    - teacherSecure
   parameters:
     - name: courseId
       in: path
@@ -14,19 +14,19 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../../components/schemas/admin-secure/request/CreateExerciseRequestDto.yaml'
+          $ref: '../../components/schemas/teacher-secure/request/CreateExerciseRequestDto.yaml'
   responses:
     '200':
       description: Возвращает 'success'
       content:
         application/json:
           schema:
-            $ref: '../../components/schemas/admin-secure/response/CreateExerciseResponseDto.yaml'
+            $ref: '../../components/schemas/teacher-secure/response/CreateExerciseResponseDto.yaml'
 
 get:
   operationId: getExercises
   tags:
-    - adminSecure
+    - teacherSecure
   parameters:
     - name: courseId
       in: path
@@ -40,4 +40,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../components/schemas/admin-secure/response/GetExercisesResponseDto.yaml'
+            $ref: '../../components/schemas/teacher-secure/response/GetExercisesResponseDto.yaml'

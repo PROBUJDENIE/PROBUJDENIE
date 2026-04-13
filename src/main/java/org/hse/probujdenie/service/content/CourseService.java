@@ -62,9 +62,9 @@ public class CourseService {
         return courseRepository.findAllByStatus(CourseStatus.READY, page).getContent();
     }
 
-    public List<Course> getAllCoursesForAdmin(Integer offset, Integer count, String email) {
+    public List<Course> getTeacherCourses(Integer offset, Integer count, String email) {
         Pageable page = PageRequest.of(offset, count);
-        return courseRepository.getCoursesOfAdmin(email, page);
+        return courseRepository.getTeacherCourses(email, page);
     }
 
     @Transactional

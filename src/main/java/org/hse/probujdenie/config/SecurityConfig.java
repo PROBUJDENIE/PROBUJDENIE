@@ -45,6 +45,7 @@ public class SecurityConfig {
                                 "/h2-console/**",
                                 "/api/**"
                         ).permitAll()
+                        .requestMatchers("/student-secure/api/v1/users").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
                         .requestMatchers("/admin-secure/api/**").hasRole("ADMIN")
                         .requestMatchers("/student-secure/api/**").hasRole("STUDENT")
                         .anyRequest().authenticated())

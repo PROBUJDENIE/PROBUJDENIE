@@ -32,25 +32,25 @@ paths:
   /student-secure/api/v1/exercises/{exerciseId}:
     $ref: './paths/student-secure/exercises-exerciseId.yaml'
 
-  /admin-secure/api/v1/courses:
-    $ref: './paths/admin-secure/courses.yaml'
-  /admin-secure/api/v1/courses/{id}:
-    $ref: './paths/admin-secure/courses-courseId.yaml'
-  /admin-secure/api/v1/files:
-    $ref: './paths/admin-secure/files.yaml'
-  /admin-secure/api/v1/files/{fileId}:
-    $ref: './paths/admin-secure/files-fileId.yaml'
-  /admin-secure/api/v1/courses/{courseId}/sections:
-    $ref: './paths/admin-secure/courses-courseId-sections.yaml'
-  /admin-secure/api/v1/sections/{sectionId}:
-    $ref: './paths/admin-secure/sections-sectionId.yaml'
-  /admin-secure/api/v1/sections/{sectionId}/lectures:
-    $ref: './paths/admin-secure/sections-sectionId-lectures.yaml'
-  /admin-secure/api/v1/lectures/{lectureId}:
-    $ref: './paths/admin-secure/lectures-lectureId.yaml'
-  /admin-secure/api/v1/courses/{courseId}/exercises:
-    $ref: './paths/admin-secure/lectures-lectureId-exercises.yaml'
-  /admin-secure/api/v1/exercises/{exerciseId}:
-    $ref: './paths/admin-secure/exercises-exerciseId.yaml'
+  /teacher-secure/api/v1/courses:
+    $ref: './paths/teacher-secure/courses.yaml'
+  /teacher-secure/api/v1/courses/{id}:
+    $ref: './paths/teacher-secure/courses-courseId.yaml'
+  /teacher-secure/api/v1/files:
+    $ref: './paths/teacher-secure/files.yaml'
+  /teacher-secure/api/v1/files/{fileId}:
+    $ref: './paths/teacher-secure/files-fileId.yaml'
+  /teacher-secure/api/v1/courses/{courseId}/sections:
+    $ref: './paths/teacher-secure/courses-courseId-sections.yaml'
+  /teacher-secure/api/v1/sections/{sectionId}:
+    $ref: './paths/teacher-secure/sections-sectionId.yaml'
+  /teacher-secure/api/v1/sections/{sectionId}/lectures:
+    $ref: './paths/teacher-secure/sections-sectionId-lectures.yaml'
+  /teacher-secure/api/v1/lectures/{lectureId}:
+    $ref: './paths/teacher-secure/lectures-lectureId.yaml'
+  /teacher-secure/api/v1/courses/{courseId}/exercises:
+    $ref: './paths/teacher-secure/lectures-lectureId-exercises.yaml'
+  /teacher-secure/api/v1/exercises/{exerciseId}:
+    $ref: './paths/teacher-secure/exercises-exerciseId.yaml'
 
 

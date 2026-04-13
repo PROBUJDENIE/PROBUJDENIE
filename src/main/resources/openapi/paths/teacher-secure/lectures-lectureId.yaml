@@ -1,15 +1,14 @@
 delete:
-  operationId: deleteCourse
+  operationId: deleteLecture
   tags:
-    - adminSecure
+    - teacherSecure
   parameters:
-    - name: id
+    - name: lectureId
       in: path
       required: true
       schema:
         type: string
         format: UUID
-
   responses:
     '200':
       description: Возвращает 'success'
@@ -19,11 +18,11 @@ delete:
             $ref: '../../components/responses/BaseResponseDto.yaml'
 
 put:
-  operationId: updateCourse
+  operationId: updateLecture
   tags:
-    - adminSecure
+    - teacherSecure
   parameters:
-    - name: id
+    - name: lectureId
       in: path
       required: true
       schema:
@@ -34,7 +33,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: '../../components/schemas/admin-secure/request/UpdateCourseRequestDto.yaml'
+          $ref: '../../components/schemas/teacher-secure/request/UpdateLectureRequestDto.yaml'
   responses:
     '200':
       description: Возвращает 'success'

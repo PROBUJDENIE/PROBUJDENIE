@@ -1,9 +1,29 @@
-put:
-  operationId: updateExercise
+delete:
+  operationId: deleteCourse
   tags:
-    - adminSecure
+    - teacherSecure
   parameters:
-    - name: exerciseId
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/BaseResponseDto.yaml'
+
+put:
+  operationId: updateCourse
+  tags:
+    - teacherSecure
+  parameters:
+    - name: id
       in: path
       required: true
       schema:
@@ -14,26 +34,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: '../../components/schemas/admin-secure/request/UpdateExerciseRequestDto.yaml'
-  responses:
-    '200':
-      description: Возвращает 'success'
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/schemas/admin-secure/response/UpdateExerciseResponseDto.yaml'
-
-delete:
-  operationId: deleteExercise
-  tags:
-    - adminSecure
-  parameters:
-    - name: exerciseId
-      in: path
-      required: true
-      schema:
-        type: string
-        format: UUID
+          $ref: '../../components/schemas/teacher-secure/request/UpdateCourseRequestDto.yaml'
   responses:
     '200':
       description: Возвращает 'success'

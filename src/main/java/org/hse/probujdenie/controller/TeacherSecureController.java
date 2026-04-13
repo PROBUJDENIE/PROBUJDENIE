@@ -1,7 +1,7 @@
 package org.hse.probujdenie.controller;
 
 import lombok.AllArgsConstructor;
-import org.hse.probujdenie.api.AdminSecureApiDelegate;
+import org.hse.probujdenie.api.TeacherSecureApiDelegate;
 import org.hse.probujdenie.api.model.*;
 import org.hse.probujdenie.mapper.CourseMapper;
 import org.hse.probujdenie.mapper.ExerciseMapper;
@@ -11,13 +11,11 @@ import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.content.Lecture;
 import org.hse.probujdenie.model.content.Section;
 import org.hse.probujdenie.model.exercise.Exercise;
-import org.hse.probujdenie.model.fileSaver.FileData;
 import org.hse.probujdenie.service.content.CourseService;
 import org.hse.probujdenie.service.content.LectureService;
 import org.hse.probujdenie.service.content.SectionService;
 import org.hse.probujdenie.service.exercise.ExerciseService;
 import org.hse.probujdenie.service.fileSaver.FileSaverService;
-import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,7 +27,7 @@ import java.util.UUID;
 
 @Controller
 @AllArgsConstructor
-public class AdminSecureController implements AdminSecureApiDelegate {
+public class TeacherSecureController implements TeacherSecureApiDelegate {
 
     private final CourseService courseService;
     private final SectionService sectionService;
@@ -67,8 +65,10 @@ public class AdminSecureController implements AdminSecureApiDelegate {
     }
 
     @Override
-    public ResponseEntity<GetCoursesOfAdminResponseDto> getCoursesOfAdmin(Integer offset, Integer count) {
-        List<Course> courses = courseService.getAllReadyCourses(offset, count);
+    public ResponseEntity<GetCoursesOfAdminResponseDto> getTeacherCourses(Integer offset, Integer count) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        List<Course> courses = courseService.getTeacherCourses(offset, count, email);
 
         GetCoursesOfAdminResponseDto response = new GetCoursesOfAdminResponseDto();
         response.setSuccess(true);
@@ -148,15 +148,6 @@ public class AdminSecureController implements AdminSecureApiDelegate {
         String email = authentication.getName();
         lectureService.deleteLecture(lectureId, email);
         return ResponseEntity.ok(new BaseResponseDto(true));
-    }
-
-    @Override
-    public ResponseEntity<Resource> getFile(String fileId) {
-        FileData fileData = fileSaverService.get(fileId);
-
-        return ResponseEntity.ok()
-                .headers(fileData.getHttpHeaders())
-                .body(fileData.getInputStreamResource());
     }
 
     @Override

@@ -9,9 +9,9 @@ import CommonBtn from "../../../main-page/compoents/prototype/btn/CommonBtn.jsx"
 import leftIcon from "../../resources/images/save.svg";
 import { moveDown, moveUp} from "../hooks/blockOperations.js";
 import Image from "../../resources/images/lPanel.svg"
-import {useAdminCourseContent} from "@/api/hooks/useAdminCourseContent.js";
-import {useAdminExercises} from "@/api/hooks/useAdminExercises.js";
-import {adminApi} from "@/api/admin.api.js";
+import {useTeacherCourseContent} from "@/api/hooks/useTeacherCourseContent.js";
+import {useTeacherExercises} from "@/api/hooks/useTeacherExercises.js";
+import {teacherApi} from "@/api/teacher.api.js";
 import {ConfirmModalDelLecture} from "@/modal-confirm/lecture/ConfirmModalDelLecture.jsx";
 import {ConfirmModalDelSection} from "@/modal-confirm/section/ConfirmModalDelSection.jsx";
 import {ConfirmModalSaveCourse} from "@/modal-confirm/course/ConfirmModalSaveCourse.jsx";
@@ -25,8 +25,8 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
     const [activeSectionIdForDelete, setActiveSectionIdForDelete] = useState(null);
     const [activeLectureIdForDelete, setActiveLectureIdForDelete] = useState(null);
     const {activeSectionId, setActiveSectionId, activeLectureId, setActiveLectureId, blocks, addBlock, addSection, addLecture, updateBlock, activeLecture, setLocalBlocks, deleteBlock} = useConstructorCourse(course, setCourse, "content");
-    const {exercises} = useAdminExercises(course?.id);
-    useAdminCourseContent(course.id, activeSectionId, setActiveSectionId, setCourse);
+    const {exercises} = useTeacherExercises(course?.id);
+    useTeacherCourseContent(course.id, activeSectionId, setActiveSectionId, setCourse);
     const { saveLectures } = useSaveCourseContent(course);
     async function handleConfirmSave() {
         await saveSectionTitles(course);
@@ -76,12 +76,12 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
                 </div>
             </div>
             <ConfirmModalDelSection modalState={modalState} changeModalState={setModalState} courseId={activeSectionIdForDelete}
-                onConfirm={async (id) => {await adminApi.deleteSection(id);
+                onConfirm={async (id) => {await teacherApi.deleteSection(id);
                     setCourse(prev => ({...prev, sections: prev.sections.filter(s => s.id !== id)}));}}
             />
 
             <ConfirmModalDelLecture modalState={modalState} changeModalState={setModalState} courseId={activeLectureIdForDelete}
-                onConfirm={async (id) => {await adminApi.deleteLecture(id);
+                onConfirm={async (id) => {await teacherApi.deleteLecture(id);
                     setCourse(prev => ({...prev, sections: prev.sections.map(section => ({...section, lectures: section.lectures.filter(l => l.id !== id)}))}));}}
             />
             <ConfirmModalSaveCourse modalState={modalState} changeModalState={setModalState} courseId={course?.id} onConfirm={handleConfirmSave}/>

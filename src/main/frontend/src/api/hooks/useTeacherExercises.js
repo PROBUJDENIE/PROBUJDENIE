@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useState} from "react";
-import {adminApi} from "@/api/admin.api.js";
+import {teacherApi} from "@/api/teacher.api.js";
 
-export function useAdminExercises(courseId) {
+export function useTeacherExercises(courseId) {
     const [exercises, setExercises] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ export function useAdminExercises(courseId) {
         setError(null);
 
         try {
-            const data = await adminApi.getExercises(courseId);
+            const data = await teacherApi.getExercises(courseId);
             setExercises(data || []);
         } catch (err) {
             console.error("Ошибка загрузки заданий:", err);
@@ -31,7 +31,7 @@ export function useAdminExercises(courseId) {
         if (!courseId) throw new Error("Нет ID курса");
 
         try {
-            const created = await adminApi.createExercise(courseId, {
+            const created = await teacherApi.createExercise(courseId, {
                 title: exerciseData.title,
                 description: exerciseData.description,
                 programmingLanguage: exerciseData.programmingLanguage,
@@ -52,7 +52,7 @@ export function useAdminExercises(courseId) {
 
     const deleteExercise = useCallback(async (exerciseId) => {
         try {
-            await adminApi.deleteExercise(exerciseId);
+            await teacherApi.deleteExercise(exerciseId);
             setExercises(prev => prev.filter(ex => ex.id !== exerciseId));
         } catch (err) {
             console.error("Ошибка удаления задания:", err);
@@ -72,7 +72,7 @@ export function useAdminExercises(courseId) {
                 outputData: exercise.outputData,
                 defaultCode: exercise.defaultCode
             };
-            await adminApi.updateExercise(exercise.id, payload);
+            await teacherApi.updateExercise(exercise.id, payload);
             setExercises(prev =>
                 prev.map(ex => (ex.id === exercise.id ? { ...ex, ...payload } : ex))
             );

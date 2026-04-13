@@ -1,8 +1,8 @@
 import {useCallback, useEffect, useState} from "react";
 import {denormalizeCourse, normalizeCourses} from "@/api/hooks/course.mapper.js";
-import {adminApi} from "@/api/admin.api.js";
+import {teacherApi} from "@/api/teacher.api.js";
 
-export function useAdminCourses() {
+export function useTeacherCourses() {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ export function useAdminCourses() {
             setError(null);
 
             try {
-                const data = await adminApi.getCourses({ offset: 0, count: 10 });
+                const data = await teacherApi.getCourses({ offset: 0, count: 10 });
                 setCourses(normalizeCourses(data.filter(course => course.status !== "DELETED")));
             } catch (e) {
                 setError(e.message);
@@ -50,11 +50,11 @@ export function useAdminCourses() {
             const payload = { ...courseDraft };
 
             if (payload.photo) {
-                payload.photoId = await adminApi.savePhotoMultipart(payload.photo);
+                payload.photoId = await teacherApi.savePhotoMultipart(payload.photo);
             } else {
                 payload.photoId = null;
             }
-            const newId = await adminApi.createCourse(payload);
+            const newId = await teacherApi.createCourse(payload);
 
             const created = { ...payload, id: newId };
             const answer = denormalizeCourse(created);
@@ -74,11 +74,11 @@ export function useAdminCourses() {
             const payload = { ...courseDraft };
 
             if (payload.photo) {
-                payload.photoId = await adminApi.savePhotoMultipart(payload.photo);
+                payload.photoId = await teacherApi.savePhotoMultipart(payload.photo);
             }
 
             const answer = denormalizeCourse(payload);
-            await adminApi.updateCourse(answer);
+            await teacherApi.updateCourse(answer);
 
             setCourses(prev =>
                 prev.map(c => (c.id === payload.id ? { ...c, ...payload } : c))
@@ -100,7 +100,7 @@ export function useAdminCourses() {
 
     const deleteCourse = useCallback(async (id) => {
         if (!id) return;
-        await adminApi.deleteCourse(id);
+        await teacherApi.deleteCourse(id);
         setCourses(prev =>
             prev.filter(c => c.id !== id)
         );

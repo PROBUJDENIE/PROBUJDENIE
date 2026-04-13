@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import {adminApi} from "@/api/admin.api.js";
+import {teacherApi} from "@/api/teacher.api.js";
 
 export function useConstructorCourse(course, setCourse) {
     const [activeSectionId, setActiveSectionId] = useState(null);
@@ -72,7 +72,7 @@ export function useConstructorCourse(course, setCourse) {
             orderNumber: course.sections?.length || 0
         };
 
-        const created = await adminApi.createSection(course.id, newSection);
+        const created = await teacherApi.createSection(course.id, newSection);
 
         setCourse(prev => ({
             ...prev,
@@ -93,7 +93,7 @@ export function useConstructorCourse(course, setCourse) {
             orderNumber: section.lectures?.length || 0
         };
 
-        const created = await adminApi.createLecture(activeSectionId, newLecture);
+        const created = await teacherApi.createLecture(activeSectionId, newLecture);
 
         setCourse(prev => ({
             ...prev,

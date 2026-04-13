@@ -19,9 +19,10 @@ export function AuthProvider({ children }) {
         setToken(null);
         setRole(null);
     };
+    const getRole = () => localStorage.getItem("role");
 
     return (
-        <AuthContext.Provider value={{ token, role, isAuthenticated: !!token, login, logout }}>
+        <AuthContext.Provider value={{ token, role, isAuthenticated: !!token, login, logout, getRole }}>
             {children}
         </AuthContext.Provider>
     );

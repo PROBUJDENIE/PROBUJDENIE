@@ -6,15 +6,14 @@ import notifications from "./resourses/notifications.svg"
 import settings from "./resourses/settings.svg"
 import logout from "./resourses/logout.svg"
 import avatar from "./resourses/avatar.png"
-import {USER_PROFILE_ROUTE} from "@/utils/constants.jsx";
+import {TEACHER_PROFILE_ROUTE, USER_PROFILE_ROUTE} from "@/utils/constants.jsx";
 import {useNavigate} from "react-router-dom";
 import {useUserData} from "@/api/hooks/useUserData.js";
 import {useAuth} from "@/autorisation/AuthContext.jsx";
 
-
 export function MyProfile({ modalState, changeModalState}) {
     const navigate = useNavigate();
-    const { token } = useAuth();
+    const { token, getRole } = useAuth();
     const { userData, loading } = useUserData(token);
     if (modalState !== 31) return null;
     const handleCancel = () => changeModalState(0);
@@ -40,7 +39,11 @@ export function MyProfile({ modalState, changeModalState}) {
                 )}
 
                 <ul className="profile-nav">
-                    <li className="nav-item-profile" onClick={() => navigate(USER_PROFILE_ROUTE)}>
+                    <li className="nav-item-profile" onClick={() => {
+                        const role = getRole();
+                        if (role === null) { return; }
+                        (role === 'STUDENT') ? navigate(USER_PROFILE_ROUTE) : navigate(TEACHER_PROFILE_ROUTE);
+                    }}>
                         <CommonLink size={16} weight={800}>
                             <span className="nav-content-profile">
                                 <img src={courses} alt="Мои курсы" className="nav-icon-profile-b" />

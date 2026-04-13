@@ -1,8 +1,8 @@
-import {API_CONFIG, ADMIN_ENDPOINTS, getUrl, PUBLIC_ENDPOINTS, getAuthHeaders} from "./config";
+import {API_CONFIG, TEACHER_ENDPOINTS, getUrl, PUBLIC_ENDPOINTS, getAuthHeaders} from "./config";
 
-export const adminApi = {
+export const teacherApi = {
     getCourses: async ({ offset = 0, count = 10 } = {}) => {
-        const url = new URL(API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.GET_COURSES);
+        const url = new URL(API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.GET_COURSES);
         url.searchParams.append("offset", offset);
         url.searchParams.append("count", count);
 
@@ -23,7 +23,7 @@ export const adminApi = {
 
     createCourse: async (course) => {
         const response = await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_COURSE,
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.CREATE_COURSE,
             {
                 method: "POST",
                 headers: getAuthHeaders(),
@@ -37,7 +37,7 @@ export const adminApi = {
 
     updateCourse: async (course) => {
         await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_COURSE(course.id),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.UPDATE_COURSE(course.id),
             {
                 method: "PUT",
                 headers: getAuthHeaders(),
@@ -48,7 +48,7 @@ export const adminApi = {
 
     deleteCourse: async (id) => {
         await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.DELETE_COURSE(id),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.DELETE_COURSE(id),
             {
                 method: "DELETE",
                 headers: getAuthHeaders(),
@@ -62,7 +62,7 @@ export const adminApi = {
 
         const token = localStorage.getItem('token');
         const response = await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPLOAD_FILE,
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.UPLOAD_FILE,
             {
                 method: "POST",
                 body: form,
@@ -80,7 +80,7 @@ export const adminApi = {
 
         const token = localStorage.getItem('token');
         const response = await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.GET_FILE(fileId),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.GET_FILE(fileId),
             {
                 method: "POST",
                 body: form,
@@ -94,7 +94,7 @@ export const adminApi = {
 
     createSection: async (courseId, section) => {
         const response = await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_SECTION(courseId),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.CREATE_SECTION(courseId),
             {
                 method: "POST",
                 headers: getAuthHeaders(),
@@ -108,7 +108,7 @@ export const adminApi = {
 
     updateSection: async ({ id, title, orderNumber }) => {
         const payload = { title, orderNumber };
-        await fetch(API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_SECTION(id), {
+        await fetch(API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.UPDATE_SECTION(id), {
             method: "PUT",
             headers: getAuthHeaders(),
             body: JSON.stringify(payload)
@@ -117,7 +117,7 @@ export const adminApi = {
 
     deleteSection: async (id) => {
         await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.DELETE_SECTION(id),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.DELETE_SECTION(id),
             {
                 method: "DELETE",
                 headers: getAuthHeaders(),
@@ -127,7 +127,7 @@ export const adminApi = {
 
     createLecture: async (sectionId, lecture) => {
         const response = await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_LECTURE(sectionId),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.CREATE_LECTURE(sectionId),
             {
                 method: "POST",
                 headers: getAuthHeaders(),
@@ -147,7 +147,7 @@ export const adminApi = {
         };
 
         await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_LECTURE(lecture.id),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.UPDATE_LECTURE(lecture.id),
             {
                 method: "PUT",
                 headers: getAuthHeaders(),
@@ -158,7 +158,7 @@ export const adminApi = {
 
     deleteLecture: async (id) => {
         await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.DELETE_LECTURE(id),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.DELETE_LECTURE(id),
             {
                 method: "DELETE",
                 headers: getAuthHeaders(),
@@ -168,7 +168,7 @@ export const adminApi = {
 
     getExercises: async (courseId) => {
         const response = await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.GET_EXERCISES(courseId),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.GET_EXERCISES(courseId),
             {
                 method: "GET",
                 headers: getAuthHeaders(),
@@ -181,7 +181,7 @@ export const adminApi = {
 
     createExercise: async (courseId, exercise) => {
         const response = await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.CREATE_EXERCISE(courseId),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.CREATE_EXERCISE(courseId),
             {
                 method: "POST",
                 headers: getAuthHeaders(),
@@ -195,7 +195,7 @@ export const adminApi = {
 
     updateExercise: async (exerciseId, payload) => {
         await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.UPDATE_EXERCISE(exerciseId),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.UPDATE_EXERCISE(exerciseId),
             {
                 method: "PUT",
                 headers: getAuthHeaders(),
@@ -206,7 +206,7 @@ export const adminApi = {
 
     deleteExercise: async (exerciseId) => {
         await fetch(
-            API_CONFIG.BASE_URL + ADMIN_ENDPOINTS.DELETE_EXERCISE(exerciseId),
+            API_CONFIG.BASE_URL + TEACHER_ENDPOINTS.DELETE_EXERCISE(exerciseId),
             {
                 method: "DELETE",
                 headers: getAuthHeaders(),

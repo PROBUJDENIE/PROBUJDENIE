@@ -4,7 +4,7 @@ import editImage from "./resourses/hero-task.png";
 import ConstructorWorkArea from "../content/workArea/ConstructorWorkArea.jsx";
 import ConstructorBlocksPanelTasks from "./components/ConstructorBlocksPanelTasks.jsx";
 import Image from "../../resources/images/add_task.svg"
-import {useAdminExercises} from "@/api/hooks/useAdminExercises.js";
+import {useTeacherExercises} from "@/api/hooks/useTeacherExercises.js";
 import {ConfirmModalDelTask} from "@/modal-confirm/task/ConfirmModalDelTask.jsx";
 import {ConfirmModalSaveTask} from "@/modal-confirm/task/ConfirmModalSaveTask.jsx";
 import {ModalErrorTask} from "@/modal-confirm/task/ModalErrorTask.jsx";
@@ -17,7 +17,7 @@ export default function ConstructorTasks({course}) {
         error,
         createExercise,
         updateExercise, deleteExercise, updateExerciseLocal
-    } = useAdminExercises(course?.id);
+    } = useTeacherExercises(course?.id);
     const [draftExercise, setDraftExercise] = useState(null);
     const [modalState, setModalState] = useState(0);
     const [activeExerciseId, setActiveExerciseId] = useState(null);

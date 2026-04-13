@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { publicApi } from "@/api/public.api.js";
 import {getUrl, PUBLIC_ENDPOINTS} from "@/api/config.js";
 
-export function useAdminCourseContent(courseId, activeSectionId, setActiveSectionId, setCourse) {
+export function useTeacherCourseContent(courseId, activeSectionId, setActiveSectionId, setCourse) {
     useEffect(() => {
         if (!courseId) return;
 

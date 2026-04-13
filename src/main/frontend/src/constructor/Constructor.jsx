@@ -4,31 +4,32 @@ import {useCallback, useEffect, useState} from "react";
 import CommonBtn from "../main-page/compoents/prototype/btn/CommonBtn.jsx";
 import ConstructorInfo from "./components/info/ConstructorInfo.jsx";
 import Container from "../main-page/compoents/content/Container.jsx";
-import { ADMIN_PROFILE_ROUTE} from "../utils/constants.jsx";
+import {ADMIN_PROFILE_ROUTE, TEACHER_PROFILE_ROUTE, USER_PROFILE_ROUTE} from "../utils/constants.jsx";
 import create from "./resources/images/create.svg"
 import table from "./resources/images/table.svg"
 import back from "./resources/images/back.svg"
 import tasks from "./resources/images/const_tasks.svg"
 import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
-import {useAdminCourses} from "@/api/hooks/useAdminCourses.js";
+import {useTeacherCourses} from "@/api/hooks/useTeacherCourses.js";
 import ConstructorContent from "@/constructor/components/content/ConstructorContent.jsx";
 import ConstructorTasks from "@/constructor/components/tasks/ConstructorTasks.jsx";
-import {useAdminExercises} from "@/api/hooks/useAdminExercises.js";
+import {useTeacherExercises} from "@/api/hooks/useTeacherExercises.js";
 import {ConfirmModalBackCourse} from "@/modal-confirm/course/ConfirmModalBackCourse.jsx";
+import {useAuth} from "@/autorisation/AuthContext.jsx";
 
 export default function Constructor() {
-
+    const { getRole } = useAuth();
     const [searchParams] = useSearchParams();
     const courseId = searchParams.get("id");
     const navigate = useNavigate();
     const [activeAd, setAdvert] = useState("info");
     const [modalState, setModalState] = useState(0);
 
-    const {deleteCourse, saveCourse, loading,getCourse, addOrUpdateCourse} = useAdminCourses();
+    const {deleteCourse, saveCourse, loading,getCourse, addOrUpdateCourse} = useTeacherCourses();
 
     const emptyCourse = {id: null, title: "", description: "", highlights: [], price: "", photo: null, photoId: null, sections: []};
     const [course, setCourse] = useState(emptyCourse);
-    const { exercises } = useAdminExercises(course.id);
+    const { exercises } = useTeacherExercises(course.id);
 
     useEffect(() => {
         if (!courseId) return;
@@ -71,7 +72,9 @@ export default function Constructor() {
                     {!loading  && activeAd === 'tasks' && (<ConstructorTasks  course={course} setCourse={setCourse} handleSave={handleSave} exercises={exercises}></ConstructorTasks>)}
                 </div>
             </Container>
-            <ConfirmModalBackCourse modalState={modalState} changeModalState={setModalState} onConfirm={() => navigate(ADMIN_PROFILE_ROUTE)}/>
+            <ConfirmModalBackCourse modalState={modalState} changeModalState={setModalState} onConfirm={() => {
+                const role = getRole();
+                (role === 'ADMIN') ? navigate(ADMIN_PROFILE_ROUTE) : navigate(TEACHER_PROFILE_ROUTE);}}/>
             <Bottom></Bottom>
         </div>
     </>)

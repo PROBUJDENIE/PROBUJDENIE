@@ -1,4 +1,4 @@
-import { adminApi } from "@/api/admin.api.js";
+import { teacherApi } from "@/api/teacher.api.js";
 
 export function useSaveCourseContent(course) {
 
@@ -34,7 +34,7 @@ export function useSaveCourseContent(course) {
 
                 if (block.type === "image" && block.content?.file) {
 
-                    const fileId = await adminApi.savePhotoMultipart(block.content.file);
+                    const fileId = await teacherApi.savePhotoMultipart(block.content.file);
 
                     return {
                         ...block,
@@ -65,12 +65,12 @@ export function useSaveCourseContent(course) {
                 let contentId = lecture.contentId;
 
                 if (!contentId) {
-                    contentId = await adminApi.savePhotoMultipart(file);
+                    contentId = await teacherApi.savePhotoMultipart(file);
                 } else {
-                    await adminApi.updateFileMultipart(contentId, file);
+                    await teacherApi.updateFileMultipart(contentId, file);
                 }
 
-                await adminApi.updateLecture({
+                await teacherApi.updateLecture({
                     id: lecture.id,
                     title: lecture.title,
                     orderNumber: lecture.orderNumber,

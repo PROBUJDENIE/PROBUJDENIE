@@ -36,6 +36,13 @@ public class SectionService {
         return section;
     }
 
+    public Section createSectionAdmin(UUID courseId, Section section) {
+        Course course = courseService.getCourse(courseId);
+        formSection(section, course);
+        sectionRepository.save(section);
+        return section;
+    }
+
     @Transactional
     public void updateSection(UUID sectionId, Section section, String email) {
         Section existing = getSection(sectionId);
@@ -46,10 +53,24 @@ public class SectionService {
     }
 
     @Transactional
+    public void updateSectionAdmin(UUID sectionId, Section section) {
+        Section existing = getSection(sectionId);
+        sectionMapper.updateCourseFromDto(section, existing);
+        sectionRepository.save(existing);
+    }
+
+    @Transactional
     public void deleteSection(UUID sectionId, String email) {
         Section section = getSection(sectionId);
         Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, section.getCourse().getId()));
         if (teacherToCourse.isEmpty()) throw new IllegalArgumentException("У вас нет прав.");
+        section.setStatus(SectionStatus.DELETED);
+        sectionRepository.save(section);
+    }
+
+    @Transactional
+    public void deleteSectionAdmin(UUID sectionId) {
+        Section section = getSection(sectionId);
         section.setStatus(SectionStatus.DELETED);
         sectionRepository.save(section);
     }

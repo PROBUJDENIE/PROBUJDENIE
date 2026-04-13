@@ -1,0 +1,13 @@
+type: object
+required:
+  - title
+  - orderNumber
+properties:
+  title:
+    type: string
+    minLength: 3
+    maxLength: 255
+  orderNumber:
+    type: integer
+    format: int32
+    minimum: 0

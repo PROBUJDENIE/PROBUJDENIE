@@ -1,0 +1,34 @@
+type: object
+
+required:
+  - title
+  - description
+  - programmingLanguage
+  - inputData
+  - outputData
+properties:
+  title:
+    type: string
+    minLength: 3
+    maxLength: 255
+  description:
+    type: string
+    minLength: 3
+    maxLength: 5000
+  defaultCode:
+    type: string
+  timeLimit:
+    type: integer
+    format: int32
+  memoryLimit:
+    type: integer
+    format: int32
+  inputData:
+    type: string
+  outputData:
+    type: string
+  programmingLanguage:
+    type: string
+    enum:
+      - JAVA
+      - PYTHON

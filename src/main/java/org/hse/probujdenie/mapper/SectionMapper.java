@@ -20,6 +20,14 @@ public interface SectionMapper {
     @Mapping(target = "course", ignore = true)
     Section toEntityFromCreateDto(CreateSectionRequestDto request);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "course", ignore = true)
+    Section toEntityFromCreateDto(CreateSectionRequestDtoAdmin request);
+
     CreateSectionResponseDtoItem toCreateDtoFromEntity(Section request);
 
     @Mapping(target = "id", ignore = true)
@@ -29,6 +37,14 @@ public interface SectionMapper {
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "course", ignore = true)
     Section toEntityFromUpdateDto(UpdateSectionRequestDto request);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "course", ignore = true)
+    Section toEntityFromUpdateDto(UpdateSectionRequestDtoAdmin request);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateCourseFromDto(Section source, @MappingTarget Section target);

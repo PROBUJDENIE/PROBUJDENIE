@@ -51,6 +51,12 @@ public class CourseService {
         courseRepository.save(existing);
     }
 
+    public void updateCourse(UUID courseId, Course course) {
+        Course existing = getCourse(courseId);
+        courseMapper.updateCourseFromDto(course, existing);
+        courseRepository.save(existing);
+    }
+
     public void updateCoursePhoto(UUID courseId, UUID photoId) {
         Course existing = getCourse(courseId);
         existing.setPhotoId(photoId);
@@ -67,11 +73,23 @@ public class CourseService {
         return courseRepository.getTeacherCourses(email, page);
     }
 
+    public List<Course> getAllCourses(Integer offset, Integer count) {
+        Pageable page = PageRequest.of(offset, count);
+        return courseRepository.findAll();
+    }
+
     @Transactional
     public void deleteCourse(UUID id, String email) {
         Course course = getCourse(id);
         Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, id));
         if (teacherToCourse.isEmpty()) throw new IllegalArgumentException("У вас нет прав.");
+        course.setStatus(CourseStatus.DELETED);
+        courseRepository.save(course);
+    }
+
+    @Transactional
+    public void deleteCourseAdmin(UUID id) {
+        Course course = getCourse(id);
         course.setStatus(CourseStatus.DELETED);
         courseRepository.save(course);
     }

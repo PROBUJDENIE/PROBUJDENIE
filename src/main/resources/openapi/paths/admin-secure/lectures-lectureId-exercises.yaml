@@ -1,0 +1,43 @@
+post:
+  operationId: createExercise
+  tags:
+    - adminSecure
+  parameters:
+    - name: courseId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/admin-secure/request/CreateExerciseRequestDtoAdmin.yaml'
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/admin-secure/response/CreateExerciseResponseDtoAdmin.yaml'
+
+get:
+  operationId: getExercises
+  tags:
+    - adminSecure
+  parameters:
+    - name: courseId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/admin-secure/response/GetExercisesResponseDtoAdmin.yaml'

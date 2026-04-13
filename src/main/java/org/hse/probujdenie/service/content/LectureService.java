@@ -39,10 +39,25 @@ public class LectureService {
     }
 
     @Transactional
+    public Lecture createLectureAdmin(UUID sectionId, Lecture lecture) {
+        Section section = sectionService.getSection(sectionId);
+        formLecture(lecture, section);
+        lectureRepository.save(lecture);
+        return lecture;
+    }
+
+    @Transactional
     public void deleteLecture(UUID lectureId, String email) {
         Lecture lecture = getLecture(lectureId);
         Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, lecture.getSection().getCourse().getId()));
         if (teacherToCourse.isEmpty()) throw new IllegalArgumentException("У вас нет прав.");
+        lecture.setStatus(LectureStatus.DELETED);
+        lectureRepository.save(lecture);
+    }
+
+    @Transactional
+    public void deleteLectureAdmin(UUID lectureId) {
+        Lecture lecture = getLecture(lectureId);
         lecture.setStatus(LectureStatus.DELETED);
         lectureRepository.save(lecture);
     }
@@ -58,6 +73,13 @@ public class LectureService {
         Lecture existing = getLecture(lectureId);
         Optional<TeacherToCourse> teacherToCourse = teacherToCourseRepository.findById(new TeacherToCourse.TeacherCourseId(email, existing.getSection().getCourse().getId()));
         if (teacherToCourse.isEmpty()) throw new IllegalArgumentException("У вас нет прав.");
+        lectureMapper.updateLectureFromDto(lecture, existing);
+        lectureRepository.save(existing);
+    }
+
+    @Transactional
+    public void updateLectureAdmin(UUID lectureId, Lecture lecture) {
+        Lecture existing = getLecture(lectureId);
         lectureMapper.updateLectureFromDto(lecture, existing);
         lectureRepository.save(existing);
     }

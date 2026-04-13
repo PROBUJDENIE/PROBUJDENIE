@@ -21,6 +21,13 @@ public interface ExerciseMapper {
     @Mapping(target = "id", ignore = true)
     Exercise toEntityFromCreateExerciseDto(CreateExerciseRequestDto request);
 
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    Exercise toEntityFromCreateExerciseDto(CreateExerciseRequestDtoAdmin request);
+
     CreateExerciseResponseDtoItem toCreateExerciseDtoFromEntity(Exercise request);
 
     @Mapping(target = "version", ignore = true)
@@ -30,9 +37,20 @@ public interface ExerciseMapper {
     @Mapping(target = "id", ignore = true)
     Exercise toEntityFromUpdateExerciseDto(UpdateExerciseRequestDto request);
 
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    Exercise toEntityFromUpdateExerciseDto(UpdateExerciseRequestDtoAdmin request);
+
     @Mapping(target = "success", ignore = true)
     @Mapping(target = "errors", ignore = true)
     UpdateExerciseResponseDto toUpdateExerciseDtoFromEntity(Exercise request);
+
+    @Mapping(target = "success", ignore = true)
+    @Mapping(target = "errors", ignore = true)
+    UpdateExerciseResponseDtoAdmin toUpdateExerciseDtoFromEntityAdmin(Exercise request);
 
     GetExercisesResponseDtoItem toDto(Exercise exercise);
 

@@ -25,6 +25,13 @@ public interface CourseMapper {
     @Mapping(target = "status", ignore = true)
     Course toEntityFromCreateCourseDto(CreateCourseRequestDto request);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    Course toEntityFromCreateCourseDto(CreateCourseRequestDtoAdmin request);
+
     CreateCourseResponseDtoItem toCreateCourseDtoFromEntity(Course request);
 
     @Mapping(target = "id", ignore = true)
@@ -32,4 +39,10 @@ public interface CourseMapper {
     @Mapping(target = "creationDateTime", ignore = true)
     @Mapping(target = "lastModificationDateTime", ignore = true)
     Course toEntityFromUpdateCourseDto(UpdateCourseRequestDto request);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    Course toEntityFromUpdateCourseDto(UpdateCourseRequestDtoAdmin request);
 }

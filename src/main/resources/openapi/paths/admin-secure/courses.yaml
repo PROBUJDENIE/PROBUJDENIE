@@ -1,0 +1,33 @@
+get:
+  operationId: getAdminCourses
+  tags:
+    - adminSecure
+  parameters:
+    - $ref: '../../components/parameters/PageableParams.yaml#/parameters/OffsetParam'
+    - $ref: '../../components/parameters/PageableParams.yaml#/parameters/CountParam'
+  responses:
+    '200':
+      description: Страница курсов админа.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/admin-secure/response/GetCoursesOfAdminResponseDtoAdmin.yaml'
+
+post:
+  operationId: createCourse
+  tags:
+    - adminSecure
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/admin-secure/request/CreateCourseRequestDtoAdmin.yaml'
+  responses:
+    '200':
+      description: Возвращает созданный курс.
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/admin-secure/response/CreateCourseResponseDtoAdmin.yaml'
+

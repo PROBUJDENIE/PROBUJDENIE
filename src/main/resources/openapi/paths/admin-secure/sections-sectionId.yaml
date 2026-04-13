@@ -1,0 +1,44 @@
+delete:
+  operationId: deleteSection
+  tags:
+    - adminSecure
+  parameters:
+    - name: sectionId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/BaseResponseDto.yaml'
+
+put:
+  operationId: updateSection
+  tags:
+    - adminSecure
+  parameters:
+    - name: sectionId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: UUID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/admin-secure/request/UpdateSectionRequestDtoAdmin.yaml'
+  responses:
+    '200':
+      description: Возвращает 'success'
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/BaseResponseDto.yaml'
+

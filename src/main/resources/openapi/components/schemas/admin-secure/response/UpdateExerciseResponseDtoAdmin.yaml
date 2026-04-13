@@ -1,0 +1,52 @@
+allOf:
+  - $ref: '../../../responses/BaseResponseDto.yaml'
+  - type: object
+    required:
+      - id
+      - title
+      - description
+      - programmingLanguage
+      - status
+      - inputData
+      - outputData
+    properties:
+      id:
+        type: string
+        format: UUID
+      title:
+        type: string
+        minLength: 3
+        maxLength: 255
+      description:
+        type: string
+        minLength: 3
+        maxLength: 5000
+      defaultCode:
+        type: string
+        minLength: 3
+        maxLength: 5000
+      timeLimit:
+        type: integer
+        format: int32
+      memoryLimit:
+        type: integer
+        format: int32
+      inputData:
+        type: string
+        minLength: 3
+        maxLength: 1000
+      outputData:
+        type: string
+        minLength: 3
+        maxLength: 1000
+      programmingLanguage:
+        type: string
+        enum:
+          - JAVA
+          - PYTHON
+      status:
+        type: string
+        enum:
+          - CREATED
+          - READY
+          - DELETED

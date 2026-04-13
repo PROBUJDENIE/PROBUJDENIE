@@ -20,6 +20,14 @@ public interface LectureMapper {
     @Mapping(target = "status", ignore = true)
     Lecture toEntityFromCreateDto(CreateLectureRequestDto request);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "section", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    Lecture toEntityFromCreateDto(CreateLectureRequestDtoAdmin request);
+
     CreateLectureResponseDtoItem toCreateDtoFromEntity(Lecture request);
 
     @Mapping(target = "id", ignore = true)
@@ -29,6 +37,14 @@ public interface LectureMapper {
     @Mapping(target = "lastModificationDateTime", ignore = true)
     @Mapping(target = "status", ignore = true)
     Lecture toEntityFromUpdateDto(UpdateLectureRequestDto request);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
+    @Mapping(target = "creationDateTime", ignore = true)
+    @Mapping(target = "section", ignore = true)
+    @Mapping(target = "lastModificationDateTime", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    Lecture toEntityFromUpdateDto(UpdateLectureRequestDtoAdmin request);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateLectureFromDto(Lecture source, @MappingTarget Lecture target);

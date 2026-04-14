@@ -1,5 +1,5 @@
 import "./constructorContent.css"
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import ConstructorBlocksPanel from "./blockPannel/ConstructorBlocksPanel.jsx";
 import ConstructorWorkArea from "./workArea/ConstructorWorkArea.jsx";
 import ConstructorNavigation from "./navigation/ConstructorNavigation.jsx";
@@ -16,9 +16,14 @@ import {ConfirmModalDelLecture} from "@/modal-confirm/lecture/ConfirmModalDelLec
 import {ConfirmModalDelSection} from "@/modal-confirm/section/ConfirmModalDelSection.jsx";
 import {ConfirmModalSaveCourse} from "@/modal-confirm/course/ConfirmModalSaveCourse.jsx";
 import {useSaveCourseContent} from "@/api/hooks/useSaveCourseContent.js";
-import {saveLectureTitles, saveSectionTitles} from "@/api/saveTitles.js";
+import {useSaveLectureTitles, useSaveSectionTitles} from "@/api/saveTitles.js";
+import {adminApi} from "@/api/admin.api.js";
+import {useAuth} from "@/autorisation/AuthContext.jsx";
+const getApiByRole = (role) => {
+    return role === "admin" ? adminApi : teacherApi;
+};
 export default function ConstructorContent({course, setCourse, handleSave}) {
-
+    const {getRole}=useAuth();
     const [open, setOpen] = useState(false);
     const [hoveredBlockId, setHoveredBlockId] = useState(null);
     const [modalState, setModalState] = useState(0);
@@ -28,6 +33,28 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
     const {exercises} = useTeacherExercises(course?.id);
     useTeacherCourseContent(course.id, activeSectionId, setActiveSectionId, setCourse);
     const { saveLectures } = useSaveCourseContent(course);
+    const handleDeleteSection = useCallback(async (id) => {
+        const api = getApiByRole(getRole());
+        await api.deleteSection(id);
+        setCourse(prev => ({
+            ...prev,
+            sections: prev.sections.filter(s => s.id !== id)
+        }));
+    }, [getRole, setCourse]);
+
+    const handleDeleteLecture = useCallback(async (id) => {
+        const api = getApiByRole(getRole());
+        await api.deleteLecture(id);
+        setCourse(prev => ({
+            ...prev,
+            sections: prev.sections.map(section => ({
+                ...section,
+                lectures: section.lectures.filter(l => l.id !== id)
+            }))
+        }));
+    }, [getRole, setCourse]);
+    const saveSectionTitles = useSaveSectionTitles();
+    const saveLectureTitles = useSaveLectureTitles();
     async function handleConfirmSave() {
         await saveSectionTitles(course);
         await saveLectureTitles(course);
@@ -75,15 +102,8 @@ export default function ConstructorContent({course, setCourse, handleSave}) {
                     </div>
                 </div>
             </div>
-            <ConfirmModalDelSection modalState={modalState} changeModalState={setModalState} courseId={activeSectionIdForDelete}
-                onConfirm={async (id) => {await teacherApi.deleteSection(id);
-                    setCourse(prev => ({...prev, sections: prev.sections.filter(s => s.id !== id)}));}}
-            />
-
-            <ConfirmModalDelLecture modalState={modalState} changeModalState={setModalState} courseId={activeLectureIdForDelete}
-                onConfirm={async (id) => {await teacherApi.deleteLecture(id);
-                    setCourse(prev => ({...prev, sections: prev.sections.map(section => ({...section, lectures: section.lectures.filter(l => l.id !== id)}))}));}}
-            />
+            <ConfirmModalDelSection modalState={modalState} changeModalState={setModalState} courseId={activeSectionIdForDelete} onConfirm={handleDeleteSection}/>
+            <ConfirmModalDelLecture modalState={modalState} changeModalState={setModalState} courseId={activeLectureIdForDelete} onConfirm={handleDeleteLecture}/>
             <ConfirmModalSaveCourse modalState={modalState} changeModalState={setModalState} courseId={course?.id} onConfirm={handleConfirmSave}/>
         </>
     )

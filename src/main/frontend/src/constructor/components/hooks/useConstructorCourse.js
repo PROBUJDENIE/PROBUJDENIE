@@ -1,10 +1,17 @@
 import { useState, useMemo, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import {teacherApi} from "@/api/teacher.api.js";
+import { teacherApi } from "@/api/teacher.api.js";
+import { adminApi } from "@/api/admin.api.js";
+import {useAuth} from "@/autorisation/AuthContext.jsx";
+
+const getApiByRole = (getRole) => {
+    return getRole === "ADMIN" ? adminApi : teacherApi;
+};
 
 export function useConstructorCourse(course, setCourse) {
     const [activeSectionId, setActiveSectionId] = useState(null);
     const [activeLectureId, setActiveLectureId] = useState(null);
+    const {getRole}=useAuth();
 
     const activeSection = useMemo(
         () => course.sections?.find(s => s.id === activeSectionId),
@@ -18,9 +25,12 @@ export function useConstructorCourse(course, setCourse) {
 
     const [localBlocks, setLocalBlocks] = useState([]);
 
-    useEffect(() => {setLocalBlocks(activeLecture?.contentBlocks || []);}, [activeLectureId]);
+    useEffect(() => {
+        setLocalBlocks(activeLecture?.contentBlocks || []);
+    }, [activeLectureId]);
 
     const blocks = localBlocks;
+
     useEffect(() => {
         if (!activeSectionId || !activeLectureId) return;
 
@@ -42,8 +52,7 @@ export function useConstructorCourse(course, setCourse) {
                     }
             )
         }));
-
-    }, [localBlocks]);
+    }, [localBlocks, activeSectionId, activeLectureId, setCourse]);
 
     function addBlock(type) {
         if (!activeSectionId || !activeLectureId) return;
@@ -67,12 +76,14 @@ export function useConstructorCourse(course, setCourse) {
     async function addSection() {
         if (!course?.id) return;
 
+        const api = getApiByRole(getRole());
+
         const newSection = {
             title: "Новая глава",
             orderNumber: course.sections?.length || 0
         };
 
-        const created = await teacherApi.createSection(course.id, newSection);
+        const created = await api.createSection(course.id, newSection);
 
         setCourse(prev => ({
             ...prev,
@@ -85,6 +96,8 @@ export function useConstructorCourse(course, setCourse) {
     async function addLecture() {
         if (!activeSectionId) return;
 
+        const api = getApiByRole(getRole());
+
         const section = course.sections.find(s => s.id === activeSectionId);
         if (!section) return;
 
@@ -93,7 +106,7 @@ export function useConstructorCourse(course, setCourse) {
             orderNumber: section.lectures?.length || 0
         };
 
-        const created = await teacherApi.createLecture(activeSectionId, newLecture);
+        const created = await api.createLecture(activeSectionId, newLecture);
 
         setCourse(prev => ({
             ...prev,

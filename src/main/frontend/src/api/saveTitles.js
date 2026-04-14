@@ -1,30 +1,48 @@
 import { teacherApi } from "@/api/teacher.api.js";
+import { adminApi } from "@/api/admin.api.js";
+import { useAuth } from "@/autorisation/AuthContext.jsx";
+import {useCallback} from "react";
 
-export async function saveSectionTitles(course) {
-    if (!course?.sections) return;
+const getApiByRole = (role) => {
+    return role === "ADMIN" ? adminApi : teacherApi;
+};
 
-    for (const section of course.sections) {
-        await teacherApi.updateSection({
-            id: section.id,
-            title: section.title,
-            orderNumber: section.orderNumber
-        });
-    }
-}
+export function useSaveSectionTitles() {
+    const { getRole } = useAuth();
 
-export async function saveLectureTitles(course) {
-    if (!course?.sections) return;
+    return useCallback(async (course) => {
+        if (!course?.sections) return;
+        const api = getApiByRole(getRole());
 
-    for (const section of course.sections) {
-        if (!section.lectures) continue;
-
-        for (const lecture of section.lectures) {
-            await teacherApi.updateLecture({
-                id: lecture.id,
-                title: lecture.title,
-                orderNumber: lecture.orderNumber,
-                contentId: lecture.contentId
+        for (const section of course.sections) {
+            await api.updateSection({
+                id: section.id,
+                title: section.title,
+                orderNumber: section.orderNumber
             });
         }
-    }
+    }, [getRole]);
+}
+
+export function useSaveLectureTitles() {
+    const { getRole } = useAuth();
+
+    return useCallback(async (course) => {
+        if (!course?.sections) return;
+
+        const api = getApiByRole(getRole());
+
+        for (const section of course.sections) {
+            if (!section.lectures) continue;
+
+            for (const lecture of section.lectures) {
+                await api.updateLecture({
+                    id: lecture.id,
+                    title: lecture.title,
+                    orderNumber: lecture.orderNumber,
+                    contentId: lecture.contentId
+                });
+            }
+        }
+    }, [getRole]);
 }

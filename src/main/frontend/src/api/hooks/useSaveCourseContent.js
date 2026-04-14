@@ -1,7 +1,13 @@
 import { teacherApi } from "@/api/teacher.api.js";
+import { adminApi } from "@/api/admin.api.js";
+import {useAuth} from "@/autorisation/AuthContext.jsx";
+
+const getApiByRole = (role) => {
+    return role === "ADMIN" ? adminApi : teacherApi;
+};
 
 export function useSaveCourseContent(course) {
-
+    const {getRole}=useAuth();
     function blocksToFile(blocks) {
         const json = JSON.stringify(
             blocks.map(b => {
@@ -29,12 +35,14 @@ export function useSaveCourseContent(course) {
     }
 
     async function uploadImages(blocks) {
+        const api = getApiByRole(getRole());
+
         return Promise.all(
             blocks.map(async (block) => {
 
                 if (block.type === "image" && block.content?.file) {
 
-                    const fileId = await teacherApi.savePhotoMultipart(block.content.file);
+                    const fileId = await api.savePhotoMultipart(block.content.file);
 
                     return {
                         ...block,
@@ -51,6 +59,7 @@ export function useSaveCourseContent(course) {
     }
 
     async function saveLectures() {
+        const api = getApiByRole(getRole());
 
         for (const section of course.sections) {
 
@@ -65,12 +74,12 @@ export function useSaveCourseContent(course) {
                 let contentId = lecture.contentId;
 
                 if (!contentId) {
-                    contentId = await teacherApi.savePhotoMultipart(file);
+                    contentId = await api.savePhotoMultipart(file);
                 } else {
-                    await teacherApi.updateFileMultipart(contentId, file);
+                    await api.updateFileMultipart(contentId, file);
                 }
 
-                await teacherApi.updateLecture({
+                await api.updateLecture({
                     id: lecture.id,
                     title: lecture.title,
                     orderNumber: lecture.orderNumber,

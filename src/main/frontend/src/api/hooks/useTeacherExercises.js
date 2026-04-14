@@ -1,11 +1,17 @@
-import {useCallback, useEffect, useState} from "react";
-import {teacherApi} from "@/api/teacher.api.js";
+import { useCallback, useEffect, useState } from "react";
+import { teacherApi } from "@/api/teacher.api.js";
+import { adminApi } from "@/api/admin.api.js";
+import {useAuth} from "@/autorisation/AuthContext.jsx";
+
+const getApiByRole = (role) => {
+    return role === "ADMIN" ? adminApi : teacherApi;
+};
 
 export function useTeacherExercises(courseId) {
     const [exercises, setExercises] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
+    const {getRole}=useAuth();
     const fetchExercises = useCallback(async () => {
         if (!courseId) return;
 
@@ -13,7 +19,8 @@ export function useTeacherExercises(courseId) {
         setError(null);
 
         try {
-            const data = await teacherApi.getExercises(courseId);
+            const api = getApiByRole(getRole());
+            const data = await api.getExercises(courseId);
             setExercises(data || []);
         } catch (err) {
             console.error("Ошибка загрузки заданий:", err);
@@ -31,7 +38,8 @@ export function useTeacherExercises(courseId) {
         if (!courseId) throw new Error("Нет ID курса");
 
         try {
-            const created = await teacherApi.createExercise(courseId, {
+            const api = getApiByRole(getRole());
+            const created = await api.createExercise(courseId, {
                 title: exerciseData.title,
                 description: exerciseData.description,
                 programmingLanguage: exerciseData.programmingLanguage,
@@ -52,7 +60,8 @@ export function useTeacherExercises(courseId) {
 
     const deleteExercise = useCallback(async (exerciseId) => {
         try {
-            await teacherApi.deleteExercise(exerciseId);
+            const api = getApiByRole(getRole());
+            await api.deleteExercise(exerciseId);
             setExercises(prev => prev.filter(ex => ex.id !== exerciseId));
         } catch (err) {
             console.error("Ошибка удаления задания:", err);
@@ -63,6 +72,7 @@ export function useTeacherExercises(courseId) {
     const updateExercise = useCallback(
         async (exercise) => {
             if (!exercise?.id) throw new Error("Нет ID задания");
+
             const payload = {
                 title: exercise.title,
                 description: exercise.description,
@@ -72,13 +82,21 @@ export function useTeacherExercises(courseId) {
                 outputData: exercise.outputData,
                 defaultCode: exercise.defaultCode
             };
-            await teacherApi.updateExercise(exercise.id, payload);
-            setExercises(prev =>
-                prev.map(ex => (ex.id === exercise.id ? { ...ex, ...payload } : ex))
-            );
+
+            try {
+                const api = getApiByRole(getRole());
+                await api.updateExercise(exercise.id, payload);
+                setExercises(prev =>
+                    prev.map(ex => (ex.id === exercise.id ? { ...ex, ...payload } : ex))
+                );
+            } catch (err) {
+                console.error("Ошибка обновления задания:", err);
+                throw err;
+            }
         },
-        [exercises]
+        []
     );
+
     const updateExerciseLocal = (exercise) => {
         setExercises(prev =>
             prev.map(ex => ex.id === exercise.id ? exercise : ex)
@@ -92,6 +110,7 @@ export function useTeacherExercises(courseId) {
         createExercise,
         deleteExercise,
         updateExercise,
-        refreshExercises: fetchExercises, updateExerciseLocal
+        refreshExercises: fetchExercises,
+        updateExerciseLocal
     };
 }

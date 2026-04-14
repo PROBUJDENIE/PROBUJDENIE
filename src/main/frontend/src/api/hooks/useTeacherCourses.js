@@ -1,11 +1,19 @@
-import {useCallback, useEffect, useState} from "react";
-import {denormalizeCourse, normalizeCourses} from "@/api/hooks/course.mapper.js";
-import {teacherApi} from "@/api/teacher.api.js";
+import { useCallback, useEffect, useState } from "react";
+import { denormalizeCourse, normalizeCourses } from "@/api/hooks/course.mapper.js";
+import { teacherApi } from "@/api/teacher.api.js";
+import { adminApi } from "@/api/admin.api.js";
+import {useAuth} from "@/autorisation/AuthContext.jsx";
+
+const getApiByRole = (getRole) => {
+    return getRole === "ADMIN" ? adminApi : teacherApi;
+};
 
 export function useTeacherCourses() {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const {getRole}=useAuth();
+    const api =  getApiByRole(getRole());
 
     useEffect(() => {
         const loadCourses = async () => {
@@ -13,8 +21,8 @@ export function useTeacherCourses() {
             setError(null);
 
             try {
-                const data = await teacherApi.getCourses({ offset: 0, count: 10 });
-                setCourses(normalizeCourses(data.filter(course => course.status !== "DELETED")));
+                const data = await api.getCourses({ offset: 0, count: 10 });
+                setCourses(normalizeCourses(data));
             } catch (e) {
                 setError(e.message);
             } finally {
@@ -23,11 +31,10 @@ export function useTeacherCourses() {
         };
 
         loadCourses();
-    }, []);
-
+    }, [api]);
 
     function createEmptyCourse() {
-        return {id: null, title: "", description: "", highlights: [], price: 0, photoId: null, photo: null, sections: []};
+        return { id: null, title: "", description: "", highlights: [], price: 0, photoId: null, photo: null, sections: [] };
     }
 
     const getCourse = useCallback((id) => {
@@ -43,18 +50,17 @@ export function useTeacherCourses() {
         });
     };
 
-
     const createCourse = useCallback(async (courseDraft) => {
         setError(null);
         try {
             const payload = { ...courseDraft };
 
             if (payload.photo) {
-                payload.photoId = await teacherApi.savePhotoMultipart(payload.photo);
+                payload.photoId = await api.savePhotoMultipart(payload.photo);
             } else {
                 payload.photoId = null;
             }
-            const newId = await teacherApi.createCourse(payload);
+            const newId = await api.createCourse(payload);
 
             const created = { ...payload, id: newId };
             const answer = denormalizeCourse(created);
@@ -66,7 +72,7 @@ export function useTeacherCourses() {
             setError(e.message);
             throw e;
         }
-    }, []);
+    }, [api]);
 
     const updateCourse = useCallback(async (courseDraft) => {
         setError(null);
@@ -74,22 +80,22 @@ export function useTeacherCourses() {
             const payload = { ...courseDraft };
 
             if (payload.photo) {
-                payload.photoId = await teacherApi.savePhotoMultipart(payload.photo);
+                payload.photoId = await api.savePhotoMultipart(payload.photo);
             }
 
             const answer = denormalizeCourse(payload);
-            await teacherApi.updateCourse(answer);
+            await api.updateCourse(answer);
 
             setCourses(prev =>
                 prev.map(c => (c.id === payload.id ? { ...c, ...payload } : c))
             );
 
             return payload;
-        } catch (e) {sections: []
+        } catch (e) {
             setError(e.message);
             throw e;
         }
-    }, []);
+    }, [api]);
 
     const saveCourse = useCallback(async (courseDraft) => {
         const hasId = !!courseDraft?.id;
@@ -100,11 +106,16 @@ export function useTeacherCourses() {
 
     const deleteCourse = useCallback(async (id) => {
         if (!id) return;
-        await teacherApi.deleteCourse(id);
-        setCourses(prev =>
-            prev.filter(c => c.id !== id)
-        );
-    }, []);
+        try {
+            await api.deleteCourse(id);
+            setCourses(prev =>
+                prev.filter(c => c.id !== id)
+            );
+        } catch (e) {
+            setError(e.message);
+            throw e;
+        }
+    }, [api]);
 
-    return {getCourse, deleteCourse, courses, loading, error, saveCourse, addOrUpdateCourse};
+    return { getCourse, deleteCourse, courses, loading, error, saveCourse, addOrUpdateCourse };
 }

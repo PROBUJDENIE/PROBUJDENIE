@@ -12,8 +12,8 @@ import Question from "./compoents/content/question/Question.jsx";
 import Bottom from "./compoents/content/bottom/Bottom.jsx";
 import {useEffect} from "react";
 import {useLocation} from "react-router-dom";
-import {PayModal} from "@/user-profile/components/pay-modal/PayModal.jsx";
-
+import VideoSplash from "@/video/VideoSplash.jsx";
+import video from "../video/video.mp4"
 export default function MainPage() {
     const location = useLocation();
 
@@ -27,25 +27,25 @@ export default function MainPage() {
             }
         }
     }, [location]);
-
-    return (
-        <>
-            <div className="wrapper">
-                <Header></Header>
-                <Jump></Jump>
-                <div className="ff">
-                    <HeroContent/>
-                    <HeroBottom></HeroBottom>
-                </div>
-                <StoryHeader></StoryHeader>
-                <StoryContent></StoryContent>
-                <TryNow></TryNow>
-                <CourseList></CourseList>
-                <AboutUs></AboutUs>
-                <Cta></Cta>
-                <Question/>
-                <Bottom></Bottom>
+    const mainContent = (
+        <div className="wrapper">
+            <Header></Header>
+            <Jump></Jump>
+            <div className="ff">
+                <HeroContent/>
+                <HeroBottom></HeroBottom>
             </div>
-        </>
+            <StoryHeader></StoryHeader>
+            <StoryContent></StoryContent>
+            <TryNow></TryNow>
+            <CourseList></CourseList>
+            <AboutUs></AboutUs>
+            <Cta></Cta>
+            <Question/>
+            <Bottom></Bottom>
+        </div>
+    );
+    return (
+        <VideoSplash videoSrc={video} duration={18000}>{mainContent}</VideoSplash>
     )
 }

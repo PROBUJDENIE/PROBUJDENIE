@@ -120,3 +120,26 @@
     gap: 3px;
     flex-direction: row;
 }
+.course-deleted-message {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #EB4760;
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    border: 2px solid white;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

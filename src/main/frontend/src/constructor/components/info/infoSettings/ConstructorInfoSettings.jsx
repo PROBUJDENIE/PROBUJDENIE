@@ -12,6 +12,7 @@ export function ConstructorInfoSettings({course, openConfirm, handleFile, setFie
     const [highlightsDraft, setHighlightsDraft] = useState((course.highlights ?? []).join("\n"));
     useEffect(() => {setHighlightsDraft((course.highlights ?? []).join("\n"));}, [course.highlights]);
     const activePub = course.status === "READY" ? "publish" : "not";
+    const isDeleted = course.status === "DELETED";
     const handleSaveCourse = async (updatedFields) => {
         const updatedCourse = { ...course, ...updatedFields };
         await handleSave(updatedCourse);
@@ -60,6 +61,11 @@ export function ConstructorInfoSettings({course, openConfirm, handleFile, setFie
                     <CommonBtn onClick={openSaveConfirm} width={220} height={58} bgColor="#D9FF6A" borderColor="#8A6CFF" size={18} leftIcon={<img src={leftIcon} alt="книга" width={25} height={25} /> }>Сохранить курс</CommonBtn>
                     <CommonBtn width={220} height={58} bgColor="#EB4760" borderColor="white" fontColor="white" onClick={openConfirm} size={18} leftIcon={<img src={delIcon} width={25} height={25} />}>Удалить курс</CommonBtn>
                 </div>
+                {isDeleted && (
+                    <div className="course-deleted-message">
+                        ⚠️ Курс удален
+                    </div>
+                )}
             </div>
             <ConfirmModalPublishCourse modalState={modalState} changeModalState={changeModalState} onConfirm={() => handleSaveCourse({ status: "READY" })}/>
             <ConfirmModalNotPublishCourse modalState={modalState} changeModalState={changeModalState} onConfirm={() => handleSaveCourse({ status: "CREATED" })}/>

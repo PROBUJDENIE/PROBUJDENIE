@@ -44,7 +44,7 @@ export default function LoginBoxAdmin({ modalState, changeModalState}) {
                             />
                         </div>
                         {error && <div style={{fontSize : "18px", color: "#EB4760"}}>{error}</div>}
-                        <CommonBtn leftIcon={<img src={admin} height={30} width={30}/>} width={335} height={43} fontColor={"#EB4760"} borderColor={"#EB4760"} size={18} type="submit">{loading ? "Входим..." : "Войти как преподаватель"}</CommonBtn>
+                        <CommonBtn leftIcon={<img src={admin} height={30} width={30}/>} width={335} height={43} fontColor={"#EB4760"} borderColor={"#EB4760"} size={18} type="submit">{loading ? "Входим..." : "Войти как админ"}</CommonBtn>
                     </form>
                 </div>
             </div>

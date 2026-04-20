@@ -37,7 +37,7 @@ export default function Header() {
                     <div className="header_content" id={"header"}>
                         <Logo onClick={() => navigate(MAIN_ROUTE)}></Logo>
                         <NavigationHedear></NavigationHedear>
-                        <CircleImgBtn size={45} alt={"Личный кабинет"} src={profileImg} onClick={handleProfileClick} backGround={115}></CircleImgBtn>
+                        <CircleImgBtn className="profile-btn" size={45} alt={"Личный кабинет"} src={profileImg} onClick={handleProfileClick} backGround={115}></CircleImgBtn>
                     </div>
                 </Container>
             </header>

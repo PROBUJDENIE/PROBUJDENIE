@@ -11,6 +11,7 @@ export default function HeroContentInfo() {
                     до первых клиентов</h1>
                 <p className={"hero-content_info_desc"}>Освоишь одну из самых актуальных профессий и начнешь зарабатывать до 150 000 руб</p>
                 <CommonBtn
+                    className="hero-btn"
                     width={482}
                     height={69}
                     bgColor={"#D2FE66"}

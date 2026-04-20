@@ -26,14 +26,15 @@ body {
 .ff {
     display: flex;
     flex-direction: column;
-    height: 95vh;
     justify-content: space-between;
+    gap: 100px;
 }
 
 .wrapper {
     color: black;
     background: #eee9e6;
-    padding-top: 30px;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .profile-wrapper {
@@ -49,6 +50,9 @@ html {
 html, body, #root, * {
     cursor: none !important;
     color: #333333;
+}
+html, body {
+    min-width: 320px;
 }
 
 *:hover,

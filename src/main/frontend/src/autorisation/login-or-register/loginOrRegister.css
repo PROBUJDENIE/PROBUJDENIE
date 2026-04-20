@@ -49,4 +49,26 @@
     z-index: 10000;
     animation: fadeIn 0.3s ease;
 }
+@media (max-width: 480px) {
+    .welcome-block {
+        width: 90%;
+        height: auto;
+        padding: 40px 20px 30px;
+        margin: 0 auto;
+    }
+
+    .welcome-block_btns {
+        height: auto;
+        gap: 16px;
+        width: 120%;
+    }
+
+    .welcome-block_btns_line {
+        width: 80%;
+    }
+
+    .welcome-block_btns .btn {
+        width: 80% !important;
+    }
+}
 

@@ -26,3 +26,38 @@
     margin-top: 10px;
     font-size: 18px;
 }
+@media (max-width: 480px) {
+    .login-box-admin {
+        width: 100%;
+        height: auto;
+        padding: 30px 16px;
+    }
+
+    .login-box-header-admin {
+        margin-top: 0;
+    }
+
+    .login-box-admin h2 {
+        font-size: 16px;
+    }
+
+    .login-box-admin h3 {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .login-box-admin .btn {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .login-box-admin .login-box-content_field > input {
+        width: 100% !important;
+    }
+
+    .login-box-admin .login-box-content {
+        width: 100%;
+        height: auto;
+        margin-bottom: 16px;
+    }
+}

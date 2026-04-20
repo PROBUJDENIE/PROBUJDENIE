@@ -13,13 +13,14 @@ export default function CommonBtn({
                                       rightIcon,
                                       type,
                                       borderRadius = 16,
+                                      className = "",
                                       children
                                   }) {
 
     return (
         <>
             <button
-                className={"btn"}
+                className={`btn ${className}`}
                 onClick={onClick}
                 type={type}
                 style={{

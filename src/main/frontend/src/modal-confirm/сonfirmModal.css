@@ -78,3 +78,31 @@
     align-items: center;
     gap: 5px;
 }
+@media (max-width: 480px) {
+    .modal-block-del,
+    .modal-block-save,
+    .modal-block-back {
+        width: 80%;
+        height: auto;
+        padding: 40px 20px 20px;
+        margin: 0 auto;
+    }
+
+    .modal-block_title {
+        font-size: 22px;
+    }
+
+    .modal-block_text,
+    .modal-block_text_exit {
+        font-size: 16px;
+    }
+
+    .modal-btns {
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .modal-btns .btn {
+        width: 80% !important;
+    }
+}

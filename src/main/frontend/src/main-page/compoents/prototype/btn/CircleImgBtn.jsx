@@ -1,11 +1,11 @@
 import "./btn.css"
 
-export default function CircleImgBtn({ size, src, alt, onClick, backGround }) {
+export default function CircleImgBtn({ size, src, alt, onClick, backGround, className }) {
 
     return (
         <>
             <div
-                className="btn circleImgBtn"
+                className={`btn circleImgBtn ${className}`.trim()}
                 aria-label={alt}
                 onClick={onClick}
                 style={{

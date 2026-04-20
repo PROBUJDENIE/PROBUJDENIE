@@ -108,3 +108,56 @@
     color: #EB4760;
     text-align: center;
 }
+@media (max-width: 480px) {
+    .register-box-overlay {
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .register-box {
+        width: 100%;
+        height: auto;
+        padding: 30px 16px;
+    }
+
+    .register-box-header {
+        margin-top: 0;
+    }
+
+    .register-box h2 {
+        font-size: 16px;
+    }
+
+    .register-box h3 {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .register-box-content {
+        width: 100%;
+        margin: 16px 0;
+    }
+
+    .login-box-content_field {
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .login-box-content_field > input {
+        width: 100% !important;
+        font-size: 15px !important;
+    }
+
+    .register-box .btn {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .password-error-container {
+        font-size: 13px;
+    }
+
+    .error-message {
+        font-size: 15px;
+    }
+}

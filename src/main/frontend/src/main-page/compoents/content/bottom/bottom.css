@@ -15,6 +15,7 @@
     margin-top: 20px;
     font-size: 22px;
     font-weight: 800;
+    text-align: center;
 }
 
 .bottom-btns {
@@ -35,4 +36,68 @@
     margin-top: 20px;
     display: flex;
     align-items: center;
+}
+@media (max-width: 1024px) {
+    .bottom-title {
+        font-size: 34px;
+    }
+
+    .bottom-desc {
+        font-size: 18px;
+    }
+
+    .bottom-btns .btn {
+        width: 280px !important;
+        font-size: 18px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .bottom {
+        margin-top: 100px;
+        padding: 40px 20px;
+    }
+
+    .bottom-title {
+        font-size: 26px;
+    }
+
+    .bottom-desc {
+        font-size: 15px;
+    }
+
+    .bottom-btns {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .bottom-btns .btn {
+        width: 100% !important;
+        font-size: 16px !important;
+    }
+
+    .bottom-rules_text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bottom-title {
+        font-size: 20px;
+    }
+
+    .bottom-desc {
+        font-size: 13px;
+    }
+
+    .bottom-btns .btn {
+        font-size: 14px !important;
+        height: 44px !important;
+    }
+
+    .bottom-rules_text {
+        font-size: 12px;
+    }
 }

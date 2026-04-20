@@ -1,3 +1,6 @@
+.question {
+    padding: 0 15px;
+}
 .question_header {
     display: flex;
     flex-direction: column;
@@ -29,6 +32,7 @@
     border: 2px solid #8A6CFF;
     border-radius: 30px;
     font-size: 22px;
+    box-sizing: border-box;
 }
 
 .question_card_text{
@@ -83,4 +87,107 @@
 .question-bottom-text {
     color: #8A6CFF;
     margin-bottom: 40px;
+}
+@media (max-width: 1024px) {
+    .question_content_item {
+        width: 100%;
+    }
+    .question_header_title {
+        font-size: 42px;
+    }
+
+    .question_header_desc {
+        font-size: 18px;
+    }
+
+    .question_card {
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .question-bottom {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 768px) {
+    .question_content_item {
+        width: 100%;
+    }
+    .question_header {
+        padding: 80px 15px 0;
+    }
+
+    .question_header_title {
+        font-size: 28px;
+    }
+
+    .question_header_desc {
+        font-size: 15px;
+        margin-top: 16px;
+    }
+
+    .question_card {
+        width: 100%;
+        height: auto;
+        min-height: 51px;
+        border-radius: 16px;
+        font-size: 15px;
+    }
+
+    .question_card_text {
+        margin-left: 20px;
+        padding: 12px 0;
+    }
+
+    .question_card_answer {
+        font-size: 15px;
+    }
+
+    .question_content {
+        gap: 16px;
+        margin-top: 30px;
+    }
+
+    .question-bottom {
+        font-size: 24px;
+        margin-top: 30px;
+    }
+
+    .question-bottom .btn {
+        width: 100% !important;
+        height: 54px !important;
+        font-size: 18px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .question_content_item {
+        width: 100%;
+    }
+    .question_header_title {
+        font-size: 22px;
+    }
+
+    .question_header_desc {
+        font-size: 13px;
+    }
+
+    .question_card {
+        font-size: 13px;
+        border-radius: 12px;
+    }
+
+    .question_card_text {
+        margin-left: 12px;
+    }
+
+    .question-bottom {
+        font-size: 18px;
+    }
+
+    .question-bottom .btn {
+        height: 46px !important;
+        font-size: 15px !important;
+    }
 }

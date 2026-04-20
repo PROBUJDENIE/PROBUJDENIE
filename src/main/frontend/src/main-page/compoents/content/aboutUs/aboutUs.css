@@ -69,4 +69,91 @@
     border-radius: 50%;
     background: #8A6CFF;
 }
+@media (max-width: 1024px) {
+    .aboutUs_header {
+        padding-top: 150px;
+    }
 
+    .aboutUs-header_title {
+        font-size: 45px;
+    }
+
+    .aboutUs-header_desc {
+        font-size: 18px;
+    }
+
+    .aboutUs_bottom_list_item_num {
+        font-size: 45px;
+    }
+
+    .aboutUs_bottom_list_item_text {
+        font-size: 18px;
+    }
+
+    .aboutUs_content_desc {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .aboutUs_header {
+        padding: 80px 10px 0;
+        gap: 20px;
+    }
+
+    .aboutUs-header_title {
+        font-size: 32px;
+    }
+
+    .aboutUs-header_desc {
+        font-size: 15px;
+    }
+
+    .aboutUs_content {
+        height: auto;
+        padding: 30px 20px;
+        line-height: 26px;
+    }
+
+    .aboutUs_content_desc {
+        font-size: 15px;
+    }
+
+    .aboutUs_bottom {
+        margin-top: 60px;
+    }
+
+    .aboutUs_bottom_list {
+        flex-direction: column;
+        gap: 30px;
+        display: flex;
+        align-items: flex-start;
+        margin-left: 50px;
+    }
+
+    .aboutUs_bottom_list_item_num {
+        font-size: 36px;
+    }
+
+    .aboutUs_bottom_list_item_text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .aboutUs-header_title {
+        font-size: 24px;
+    }
+
+    .aboutUs-header_desc {
+        font-size: 13px;
+    }
+
+    .aboutUs_bottom_list_item_num {
+        font-size: 28px;
+    }
+
+    .aboutUs_bottom_list_item_text {
+        font-size: 14px;
+    }
+}

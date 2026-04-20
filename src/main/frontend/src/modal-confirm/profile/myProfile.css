@@ -94,3 +94,45 @@
     width: 25px;
     height: 25px;
 }
+@media (hover: hover) {
+    .nav-content-profile:hover {
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 6px #8A6CFF) brightness(1.2);
+    }
+}
+
+.nav-icon-profile-s {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-icon-profile-b {
+    width: 25px;
+    height: 25px;
+}
+
+@media (max-width: 480px) {
+    .modal-block-profile {
+        width: 80%;
+        height: auto;
+        padding: 40px 20px 20px;
+        margin: 0 auto;
+    }
+
+    .profile-avatar__img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .profile-name {
+        font-size: 16px;
+    }
+
+    .nav-item-profile {
+        padding: 12px 16px;
+    }
+
+    .nav-content-profile p {
+        font-size: 14px;
+    }
+}

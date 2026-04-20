@@ -1,3 +1,14 @@
 .logo {
     font: 400 23px "Rubik Mono One", monospace, sans-serif;
 }
+@media (max-width: 768px) {
+    .logo {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 380px) {
+    .logo {
+        font-size: 10px;
+    }
+}

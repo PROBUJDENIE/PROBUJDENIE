@@ -10,4 +10,10 @@
     flex-direction: column;
     align-items: center;
     gap: 60px;
+    padding: 0 15px;
+}
+@media (max-width: 768px) {
+    .course-list-cards {
+        gap: 24px;
+    }
 }

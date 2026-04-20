@@ -34,3 +34,44 @@
     margin-top: 10px;
     font-size: 18px;
 }
+
+@media (max-width: 480px) {
+    .login-box-teacher {
+        width: 100%;
+        height: auto;
+        padding: 30px 16px;
+    }
+
+    .login-box-header-teacher {
+        margin-top: 0;
+    }
+
+    .login-box-teacher h2 {
+        font-size: 16px;
+    }
+
+    .login-box-teacher h3 {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .login-box-content-teacher {
+        height: auto;
+        width: 100%;
+        margin: 16px;
+        gap: 16px;
+    }
+
+    .login-box-teacher .login-box-content_field {
+        width: 100%;
+    }
+
+    .login-box-teacher .login-box-content_field > input {
+        width: 100% !important;
+    }
+
+    .login-box-teacher .btn {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+}

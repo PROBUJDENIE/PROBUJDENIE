@@ -37,3 +37,62 @@
     display: flex;
     gap: 1rem;
 }
+@media (max-width: 1024px) {
+    .try-now_text-title {
+        font-size: 34px;
+    }
+
+    .try-now_text-desc {
+        font-size: 18px;
+    }
+
+    .try-now_btn-1,
+    .try-now_btn-2 {
+        width: 300px !important;
+        font-size: 17px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .try-now {
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .try-now_text-title {
+        font-size: 26px;
+    }
+
+    .try-now_text-desc {
+        font-size: 16px;
+    }
+
+    .try-now_btns {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .try-now_btn-1,
+    .try-now_btn-2 {
+        width: 100% !important;
+        height: 54px !important;
+        font-size: 16px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .try-now_text-title {
+        font-size: 20px;
+    }
+
+    .try-now_text-desc {
+        font-size: 14px;
+    }
+
+    .try-now_btn-1,
+    .try-now_btn-2 {
+        height: 46px !important;
+        font-size: 14px !important;
+    }
+}

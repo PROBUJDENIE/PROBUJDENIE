@@ -1,5 +1,4 @@
 import "./courseListHeader.css"
-import CourseCard from "../course-list_content/course-card/CourseCard.jsx";
 
 export default function CourseListHeader() {
 

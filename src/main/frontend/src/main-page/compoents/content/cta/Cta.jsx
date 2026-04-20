@@ -13,12 +13,7 @@ export default function Cta() {
                 <div className="cta-desc">
                     Пока ты размышляешь, другие уже получают результат. Хватит откладывать — стартуй!
                 </div>
-                <CommonBtn
-                    width={330}
-                    height={56}
-                    bgColor={"#D2FE66"}
-                    borderColor={"#8A6CFF"}
-                    size={20}
+                <CommonBtn width={330} height={56} bgColor={"#D2FE66"} borderColor={"#8A6CFF"} size={20}
                     onClick={() => {
                         document.getElementById("course-list")?.scrollIntoView({ behavior: "smooth" });
                     }}

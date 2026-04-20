@@ -58,3 +58,37 @@
     transform: translateY(-2px);
     filter: drop-shadow(0 0 20px #8A6CFF);
 }
+
+@media (max-width: 1024px) {
+    .btn, .btnn, .btnr {
+        gap: 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .btn, .btnn, .btnr {
+        gap: 4px;
+    }
+
+    .btn:hover, .btnn:hover, .btnr:hover {
+        transform: none;
+    }
+
+    .btn--glow:hover, .btn:hover {
+        box-shadow: 0 0 10px #8A6CFF;
+    }
+
+    .btnr:hover {
+        filter: drop-shadow(0 0 10px #8A6CFF);
+    }
+
+    .btn-icon {
+        transition: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn, .btnn, .btnr {
+        gap: 2px;
+    }
+}

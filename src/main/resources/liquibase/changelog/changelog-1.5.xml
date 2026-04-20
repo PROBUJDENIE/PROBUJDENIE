@@ -73,8 +73,8 @@
         <insert tableName="USER_DATA">
             <column name="VERSION" valueNumeric="0"/>
             <column name="EMAIL" value="student@mail.ru"/>
-            <column name="FIRST_NAME" value="Дональд"/>
-            <column name="LAST_NAME" value="Трамп"/>
+            <column name="FIRST_NAME" value="Ксюша"/>
+            <column name="LAST_NAME" value="Галочкина"/>
             <column name="CREATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
             <column name="LAST_MODIFICATION_DATE_TIME" valueDate="CURRENT_TIMESTAMP"/>
         </insert>

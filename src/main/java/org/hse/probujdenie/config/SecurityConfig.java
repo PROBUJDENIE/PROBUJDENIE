@@ -36,6 +36,7 @@ public class SecurityConfig {
                                 "/admin-profile",
                                 "/teacher-profile",
                                 "/constructor/**",
+                                "/actuator/**",
                                 "/index.html",
                                 "/favicon.ico",
                                 "/assets/**",

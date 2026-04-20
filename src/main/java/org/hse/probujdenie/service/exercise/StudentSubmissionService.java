@@ -1,5 +1,6 @@
 package org.hse.probujdenie.service.exercise;
 
+import io.micrometer.core.annotation.Counted;
 import lombok.RequiredArgsConstructor;
 import org.hse.probujdenie.model.exercise.Exercise;
 import org.hse.probujdenie.model.exercise.StudentSubmission;
@@ -25,6 +26,9 @@ public class StudentSubmissionService {
     private final UserService userService;
     private final StudentSubmissionRepository studentSubmissionRepository;
 
+    @Counted(
+            value = "studentSubmission.count"
+    )
     public StudentSubmission create(String userEmail, UUID exerciseId, StudentSubmission studentSubmission) {
         User user = userService.getUserByEmail(userEmail);
         Exercise exercise = exerciseService.getExercise(exerciseId);
@@ -40,6 +44,9 @@ public class StudentSubmissionService {
         return studentSubmission;
     }
 
+    @Counted(
+            value = "studentSubmission.count"
+    )
     public StudentSubmission update(StudentSubmission studentSubmission) {
         StudentSubmission existing = getStudentSubmission(studentSubmission.getId());
 

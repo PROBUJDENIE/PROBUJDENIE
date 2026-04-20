@@ -1,5 +1,7 @@
 package org.hse.probujdenie.service;
 
+
+import io.micrometer.core.instrument.Counter;
 import lombok.AllArgsConstructor;
 import org.hse.probujdenie.model.content.Course;
 import org.hse.probujdenie.model.content.enums.CourseStatus;
@@ -29,6 +31,9 @@ public class UserService {
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
 
+    private final Counter registrationSuccessCounter;
+    private final Counter loginSuccessCounter;
+
     public String login(User user) {
         try {
             Authentication authentication = authenticationManager.authenticate(
@@ -44,6 +49,7 @@ public class UserService {
 
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
+            loginSuccessCounter.increment();
             return jwtUtil.generateToken(userDetails);
         } catch (BadCredentialsException e) {
             throw new IllegalArgumentException("Не верные данные!");
@@ -67,6 +73,7 @@ public class UserService {
                 .build();
         user.setUserData(userData);
         userRepository.save(user);
+        registrationSuccessCounter.increment();
     }
 
     public User getUserByEmail(String email) {

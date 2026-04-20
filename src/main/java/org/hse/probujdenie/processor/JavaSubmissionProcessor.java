@@ -1,5 +1,8 @@
 package org.hse.probujdenie.processor;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import lombok.AllArgsConstructor;
 import org.hse.probujdenie.model.exercise.StudentSubmission;
 import org.hse.probujdenie.model.exercise.enums.StudentSubmissionStatus;
@@ -25,15 +28,31 @@ import static org.hse.probujdenie.util.ProcessUtil.sendInputValuesToContainer;
 public class JavaSubmissionProcessor implements LanguageSpecificProcessor {
 
     private final StudentSubmissionService studentSubmissionService;
+    private final Counter createImageFailedCounter;
+    private final Counter startContainerFailedCounter;
+    private final Counter startContainerSuccessCounter;
+    private final MeterRegistry meterRegistry;
 
     @Override
     public void processSubmission(StudentSubmission submission) throws IOException, InterruptedException {
-        prepareDirectionForStudentSubmission(submission);
-        int exitCode = createImage(submission);
-        if (exitCode == 0) {
-            ContainerExecutionResult containerExecutionResult = startContainer(submission);
-            evaluateResult(submission, containerExecutionResult);
-            DockerUtil.cleanupDanglingImages();
+        Timer.Sample sample = Timer.start(meterRegistry);
+
+        try {
+
+            prepareDirectionForStudentSubmission(submission);
+            int exitCode = createImage(submission);
+            if (exitCode == 0) {
+                ContainerExecutionResult containerExecutionResult = startContainer(submission);
+                evaluateResult(submission, containerExecutionResult);
+                DockerUtil.cleanupDanglingImages();
+            } else {
+                createImageFailedCounter.increment();
+            }
+        } finally {
+            sample.stop(
+                    Timer.builder("student.submission.check.duration")
+                            .register(meterRegistry)
+            );
         }
     }
 
@@ -84,12 +103,14 @@ public class JavaSubmissionProcessor implements LanguageSpecificProcessor {
             else {
                 errors = actualOutput;
             }
+            startContainerFailedCounter.increment();
             rejectSubmission(errors, submission);
         } else {
             String expectedOutput = submission.getExercise().getOutputData();
             if (expectedOutput.equals(actualOutput)) {
                 approveSubmission(submission);
             } else {
+                startContainerFailedCounter.increment();
                 rejectSubmission(actualOutput + "!=" + expectedOutput, submission);
             }
         }
@@ -132,6 +153,7 @@ public class JavaSubmissionProcessor implements LanguageSpecificProcessor {
     }
 
     private void approveSubmission(StudentSubmission submission) throws IOException {
+        startContainerSuccessCounter.increment();
         Path submissionDir = getSubmissionFolder(submission.getId());
         FileUtil.deleteDirectory(submissionDir);
         studentSubmissionService.setStatus(submission, StudentSubmissionStatus.APPROVED);

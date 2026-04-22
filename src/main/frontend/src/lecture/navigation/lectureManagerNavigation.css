@@ -2,6 +2,7 @@
     position: fixed;
     inset: 0;
     width: 20vw;
+    min-width: 260px;
     height: 100vh;
     background-color: #DFD8D3;
     z-index: 1000000;
@@ -9,10 +10,12 @@
     border-top-right-radius: 30px;
     border: 1px solid #8A6CFF;
     overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.lectureManagerNavigation {
-    padding: 20px 20px;
+.lectureManagerNavigation_content-lecture {
+    padding-left: 20px;
 }
 
 .lectureManagerNavigation_content {
@@ -23,3 +26,35 @@
     align-items: end;
 }
 
+@media (max-width: 768px) {
+    .lectureManagerNavigation {
+        width: 80vw;
+        min-width: unset;
+        border-radius: 0 20px 20px 0;
+    }
+
+    .lectureManagerNavigation .btn {
+        width: 100% !important;
+    }
+
+    .lectureManagerNavigation_content {
+        align-items: stretch;
+    }
+
+    .nav-section-btn {
+        width: 100% !important;
+        height: 54px !important;
+    }
+
+    .nav-lecture-btn {
+        width: 100% !important;
+        height: 46px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .lectureManagerNavigation {
+        width: 90vw;
+    }
+}

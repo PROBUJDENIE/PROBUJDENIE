@@ -1,6 +1,6 @@
 import "./courseContent.css";
 import tapImage from "../../resourses/img.png";
-export default function ChapterCard({ chapter, isOpen, onToggle }) {
+export default function ChapterCard({ chapter, isOpen, onToggle, lectures, loading }) {
     return (
         <div className={`chapter-card-wrapper ${isOpen ? "chapter-open" : ""}`}>
             <button
@@ -20,14 +20,28 @@ export default function ChapterCard({ chapter, isOpen, onToggle }) {
 
                 <div className="chapter-card-info">
                     <img
-                        className={`chapter-arrow ${
-                            isOpen ? "arrow-up" : "arrow-down"
-                        }`}
+                        className={`chapter-arrow ${isOpen ? "arrow-up" : ""}`}
                         src={tapImage}
-                        alt={isOpen ? "Свернуть" : "Развернуть"}
+                        alt=""
                     />
                 </div>
             </button>
+
+            {isOpen && (
+                <div className="mobile-lessons">
+                    {loading ? (
+                        <p>Загрузка...</p>
+                    ) : (
+                        <ul>
+                            {lectures.map((lecture, index) => (
+                                <li key={lecture.id}>
+                                    Урок {index + 1}: {lecture.title}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            )}
         </div>
     );
 }

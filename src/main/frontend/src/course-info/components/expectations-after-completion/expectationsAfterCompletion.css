@@ -103,3 +103,84 @@
 .money-dot:hover {
     background-color: #8A6CFF;
 }
+
+@media (max-width: 1024px) {
+    .money-block {
+        max-width: 90%;
+        padding: 80px 30px 50px;
+    }
+
+    .money-title {
+        font-size: 24px;
+    }
+
+    .money-description {
+        font-size: 16px;
+        max-width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .money-block {
+        max-width: 95%;
+        padding: 60px 20px 40px;
+        border-radius: 24px;
+    }
+
+    .money-content {
+        padding: 0 10px 20px;
+        min-height: auto;
+    }
+
+    .money-title {
+        font-size: 20px;
+    }
+
+    .money-description {
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+    .money-arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .money-arrow img {
+        width: 16px;
+    }
+
+    .money-arrow-left {
+        left: 10px;
+    }
+
+    .money-arrow-right {
+        right: 10px;
+    }
+
+    .money-image {
+        margin: -20px auto 10px;
+    }
+
+    .money-image img {
+        max-width: 60px;
+    }
+}
+@media (max-width: 480px) {
+    .money-block {
+        padding: 50px 15px 30px;
+        border-radius: 20px;
+    }
+
+    .money-title {
+        font-size: 18px;
+    }
+
+    .money-description {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .money-dots {
+        margin-top: 20px;
+    }
+}

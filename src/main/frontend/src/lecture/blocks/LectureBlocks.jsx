@@ -39,8 +39,8 @@ export default function LectureBlocks({material, onNext, onPrev}) {
             </div>
             <div className="lecture-blocks-btns">
                 <div className="lecture-btn-navig">
-                    <CommonBtn onClick={onPrev} width={420} height={80} borderRadius={30} size={32} fontColor={"white"} bgColor={"#8A6CFF"} leftIcon={<img src={prev} width={60}/>}> К предыдущему уроку</CommonBtn>
-                    <CommonBtn onClick={onNext} width={420} height={80} borderRadius={30} size={32} fontColor={"white"} bgColor={"#8A6CFF"} rightIcon={<img src={next} width={60}/>}> К следующему уроку</CommonBtn>
+                    <CommonBtn onClick={onPrev} width={420} height={80} borderRadius={30} size={32} fontColor={"white"} bgColor={"#8A6CFF"} leftIcon={<img src={prev} width={40}/>}> <span className="btn-navig-text"> К предыдущему уроку</span></CommonBtn>
+                    <CommonBtn onClick={onNext} width={420} height={80} borderRadius={30} size={32} fontColor={"white"} bgColor={"#8A6CFF"} rightIcon={<img src={next} width={40}/>}> <span className="btn-navig-text"> К следующему уроку</span></CommonBtn>
                 </div>
                 <div className="lecture-btn-like">
                     <h2> Как Вам урок? </h2>

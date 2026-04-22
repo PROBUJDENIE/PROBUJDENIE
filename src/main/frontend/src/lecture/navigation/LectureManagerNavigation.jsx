@@ -22,14 +22,14 @@ export default function LectureManagerNavigation({isOpen, setIsOpen, sections, l
                             return (
                                 <>
                                     <div key={section.id} className="lectureManagerNavigation_content-section">
-                                        <CommonBtn size={17} width={270} height={60} borderColor={"#8A6CFF"} fontColor={activeChapterIdx === index ? "#fff" : "#333"} bgColor={activeChapterIdx === index ? "#8A6CFF" : "#DFD8D3"} onClick={() => handleClickSection(index)}>{section.title}</CommonBtn>
+                                        <CommonBtn className="nav-section-btn" size={17} width={270} height={60} borderColor={"#8A6CFF"} fontColor={activeChapterIdx === index ? "#fff" : "#333"} bgColor={activeChapterIdx === index ? "#8A6CFF" : "#DFD8D3"} onClick={() => handleClickSection(index)}>{section.title}</CommonBtn>
                                     </div>
 
                                     {activeChapterIdx === index && (
 
                                         lectures.map((lec) => (
                                             <div key={lec.id} className="lectureManagerNavigation_content-lecture">
-                                                <CommonBtn size={17} width={200} height={60} borderColor={"#8A6CFF"} fontColor={(activeLectureId === String(lec.id)) ? "#ffffff" : "#333333"} bgColor={activeLectureId === String(lec.id) ? "#8A6CFF" : "#DFD8D3"} onClick={() => setActiveLectureId(String(lec.id))}>{lec.title}</CommonBtn>
+                                                <CommonBtn className="nav-lecture-btn" size={17} width={200} height={60} borderColor={"#8A6CFF"} fontColor={(activeLectureId === String(lec.id)) ? "#ffffff" : "#333333"} bgColor={activeLectureId === String(lec.id) ? "#8A6CFF" : "#DFD8D3"} onClick={() => setActiveLectureId(String(lec.id))}>{lec.title}</CommonBtn>
                                             </div>
                                         ))
                                     )}

@@ -8,3 +8,19 @@
 .profile-course-list {
     width: 100%;
 }
+@media (max-width: 1024px) {
+    .profile-course-list-cards {
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-course-list-cards {
+        gap: 24px !important;
+        justify-content: center;
+        padding: 0 !important;
+    }
+}
+
+
+

@@ -42,3 +42,116 @@
     width: auto;
     height: 60%;
 }
+@media (hover: hover) {
+    .empty-profile-state:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px #8A6CFF;
+    }
+}
+
+.empty-profile-state_title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.empty-profile-state_text {
+    font-size: 20px;
+    font-weight: 300;
+    color: #333333;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.empty-profile-state_img {
+    width: auto;
+    height: 60%;
+}
+
+@media (max-width: 1024px) {
+    .profile-preview-text_title {
+        font-size: 36px;
+    }
+
+    .profile-preview-text_desc {
+        font-size: 18px;
+    }
+
+    .profile-course-list-cards {
+        gap: 40px;
+    }
+
+    .empty-profile-state {
+        width: 95%;
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .empty-profile-state_img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-preview {
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 16px;
+    }
+
+    .profile-preview-text_title {
+        font-size: 26px;
+    }
+
+    .profile-preview-text_desc {
+        font-size: 15px;
+    }
+
+    .profile-preview-img {
+        display: none;
+    }
+
+    .profile-preview-header {
+        font-size: 20px;
+    }
+
+    .profile-course-list-cards {
+        gap: 24px !important;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .empty-profile-state_title {
+        font-size: 24px;
+    }
+
+    .empty-profile-state_text {
+        font-size: 16px;
+    }
+
+    .empty-profile-state .btn {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-preview-text_title {
+        font-size: 20px;
+    }
+
+    .profile-preview-text_desc {
+        font-size: 13px;
+    }
+
+    .empty-profile-state_title {
+        font-size: 18px;
+    }
+
+    .empty-profile-state_text {
+        font-size: 14px;
+    }
+}
+

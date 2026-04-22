@@ -1,5 +1,4 @@
 import Container from "@/main-page/compoents/content/Container.jsx";
-import Header from "@/main-page/compoents/content/hero/header/Header.jsx";
 import "./lecture.css"
 import Bottom from "@/main-page/compoents/content/bottom/Bottom.jsx";
 import Jump from "@/main-page/compoents/content/jump/Jump.jsx";

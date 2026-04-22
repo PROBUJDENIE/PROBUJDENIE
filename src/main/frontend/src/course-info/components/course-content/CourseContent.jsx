@@ -45,6 +45,8 @@ export default function CourseContent({ course }) {
                                         openSectionId === section.id ? null : section.id
                                     )
                                 }
+                                lectures={openSectionId === section.id ? lectures : []}
+                                loading={lecturesLoading}
                             />
                         ))}
                     </div>

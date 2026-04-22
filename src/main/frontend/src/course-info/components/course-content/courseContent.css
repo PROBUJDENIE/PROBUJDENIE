@@ -234,3 +234,42 @@
     display: flex;
     justify-content: center;
 }
+.mobile-lessons {
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+    background: #EEE9E5;
+}
+
+.mobile-lessons ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-lessons li {
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+}
+@media (max-width: 768px) {
+    .chapter-title {
+        font-size: 16px;
+    }
+    .course-content-title {
+        font-size: 30px;
+    }
+    .course-content-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .chapter-details {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-lessons {
+        display: none;
+    }
+}

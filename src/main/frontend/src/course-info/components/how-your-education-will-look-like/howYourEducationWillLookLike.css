@@ -23,7 +23,7 @@
 .learning-block {
     position: sticky;
     top: 40px;
-    width: 954px;
+    width: 800px;
     height: 530px;
     margin: 0 auto 380px auto;
     background-color: #DFD8D3;
@@ -115,4 +115,65 @@
     font-size: 16px;
     color: #333;
     line-height: 1.45;
+}
+@media (max-width: 768px) {
+    .learning-title {
+        font-size: 30px;
+    }
+    .learning-block_body_desc {
+        display: none;
+    }
+
+    .learning-block_head {
+        display: none;
+    }
+
+    .learning-block_content {
+        order: 1;
+    }
+
+    .learning-block_video {
+        order: 2;
+    }
+
+    .learning-block_body {
+        margin: 0;
+    }
+
+    .learning-block_body_title {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .learning-block_video {
+        width: 100%;
+        height: auto;
+        max-width: 250px;
+        border-radius: 16px;
+        padding: 5px;
+    }
+
+    .video_component {
+        border-radius: 12px;
+    }
+
+    .learning-block {
+        align-items: center;
+        text-align: center;
+    }
+
+    .learning-block {
+        position: static;
+        width: 100%;
+        height: auto;
+        margin: 0 0 30px 0;
+        padding: 20px;
+        flex-direction: column;
+        gap: 20px;
+        border-radius: 20px;
+    }
+
+    .learning-block:not(:first-child) {
+        margin-top: 0;
+    }
 }

@@ -119,10 +119,12 @@
 
     .hero-content_info_title {
         font-size: 22px;
+        text-align: center;
     }
 
     .hero-content_info_desc {
         font-size: 14px;
+        text-align: center;
     }
 }
 @media (max-width: 1024px) {

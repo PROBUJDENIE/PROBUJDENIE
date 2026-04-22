@@ -70,3 +70,84 @@
     display: flex;
     gap: 15px;
 }
+
+.btn-navig-text {
+    color: #fff !important;
+}
+
+@media (max-width: 1024px) {
+    .lecture-blocks h2 {
+        font-size: 36px;
+    }
+
+    .lecture-blocks p {
+        font-size: 24px;
+    }
+
+    .lecture-btn-navig .btn {
+        width: 100% !important;
+        font-size: 24px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .lecture-blocks h2 {
+        font-size: 26px;
+        margin-bottom: 16px;
+    }
+
+    .lecture-blocks p {
+        font-size: 18px;
+        margin: 16px 0;
+    }
+
+    .lecture-btn-navig {
+        flex-direction: row !important;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .lecture-btn-navig .btn {
+        width: 70px !important;
+        height: 70px !important;
+        min-width: unset !important;
+        max-width: 70px !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        flex-shrink: 0;
+    }
+
+    .btn-navig-text {
+        display: none !important;
+    }
+
+    .lecture-btn-like {
+        width: 100%;
+        height: auto;
+        padding: 14px 20px;
+    }
+
+    .lecture-btn-like h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .lecture-blocks h2 {
+        font-size: 20px;
+    }
+
+    .lecture-blocks p {
+        font-size: 15px;
+    }
+
+    .lecture-btn-navig .btn {
+        width: 56px !important;
+        height: 56px !important;
+        max-width: 56px !important;
+    }
+
+    .lecture-btn-like h2 {
+        font-size: 18px;
+    }
+}

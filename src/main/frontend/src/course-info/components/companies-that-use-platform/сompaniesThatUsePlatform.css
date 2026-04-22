@@ -42,3 +42,8 @@
         transform: translateX(-50%);
     }
 }
+@media (max-width: 768px) {
+    .companies {
+        display: none;
+    }
+}

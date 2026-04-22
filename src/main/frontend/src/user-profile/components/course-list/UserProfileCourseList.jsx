@@ -28,7 +28,7 @@ export default function UserProfileCourseList({ onOpenModal }) {
                         {purchasedCourses.length > 0 ? (
                             <div className="profile-course-list-cards">
                                 {purchasedCourses.map(course => (<CourseCardInUserList key={course.id} course={course} from="cabinet"/>))}
-                                <button className={"btnr"} onClick={handleChooseCourse}><img src={add}/> </button>
+                                <button className={"course-card_view"} onClick={handleChooseCourse}><img src={add}/> </button>
                             </div>
                         ) : (
                             <div className="empty-profile-state" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>

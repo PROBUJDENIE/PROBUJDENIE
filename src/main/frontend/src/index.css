@@ -34,7 +34,7 @@ body {
     color: black;
     background: #eee9e6;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 .profile-wrapper {
@@ -42,6 +42,7 @@ body {
     background: #eee9e6;
     padding-top: 30px;
     height: auto;
+    overflow: clip;
 }
 
 html {

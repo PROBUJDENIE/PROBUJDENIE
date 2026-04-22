@@ -17,8 +17,9 @@
 }
 
 .video-splash__logo {
+    font: 400 30px "Rubik Mono One", monospace, sans-serif;
     position: absolute;
-    top: 60px;
+    top: 200px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10000;

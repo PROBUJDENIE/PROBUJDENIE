@@ -45,7 +45,7 @@ export default function VideoSplash({ children, videoSrc, duration = 18000 }) {
             </video>
 
             <div className="video-splash__logo">
-                <Logo />
+                PROBUJDENIE
             </div>
         </div>
     );

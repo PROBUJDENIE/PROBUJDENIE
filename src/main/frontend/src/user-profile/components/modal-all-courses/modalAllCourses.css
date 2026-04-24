@@ -13,7 +13,6 @@
     border-radius: 30px;
     border: 1px solid black;
     padding: 80px 20px 20px;
-    margin: 15% auto;
     box-shadow: 0 0 200px #8A6CFF;
     overflow: hidden;
     position: relative;
@@ -49,7 +48,9 @@
     padding: 20px;
     box-sizing: border-box;
     overflow-y: auto;
-    align-items: flex-start;
+    align-items: center;
+    position: fixed;
+    inset: 0;
 }
 
 @media (max-width: 768px) {

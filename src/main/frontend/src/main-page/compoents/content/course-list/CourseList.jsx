@@ -8,13 +8,19 @@ import {usePublicCourses} from "@/api/hooks/usePublicCourses.js";
 import RegisterBox from "@/autorisation/register/RegisterBox.jsx";
 import {PayModal} from "@/user-profile/components/pay-modal/PayModal.jsx";
 import {useAuth} from "@/autorisation/AuthContext.jsx";
+import {useStudentCourses} from "@/api/hooks/useStudentCourses.js";
 
 
 export default function CourseList() {
     const { courses } = usePublicCourses();
+    const { courses: myCourses } = useStudentCourses();
     const [modalState, changeModalState] = useState(0);
     const { isAuthenticated } = useAuth();
     const [selectedCourse, setSelectedCourse] = useState(null);
+
+    const availableCourses = isAuthenticated
+        ? courses.filter(course => !myCourses.some(my => String(my.id) === String(course.id)))
+        : courses;
 
     const handleBuy = (course) => {
         if (!isAuthenticated) {
@@ -32,7 +38,7 @@ export default function CourseList() {
             <div className="course-list" id="course-list">
                 <CourseListHeader ></CourseListHeader>
                 <div className="course-list-cards">
-                    {courses.map(course => (
+                    {availableCourses.map(course => (
                         <CourseCard key={course.id} course={course} from="public" onBuyClick={handleBuy}/>
                     ))}
                 </div>

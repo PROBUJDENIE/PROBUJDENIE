@@ -1,11 +1,10 @@
 package org.hse.probujdenie.processor;
 
-import io.micrometer.core.instrument.Counter;
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Timer;
+import io.micrometer.core.annotation.Timed;
 import lombok.AllArgsConstructor;
 import org.hse.probujdenie.model.exercise.StudentSubmission;
 import org.hse.probujdenie.model.exercise.enums.StudentSubmissionStatus;
+import org.hse.probujdenie.service.MetricService;
 import org.hse.probujdenie.service.exercise.StudentSubmissionService;
 import org.hse.probujdenie.util.ContainerExecutionResult;
 import org.hse.probujdenie.util.DockerUtil;
@@ -15,8 +14,10 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.Optional;
 
+import static org.hse.probujdenie.util.CommonConstants.MetricConstants.*;
 import static org.hse.probujdenie.util.FileUtil.getSubmissionFolder;
 import static org.hse.probujdenie.util.FileUtil.getSubmissionFolderAsFile;
 import static org.hse.probujdenie.util.LogsUtil.getErrorsFromLogs;
@@ -28,31 +29,20 @@ import static org.hse.probujdenie.util.ProcessUtil.sendInputValuesToContainer;
 public class JavaSubmissionProcessor implements LanguageSpecificProcessor {
 
     private final StudentSubmissionService studentSubmissionService;
-    private final Counter createImageFailedCounter;
-    private final Counter startContainerFailedCounter;
-    private final Counter startContainerSuccessCounter;
-    private final MeterRegistry meterRegistry;
+    private final MetricService metricService;
 
     @Override
+    @Timed(STUDENT_SUBMISSION_CHECK_DURATION)
     public void processSubmission(StudentSubmission submission) throws IOException, InterruptedException {
-        Timer.Sample sample = Timer.start(meterRegistry);
 
-        try {
-
-            prepareDirectionForStudentSubmission(submission);
-            int exitCode = createImage(submission);
-            if (exitCode == 0) {
-                ContainerExecutionResult containerExecutionResult = startContainer(submission);
-                evaluateResult(submission, containerExecutionResult);
-                DockerUtil.cleanupDanglingImages();
-            } else {
-                createImageFailedCounter.increment();
-            }
-        } finally {
-            sample.stop(
-                    Timer.builder("student.submission.check.duration")
-                            .register(meterRegistry)
-            );
+        prepareDirectionForStudentSubmission(submission);
+        int exitCode = createImage(submission);
+        if (exitCode == 0) {
+            ContainerExecutionResult containerExecutionResult = startContainer(submission);
+            evaluateResult(submission, containerExecutionResult);
+            DockerUtil.cleanupDanglingImages();
+        } else {
+            metricService.increment(CREATE_IMAGE_COUNT, Map.of(RESULT, Boolean.FALSE.toString()));
         }
     }
 
@@ -99,18 +89,17 @@ public class JavaSubmissionProcessor implements LanguageSpecificProcessor {
             String errors;
             if (exitCode == 124) {
                 errors = "Превышение лимит времени.";
-            }
-            else {
+            } else {
                 errors = actualOutput;
             }
-            startContainerFailedCounter.increment();
+            metricService.increment(START_CONTAINER_COUNT_ERROR, Map.of(RESULT, Boolean.FALSE.toString()));
             rejectSubmission(errors, submission);
         } else {
             String expectedOutput = submission.getExercise().getOutputData();
             if (expectedOutput.equals(actualOutput)) {
                 approveSubmission(submission);
             } else {
-                startContainerFailedCounter.increment();
+                metricService.increment(START_CONTAINER_COUNT_ERROR, Map.of(RESULT, Boolean.FALSE.toString()));
                 rejectSubmission(actualOutput + "!=" + expectedOutput, submission);
             }
         }
@@ -153,7 +142,7 @@ public class JavaSubmissionProcessor implements LanguageSpecificProcessor {
     }
 
     private void approveSubmission(StudentSubmission submission) throws IOException {
-        startContainerSuccessCounter.increment();
+        metricService.increment(START_CONTAINER_COUNT_SUCCESS, Map.of(RESULT, Boolean.TRUE.toString()));
         Path submissionDir = getSubmissionFolder(submission.getId());
         FileUtil.deleteDirectory(submissionDir);
         studentSubmissionService.setStatus(submission, StudentSubmissionStatus.APPROVED);

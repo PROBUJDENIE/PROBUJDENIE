@@ -1,10 +1,6 @@
 package org.hse.probujdenie.service;
 
-
-import io.micrometer.core.instrument.Counter;
 import lombok.AllArgsConstructor;
-import org.hse.probujdenie.model.content.Course;
-import org.hse.probujdenie.model.content.enums.CourseStatus;
 import org.hse.probujdenie.model.user.User;
 import org.hse.probujdenie.model.user.UserData;
 import org.hse.probujdenie.storage.UserRepository;
@@ -13,7 +9,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,6 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+
+import static org.hse.probujdenie.util.CommonConstants.MetricConstants.USER_LOGIN_COUNT;
+import static org.hse.probujdenie.util.CommonConstants.MetricConstants.USER_REGISTRATION_COUNT;
 
 @Service
 @AllArgsConstructor
@@ -30,9 +28,7 @@ public class UserService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
-
-    private final Counter registrationSuccessCounter;
-    private final Counter loginSuccessCounter;
+    private final MetricService metricService;
 
     public String login(User user) {
         try {
@@ -49,7 +45,7 @@ public class UserService {
 
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-            loginSuccessCounter.increment();
+            metricService.increment(USER_LOGIN_COUNT);
             return jwtUtil.generateToken(userDetails);
         } catch (BadCredentialsException e) {
             throw new IllegalArgumentException("Не верные данные!");
@@ -73,7 +69,7 @@ public class UserService {
                 .build();
         user.setUserData(userData);
         userRepository.save(user);
-        registrationSuccessCounter.increment();
+        metricService.increment(USER_REGISTRATION_COUNT);
     }
 
     public User getUserByEmail(String email) {
